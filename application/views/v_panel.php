@@ -24,7 +24,7 @@
 				<?php $this->load->view('panel/nav_left');?>
 			</article>
 			<section class="body_right"></section>
-			<footer class="footer"></footer>
+			<footer class="footer" style="color: white;"><center>©2013 Universidad Nacional José Faustino Sánchez Carrión<p>Facultad de Ingenieria-Ingenieria de Sistemas-Sistema Web Para el Control y Gestion de Tesis<p></footer>
 		</section>
 	</body>
 </html>
