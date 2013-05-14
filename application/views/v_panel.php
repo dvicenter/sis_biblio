@@ -27,9 +27,9 @@
 			<section class="body_right"></section>
 			<footer class="footer" style="color: white;">
 				<center>
-					©2013 Universidad Nacional José Faustino Sánchez Carrión
+					©2013 Universidad Nacional Jos&eacute; Faustino S&aacute;nchez Carri&oacute;n
 					<p>
-						Facultad de Ingenieria - Ingenieria de Sistemas - Sistema Web Para el Control y Gestion de Tesis
+						Facultad de Ingenier&iacute;a - Ingenier&iacute;a de Sistemas - Sistema Web Para el Control y Gesti&oacute;n de Tesis
 					</p>
 				</center>
 			</footer>
