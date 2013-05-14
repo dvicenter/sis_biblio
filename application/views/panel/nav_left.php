@@ -13,7 +13,7 @@
 	             <ul class="nav nav-list">
 	             	<li><a href="#">Informes de Pr&aacute;ctica</a></li>
 	             	<li><a href="#">Monograf&iacute;as</a></li>
-	             	<li><a href="#">Tesis</a></li>
+	             	<li><a id="tesis" href="javascript:;">Tesis</a></li>
 	             </ul>
              </div>
     	</li>

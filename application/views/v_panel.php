@@ -12,6 +12,7 @@
 		
 		<script src="<?php echo base_url();?>resource/js/jquery.min.js"></script>
 		<script src="<?php echo base_url();?>resource/js/bootstrap.min.js"></script>
+		<script src="<?php echo base_url();?>resource/myjs/nav.js"></script>
 		
 	</head>
 	<body>
@@ -24,7 +25,7 @@
 			<article class="nav_left">
 				<?php $this->load->view('panel/nav_left');?>
 			</article>
-			<section class="body_right"></section>
+			<section id="module_content" class="body_right"></section>
 			<footer class="footer" style="color: white;">
 				<center>
 					©2013 Universidad Nacional Jos&eacute; Faustino S&aacute;nchez Carri&oacute;n

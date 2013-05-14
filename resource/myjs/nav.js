@@ -1,0 +1,13 @@
+$(document).ready(function(){
+	$('#tesis').click(function(){
+		$.ajax({
+			url:'module/tesis/manager_tesis',
+			beforeSend:function(data){
+				$('#module_content').html('cargando...');
+			},
+			success:function(data){
+				$('#module_content').html(data);
+			}
+		});
+	});
+});

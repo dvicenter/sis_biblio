@@ -1,9 +1,17 @@
 .body .header{background-color:gray; height: 90px;}
 .body .nav_top{background-color:#333;height: 40px;}
-.body .nav_left{background-color:cadetblue;float:left; height:740px;margin-right: -5px;width:20%;}
-.body .body_right{background-color:darkcyan;height:740px;}
-.body .footer{background-color: black;height: 40px;padding: 15px;}
+.body .nav_left{background-color:cadetblue;float:left; height:740px;width:20%;}
+.body .body_right{background-color:darkcyan;float:left;height:740px;width: 80%;}
+.body .footer{background-color: black;clear: both;height: 40px;padding: 12px;}
 
 #nav_left ul .nav_left_content{margin-left: -15px;padding: 5px 13px;}
 #nav_left ul .nav_left_content .nav_left_head{font-size: 11px;font-weight: bold;}
 #nav_left ul .nav_left_content .nav_left_body{margin-left: 17px;}
+
+table .check_table{text-align: center;width: 3%;}
+table thead .action_table{width: 12%;}
+
+#module_tesis table thead .title_table{width: 33%;}
+#module_tesis table thead .author_table{width: 25%;}
+#module_tesis table thead .asesor_table{width: 17%;}
+#module_tesis table thead .year_table{width: 10%;}

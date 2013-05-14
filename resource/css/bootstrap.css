@@ -2021,6 +2021,7 @@ table {
 
 .table thead th {
   vertical-align: bottom;
+  background-color: #f2f2f2;
 }
 
 .table caption + thead tr:first-child th,
