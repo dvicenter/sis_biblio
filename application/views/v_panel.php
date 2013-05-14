@@ -16,7 +16,8 @@
 	</head>
 	<body>
 		<section class="body">
-			<header class="header"></header>
+			<header class="header">
+			</header>
 			<nav class="nav_top">
 				<?php $this->load->view('panel/nav_top');?>
 			</nav>
@@ -24,7 +25,14 @@
 				<?php $this->load->view('panel/nav_left');?>
 			</article>
 			<section class="body_right"></section>
-			<footer class="footer" style="color: white;"><center>©2013 Universidad Nacional José Faustino Sánchez Carrión<p>Facultad de Ingenieria - Ingenieria de Sistemas - Sistema Web Para el Control y Gestion de Tesis<p></footer>
+			<footer class="footer" style="color: white;">
+				<center>
+					©2013 Universidad Nacional José Faustino Sánchez Carrión
+					<p>
+						Facultad de Ingenieria - Ingenieria de Sistemas - Sistema Web Para el Control y Gestion de Tesis
+					</p>
+				</center>
+			</footer>
 		</section>
 	</body>
 </html>
