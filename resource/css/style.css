@@ -1,5 +1,9 @@
 .body .header{background-color:gray; height: 90px;}
 .header.img{height:89px;width:100%;}
+.header .position_session li{list-style:none;display: inline-block;}
+.header .position_session{position:absolute;top:0px;right:10px;width:20%}
+.header .position_session li a{color:#f8f8f8;}
+.header .position_session li a:hover,.header .position_session li a:focus{background-color:#1e5482;color:#fff;}
 .body .nav_top{background-color:#333;height: 40px;}
 .body .nav_left{background-color:cadetblue;float:left; height:740px;width:20%;}
 .body .body_right{background-color:darkcyan;float:left;height:740px;width: 80%;}
