@@ -5,7 +5,7 @@
 .header .position_session li a{color:#f8f8f8;}
 .header .position_session li a:hover,.header .position_session li a:focus{background-color:#1e5482;color:#fff;}
 .body .nav_top{background-color:#333;height: 40px;}
-.body .nav_left{background-color:cadetblue;float:left; height:740px;width:20%;}
+.body .nav_left{background-color:#f5f5f5;float:left; height:740px;width:20%;}
 .body .body_right{background-color:darkcyan;float:left;height:740px;width: 80%;}
 .body .footer{background-color: black;clear: both;height: 40px;padding: 12px;}
 

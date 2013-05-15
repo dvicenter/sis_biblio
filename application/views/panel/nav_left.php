@@ -1,4 +1,4 @@
-<div id="nav_left" class="well" style="padding: 8px 0;">
+<div id="nav_left" class="well" style="padding: 8px 0;height: 97%;">
 	<ul class="nav nav-list">
     	<li class="active">
     		<a href="#"><i class="icon-home"></i>Inicio</a>
