@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<section class="body">
-			<header class="header"> <img src="\sis_biblio\resource\img\header\cabecera.jpg" width="1343" height="89" alt="UNJFSC-Gestion de Biblioteca Central"> 
+			<header class="header"> <img src="\sis_biblio\resource\img\header\cabecera.jpg" width="100%" height="89" alt="UNJFSC-Gestion de Biblioteca Central"> 
 			</header>
 			<nav class="nav_top">
 				<?php $this->load->view('panel/nav_top');?>
