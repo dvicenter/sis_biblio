@@ -20,3 +20,6 @@ table thead .action_table{width: 12%;}
 #module_tesis table thead .author_table{width: 25%;}
 #module_tesis table thead .asesor_table{width: 17%;}
 #module_tesis table thead .year_table{width: 10%;}
+
+.loading{text-align: center;height: 100%;}
+.loading img{position: relative;top: 45%;width: 5%;}

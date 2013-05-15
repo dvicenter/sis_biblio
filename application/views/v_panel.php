@@ -17,19 +17,8 @@
 	</head>
 	<body>
 		<section class="body">
-			<header class="header"> <img src="\sis_biblio\resource\img\header\cabecera.jpg" width="100%" height="89" alt="UNJFSC-Gestion de Biblioteca Central"> 
-			   <!--ul class="position_session">
-			   <li style="margin-top: -75px;">Deyvis Valladares Loza</li>
-			   </ul-->
-			   <ul class="nav pull-right position_session">
-			   <li style="margin-top: 10px;"><img class="img-rounded" width="48px" style="width: 30px; height: 30px"></li>
-				<li><a href="#">Cesar Nicho Diaz </a></li>
-				<li class="divider-vertical"></li>
-				<li class="dropdown"><a href="javascript:salir();" class="dropdown-toggle" data-toggle="dropdown">Cerrar Sesión </a>
-				 
-				</li>
-			   </ul>
-					   
+			<header class="header"> 
+			   <?php $this->load->view('panel/header');?>
 			</header>
 			<nav class="nav_top">
 				<?php $this->load->view('panel/nav_top');?>
@@ -39,12 +28,12 @@
 			</article>
 			<section id="module_content" class="body_right"></section>
 			<footer class="footer" style="color: white;">
-				<center>
+				<div style="text-align:center;">
 					©2013 Universidad Nacional Jos&eacute; Faustino S&aacute;nchez Carri&oacute;n
 					<p>
 						Facultad de Ingenier&iacute;a - Ingenier&iacute;a de Sistemas - Sistema Web Para el Control y Gesti&oacute;n de Tesis
 					</p>
-				</center>
+				</div>
 			</footer>
 		</section>
 	</body>
