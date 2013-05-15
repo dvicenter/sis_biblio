@@ -18,6 +18,7 @@
 	<body>
 		<section class="body">
 			<header class="header">
+			<img src="\sis_biblio\resource\img\cabecera.jpg" width="1343" height="89" alt="UNJFSC-GestiÃ³n de Biblioteca Central"> 
 			</header>
 			<nav class="nav_top">
 				<?php $this->load->view('panel/nav_top');?>
@@ -28,7 +29,7 @@
 			<section id="module_content" class="body_right"></section>
 			<footer class="footer" style="color: white;">
 				<center>
-					©2013 Universidad Nacional Jos&eacute; Faustino S&aacute;nchez Carri&oacute;n
+					ï¿½2013 Universidad Nacional Jos&eacute; Faustino S&aacute;nchez Carri&oacute;n
 					<p>
 						Facultad de Ingenier&iacute;a - Ingenier&iacute;a de Sistemas - Sistema Web Para el Control y Gesti&oacute;n de Tesis
 					</p>
