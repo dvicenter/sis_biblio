@@ -13,11 +13,11 @@
 			array($titulo='Creaci&oacute;n del sistema web',$bachiller='Lionel Messi Ronaldo',$asesor='Ing. Karina Gonzales Angulo',$anio='2013')
 			);?>
 <div id="module_tesis">
-    <ul class="nav nav-pills">
-      <li><button class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> Agregar</button> </li>
-      <li><button class="btn btn-danger"><i class="icon-remove-sign icon-white"></i> Eliminar</button></li>
-      <li><button class="btn btn-info"><i class="icon-upload icon-white"></i> Exportar</button></li>
-      <li>
+    <ul class="control">
+      <li class="menu-control"><a href="#myModal" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</a> </li>
+      <li class="menu-control"><a href="" class="btn btn-danger"><i class="icon-remove-sign icon-white"></i> Eliminar</a></li>
+      <li class="menu-control"><a href="" class="btn btn-info"><i class="icon-upload icon-white"></i> Exportar</a></li>
+      <li class="menu-control">
         <form class="form-search span4 offset2">
           <div class="input-append">
             <input class="span3" id="appendedDropdownButton" type="text" placeholder="Buscar">
@@ -63,4 +63,31 @@
       <?php }?>
     </tbody>
   </table>
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Agregar Tesis</h3>
+  </div>
+  <div class="modal-body">
+    <form action="">
+      <fieldset> 
+        <label for="titulo">Titulo:</label>
+        <input type="text" id="titulo" required/>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" required/>
+      </fieldset>
+      <fieldset>
+        <label for="asesor">Asesor:</label>
+        <input type="text" id="asesor" required/>
+        <label for="anio">Fecha:</label>
+        <input type="date" id="anio" required/>
+      </fieldset>
+      <div class="modal-footer ">
+        <input type="file" required>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+        <button class="btn btn-primary" type="submit">Agregar</button>
+      </div>
+    </form>
+  </div>
+</div>
 </div>
