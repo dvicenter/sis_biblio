@@ -84,8 +84,8 @@
       </fieldset>
       <div class="modal-footer ">
         <input type="file" required>
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-        <button class="btn btn-primary" type="submit">Agregar</button>
+        <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
+        <input class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
     </form>
   </div>
