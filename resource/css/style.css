@@ -1,5 +1,5 @@
 .body .header{background-color:gray; height: 90px;}
-.header.img{height:89px;width:100%;}
+.header.img{height:100%;width:100%;}
 .header .position_session li{list-style:none;display: inline-block;}
 .header .position_session{position:absolute;top:0px;right:10px;width:20%}
 .header .position_session li a{color:#f8f8f8;}
