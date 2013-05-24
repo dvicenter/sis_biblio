@@ -13,7 +13,7 @@
 <div id="module_tesis">
     <ul class="control">
       <li class="menu-control"><a href="#myModal" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</a> </li>
-      <li class="menu-control"><a href="" class="btn btn-danger"><i class="icon-remove-sign icon-white"></i> Eliminar</a></li>
+      
       <li class="menu-control"><a href="" class="btn btn-info"><i class="icon-upload icon-white"></i> Exportar</a></li>
       <li class="menu-control">
         <form class="form-search span4 offset2">
