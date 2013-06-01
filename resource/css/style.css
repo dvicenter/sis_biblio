@@ -34,3 +34,6 @@ table thead .action_table{width: 12%;}
 
 .loading{text-align: center;height: 100%;}
 .loading img{position: relative;top: 45%;width: 5%;}
+
+.tab-pane{text-align: center;}
+.tab-pane textarea{position: relative; width: 95%;}

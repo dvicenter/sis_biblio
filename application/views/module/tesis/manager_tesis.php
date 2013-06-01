@@ -80,6 +80,22 @@
         <label for="anio">Fecha:</label>
         <input type="date" id="anio" required/>
       </fieldset>
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+          <li><a href="#profile" data-toggle="tab">Profile</a></li>
+          <li><a href="#resumen" data-toggle="tab">Resumen</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="home">
+            <textarea name="home" rows="5" placeholder="Escriba su HOME aqui..." required></textarea>
+          </div>
+          <div class="tab-pane" id="profile">
+            <textarea name="perfile" rows="5" placeholder="Escriba su PERFILE aqui..." required></textarea>
+          </div>
+          <div class="tab-pane" id="resumen">
+            <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." required></textarea>
+          </div>
+        </div>
       <div class="modal-footer ">
         <input type="file" required>
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
