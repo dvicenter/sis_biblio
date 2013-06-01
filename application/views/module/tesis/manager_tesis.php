@@ -81,19 +81,23 @@
         <input type="date" id="anio" required/>
       </fieldset>
         <ul class="nav nav-tabs" id="myTab">
-          <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-          <li><a href="#profile" data-toggle="tab">Profile</a></li>
+          <li class="active"><a href="#introduccion" data-toggle="tab">Introduccion</a></li>
+          <li><a href="#objetivo" data-toggle="tab">Objetivo</a></li>
           <li><a href="#resumen" data-toggle="tab">Resumen</a></li>
+          <li><a href="#conclusion" data-toggle="tab">Conclusion</a></li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" id="home">
-            <textarea name="home" rows="5" placeholder="Escriba su HOME aqui..." required></textarea>
+          <div class="tab-pane active" id="introduccion">
+            <textarea name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." required></textarea>
           </div>
-          <div class="tab-pane" id="profile">
-            <textarea name="perfile" rows="5" placeholder="Escriba su PERFILE aqui..." required></textarea>
+          <div class="tab-pane" id="objetivo">
+            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." required></textarea>
           </div>
           <div class="tab-pane" id="resumen">
             <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." required></textarea>
+          </div>
+          <div class="tab-pane" id="conclusion">
+            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." required></textarea>
           </div>
         </div>
       <div class="modal-footer ">
