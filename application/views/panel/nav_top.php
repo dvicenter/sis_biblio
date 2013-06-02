@@ -3,16 +3,16 @@
     <div class="container">
       	<a class="brand" href="#">Sist. Biblioteca</a>
       	<ul class="nav">
-			<li class="active">
-				<a href="#">Inicio</a>
+			<li class="active import">
+				<a href="<?php echo base_url();?>">Inicio</a>
 			</li>
-  			<li>
-  				<a href="#">Tesis</a>
+  			<li class="import">
+  				<a id="tesis_top" href="#">Tesis</a>
   			</li>
-			<li>
-				<a href="#">Constancia de No Negatividad</a>
+			<li class="import">
+				<a id="constancia_top" href="#">Solicitudes de Constancia</a>
 			</li>
-			<li>
+			<li class="import">
 				<a href="#">Material Bibliogr&aacute;fico</a>
 			</li>
 			<li class="dropdown">

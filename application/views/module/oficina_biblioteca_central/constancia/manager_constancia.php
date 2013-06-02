@@ -34,11 +34,11 @@
         <td><?php echo $dato[2];?></td>
         <td><?php echo $dato[3];?></td>
         <td>
-        	<button class="btn"><i class="icon-eye-open"></i></button>
+        	<a id="#consult_related" href="javascript:;"><button class="btn"><i class="icon-eye-open"></i></button></a>
         </td>
       </tr>
       <?php }?>
     </tbody>
   </table>
-  <?php //include_once 'new_tesis.php';?>
+  <?php include_once 'consult_related.php';?>
 </div>

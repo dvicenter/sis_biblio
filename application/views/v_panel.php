@@ -26,7 +26,9 @@
 			<article class="nav_left">
 				<?php $this->load->view('panel/nav_left');?>
 			</article>
-			<section id="module_content" class="body_right"></section>
+			<section id="module_content" class="body_right">
+				<img style="padding: 10% 0% 0% 26%;" src="<?php echo base_url();?>resource/img/utilities/png/unjfsc.png"/>
+			</section>
 			<footer class="footer" style="color: white;">
 				<div style="text-align:center;">
 					©2013 Universidad Nacional Jos&eacute; Faustino S&aacute;nchez Carri&oacute;n

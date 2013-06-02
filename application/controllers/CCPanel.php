@@ -5,10 +5,6 @@ class CCPanel extends CI_Controller
 	{
 		$this->load->helper('url');
 		$this->load->view('v_panel');
-	} 
-	function control_panel()
-	{	$this->panel_control='module/v_control_panel';
-		$this->load->view($this->panel_control);
 	}
 	function ubication_module($path,$file)
 	{	
