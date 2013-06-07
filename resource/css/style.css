@@ -54,6 +54,13 @@ table thead .action_table{width: 12%;}
 #consult_student form .control-group{margin-bottom: 0px;}
 #consult_asesor .table{overflow: auto;height: 10px;}
 /*END CONSTANCIA*/
+/*STAR USER*/
+.form_user{float:left; font-weight: bold;}
+.form_user label{ font-weight: bold;}
+.btn_mantenimiento{padding-top: 203px;padding-bottom: 12px;}
+
+
+/*END USER*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
 .modal-footer {background: none; text-align: center;}
