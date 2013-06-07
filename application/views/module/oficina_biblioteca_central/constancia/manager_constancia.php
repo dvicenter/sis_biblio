@@ -14,7 +14,7 @@
     <ul class="control">
       <li class="menu-control"><a href="" class="btn btn-info"><i class="icon-upload icon-white"></i> Exportar</a></li>
     </ul>
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-striped table-bordered table-condensed table-hover">
     <thead>
       <tr>
         <th class="check_table"><input type="checkbox"/></th>
@@ -34,7 +34,7 @@
         <td><?php echo $dato[2];?></td>
         <td><?php echo $dato[3];?></td>
         <td>
-        	<a id="#consult_related" href="javascript:;"><button class="btn"><i class="icon-eye-open"></i></button></a>
+        	<a href="#consult_related" data-toggle="modal" ><button class="btn"><i class="icon-eye-open"></i></button></a>
         </td>
       </tr>
       <?php }?>

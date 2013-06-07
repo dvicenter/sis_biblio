@@ -14,7 +14,12 @@ class CCPanel extends CI_Controller
 				break;
 			case 'constancia':$this->ubication='module/oficina_biblioteca_central/'.$path.'/'.$file;  
 				break;
+			case 'role_assignment':$this->ubication='module/manager/'.$path.'/'.$file;
+				break;  
+			case 'user':$this->ubication='module/manager/'.$path.'/'.$file;  
+				break;
 		}
+		
 		$this->load->view($this->ubication);
 	}
 } 

@@ -39,7 +39,7 @@
              <div id="nav_left_three" class="accordion-body collapse nav_left_body">
 	             <ul class="nav nav-list">
 	             	<li><a id="user" href="javascript:;">Usuario</a></li>
-	             	<li><a href="#">Asignacion de roles</a></li>
+	             	<li><a id="role_assignment" href="javascript:;">Asignacion de roles</a></li>
 	             	<li><a href="#">Asignacion de roles y componentes</a></li>
 	             	<li><a href="#">Asignacion de componentes y acci&oacute;n</a></li>
 	             </ul>

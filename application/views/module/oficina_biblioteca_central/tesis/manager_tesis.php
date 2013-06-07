@@ -35,7 +35,7 @@
         </form>
       </li>
     </ul>
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-striped table-bordered table-condensed table-hover">
     <thead>
       <tr>
         <th class="check_table"><input type="checkbox"/></th>

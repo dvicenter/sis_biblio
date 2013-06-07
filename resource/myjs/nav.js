@@ -11,18 +11,30 @@ $(document).ready(function(){
 	$('#constancia_top').click(function(){
 		load_module('module/constancia/manager_constancia', '#constancia', '#constancia_top')
 	});
-	/*$('#user').click(function(){
+	$('#user').click(function(){
 		$.ajax({
-			url:'module/constancia/manager_constancia',
+			url:'module/user/manager_user',
 			beforeSend:function(data){
 				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
 			},
 			success:function(data){
-				active('#constancia');
+				active('#constancia,null');
 				$('#module_content').html(data);
 			}
 		});
-	});*/
+	});
+	$('#role_assignment').click(function(){
+		$.ajax({
+			url:'module/role_assignment/role_assignment',
+			beforeSend:function(data){
+				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
+			},
+			success:function(data){
+				active('#role_assignment,null');
+				$('#module_content').html(data);
+			}
+		});
+	});
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');
