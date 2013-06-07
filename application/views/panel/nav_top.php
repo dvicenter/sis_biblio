@@ -7,10 +7,10 @@
 				<a href="<?php echo base_url();?>">Inicio</a>
 			</li>
   			<li class="import">
-  				<a id="tesis_top" href="#">Tesis</a>
+  				<a id="tesis_top" href="javascript:;">Tesis</a>
   			</li>
 			<li class="import">
-				<a id="constancia_top" href="#">Solicitudes de Constancia</a>
+				<a id="constancia_top" href="javascript:;">Solicitudes de Constancia</a>
 			</li>
 			<li class="import">
 				<a href="#">Material Bibliogr&aacute;fico</a>

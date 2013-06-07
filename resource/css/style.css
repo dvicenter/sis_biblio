@@ -37,6 +37,22 @@ table thead .action_table{width: 12%;}
 
 /*STAR CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
+#consult_related input{width: 260px;}
+#consult_related .consult_right.well{height: 298px;width: 365px;}
+#consult_related .consult_student,#consult_related .consult_asesor{display: none;}
+#consult_related .active_consult{display: block;}
+#actual_tesis input{width: 247px;}
+#actual_tesis .form-horizontal{margin-right: 20px;}
+#actual_tesis form label{width: 0px;}
+#actual_tesis form fieldset{margin-left: 0px;}
+#actual_tesis form .control-group .controls{margin-left: 60px;float: left;margin-right: 4px;}
+#actual_tesis form .control-group{margin-bottom: 0px;}
+#consult_related .form-horizontal{width: 365px;}
+#consult_student form label{width: 0px;}
+#consult_student form fieldset{margin-left: 0px;}
+#consult_student form .control-group .controls{margin-left: 60px;}
+#consult_student form .control-group{margin-bottom: 0px;}
+#consult_asesor .table{overflow: auto;height: 10px;}
 /*END CONSTANCIA*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
@@ -48,4 +64,7 @@ table thead .action_table{width: 12%;}
 .loading{text-align: center;height: 100%;}
 .loading img{position: relative;top: 45%;width: 5%;}
 .ctrl_panel{background-image: url(../img/utilities/png/panel.png); background-repeat: no-repeat;height: 57px;width: 47px;}
+.pos_left{float: left;}
+.pos_right{display: inline-block;}
+.search{float: right;}
 /*END UTIL*/

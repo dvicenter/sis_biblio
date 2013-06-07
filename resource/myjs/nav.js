@@ -23,6 +23,18 @@ $(document).ready(function(){
 			}
 		});
 	});*/
+	$('#role_assignment').click(function(){
+		$.ajax({
+			url:'module/role_assignment/role_assignment',
+			beforeSend:function(data){
+				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
+			},
+			success:function(data){
+				active('#role_assignment,null');
+				$('#module_content').html(data);
+			}
+		});
+	});
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');
