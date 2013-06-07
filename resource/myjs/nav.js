@@ -1,39 +1,21 @@
 $(document).ready(function(){
 	$('#tesis').click(function(){
-		load_module('module/tesis/manager_tesis', '#tesis', '#tesis_top')
+		load_module('module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
 	$('#tesis_top').click(function(){
-		load_module('module/tesis/manager_tesis', '#tesis', '#tesis_top')
+		load_module('module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
 	$('#constancia').click(function(){
-		load_module('module/constancia/manager_constancia', '#constancia', '#constancia_top')
+		load_module('module/constancia/manager_constancia', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module('module/constancia/manager_constancia', '#constancia', '#constancia_top')
+		load_module('module/constancia/manager_constancia', '#constancia', '#constancia_top');
 	});
 	$('#user').click(function(){
-		$.ajax({
-			url:'module/user/manager_user',
-			beforeSend:function(data){
-				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
-			},
-			success:function(data){
-				active('#constancia,null');
-				$('#module_content').html(data);
-			}
-		});
+		load_module('module/user/manager_user', '#user', 'null');
 	});
 	$('#role_assignment').click(function(){
-		$.ajax({
-			url:'module/role_assignment/role_assignment',
-			beforeSend:function(data){
-				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
-			},
-			success:function(data){
-				active('#role_assignment,null');
-				$('#module_content').html(data);
-			}
-		});
+		load_module('module/role_assignment/role_assignment', '#role_assignment', 'null');
 	});
 	function active(selector,selector_top)
 	{
