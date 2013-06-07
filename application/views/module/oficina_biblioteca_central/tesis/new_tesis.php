@@ -4,7 +4,7 @@
     <h3 id="myModalLabel">Agregar Tesis</h3>
   </div>
   <div class="modal-body">
-    <form action="">
+    <form action="nuevo.php" method="POST" >
       <fieldset> 
         <label for="titulo">Titulo:</label>
         <input type="text" id="titulo" required/>
@@ -37,11 +37,11 @@
             <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." required></textarea>
           </div>
         </div>
-      <div class="modal-footer ">
         <input type="file" required>
+  </div>
+      <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
     </form>
-  </div>
 </div>

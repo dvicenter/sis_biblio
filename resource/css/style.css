@@ -40,7 +40,11 @@ table thead .action_table{width: 12%;}
 /*END CONSTANCIA*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
-.modal-footer {background: none; text-align: center;}
+.modal-body form ul li{list-style: none; font-size: 16px; margin-top: 5px;}
+#new_exportar .modal-body form .opciones{padding-right: 25px; border-right: 1px solid #eee;}
+#new_exportar .modal-body form ul{display: inline-block; vertical-align: middle; margin-left: 50px;}
+#new_exportar .modal-body form ul li input{display: inline-block; vertical-align: top;}
+/*.modal-footer { text-align: center;}*/
 .tab-pane{text-align: center;}
 .tab-pane textarea{position: relative; width: 95%;}
 
