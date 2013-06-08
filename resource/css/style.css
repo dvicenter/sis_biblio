@@ -52,7 +52,8 @@ table thead .action_table{width: 12%;}
 #consult_student form fieldset{margin-left: 0px;}
 #consult_student form .control-group .controls{margin-left: 60px;}
 #consult_student form .control-group{margin-bottom: 0px;}
-#consult_asesor .table{overflow: auto;height: 10px;}
+#consult_asesor .table{}
+#consult_asesor .table tbody{overflow: auto;height: 10px;}
 /*END CONSTANCIA*/
 /*STAR USER*/
 .form_user{float:left; font-weight: bold;}
