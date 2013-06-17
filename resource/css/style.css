@@ -38,7 +38,7 @@ table thead .action_table{width: 12%;}
 /*STAR CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #consult_related input{width: 260px;}
-#consult_related .consult_right.well{height: 298px;width: 365px;}
+#consult_related .consult_right.well{height: 303px;width: 365px;}
 #consult_related .consult_student,#consult_related .consult_asesor{display: none;}
 #consult_related .active_consult{display: block;}
 #actual_tesis input{width: 247px;}
@@ -52,8 +52,7 @@ table thead .action_table{width: 12%;}
 #consult_student form fieldset{margin-left: 0px;}
 #consult_student form .control-group .controls{margin-left: 60px;}
 #consult_student form .control-group{margin-bottom: 0px;}
-#consult_asesor .table{}
-#consult_asesor .table tbody{overflow: auto;height: 10px;}
+#consult_asesor .table_dates_{height: 117px;}
 /*END CONSTANCIA*/
 /*STAR USER*/
 .form_user{float:left; font-weight: bold;}
@@ -64,7 +63,7 @@ table thead .action_table{width: 12%;}
 /*END USER*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
-.modal-body form ul li{list-style: none; font-size: 16px; margin-top: 5px;}
+.modal-body form ul li{list-style: none; font-size: 14px; margin-top: 5px;}
 #new_exportar .modal-body form .opciones{padding-right: 25px; border-right: 1px solid #eee;}
 #new_exportar .modal-body form ul{display: inline-block; vertical-align: middle; margin-left: 50px;}
 #new_exportar .modal-body form ul li input{display: inline-block; vertical-align: top;}

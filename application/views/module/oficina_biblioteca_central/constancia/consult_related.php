@@ -11,7 +11,7 @@
     		<div class="consult_student">
     			<?php $this->load->view('module/oficina_biblioteca_central/constancia/consult_student');?>
     		</div>
-    		<div class="consult_asesor active_consult">
+    		<div class="consult_asesor">
     			<?php $this->load->view('module/oficina_biblioteca_central/constancia/consult_asesor');?>
     		</div>
     	</div>

@@ -13,6 +13,7 @@
 		<script src="<?php echo base_url();?>resource/js/jquery.min.js"></script>
 		<script src="<?php echo base_url();?>resource/js/bootstrap.min.js"></script>
 		<script src="<?php echo base_url();?>resource/myjs/nav.js"></script>
+		<script src="<?php echo base_url();?>resource/myjs/utilities.js"></script>
 		
 	</head>
 	<body>

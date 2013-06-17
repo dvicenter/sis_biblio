@@ -18,7 +18,7 @@
 	             </ul>
              </div>
     	</li>
-    	<li class="accordion-group nav_left_content">
+    	<!-- <li class="accordion-group nav_left_content">
     		<div class="accordion-heading nav_left_head">
                 <a data-toggle="collapse" href="#nav_left_two">
                   <i class="icon-barcode"></i>OFICINA DE PATRIMONIO
@@ -29,7 +29,7 @@
 	             	<li><a href="#">Material Bibliogr&aacute;fico</a></li>
 	             </ul>
              </div>
-    	</li>
+    	</li>-->
     	<li class="accordion-group nav_left_content">
     		<div class="accordion-heading nav_left_head">
                 <a data-toggle="collapse" href="#nav_left_three">

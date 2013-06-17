@@ -14,7 +14,7 @@
 		    <div class="controls">
 		      <input type="text" class="input-xlarge" id="input02">
 		    </div>
-		    <div class="btn search"><i class="icon-search"></i></div>
+		    <div id="search_student" class="btn search"><i class="icon-search"></i></div>
 		  </div>
 		</fieldset>
 		<fieldset>
@@ -23,7 +23,7 @@
 		    <div class="controls">
 		      <input type="text" class="input-xlarge" id="input03">
 		    </div>
-		    <div class="btn search"><i class="icon-search"></i></div>
+		    <div id="search_asesor" class="btn search"><i class="icon-search"></i></div>
 		  </div>
 		</fieldset>
 	  	<ul style="margin-top: 25px;" class="nav nav-tabs">
