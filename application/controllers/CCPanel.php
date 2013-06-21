@@ -16,8 +16,14 @@ class CCPanel extends CI_Controller
 				break;
 			case 'role_assignment':$this->ubication='module/manager/'.$path.'/'.$file;
 				break;  
-			case 'user':$this->ubication='module/manager/'.$path.'/'.$file;  
+			case 'manager':$this->ubication='module/manager/user/'.$file;  
 				break;
+			case 'user':$this->ubication='module/'.$path.'/'.$file;  
+				break;
+			case 'role_assignment_component':$this->ubication='module/manager/'.$path.'/'.$file;
+				break;  
+			case 'role_component_action':$this->ubication='module/manager/'.$path.'/'.$file;
+				break;  
 		}
 		
 		$this->load->view($this->ubication);

@@ -31,7 +31,7 @@ table thead .action_table{width: 12%;}
 #module_tesis table thead .author_table{width: 25%;}
 #module_tesis table thead .asesor_table{width: 17%;}
 #module_tesis table thead .year_table{width: 10%;}
-#module_tesis .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
+|#module_tesis .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #module_tesis .control .menu-control:nth-child(3){float: right;}
 /*END TESIS*/
 
@@ -58,8 +58,11 @@ table thead .action_table{width: 12%;}
 .form_user{float:left; font-weight: bold;}
 .form_user label{ font-weight: bold;}
 .btn_mantenimiento{padding-top: 203px;padding-bottom: 12px;}
-
-
+#mod_request_record{margin-left: 4%;}
+#mod_request_record label{width: 104px;}
+#mod_request_record .controls{margin-left: 120px;}
+#mod_request_record .text_tesista{padding: 0% 22% 0% 2%;}
+#mod_request_record .btn_tesi{margin-top: 15px;margin-right: 23%;}
 /*END USER*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
@@ -78,4 +81,29 @@ table thead .action_table{width: 12%;}
 .pos_left{float: left;}
 .pos_right{display: inline-block;}
 .search{float: right;}
+.btn_search_mod{margin-left: 5px;}
+.input-xxlarge{width: 675px;}
+.input-xlarge2{width: 400px}
+.bold_label{font-weight: bold;}
 /*END UTIL*/
+
+/*STAR ROLE ASSIGNMENT*/
+#mod_role_assignment table {width: 40%;}
+#mod_role_assignment{margin-left: 10px;}
+#mod_role_assignment .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
+#mod_role_assignment .btns_nav_rol button{margin: 15px 0px 0px 0px;}
+/*END ROLE ASSIGNMENT*/
+
+/*STAR ROLE ASSIGNMENT COMPONENT*/
+#mod_role_assignment_component table {width: 40%;}
+#mod_role_assignment_component{margin-left: 10px;}
+#mod_role_assignment_component .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
+#mod_role_assignment_component .btns_nav_rol button{margin: 15px 0px 0px 0px;}
+/*END ROLE ASSIGNMENT COMPONENT*/
+
+/*STAR ROLE COMPONENT ACTION*/
+#mod_role_component_action table {width: 40%;}
+#mod_role_component_action{margin-left: 10px;}
+#mod_role_component_action .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
+#mod_role_component_action .btns_nav_rol button{margin: 15px 0px 0px 0px;}
+/*END ROLE ASSIGNMENT COMPONENT ACTION*/

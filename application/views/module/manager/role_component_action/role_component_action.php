@@ -1,8 +1,8 @@
-<div id="mod_role_assignment">
+<div id="mod_role_component_action">
 	<form class="form-horizontal">
 	<fieldset>
 		<div class="control">
-		  <label style="width: 85px;" class="control-label bold_label"> Usuario: </label> 
+		  <label style="width: 85px;" class="control-label bold_label"> Componente: </label> 
 		  <div style="margin-left:100px;" class="controls">
 			<input type="text" class="input-xlarge2"><a href="#" class="btn btn_search_mod" requerid><i class="icon-search"></i></a>
 			<p class="help-block"></p>
@@ -14,7 +14,7 @@
     <thead>
       <tr>
         <th class="check_table"><input type="checkbox"/></th>
-		<th class="role_table">Rol</th>
+		<th class="role_table">Acci&oacute;n</th>
       </tr>
     </thead>
     <tbody>
@@ -80,7 +80,7 @@
     <thead>
       <tr>
         <th class="check_table"><input type="checkbox"/></th>
-		<th class="role_table">Rol</th>
+		<th class="role_table">Acci&oacute;n</th>
       </tr>
     </thead>
     <tbody>
