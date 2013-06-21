@@ -22,14 +22,15 @@
 			    </a>
 			    <ul class="dropdown-menu">
 			    	<li>
-			    		<a href="#">Rol</a>
+			    		<a id="rol" href="javascript:;">Rol</a>
 			    	</li>
 			    	<li>
-			    		<a href="#">Componente</a>
+			    		<a id="componente" href="javascript:;">Componente</a>
 			    	</li>
 			    	<li>
-			    		<a href="#">Acci&oacute;n</a>
+			    		<a id="accion" href="javascript:;">Accion</a>
 			    	</li>
+					</li>
 			    </ul>
   			</li>
 		</ul>

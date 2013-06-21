@@ -29,6 +29,15 @@ $(document).ready(function(){
 	$('#role_component_action').click(function(){
 		load_module('module/role_component_action/role_component_action', '#role_component_action', 'null');
 	});
+	$('#rol').click(function(){
+		load_module('module/rol/rol_user', '#rol_user', 'null');
+	});
+	$('#componente').click(function(){
+		load_module('module/componente/componente_user', '#componente_user', 'null');
+	});
+	$('#accion').click(function(){
+		load_module('module/accion/accion_user', '#accion_user', 'null');
+	});
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');
