@@ -82,6 +82,7 @@ table thead .action_table{width: 12%;}
 /*.modal-footer { text-align: center;}*/
 .tab-pane{text-align: center;}
 .tab-pane textarea{position: relative; width: 95%;}
+.tab-content {height: 120px;}
 .text_area {width: 315px; height: 100px;}
 .btn_mantenimiento{padding-top: 170px;}
 /*END ROL*/

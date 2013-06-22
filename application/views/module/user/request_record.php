@@ -106,7 +106,7 @@
 	          <li><a href="#objetivo_tes" data-toggle="tab">Objetivo</a></li>
 	          <li><a href="#resumen_tes" data-toggle="tab">Resumen</a></li>
 	          <li><a href="#conclusion_tes" data-toggle="tab">Conclusion</a></li>
-	        </ul>
+	        </ul> 
 	        <div class="tab-content">
 	          <div class="tab-pane active" id="introduccion_tes">
 	            <textarea name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." required></textarea>
