@@ -65,6 +65,16 @@ table thead .action_table{width: 12%;}
 #mod_request_record .text_tesista{padding: 0% 22% 0% 2%;}
 #mod_request_record .btn_tesi{margin-top: 15px;margin-right: 23%;}
 /*END USER*/
+/*STAR COMPONENTE*/
+.btn_mantenimiento{padding-top: 203px;padding-bottom: 12px;}
+
+/*END COMPONENTE*/
+
+/*STAR ACCION*/
+#btn_mantenimiento .btn_mant{display: inline-block; margin-left: 20px;}
+/*END ACCION*/
+
+/*STAR ROL*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
 .modal-body form ul li{list-style: none; font-size: 14px; margin-top: 5px;}
@@ -74,9 +84,8 @@ table thead .action_table{width: 12%;}
 /*.modal-footer { text-align: center;}*/
 .tab-pane{text-align: center;}
 .tab-pane textarea{position: relative; width: 95%;}
-
-
-/*STAR ROL*/
+.text_area {width: 315px; height: 100px;}
+.btn_mantenimiento{padding-top: 170px;}
 /*END ROL*/
 
 

@@ -29,6 +29,15 @@ $(document).ready(function(){
 	$('#role_component_action').click(function(){
 		load_module('module/role_component_action/role_component_action', '#role_component_action', 'null');
 	});
+	$('#rol').click(function(){
+		load_module('module/rol/rol_user', '#rol_user', 'null');
+	});
+	$('#componente').click(function(){
+		load_module('module/componente/componente_user', '#componente_user', 'null');
+	});
+	$('#accion').click(function(){
+		load_module('module/accion/accion_user', '#accion_user', 'null');
+	});
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');
@@ -48,7 +57,17 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
+					
+						$('#module_constancia').click(function(){
+					//	alert('da');console.info('j');
+						active_consult('.consult_student', '.consult_asesor');
+						}); 		
 			}
 		});
+	}
+	
+	function active_consult(active,desactive)
+	{	$(active).addClass('active_consult');
+		$(desactive).removeClass('active_consult');
 	}
 });
