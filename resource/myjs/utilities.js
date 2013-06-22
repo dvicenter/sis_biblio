@@ -11,4 +11,5 @@ $(document).ready(function(){
 	{	$(active).addClass('active_consult');
 		$(desactive).removeClass('active_consult');
 	}
+	 
 });

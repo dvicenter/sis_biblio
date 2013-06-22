@@ -1,7 +1,7 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      	<a class="brand" href="#">Sist. Biblioteca</a>
+      	<a class="brand" href="#">Sist. de Consultas de Tesis</a>
       	<ul class="nav">
 			<li class="active import">
 				<a href="<?php echo base_url();?>">Inicio</a>
