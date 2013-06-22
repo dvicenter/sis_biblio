@@ -38,6 +38,9 @@ $(document).ready(function(){
 	$('#accion').click(function(){
 		load_module('module/accion/accion_user', '#accion_user', 'null');
 	});
+	$('#load_voucher').click(function(){
+		load_module('module/voucher/voucher', '#load_voucher', 'null');
+	});
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');

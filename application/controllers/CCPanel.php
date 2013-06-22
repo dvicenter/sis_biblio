@@ -32,7 +32,8 @@ class CCPanel extends CI_Controller
 				break; 
 			case 'accion':$this->ubication='module/manager/'.$path.'/'.$file;
 				break; 
-			
+			case 'voucher':$this->ubication='module/manager/'.$path.'/'.$file;
+				break; 
 		}
 		
 		$this->load->view($this->ubication);
