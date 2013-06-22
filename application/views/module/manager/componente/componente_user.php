@@ -20,9 +20,9 @@
 	  </fieldset>
 	<fieldset>
 	<div class="control-group">
-		  <label class="control-label" for="input01">Descripcio&oacute;n:</label> 
+		  <label class="control-label" for="input01">Descripci&oacute;n:</label> 
 		  <div class="controls">
-		<textarea cols="200" id="comment_body" name="comment[body]" rows="7"></textarea>
+		<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7"></textarea>
 	</fieldset>  
 	  </form>
 </div>

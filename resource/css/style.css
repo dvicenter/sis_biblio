@@ -70,7 +70,7 @@ table thead .action_table{width: 12%;}
 /*END COMPONENTE*/
 
 /*STAR ACCION*/
-#btn_mantenimiento.boton_mant{padding-top: 203px;padding-bottom: 12px;}
+#btn_mantenimiento .btn_mant{display: inline-block; margin-left: 20px;}
 /*END ACCION*/
 
 /*STAR ROL*/
@@ -83,8 +83,8 @@ table thead .action_table{width: 12%;}
 /*.modal-footer { text-align: center;}*/
 .tab-pane{text-align: center;}
 .tab-pane textarea{position: relative; width: 95%;}
-.tab-pane textarea{width: 270px;}
-#text_area.controls{width: 270;}
+.text_area {width: 315px; height: 100px;}
+.btn_mantenimiento{padding-top: 170px;}
 /*END ROL*/
 
 

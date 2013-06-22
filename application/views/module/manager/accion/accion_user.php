@@ -33,9 +33,9 @@
 </div>
 
 
-<div class="btn_mant">
-	<form >
-		<fieldset>
+<div id="btn_mantenimiento" class="btn_mant">
+	<form>
+		<fieldset id="btn_mantenimiento" class="btn_mant">
 			<a class="btn btn-primary " href="">Agregar</a>
 			<a class="btn btn-info" href="">Modificar</a>
 			<a class="btn btn-danger" href="">Eliminar</a>
