@@ -60,7 +60,17 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
+					
+						$('#module_constancia').click(function(){
+					//	alert('da');console.info('j');
+						active_consult('.consult_student', '.consult_asesor');
+						}); 		
 			}
 		});
+	}
+	
+	function active_consult(active,desactive)
+	{	$(active).addClass('active_consult');
+		$(desactive).removeClass('active_consult');
 	}
 });

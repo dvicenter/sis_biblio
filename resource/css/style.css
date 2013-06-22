@@ -10,6 +10,7 @@ body{padding: 0px;margin: 0px;}
 .body .body_right{/*background-color:darkcyan;*/float:left;height:740px;width: 80%;}
 .body .body_right > div {margin-top: 20px;}
 .body .footer{background-color: black;clear: both;height: 40px;padding: 12px;}
+.m_body form .user,.m_body form .pass{margin: 0px 15px;}
 
 #nav_left ul .nav_left_content{margin-left: -15px;padding: 5px 13px;}
 #nav_left ul .nav_left_content .nav_left_head{font-size: 11px;font-weight: bold;}
@@ -68,6 +69,7 @@ table thead .action_table{width: 12%;}
 /*END COMPONENTE*/
 
 /*STAR ACCION*/
+#btn_mantenimiento .btn_mant{display: inline-block; margin-left: 20px;}
 /*END ACCION*/
 
 /*STAR ROL*/
@@ -80,11 +82,8 @@ table thead .action_table{width: 12%;}
 /*.modal-footer { text-align: center;}*/
 .tab-pane{text-align: center;}
 .tab-pane textarea{position: relative; width: 95%;}
-.tab-pane textarea{width: 270px;}
 .text_area {width: 315px; height: 100px;}
 .btn_mantenimiento{padding-top: 170px;}
-.btn_voucher{padding-top: 50px;margin-left: 180px;}
-
 /*END ROL*/
 
 
@@ -121,3 +120,22 @@ table thead .action_table{width: 12%;}
 #mod_role_component_action .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
 #mod_role_component_action .btns_nav_rol button{margin: 15px 0px 0px 0px;}
 /*END ROLE ASSIGNMENT COMPONENT ACTION*/
+/*STAR LOGIN*/
+.unjfsc_login{margin-top: 10px;} 
+.btn_login{margin-top: 16px;}
+.m_body{width: 1000px;margin: 0 auto;}
+.m_body .top_login{position: relative;height: 110px;}
+.m_body form{margin: 15px 0px 15px;position: absolute;right: 0px;}
+.btn-login{
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6CA37', endColorstr='#D9B81A');
+background: -webkit-gradient(linear, left top, left bottom, from(#E6CA37), to(#D9B81A));
+background: -moz-linear-gradient(top, #E6CA37, #D9B81A);
+color: #000000;text-decoration: none;height: 40px;border: 1px solid #BAA218;width: 100px;font-size: 14px;font-weight: bold;display: inline-block;text-align: center;padding-top: 8px;cursor: pointer;border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
+.btn-login:hover{
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D9B81A', endColorstr='#E6CA37');
+background: -webkit-gradient(linear, left top, left bottom, from(#D9B81A), to(#E6CA37));
+background: -moz-linear-gradient(top, #D9B81A, #E6CA37);
+}
+.login_footer{color: #10A5CA;font-size: 14px;text-align: center;padding: 8px 0px;}
+#login .well{padding-bottom: 0px;margin-bottom: 10px;}
+/*END LOGIN*/

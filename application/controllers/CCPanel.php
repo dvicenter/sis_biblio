@@ -35,8 +35,12 @@ class CCPanel extends CI_Controller
 			case 'voucher':$this->ubication='module/manager/'.$path.'/'.$file;
 				break; 
 		}
-		
 		$this->load->view($this->ubication);
+	}
+	public function load_panel()
+	{	echo 'hola';
+		$this->load->helper('url');
+		$this->load->view('v_panel');
 	}
 } 
 ?>
