@@ -1,3 +1,9 @@
+<?php
+	 if ($this->session->userdata("usuario")) 
+	 {	$this->load->view('v_panel');
+	 }
+	 else{ 
+	?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -11,6 +17,7 @@
 		<script src="<?php echo base_url();?>resource/js/jquery.min.js"></script>
 		<script src="<?php echo base_url();?>resource/js/bootstrap.min.js"></script>
 		<script src="<?php echo base_url();?>resource/js/jquery.nivo.slider.js"></script>
+		<script src="<?php echo base_url();?>resource/myjs/login.js"></script>
 		<script>
 			$(document).ready(function(){
 				$('#slider').nivoSlider();
@@ -23,19 +30,29 @@
 			<section>
 				<div class="top_login">
 					<div class="pos_left unjfsc_login"><img src="<?php echo base_url();?>resource/img/utilities/png/UNJFSC_lo.png" /></div>
-					<form class="pos_right form_login">
+					<!-- <form class="pos_right form_login" method="post" enctype="application/x-www-form-urlencoded">-->
+						<?php echo form_open('acceder/sistema');?>					
 						<div class="pos_left user">
 							<label class="bold_label">Usuario</label>
-							<input type="text"  placeholder="Usuario">
+							<input autofocus="autofocus" name="usuario_login" type="text"  placeholder="Usuario" requerid>
 						</div>
 						<div class="pos_left pass">
 						<label class="bold_label">Contrase&ntilde;a</label>
-							<input type="password" placeholder="Password">
+							<input name="password_login" type="password" placeholder="Password" requerid>
 						</div>
 						<div class="pos_right btn_login">
-							<button type="submit" class="btn btn-large btn-login">Entrar</button>
+							<button name="btn_entrar" type="submit" class="btn btn-large btn-login">Entrar</button>
 						</div>
 					</form>
+					<div class="log_alert alert alert-error">
+					<a class="close" data-dismiss="alert">×</a>
+  						<b><?php 
+  								echo validation_errors();
+  								if($error){
+  									echo $error;
+  								}
+  							?></b>
+					</div>
 				</div>
 			</section>
 			
@@ -59,3 +76,4 @@
          </div>
 	</body>
 </html>
+<?php }?>
