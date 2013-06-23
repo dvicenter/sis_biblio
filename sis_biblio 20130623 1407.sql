@@ -525,7 +525,7 @@ INSERT INTO tbl_sujeto VALUES
 -- Dumping data for table tbl_usuario
 --
 INSERT INTO tbl_usuario VALUES 
-  (1, 'cesarcnd', 'cesarnicho', 1);
+  (1, 'admin', '123', 1);
 
 -- 
 -- Dumping data for table tbl_alumno
