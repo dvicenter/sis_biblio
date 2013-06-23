@@ -4,5 +4,4 @@ $(document).ready(function(){
 	$('#search_asesor').click(function(){
 		active_consult('.consult_asesor', '.consult_student');
 	});
-	
 });

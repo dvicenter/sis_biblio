@@ -53,9 +53,11 @@
              <div id="nav_left_four" class="accordion-body collapse nav_left_body">
 	             <ul class="nav nav-list">
 	             	<li><a id="user" href="javascript:;">Usuario</a></li>
+                    <li><a id="load_voucher" href="javascript:;">Cargar Voucher</a></li>
 	             	<li><a id="role_assignment" href="javascript:;">Asignacion de roles</a></li>
 	             	<li><a id="role_assignment_component" href="javascript:;">Asignacion de roles y componentes</a></li>
 	             	<li><a id="role_component_action" href="javascript:;">Asignacion de componentes y acci&oacute;n</a></li>
+
 	             </ul>
              </div>
     	</li>

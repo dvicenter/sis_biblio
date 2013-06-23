@@ -10,6 +10,7 @@ body{padding: 0px;margin: 0px;}
 .body .body_right{/*background-color:darkcyan;*/float:left;height:740px;width: 80%;}
 .body .body_right > div {margin-top: 20px;}
 .body .footer{background-color: black;clear: both;height: 40px;padding: 12px;}
+.m_body form .user,.m_body form .pass{margin: 0px 15px;}
 
 #nav_left ul .nav_left_content{margin-left: -15px;padding: 5px 13px;}
 #nav_left ul .nav_left_content .nav_left_head{font-size: 11px;font-weight: bold;}
@@ -58,7 +59,6 @@ tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolut
 /*STAR USER*/
 .form_user{float:left; font-weight: bold;}
 .form_user label{ font-weight: bold;}
-.btn_mantenimiento{padding-top: 203px;padding-bottom: 12px;}
 #mod_request_record{margin-left: 4%;}
 #mod_request_record label{width: 104px;}
 #mod_request_record .controls{margin-left: 120px;}
@@ -66,7 +66,6 @@ tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolut
 #mod_request_record .btn_tesi{margin-top: 15px;margin-right: 23%;}
 /*END USER*/
 /*STAR COMPONENTE*/
-.btn_mantenimiento{padding-top: 203px;padding-bottom: 12px;}
 
 /*END COMPONENTE*/
 
@@ -124,3 +123,25 @@ tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolut
 #mod_role_component_action .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
 #mod_role_component_action .btns_nav_rol button{margin: 15px 0px 0px 0px;}
 /*END ROLE ASSIGNMENT COMPONENT ACTION*/
+/*STAR LOGIN*/
+.unjfsc_login{margin-top: 10px;} 
+.btn_login{margin-top: 16px;}
+.m_body{width: 1000px;margin: 0 auto;}
+.m_body .top_login{position: relative;height: 110px;}
+.m_body form{margin: 15px 0px 15px;position: absolute;right: 0px;}
+.btn-login{
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6CA37', endColorstr='#D9B81A');
+background: -webkit-gradient(linear, left top, left bottom, from(#E6CA37), to(#D9B81A));
+background: -moz-linear-gradient(top, #E6CA37, #D9B81A);
+color: #000000;text-decoration: none;height: 40px;border: 1px solid #BAA218;width: 100px;font-size: 14px;font-weight: bold;display: inline-block;text-align: center;padding-top: 8px;cursor: pointer;border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
+.btn-login:hover{
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D9B81A', endColorstr='#E6CA37');
+background: -webkit-gradient(linear, left top, left bottom, from(#D9B81A), to(#E6CA37));
+background: -moz-linear-gradient(top, #D9B81A, #E6CA37);
+}
+.login_footer{color: #10A5CA;font-size: 14px;text-align: center;padding: 8px 0px;}
+#login .well{padding-bottom: 0px;margin-bottom: 10px;}
+#login .log_alert{position: relative;top:100px;z-index: 999;display: none;}
+#login .log_alert p:nth-child(1){position: relative;left: 44px;}
+#login .log_alert p:nth-child(2){position: relative;left: 31px;}
+/*END LOGIN*/

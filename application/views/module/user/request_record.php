@@ -67,7 +67,7 @@
 		  </div>
 		</div>
 	  </fieldset>
-	  <fieldset>
+	  <fieldset class="pos_left">
 		<div class="control-group">
 		  <label class="control-label bold_label">Especialidad: </label> 
 		  <div class="controls">
@@ -78,6 +78,24 @@
                 <option>4</option>
                 <option>5</option>
               </select>
+			<p class="help-block"></p>
+		  </div>
+		</div>
+	  </fieldset>
+	  <fieldset class="pos_right">
+		<div class="control-group">
+		  <label class="control-label bold_label">Voucher: </label> 
+		  <div class="controls">
+			<input type="text" class="input-xlarge" requerid>
+			<p class="help-block"></p>
+		  </div>
+		</div>
+	  </fieldset>
+	  <fieldset>
+		<div class="control-group">
+		  <label class="control-label bold_label">Correo: </label> 
+		  <div class="controls">
+			<input type="email" class="input-xxlarge" requerid>
 			<p class="help-block"></p>
 		  </div>
 		</div>
