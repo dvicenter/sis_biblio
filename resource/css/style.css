@@ -144,4 +144,7 @@ background: -moz-linear-gradient(top, #D9B81A, #E6CA37);
 }
 .login_footer{color: #10A5CA;font-size: 14px;text-align: center;padding: 8px 0px;}
 #login .well{padding-bottom: 0px;margin-bottom: 10px;}
+#login .log_alert{position: relative;top:100px;z-index: 999;display: none;}
+#login .log_alert p:nth-child(1){position: relative;left: 44px;}
+#login .log_alert p:nth-child(2){position: relative;left: 31px;}
 /*END LOGIN*/

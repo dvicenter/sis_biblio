@@ -3889,7 +3889,7 @@ input[type="submit"].btn.btn-mini {
   position: relative;
   top: -2px;
   right: -21px;
-  line-height: 20px;
+  line-height: 20px;z-index: 1;
 }
 
 .alert-success {
