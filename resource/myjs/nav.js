@@ -1,47 +1,48 @@
 $(document).ready(function(){
 	
 	$('#tesis').click(function(){
-		load_module('module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
 	$('#tesis_top').click(function(){
-		load_module('module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
 	$('#constancia').click(function(){
-		load_module('module/constancia/manager_constancia', '#constancia', '#constancia_top');
+		load_module_not_date('module/constancia/manager_constancia', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module('module/constancia/manager_constancia', '#constancia', '#constancia_top');
+		load_module_not_date('module/constancia/manager_constancia', '#constancia', '#constancia_top');
 	});
 	$('#user').click(function(){
-		load_module('module/manager/manager_user', '#user', 'null');
+		load_module_not_date('module/manager/manager_user', '#user', 'null');
 	});
 	$('#role_assignment').click(function(){
-		load_module('module/role_assignment/role_assignment', '#role_assignment', 'null');
+		load_module_not_date('module/role_assignment/role_assignment', '#role_assignment', 'null');
 	});
 	$('#request_record').click(function(){
-		load_module('module/user/request_record', '#request_record', 'null');
+		load_module_not_date('module/user/request_record', '#request_record', 'null');
 	});
 	$('#tesis_consultation').click(function(){
-		load_module('module/user/tesis_consultation', '#tesis_consultation', 'null');
+		load_module_not_date('module/user/tesis_consultation', '#tesis_consultation', 'null');
 	});
 	$('#role_assignment_component').click(function(){
-		load_module('module/role_assignment_component/role_assignment_component', '#role_assignment_component', 'null');
+		load_module_not_date('module/role_assignment_component/role_assignment_component', '#role_assignment_component', 'null');
 	});
 	$('#role_component_action').click(function(){
-		load_module('module/role_component_action/role_component_action', '#role_component_action', 'null');
+		load_module_not_date('module/role_component_action/role_component_action', '#role_component_action', 'null');
 	});
 	$('#rol').click(function(){
-		load_module('module/rol/rol_user', '#rol_user', 'null');
+		load_module_date('manager/CCRol/listar', '#rol_user', 'null');
 	});
 	$('#componente').click(function(){
-		load_module('module/componente/componente_user', '#componente_user', 'null');
+		load_module_not_date('module/componente/componente_user', '#componente_user', 'null');
 	});
 	$('#accion').click(function(){
-		load_module('module/accion/accion_user', '#accion_user', 'null');
+		load_module_not_date('module/accion/accion_user', '#accion_user', 'null');
 	});
 	$('#load_voucher').click(function(){
-		load_module('module/voucher/voucher', '#load_voucher', 'null');
+		load_module_not_date('module/voucher/voucher', '#load_voucher', 'null');
 	});
+
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');
@@ -51,7 +52,7 @@ $(document).ready(function(){
 			$($(selector_top).parent()).addClass('active');
 		}
 	}
-	function load_module(url,id_nav_left,id_nav_top)
+	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
 		$.ajax({
 			url:url,
@@ -63,10 +64,10 @@ $(document).ready(function(){
 				$('#module_content').html(data);
 				aprecer_input();
 					
-						$('#module_constancia').click(function(){
-					//	alert('da');console.info('j');
-						active_consult('.consult_student', '.consult_asesor');
-						}); 		
+				$('#module_constancia').click(function(){
+			//	alert('da');console.info('j');
+				active_consult('.consult_student', '.consult_asesor');
+				}); 		
 			}
 		});
 	}
@@ -76,6 +77,7 @@ $(document).ready(function(){
 	{	$(active).addClass('active_consult');
 		$(desactive).removeClass('active_consult');
 	}
+
 	
 	function aprecer_input()
 	{
@@ -100,3 +102,58 @@ $(document).ready(function(){
 	}
 });
 
+
+
+	function load_module_date(url,id_nav_left,id_nav_top)
+	{
+		$.ajax({
+			url:url,
+			beforeSend:function(){
+				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
+
+			},
+			success:function(data){
+				active(id_nav_left,id_nav_top);
+				$('#module_content').html(data);
+				
+				if($("#mod_rol").is(":visible") == true){
+					
+					$('#mod_rol .agregar').click(function(){
+						insertar_rol();
+					})
+				}
+		}
+		});
+	}
+
+	function insertar_rol()
+	{
+					var rol=$("#mod_rol input[name='rol']").val();
+					var descripcion=$("#mod_rol textarea[name='textarea']").val();
+					$.ajax({
+						url:'manager/CCRol/insertar/'+rol+'/'+descripcion,
+						type:'post',
+						dataType:'json',
+						//date:'rol='+rol+'&descripcion='+descripcion,
+						success:function(data){
+							console.info(data);
+							var rol;
+							var descripcion;
+							$.each(data,function(a,b){
+								rol=b.rol;
+								descripcion=b.descripcion;
+							});
+							console.info(rol);
+							//$('#mod_rol table tr:last').after('<td>'+rol+'</td><td>'+descripcion+'</td>');
+							
+							$('tr:last td', $("#table_aum"));
+
+							var tds = '<tr>';							
+							tds += '<td>'+rol+'</td><td>'+descripcion+'</td>';							
+							tds += '</tr>';
+							$("#table_aum").append(tds);
+						}
+					});
+	}
+
+});
