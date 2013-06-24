@@ -34,7 +34,7 @@ $(document).ready(function(){
 		load_module_date('manager/CCRol/listar', '#rol_user', 'null');
 	});
 	$('#componente').click(function(){
-		load_module_not_date('module/componente/componente_user', '#componente_user', 'null');
+		load_module_not_date('../module/componente/componente_user', '#componente_user', 'null');
 	});
 	$('#accion').click(function(){
 		load_module_not_date('module/accion/accion_user', '#accion_user', 'null');
@@ -43,21 +43,12 @@ $(document).ready(function(){
 		load_module_not_date('module/voucher/voucher', '#load_voucher', 'null');
 	});
 
-	function active(selector,selector_top)
-	{
-		$('.nav-list > li').removeClass('active');
-		$('.nav > li').removeClass('active');
-		$($(selector).parent()).addClass('active');
-		if(($(selector).parent()).find('.import')){
-			$($(selector_top).parent()).addClass('active');
-		}
-	}
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
 		$.ajax({
 			url:url,
 			beforeSend:function(data){
-				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
+				$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
 			},
 			success:function(data){
 				active(id_nav_left,id_nav_top);
@@ -156,4 +147,12 @@ $(document).ready(function(){
 					});
 	}
 
-});
+	function active(selector,selector_top)
+	{
+		$('.nav-list > li').removeClass('active');
+		$('.nav > li').removeClass('active');
+		$($(selector).parent()).addClass('active');
+		if(($(selector).parent()).find('.import')){
+			$($(selector_top).parent()).addClass('active');
+		}
+	}
