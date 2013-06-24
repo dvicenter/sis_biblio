@@ -6,7 +6,7 @@ class CCLogin extends CI_Controller{
 	    $this->load->helper('url');
 	    $this->load->helper('form');
 	    $this->load->library('form_validation');
-	    //$this->load->library('session');
+	    $this->load->library('session');
     }
 	public function index()
 	{	$this->data['error']="";

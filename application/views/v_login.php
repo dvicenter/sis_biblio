@@ -1,6 +1,7 @@
 <?php
 	 if ($this->session->userdata("usuario")) 
-	 {	$this->load->view('v_panel');
+	 {	$this->data['usuario']=$this->session->userdata("usuario");
+	 	$this->load->view('v_panel',$this->data);
 	 }
 	 else{ 
 	?>
