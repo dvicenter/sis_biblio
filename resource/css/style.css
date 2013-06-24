@@ -24,6 +24,7 @@ body{padding: 0px;margin: 0px;}
 
 table .check_table{text-align: center;width: 3%;}
 table thead .action_table{width: 12%;}
+tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolute;}
 .table {width: 95%; margin: 0 auto; position: relative;}
 
 /*STAR CONTROL PANEL*/
@@ -76,6 +77,7 @@ table thead .action_table{width: 12%;}
 #btn_mantenimiento .btn_mant{display: inline-block; margin-left: 20px;}
 /*END ACCION*/
 
+
 /*STAR ROL*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
@@ -83,6 +85,7 @@ table thead .action_table{width: 12%;}
 #new_exportar .modal-body form .opciones{padding-right: 25px; border-right: 1px solid #eee;}
 #new_exportar .modal-body form ul{display: inline-block; vertical-align: middle; margin-left: 50px;}
 #new_exportar .modal-body form ul li input{display: inline-block; vertical-align: top;}
+
 /*.modal-footer { text-align: center;}*/
 .tab-pane{text-align: center;}
 .tab-pane textarea{position: relative; width: 95%;}

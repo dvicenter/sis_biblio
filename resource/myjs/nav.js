@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	$('#tesis').click(function(){
 		load_module_not_date('module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
@@ -61,6 +62,7 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
+				aprecer_input();
 					
 				$('#module_constancia').click(function(){
 			//	alert('da');console.info('j');
@@ -69,11 +71,38 @@ $(document).ready(function(){
 			}
 		});
 	}
+
 	
 	function active_consult(active,desactive)
 	{	$(active).addClass('active_consult');
 		$(desactive).removeClass('active_consult');
 	}
+
+	
+	function aprecer_input()
+	{
+		var check  = $(".opcion").children();
+		$(this).change(function(){
+  				
+			check.each(function( index ) {
+
+		  		var name = $(this).attr('name');
+
+				if ($(this).prop('checked')) 
+				{
+		  			$('form ul #'+name).css('display','block');
+				}
+				else
+				{
+					$('form ul #'+name).css('display','none');
+				}
+			});
+		}).change();
+
+	}
+});
+
+
 
 	function load_module_date(url,id_nav_left,id_nav_top)
 	{
