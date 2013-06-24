@@ -3,9 +3,13 @@
 			array($componente='Kelly',$descripcion='Kelly'),
 			array($componente='Cesar',$descripcion='Cesarin'),
 			array($componente='Deyvis',$descripcion='Dey'),
+			array($componente='karina',$descripcion='kari'),
+			array($componente='Kelly',$descripcion='Kelly'),
+			array($componente='Cesar',$descripcion='Cesarin'),
+			array($componente='Deyvis',$descripcion='Dey'),
 			
 			);?>
-
+ 
 <div id="componente">
 <div class="form_user">
 	<form class="form-horizontal">
@@ -61,4 +65,5 @@
 </table>
 
 </div>
+
 </div>

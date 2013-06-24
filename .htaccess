@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 RewriteEngine on 
 RewriteCond $1 !^(index.php|intranet|resource|robots.txt) 
+=======
+RewriteEngine on
+RewriteCond $1 !^(index.php|resource|robots.txt) 
+>>>>>>> 1d5d2dd536abee5aaf37a9112c85f5bce3fad27a
 RewriteRule ^(.*)$ /sis_biblio/index.php/$1 [L]
