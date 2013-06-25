@@ -24,7 +24,7 @@ body{padding: 0px;margin: 0px;}
 
 table .check_table{text-align: center;width: 3%;}
 table thead .action_table{width: 12%;}
-tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolute;}
+/*tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolute;}*/
 .table {width: 95%; margin: 0 auto; position: relative;}
 
 /*STAR CONTROL PANEL*/

@@ -1,6 +1,7 @@
 <?php
 	 if ($this->session->userdata("usuario")) 
-	 {	$this->load->view('v_panel');
+	 {	$this->data['usuario']=$this->session->userdata("usuario");
+	 	$this->load->view('v_panel',$this->data);
 	 }
 	 else{ 
 	?>
@@ -57,19 +58,19 @@
 			</section>
 			
 		</div>
-		<section class="well">
+		<!-- <section class="well">
 				<div class="m_body">
 					<div class="slider-wrapper theme-default">
 			            <div id="slider" class="nivoSlider">
 			                <img src="<?php echo base_url()?>resource/img/utilities/jpg/04.jpg"  alt="" />
-			                <!-- <a href="http://web.unjfsc.edu.pe/site/"><img src="<?php echo base_url()?>resource/img/utilities/jpg/01.jpg" data-thumb="<?php echo base_url()?>resource/img/utilities/jpg/01.jpg" alt="" title="BIENVENIDO A LA UNJFSC" /></a>-->
+			           
 			                <img src="<?php echo base_url()?>resource/img/utilities/jpg/01.jpg"  alt="" title="BIENVENIDO A LA UNJFSC" />
 			                <img src="<?php echo base_url()?>resource/img/utilities/jpg/02.jpg"  alt="" title="BIENVENIDO A LA UNJFSC" data-transition="slideInLeft" />
 			                <img src="<?php echo base_url()?>resource/img/utilities/jpg/03.jpg"  alt="" title="BIENVENIDO A LA UNJFSC" />
 			            </div>
 			        </div>
 	          	</div>
-          </section>
+          </section>-->
           <footer class="m_body">
           	<p class="login_footer">&copy; Derecho Reservados - Escuela Acad&eacute;mica Profesional Ingenier&iacute;a de Sistemas</p>
           </footer>
@@ -77,3 +78,4 @@
 	</body>
 </html>
 <?php }?>
+     <!-- <a href="http://web.unjfsc.edu.pe/site/"><img src="<?php echo base_url()?>resource/img/utilities/jpg/01.jpg" data-thumb="<?php echo base_url()?>resource/img/utilities/jpg/01.jpg" alt="" title="BIENVENIDO A LA UNJFSC" /></a>-->

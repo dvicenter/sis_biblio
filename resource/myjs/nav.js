@@ -1,63 +1,54 @@
 $(document).ready(function(){
 	
 	$('#tesis').click(function(){
-		load_module_not_date('module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
 	$('#tesis_top').click(function(){
-		load_module_not_date('module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
 	$('#constancia').click(function(){
-		load_module_not_date('module/constancia/manager_constancia', '#constancia', '#constancia_top');
+		load_module_not_date('/sis_biblio/module/constancia/manager_constancia', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module_not_date('module/constancia/manager_constancia', '#constancia', '#constancia_top');
+		load_module_not_date('/sis_biblio/module/constancia/manager_constancia', '#constancia', '#constancia_top');
 	});
 	$('#user').click(function(){
-		load_module_not_date('module/manager/manager_user', '#user', 'null');
+		load_module_not_date('/sis_biblio/module/manager/manager_user', '#user', 'null');
 	});
 	$('#role_assignment').click(function(){
-		load_module_not_date('module/role_assignment/role_assignment', '#role_assignment', 'null');
+		load_module_not_date('/sis_biblio/module/role_assignment/role_assignment', '#role_assignment', 'null');
 	});
 	$('#request_record').click(function(){
-		load_module_not_date('module/user/request_record', '#request_record', 'null');
+		load_module_not_date('/sis_biblio/module/user/request_record', '#request_record', 'null');
 	});
 	$('#tesis_consultation').click(function(){
-		load_module_not_date('module/user/tesis_consultation', '#tesis_consultation', 'null');
+		load_module_not_date('/sis_biblio/module/user/tesis_consultation', '#tesis_consultation', 'null');
 	});
 	$('#role_assignment_component').click(function(){
-		load_module_not_date('module/role_assignment_component/role_assignment_component', '#role_assignment_component', 'null');
+		load_module_not_date('/sis_biblio/module/role_assignment_component/role_assignment_component', '#role_assignment_component', 'null');
 	});
 	$('#role_component_action').click(function(){
-		load_module_not_date('module/role_component_action/role_component_action', '#role_component_action', 'null');
+		load_module_not_date('/sis_biblio/module/role_component_action/role_component_action', '#role_component_action', 'null');
 	});
 	$('#rol').click(function(){
-		load_module_date('manager/CCRol/listar', '#rol_user', 'null');
+		load_module_date('/sis_biblio/manager/CCRol/listar', '#rol_user', 'null');
 	});
 	$('#componente').click(function(){
-		load_module_not_date('module/componente/componente_user', '#componente_user', 'null');
+		load_module_not_date('/sis_biblio/module/componente/componente_user', '#componente_user', 'null');
 	});
 	$('#accion').click(function(){
-		load_module_not_date('module/accion/accion_user', '#accion_user', 'null');
+		load_module_not_date('/sis_biblio/module/accion/accion_user', '#accion_user', 'null');
 	});
 	$('#load_voucher').click(function(){
-		load_module_not_date('module/voucher/voucher', '#load_voucher', 'null');
+		load_module_not_date('/sis_biblio/module/voucher/voucher', '#load_voucher', 'null');
 	});
 
-	function active(selector,selector_top)
-	{
-		$('.nav-list > li').removeClass('active');
-		$('.nav > li').removeClass('active');
-		$($(selector).parent()).addClass('active');
-		if(($(selector).parent()).find('.import')){
-			$($(selector_top).parent()).addClass('active');
-		}
-	}
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
 		$.ajax({
 			url:url,
 			beforeSend:function(data){
-				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
+				$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
 			},
 			success:function(data){
 				active(id_nav_left,id_nav_top);
@@ -131,7 +122,7 @@ $(document).ready(function(){
 					var rol=$("#mod_rol input[name='rol']").val();
 					var descripcion=$("#mod_rol textarea[name='textarea']").val();
 					$.ajax({
-						url:'manager/CCRol/insertar/'+rol+'/'+descripcion,
+						url:'/sis_biblio/manager/CCRol/insertar/'+rol+'/'+descripcion,
 						type:'post',
 						dataType:'json',
 						//date:'rol='+rol+'&descripcion='+descripcion,
@@ -156,4 +147,12 @@ $(document).ready(function(){
 					});
 	}
 
-});
+	function active(selector,selector_top)
+	{
+		$('.nav-list > li').removeClass('active');
+		$('.nav > li').removeClass('active');
+		$($(selector).parent()).addClass('active');
+		if(($(selector).parent()).find('.import')){
+			$($(selector_top).parent()).addClass('active');
+		}
+	}
