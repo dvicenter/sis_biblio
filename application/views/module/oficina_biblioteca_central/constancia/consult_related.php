@@ -1,4 +1,4 @@
-<div style="width: 860px;left: 39%;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="consult_related">
+<div style="width: 880px;left: 39%;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="consult_related">
   <div class="modal-header">
   	<a class="close" data-dismiss="modal">x</a>
      <h3>Comparacion de Tesis</h3>

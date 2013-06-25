@@ -1,13 +1,16 @@
-<?php
-class CCLogin extends CI_Controller{
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Cclogin extends CI_Controller {
+
 	public function __construct()
-    {	parent:: __construct();
-	    $this->load->model('CDLogin');
+    {	parent::__construct();
 	    $this->load->helper('url');
+	    $this->load->model('Cdlogin');
 	    $this->load->helper('form');
 	    $this->load->library('form_validation');
-	    //$this->load->library('session');
+	    $this->load->library('session');
     }
+
 	public function index()
 	{	$this->data['error']="";
 		if(!isset($_POST['usuario_login']))
@@ -21,7 +24,7 @@ class CCLogin extends CI_Controller{
 			{	$this->load->view('v_login',$this->data);
 			}
 			else
-			{	$isValidLogin = $this->CDLogin->getLogin($_POST['usuario_login'],$_POST['password_login']);
+			{	$isValidLogin = $this->Cdlogin->getLogin($_POST['usuario_login'],$_POST['password_login']);
                 if($isValidLogin)
                 {    $sesion_data = array(
                                     'usuario' => $_POST['usuario_login'],
@@ -41,6 +44,7 @@ class CCLogin extends CI_Controller{
 			}
 		}
 	}
+
 	function cerrar_sesion(){
 		$this->data['error']="";
 		if ($this->session->userdata("usuario")==TRUE) 

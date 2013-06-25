@@ -6,22 +6,23 @@
 			
 			);?>
 
-<div id="manager_user">
+<div id="voucher">
 	<form class="form-horizontal">
 	<div class="form_user">		
-	  <fieldset>
+	  <fieldset class="pos_left">
 		<div class="control-group">
 			<div class="controls">
 			<input type="file" required></div>
 			<p class="help-block"></p>
 		</div>
 	  </fieldset>
+	  <fieldset class="btn_voucher pos_right">
+			<a class="btn btn-primary " href="">Cargar</a>
+	</fieldset>
 	</div>	
 
-	<div class="btn_voucher">
-		<fieldset>
-			<a class="btn btn-primary " href="">Cargar</a>
-		</fieldset>
+	<div >
+		
 	</div>
 	  
 
@@ -54,14 +55,14 @@
 </div>
 <div class="pagination loading">
   <ul>
-    <li><a href="#">←</a></li>
+    <li><a href="#"></a></li>
     <li class="active">
       <a href="#">1</a>
     </li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">4</a></li>
-    <li><a href="#">→</a></li>
+    <li><a href="#"></a></li>
   </ul>
 </div>
 </div>

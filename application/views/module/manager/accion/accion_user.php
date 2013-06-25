@@ -11,7 +11,7 @@
 
 
 <div id="rol">
-	<div class="">
+	<div class="form_user">
 		<form class="form-horizontal">
 		  <fieldset>
 			<div class="control-group">
@@ -32,17 +32,17 @@
 					</div>
 				</div>
 			</fieldset>
-			<div id="btn_mantenimiento" class="btn_mant">
-				<fieldset id="btn_mantenimiento" class="btn_mant">
-					<a class="btn btn-primary " href="">Agregar</a>
-					<a class="btn btn-info" href="">Modificar</a>
-					<a class="btn btn-danger" href="">Eliminar</a>
-					<a class="btn " href="">Cancelar</a>
-				</fieldset>
-			</div>
+			
 		</form>
 	</div>
-
+	<div class="btn_mantenimiento">
+		<fieldset>
+			<a class="btn btn-primary " href="">Agregar</a>
+			<a class="btn btn-info" href="">Modificar</a>
+			<a class="btn btn-danger" href="">Eliminar</a>
+			<a class="btn " href="">Cancelar</a>
+		</fieldset>
+	</div>
 
 		<div id="tabla">
 		<table class="table table-striped table-bordered table-condensed table-hover">

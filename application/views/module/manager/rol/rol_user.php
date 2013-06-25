@@ -21,12 +21,11 @@
 
 <div class="btn_mantenimiento">
 	<form >
-	<fieldset>
-	<a class="btn btn-primary agregar" class="btn btn-primary " href="javascript:;">Agregar</a>
-	<a class="btn btn-info" href="">Modificar</a>
-	<a class="btn btn-danger" href="">Eliminar</a>
-	<a class="btn " href="">Cancelar</a>
-	</fieldset>
+		<fieldset>
+		<a class="btn btn-primary agregar" class="btn btn-primary " href="javascript:;">Agregar</a>
+		<a class="btn btn-info" href="">Modificar</a>
+		<a class="btn btn-danger" href="">Eliminar</a>
+		</fieldset>
 	</form>
 	</div>
 	

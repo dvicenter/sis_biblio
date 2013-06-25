@@ -22,6 +22,7 @@ body{padding: 0px;margin: 0px;}
 
 table .check_table{text-align: center;width: 3%;}
 table thead .action_table{width: 12%;}
+/*tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolute;}*/
 .table {width: 95%; margin: 0 auto; position: relative;}
 
 /*STAR CONTROL PANEL*/
@@ -58,13 +59,13 @@ table thead .action_table{width: 12%;}
 #consult_asesor .table_dates_{height: 117px;}
 /*END CONSTANCIA*/
 /*STAR USER*/
-.form_user{float:left; font-weight: bold;}
+.form_user{float:left; font-weight: bold;width: 100%;}
 .form_user label{ font-weight: bold;}
 #mod_request_record{margin-left: 4%;}
 #mod_request_record label{width: 104px;}
 #mod_request_record .controls{margin-left: 120px;}
 #mod_request_record .text_tesista{padding: 0% 22% 0% 2%;}
-#mod_request_record .btn_tesi{margin-top: 15px;margin-right: 23%;}
+#mod_request_record .btn_tesi{margin-top: 15px;margin-right: 64%;}
 /*END USER*/
 /*STAR COMPONENTE*/
 
@@ -74,6 +75,7 @@ table thead .action_table{width: 12%;}
 #btn_mantenimiento .btn_mant{display: inline-block; margin-left: 20px;}
 /*END ACCION*/
 
+
 /*STAR ROL*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
@@ -81,12 +83,16 @@ table thead .action_table{width: 12%;}
 #new_exportar .modal-body form .opciones{padding-right: 25px; border-right: 1px solid #eee;}
 #new_exportar .modal-body form ul{display: inline-block; vertical-align: middle; margin-left: 50px;}
 #new_exportar .modal-body form ul li input{display: inline-block; vertical-align: top;}
+
 /*.modal-footer { text-align: center;}*/
 .tab-pane{text-align: center;}
 .tab-pane textarea{position: relative; width: 95%;}
 .tab-content {height: 120px;}
 .text_area {width: 315px; height: 100px;}
-.btn_mantenimiento{padding-top: 170px;}
+.btn_mantenimiento{margin-left: 510px;margin-bottom: 10px;}
+#manager_user .btn_mantenimiento{margin-left:465px;}
+/*STAR ROL*/
+#rol .btn_mantenimiento{margin-left:465px;}
 /*END ROL*/
 
 
@@ -146,3 +152,6 @@ background: -moz-linear-gradient(top, #D9B81A, #E6CA37);
 #login .log_alert p:nth-child(1){position: relative;left: 44px;}
 #login .log_alert p:nth-child(2){position: relative;left: 31px;}
 /*END LOGIN*/
+/*STAR VOUCHER*/
+#voucher .btn_voucher{padding-left: 12px;font-weight: normal;}
+/*END VOUCHER*/

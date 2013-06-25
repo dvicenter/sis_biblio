@@ -13,38 +13,29 @@
 		<div class="control-group">
 		  <label class="control-label" for="input01">Sujeto:</label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" id="input01"> <a href="#" class="btn"><i class="icon-search"></i></a>
+			<input type="text" class="input-xlarge" > <a href="#" class="btn"><i class="icon-search"></i></a>
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
-	</form>
-
-	<form class="form-horizontal">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label" for="input01">User:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge" id="input01">
+			<input type="text" class="input-xlarge" >
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
-	</form>
-
-	<form class="form-horizontal">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label" for="input01">Contra&ntilde;a:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge" id="input01">
+			<input type="text" class="input-xlarge">
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
-	</form>
-
-	<form class="form-horizontal">
 	    <fieldset>
 			<div class="control-group">
 				<label class="control-label" for="input01">Activo:</label>
@@ -55,19 +46,18 @@
 				</div>
 			</div>
 		</fieldset>
+		
 	</form>
 </div>
-
 <div class="btn_mantenimiento">
-	<form >
 	<fieldset>
 	<a class="btn btn-primary " href="">Agregar</a>
 	<a class="btn btn-info" href="">Modificar</a>
 	<a class="btn btn-danger" href="">Eliminar</a>
 	<a class="btn " href="">Cancelar</a>
 	</fieldset>
-	</form>
 	</div>
+
 	
 
 <div id="tabla">
@@ -96,14 +86,14 @@
 </div>
 <div class="pagination loading">
   <ul>
-    <li><a href="#">←</a></li>
+    <li><a href="#"><</a></li>
     <li class="active">
       <a href="#">1</a>
     </li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">4</a></li>
-    <li><a href="#">→</a></li>
+    <li><a href="#">></a></li>
   </ul>
 </div>
 </div>
