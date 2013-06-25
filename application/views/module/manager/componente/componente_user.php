@@ -12,35 +12,32 @@
  
 <div id="componente">
 <div class="form_user">
-	<form class="form-horizontal">
+	<form class="form-horizontal" action="nuevo.php">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label" for="input01">Componente:</label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" name="input01"> <a href="#" class="btn"><i class="icon-search"></i></a>
+			<input id="input01" type="text" class="input-xlarge3" name="input01" required> 
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	<fieldset>
 	<div class="control-group">
-		  <label class="control-label" for="input01">Descripci&oacute;n:</label> 
+		  <label class="control-label" for="comment_body">Descripci&oacute;n:</label> 
 		  <div class="controls">
-		<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7"></textarea>
+		<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7" required></textarea>
 	</fieldset>  
-	  </form>
 </div>
 
 <div class="btn_mantenimiento">
-	<form >
+	
 	<fieldset>
-	<a class="btn btn-primary " href="">Agregar</a>
-	<a class="btn btn-info" href="">Modificar</a>
-	<a class="btn btn-danger" href="">Eliminar</a>
-	<a class="btn " href="">Cancelar</a>
+	<input type="submit" class="btn btn-primary" value='Agregar'/>
 	</fieldset>
-	</form>
+
 	</div>
+</form>
 	
 
 <div id="tabla">
