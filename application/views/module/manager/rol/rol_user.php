@@ -1,30 +1,30 @@
 <div id="mod_rol">
 <div class="form_user">
-	<form class="form-horizontal">
-	  <fieldset>
+	<form class="form-horizontal" action="">
+		 <fieldset>
+			<div class="control-group">
+			  <label class="control-label" for="input_man_rol">Rol:</label> 
+			  <div class="controls">
+				<input type="text" class="input-xlarge3" name="rol" id="input_man_rol" required>
+			  </div>
+			</div>
+		 </fieldset>
+		<fieldset>
 		<div class="control-group">
-		  <label class="control-label" for="input_man_rol">Rol:</label> 
-		  <div class="controls">
-			<input type="text" class="input-xlarge3" name="rol" id="input_man_rol" requerid>
-			<p class="help-block"></p>
-		  </div>
+			 <label class="control-label" for="inpur_man_descripcion">Descripci&oacute;n:</label> 
+			 <div class="controls">
+				<textarea class="text_area" cols="200" id="inpur_man_descripcion" name="textarea" rows="7"></textarea>
+			</div>
 		</div>
-	  </fieldset>
-	<fieldset>
-	<div class="control-group">
-		  <label class="control-label" for="inpur_man_descripcion">Descripci&oacute;n:</label> 
-		  <div class="controls">
-		<textarea class="text_area" cols="200" id="inpur_man_descripcion" name="textarea" rows="7" requerid></textarea>
-	</fieldset>  
-	  </form>
+		</fieldset>
+		<div class="btn_mantenimiento">
+			<fieldset>
+				<input class="btn btn-primary agregar" type="submit" value="Agregar"/>
+			</fieldset>
+		</div>  
+	</form>
 </div>
-<div class="btn_mantenimiento">
-	<fieldset>
-		<a class="btn btn-primary agregar" class="btn btn-primary " href="javascript:;">Agregar</a>
-		<a class="btn btn-info" href="">Modificar</a>
-		<a class="btn btn-danger" href="">Eliminar</a>
-	</fieldset>
-</div>
+
 <div id="tabla">
 	<table id="table_aum" class="table table-striped table-bordered table-condensed table-hover table_de_2">
 	    <thead>

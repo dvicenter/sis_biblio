@@ -118,14 +118,13 @@ $(document).ready(function(){
 	}
 
 	function insertar_rol()
-	{
+	{	
 					var rol=$("#mod_rol input[name='rol']").val();
 					var descripcion=$("#mod_rol textarea[name='textarea']").val();
 					$.ajax({
-						url:'/sis_biblio/manager/CCRol/insertar/'+rol+'/'+descripcion,
+						url:'/sis_biblio/manager/ccrol/insertar/'+rol+'/'+descripcion,
 						type:'post',
 						dataType:'json',
-						//date:'rol='+rol+'&descripcion='+descripcion,
 						success:function(data){
 							console.info(data);
 							var rol;
@@ -143,6 +142,10 @@ $(document).ready(function(){
 							tds += '<td>'+rol+'</td><td>'+descripcion+'</td>';							
 							tds += '</tr>';
 							$("#table_aum").append(tds);
+						},
+						error:function(data)
+						{
+							console.info(data)
 						}
 					});
 	}

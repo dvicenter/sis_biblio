@@ -13,7 +13,7 @@
 		<div class="control-group">
 		  <label class="control-label" for="input01">Sujeto:</label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" > <a href="#" class="btn"><i class="icon-search"></i></a>
+			<input type="text" class="input-xlarge" required> <a href="#" class="btn"><i class="icon-search"></i></a>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -22,16 +22,16 @@
 		<div class="control-group">
 		  <label class="control-label" for="input01">User:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge" >
+			<input type="text" class="input-xlarge" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label" for="input01">Contra&ntilde;a:</label>
+		  <label class="control-label" for="input01">Contrase&ntilde;a:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge">
+			<input type="text" class="input-xlarge" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -41,24 +41,18 @@
 				<label class="control-label" for="input01">Activo:</label>
 				<div class="controls">
 				<label class="checkbox">
-					<input type="checkbox">
+					<input type="checkbox" required>
 				</label>
 				</div>
 			</div>
 		</fieldset>
-		
+		<div class="btn_mantenimiento">
+			<fieldset>
+				<input class="btn btn-primary " type="submit" value="Agregar" />
+			</fieldset>
+		</div>		
 	</form>
 </div>
-<div class="btn_mantenimiento">
-	<fieldset>
-	<a class="btn btn-primary " href="">Agregar</a>
-	<a class="btn btn-info" href="">Modificar</a>
-	<a class="btn btn-danger" href="">Eliminar</a>
-	<a class="btn " href="">Cancelar</a>
-	</fieldset>
-	</div>
-
-	
 
 <div id="tabla">
 

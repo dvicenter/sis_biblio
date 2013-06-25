@@ -16,8 +16,7 @@ class Ccrol extends CI_Controller
 
 	function insertar($rol,$descripcion) 
 	{	
-		$this->data=array($this->cdrol->insertar($rol,$descripcion));
-		//echo $this->load->view("module/manager/rol/rol_user",$this->data);
+		$this->data=array($this->Cdrol->insertar($rol,$descripcion));
 		echo json_encode($this->data);
 	}
 } 
