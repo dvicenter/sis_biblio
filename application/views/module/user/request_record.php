@@ -1,11 +1,11 @@
 
-<div id="mod_request_record">
+<div id="mod_request_record" action="nuevo.php">
 	<form class="form-horizontal">
 	  <fieldset class="pos_left">
 		<div class="control-group">
 		  <label class="control-label bold_label">Apellidos: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" requerid>
+			<input type="text" class="input-xlarge" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -14,7 +14,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">Nombres: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" requerid>
+			<input type="text" class="input-xlarge" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -23,7 +23,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">Asesor: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge"><a href="#" class="btn btn_search_mod" requerid><i class="icon-search"></i></a>
+			<input type="text" class="input-xlarge" required><a href="#" class="btn btn_search_mod" required><i class="icon-search"></i></a>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -32,7 +32,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">T&iacute;tulo: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xxlarge" requerid>
+			<input type="text" class="input-xxlarge" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -41,7 +41,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">Facultad: </label> 
 		  <div class="controls">
-			<select class="span3">
+			<select class="span3" required>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -56,7 +56,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">Escuela: </label> 
 		  <div class="controls">
-			<select class="span3">
+			<select class="span3" required>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -71,7 +71,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">Especialidad: </label> 
 		  <div class="controls">
-			<select class="span3">
+			<select class="span3" required>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -86,7 +86,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">Voucher: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" requerid>
+			<input type="text" class="input-xlarge" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -95,7 +95,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label">Correo: </label> 
 		  <div class="controls">
-			<input type="email" class="input-xxlarge" requerid>
+			<input type="email" class="input-xxlarge" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -123,8 +123,7 @@
 	        </div>
         </div>
         <div class="btn_tesi">
-	        <button class="btn btn-primary" type="reset">Cancelar</button>
-	        <button class="btn" type="submit">Guardar</button>
+	        <button class="btn btn-primary" type="submit">Guardar</button>
         </div>
 	</form>
 </div>
