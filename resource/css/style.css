@@ -12,9 +12,7 @@ body{padding: 0px;margin: 0px;}
 .body .footer{background-color: black;clear: both;height: 40px;padding: 12px;}
 .m_body form .user,.m_body form .pass{margin: 0px 15px;}
 
-.table_de_2 td{
-	width: 50%;
-}
+.table_de_2 th{width: 50%;}
 
 #nav_left ul .nav_left_content{margin-left: -15px;padding: 5px 13px;}
 #nav_left ul .nav_left_content .nav_left_head{font-size: 11px;font-weight: bold;}

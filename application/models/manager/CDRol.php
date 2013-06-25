@@ -9,7 +9,7 @@
 
 		function listar()
 		{
-			$query = 'SELECT rol, descripcion FROM tbl_rol';
+			$query = "CALL CMRSPRABMRol(0,null,null)";
 			$query = $this->db->query($query);
 			return $query->result_array();
 		}
@@ -19,9 +19,8 @@
 			$data = array(
 						'rol' => $rol,
 						'descripcion' => $descripcion
-						);
-			//$this->db->insert('tbl_rol', $data);
-			if ($this->db->insert('tbl_rol', $data)) 
+						);                   
+			if ($this->db->query("CALL CMRSPRABMRol(1,'$rol','$descripcion')")) 
 			{
 				return $data;
 			}
