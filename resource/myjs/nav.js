@@ -31,7 +31,7 @@ $(document).ready(function(){
 		load_module_not_date('/sis_biblio/module/role_component_action/role_component_action', '#role_component_action', 'null');
 	});
 	$('#rol').click(function(){
-		load_module_date('/sis_biblio/manager/CCRol/listar', '#rol_user', 'null');
+		load_module_date('/sis_biblio/manager/ccrol/listar', '#rol_user', 'null');
 	});
 	$('#componente').click(function(){
 		load_module_not_date('/sis_biblio/module/componente/componente_user', '#componente_user', 'null');
@@ -100,7 +100,7 @@ $(document).ready(function(){
 		$.ajax({
 			url:url,
 			beforeSend:function(){
-				$('#module_content').html('<div class="loading"><img src="resource/img/utilities/gif/loading.gif"/></div>');
+				$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
 
 			},
 			success:function(data){
