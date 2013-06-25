@@ -1,7 +1,9 @@
-<?php
-class CDLogin extends CI_Model{
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Cdlogin extends CI_Model{
  	public function __construct()
-	{	$this->load->library('session');
+	{	
+        parent::__construct();
+        $this->load->library('session');
 	    $this->load->database();
 	}
 	public function getLogin($username,$password)

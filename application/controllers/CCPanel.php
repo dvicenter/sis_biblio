@@ -1,5 +1,5 @@
 <?php
-class CCPanel extends CI_Controller
+class Ccpanel extends CI_Controller
 {
 	public function index()
 	{

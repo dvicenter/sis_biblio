@@ -1,5 +1,5 @@
 <?php 
-	class CDRol extends CI_Model
+	class Cdrol extends CI_Model
 	{
 		public function __construct() 
 	    {
