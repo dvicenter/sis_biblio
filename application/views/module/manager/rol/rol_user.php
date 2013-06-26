@@ -40,12 +40,8 @@
 				<tr onclick="llamar(<?php echo $rol['id_rol'];?>);">
 					<td><?php echo $rol['rol']?></td>
 					<td><?php echo $rol['descripcion']?></td>
-<<<<<<< HEAD
 					<td><button class="btn btn-info "><i class="icon-pencil icon-white"></i></button></td>
 					<td><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
-
-=======
->>>>>>> 7917624148dc84c5e8e9d610f6debfe286a4b793
 				</tr>
 			<?php }$i++;}?>
 		</tbody>
