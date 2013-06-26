@@ -4,3 +4,4 @@
 	<li><a href="javascript:;"><?php echo $usuario;?> </a></li>
 	<li style="margin-left: 10px;"><a href="<?php echo base_url()?>cerrar_sesion">Cerrar Sesi&oacute;n</a></li>
 </ul>
+<input id="id_sujeto_login" value="<?php echo $id_sujeto;?>" type="hidden"/>

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <div id="mod_request_record" action="nuevo.php">
 	<form id="form_user" class="form-horizontal">
+=======
+<div id="mod_request_record">
+	<form class="form-horizontal" action="">
+>>>>>>> e73c3d3b1db865f015acff321c2efb78837fdca8
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
@@ -16,11 +21,6 @@
 			<input type="text" class="input-xxlarge" required id="input_man_titulo" data-toggle="popover" data-placement="right" data-content="" >
 			<p class="help-block"></p>
 		  </div>
-		</div>
-	  </fieldset>
-	  <fieldset style="margin-left: 13px;" class="pos_right">
-		<div class="control-group" id="escuela_request_record">
-		 
 		</div>
 	  </fieldset>
 	  <fieldset>
@@ -53,6 +53,7 @@
 	            <textarea id="input_user_introduccion" name="introduccion_tes" rows="5" placeholder="Escriba su INTRODUCCION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="objetivo_tes">
+<<<<<<< HEAD
 	            <textarea id="input_user_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="resumen_tes">
@@ -60,11 +61,20 @@
 	          </div>
 	          <div class="tab-pane" id="conclusion_tes">
 	            <textarea id="input_user_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
+=======
+	            <textarea name="objetivo_tes" rows="5" placeholder="Escriba su OBJETIVO aqui..." required></textarea>
+	          </div>
+	          <div class="tab-pane" id="resumen_tes">
+	            <textarea name="resumen_tes" rows="5" placeholder="Escriba su RESUMEN aqui..." required></textarea>
+	          </div>
+	          <div class="tab-pane" id="conclusion_tes">
+	            <textarea name="conclusion_tes" rows="5" placeholder="Escriba su CONCLUSION aqui..." required></textarea>
+>>>>>>> e73c3d3b1db865f015acff321c2efb78837fdca8
 	          </div>
 	        </div>
         </div>
         <div class="btn_tesi">
-	        <button class="btn btn-primary" type="submit">Guardar</button>
+	        <a class="btn btn-primary enviar" href="javascript:;">Enviar</a>
         </div>
 	</form>
 </div>
