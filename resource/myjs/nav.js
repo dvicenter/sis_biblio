@@ -105,6 +105,7 @@ $(document).ready(function(){
 				if($("#mod_rol").is(":visible") == true){		
 					$('#mod_rol .agregar').click(function(){
 						insertar_rol();
+						validar();
 					});
 				}
 				else{
@@ -157,8 +158,24 @@ $(document).ready(function(){
 
 	function validar()
 	{
-		$('#input01').validCampo(/[a-zA-Z-_]/,'#form_component','No se aceptan caracteres especiales.');
-		$('#comment_body').validCampo(/[a-zA-Z-_]$/,'#form_component','No se aceptan caracteres especiales.');
+
+		//validacion componente
+		$('#input01').validCampo(/^[a-zA-Z_-\s]*$/,'#form_component','No se aceptan caracteres especiales.');
+		$('#comment_body').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_component','No se aceptan caracteres especiales.');
+		//validacion accion
+		$('#input_man_accion').validCampo(/^[a-zA-z]*$/,'#form_accion','Se acepta solo caracteres alfabeticos.');
+		//validacion rol
+		$('#input_man_rol').validCampo(/^[a-zA-z]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
+		$('#inpur_man_descripcion').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
+		//validacion tesis
+		$('#titulo').validCampo(/^[a-zA-Z_-áéíóúÁÉÍÓÚ \xF1 \xD1 \s\.\d]*$/,'#form_nuevo_tesis','No acepta caracteres especiales.');
+		$('#autor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
+		$('#asesor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
+		$('#anio').validCampo(/[\d{2}\/\d{2}\/\d{4}]/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
+		$('#input_introduccion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\s\w\d\.,:;<>0=\(\)\[\]\/]['"]*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_objetivo').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\s\w\d\.,:;<>0=\(\)\[\]\/]['"]*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_resumen').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\s\w\d\.,:;<>0=\(\)\[\]\/]['"]*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_conclusion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\s\w\d\.,:;<>0=\(\)\[\]\/]['"]*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
 	}
 
 	function buscar_asesor()

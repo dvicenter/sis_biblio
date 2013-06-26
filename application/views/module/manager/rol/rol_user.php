@@ -1,19 +1,19 @@
 <div id="mod_rol">
 <div class="form_user">
-	<form class="form-horizontal" action="">
+	<form id="form_rol" class="form-horizontal" action="">
 		 <fieldset>
 			<div class="control-group">
 			  <label class="control-label" for="input_man_rol">Rol:</label> 
 			  <div class="controls">
-				<input type="text" class="input-xlarge3" name="rol" id="input_man_rol" required>
+				<input type="text" class="input-xlarge3" name="rol" id="input_man_rol" data-toggle="popover" data-placement="right" data-content="" required>
 			  </div>
 			</div>
 		 </fieldset>
-		<fieldset>
+		</fieldset>
 		<div class="control-group">
 			 <label class="control-label" for="inpur_man_descripcion">Descripci&oacute;n:</label> 
 			 <div class="controls">
-				<textarea class="text_area" cols="200" id="inpur_man_descripcion" name="textarea" rows="7"></textarea>
+				<textarea class="text_area" cols="200" id="inpur_man_descripcion" name="textarea" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
 			</div>
 		</div>
 		</fieldset>

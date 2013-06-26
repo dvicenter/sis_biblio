@@ -10,12 +10,12 @@
 			);?>
 <div id="rol">
 	<div class="form_user">
-		<form class="form-horizontal" action="">
+		<form id='form_accion' class="form-horizontal" action="">
 		  <fieldset>
 			<div class="control-group">
 			  <label class="control-label" for="input_man_accion">Accion:</label> 
 			  <div class="controls">
-				<input type="text" class="input-xlarge" id="input_man_accion" required />
+				<input type="text" class="input-xlarge" id="input_man_accion" data-toggle="popover" data-placement="right" data-content="" required />
 			  </div>
 			</div>
 		  </fieldset>
