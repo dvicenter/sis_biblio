@@ -1,5 +1,5 @@
+var asesores=[];
 $(document).ready(function(){
-	
 	$('#tesis').click(function(){
 		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
@@ -90,6 +90,7 @@ $(document).ready(function(){
 		}).change();
 
 	}
+	
 });
 	function load_module_date(url,id_nav_left,id_nav_top)
 	{
@@ -107,9 +108,38 @@ $(document).ready(function(){
 					});
 				}
 				else{
-					if($("#mod_request_record").is(":visible") == true){		
+					if($("#mod_request_record").is(":visible") == true){
+						var asesor=[];
+						var as;
 						$('#input_man_asesor').click(function(){
 							buscar_asesor();
+						});
+						
+						$("#mod_request_record .enviar").click(function(){
+							var asesor=$('#input_man_asesor').val();
+							var titulo=$('#input_man_titulo').val();
+							var voucher=$('#input_man_voucher').val();
+							var correo=$('#input_man_correo').val();
+							var introduccion=$("#mod_request_record textarea[name='introduccion_tes']").val();
+							var objetivo=$("#mod_request_record textarea[name='objetivo_tes']").val();
+							var resumen=$("#mod_request_record textarea[name='resumen_tes']").val();
+							var conclusion=$("#mod_request_record textarea[name='conclusion_tes']").val();
+							var id_docente
+							var id_sujeto=$("#id_sujeto_login").val()
+							$.each(asesores,function(a,b){
+								if(b[1]==asesor)
+								{	id_docente=b[0];
+								}
+							});
+							console.info(id_docente);
+							$.ajax({
+								url:'/sis_biblio/user/ccrequestrecord/insertar_solitud',
+								dataType:'post',
+								data:"asesor="+asesor+"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
+								success:function(data){
+									
+								}
+							});
 						});
 					}
 				}
@@ -152,6 +182,17 @@ $(document).ready(function(){
 			$($(selector_top).parent()).addClass('active');
 		}
 	}
+	function cargar_facultad()
+	{
+		$.ajax({
+			url:'/sis_biblio/util/ccfacultad/cargar_facultad',
+			type:"POST",
+			success:function(data){
+				console.info(data);
+				$('#facultad_request_record').html(data);
+			}
+		});
+	}
 	function buscar_asesor()
 	{	$.ajax({
 			url:'/sis_biblio/user/ccrequestrecord/buscar_asesor',
@@ -161,19 +202,9 @@ $(document).ready(function(){
 				var asesor=[];
 				$.each(data,function(a,b){
 					asesor.push(b.docente);
+					asesores.push([b.id_docente,b.docente]);
 				});
 				$('#input_man_asesor').typeahead().data('typeahead').source = asesor;
-			}
-		});
-	}
-	function cargar_facultad()
-	{
-		$.ajax({
-			url:'/sis_biblio/util/ccfacultad/cargar_facultad',
-			type:"POST",
-			success:function(data){
-				console.info(data);
-				$('#facultad_request_record').html(data);
 			}
 		});
 	}

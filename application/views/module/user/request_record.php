@@ -1,5 +1,5 @@
-<div id="mod_request_record" action="nuevo.php">
-	<form class="form-horizontal">
+<div id="mod_request_record">
+	<form class="form-horizontal" action="">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
@@ -16,11 +16,6 @@
 			<input type="text" class="input-xxlarge" required id="input_man_titulo">
 			<p class="help-block"></p>
 		  </div>
-		</div>
-	  </fieldset>
-	  <fieldset style="margin-left: 13px;" class="pos_right">
-		<div class="control-group" id="escuela_request_record">
-		 
 		</div>
 	  </fieldset>
 	  <fieldset>
@@ -53,18 +48,18 @@
 	            <textarea name="introduccion_tes" rows="5" placeholder="Escriba su INTRODUCCION aqui..." required></textarea>
 	          </div>
 	          <div class="tab-pane" id="objetivo_tes">
-	            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." required></textarea>
+	            <textarea name="objetivo_tes" rows="5" placeholder="Escriba su OBJETIVO aqui..." required></textarea>
 	          </div>
 	          <div class="tab-pane" id="resumen_tes">
-	            <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." required></textarea>
+	            <textarea name="resumen_tes" rows="5" placeholder="Escriba su RESUMEN aqui..." required></textarea>
 	          </div>
 	          <div class="tab-pane" id="conclusion_tes">
-	            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." required></textarea>
+	            <textarea name="conclusion_tes" rows="5" placeholder="Escriba su CONCLUSION aqui..." required></textarea>
 	          </div>
 	        </div>
         </div>
         <div class="btn_tesi">
-	        <button class="btn btn-primary" type="submit">Guardar</button>
+	        <a class="btn btn-primary enviar" href="javascript:;">Enviar</a>
         </div>
 	</form>
 </div>

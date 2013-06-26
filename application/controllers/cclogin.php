@@ -30,10 +30,15 @@ class Cclogin extends CI_Controller {
                                     'usuario' => $_POST['usuario_login'],
                                     'password' => $_POST['password_login']
                                      );
+					 $id_sujeto;
+                     foreach ($isValidLogin as $date)
+                     {	$id_sujeto=$date['id_sujeto'];
+                     }
                     $this->session->set_userdata($sesion_data);
                 
                 $data['usuario'] = $this->session->userdata['usuario'];
                 $data['password'] = $this->session->userdata['password'];
+                $data['id_sujeto']= $id_sujeto;
                 
                 $this->load->view('v_panel',$data);
                 }
