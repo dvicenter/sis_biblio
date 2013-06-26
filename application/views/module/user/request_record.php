@@ -1,30 +1,11 @@
-
 <div id="mod_request_record" action="nuevo.php">
 	<form class="form-horizontal">
-	  <fieldset class="pos_left">
-		<div class="control-group">
-		  <label class="control-label bold_label" for="input_man_apellidos">Apellidos: </label> 
-		  <div class="controls">
-			<input type="text" class="input-xlarge" required id="input_man_apellidos">
-			<p class="help-block"></p>
-		  </div>
-		</div>
-	  </fieldset>
-	  <fieldset class="pos_right">
-		<div class="control-group">
-		  <label class="control-label bold_label" for="input_man_nombre">Nombres: </label> 
-		  <div class="controls">
-			<input type="text" class="input-xlarge" required id="input_man_nombre">
-			<p class="help-block"></p>
-		  </div>
-		</div>
-	  </fieldset>
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
 		  <div class="controls">
 			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" required data-source="">
-			<p class="help-block">Ejm: Fernando Garcia</p>
+			<p class="help-block">Ejm: Garc&iacute;a Fernando</p>
 		  </div>
 		</div>
 	  </fieldset>
@@ -37,52 +18,12 @@
 		  </div>
 		</div>
 	  </fieldset>
-	  <fieldset class="pos_left">
-		<div class="control-group">
-		  <label class="control-label bold_label" for="select_man_facultad">Facultad: </label> 
-		  <div class="controls">
-			<select class="span3" required id="select_man_facultad">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-			<p class="help-block"></p>
-		  </div>
-		</div>
-	  </fieldset>
 	  <fieldset style="margin-left: 13px;" class="pos_right">
-		<div class="control-group">
-		  <label class="control-label bold_label" for="select_man_escuela">Escuela: </label> 
-		  <div class="controls">
-			<select class="span3" required id="select_man_escuela">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-			<p class="help-block"></p>
-		  </div>
+		<div class="control-group" id="escuela_request_record">
+		 
 		</div>
 	  </fieldset>
-	  <fieldset class="pos_left">
-		<div class="control-group">
-		  <label class="control-label bold_label" for="select_man_especialidad">Especialidad: </label> 
-		  <div class="controls">
-			<select class="span3" required id="select_man_especialidad">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-			<p class="help-block"></p>
-		  </div>
-		</div>
-	  </fieldset>
-	  <fieldset class="pos_right">
+	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_voucher" >Voucher: </label> 
 		  <div class="controls">

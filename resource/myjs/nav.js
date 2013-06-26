@@ -111,7 +111,6 @@ $(document).ready(function(){
 				else{
 					if($("#mod_request_record").is(":visible") == true){		
 						$('#input_man_asesor').click(function(){
-							//var date=$(this).val();
 							buscar_asesor();
 						});
 					}
@@ -189,6 +188,17 @@ $(document).ready(function(){
 					asesor.push(b.docente);
 				});
 				$('#input_man_asesor').typeahead().data('typeahead').source = asesor;
+			}
+		});
+	}
+	function cargar_facultad()
+	{
+		$.ajax({
+			url:'/sis_biblio/util/ccfacultad/cargar_facultad',
+			type:"POST",
+			success:function(data){
+				console.info(data);
+				$('#facultad_request_record').html(data);
 			}
 		});
 	}
