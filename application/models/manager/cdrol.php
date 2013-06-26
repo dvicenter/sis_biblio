@@ -9,7 +9,7 @@
 
 		function listar()
 		{
-			$query = "CALL CMRSPRABMRol(0,null,null)";
+			$query = "CALL SPRABMRol(0,null,null,null)";
 			$query = $this->db->query($query);
 			return $query->result_array();
 		}
@@ -20,7 +20,7 @@
 						'rol' => $rol,
 						'descripcion' => $descripcion
 						);                   
-			if ($this->db->query("CALL CMRSPRABMRol(1,'$rol','$descripcion')")) 
+			if ($this->db->query("CALL SPRABMRol(1,null,'$rol','$descripcion')")) 
 			{
 				return $data;
 			}
