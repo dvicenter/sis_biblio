@@ -14,12 +14,13 @@
 	  </fieldset>
 	<fieldset>
 	<div class="control-group">
-		  <label class="control-label" for="comment_body">Descripci&oacute;n:</label> 
-		  <div class="controls">
-		<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
-
+		<label class="control-label" for="comment_body">Descripci&oacute;n:</label> 
+		<div class="controls">
+			<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
+		</div>
+	</div>
 	</fieldset>  
-</div>
+
 
 <div class="btn_mantenimiento">
 	
@@ -29,7 +30,7 @@
 
 	</div>
 </form>
-	
+</div>	
 
 <div id="tabla">
 

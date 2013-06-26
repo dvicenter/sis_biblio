@@ -39,7 +39,7 @@
 				<tr>
 					<td><?php echo $rol['rol']?></td>
 					<td><?php echo $rol['descripcion']?></td>
-					<td><button class="btn btn-info "><i class="icon-refresh icon-white"></i></button></td>
+					<td><button class="btn btn-info "><i class="icon-pencil icon-white"></i></button></td>
 					<td><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
 
 				</tr>

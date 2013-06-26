@@ -9,7 +9,7 @@
 
 		function listar()
 		{
-			$query = "CALL SPRABMAccion(0,null,null)";
+			$query = "CALL SPRABMAccion(0,0,null)";
 			$query = $this->db->query($query);
 			return $query->result_array();
 		}
