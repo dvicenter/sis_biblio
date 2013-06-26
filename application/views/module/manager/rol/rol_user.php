@@ -20,8 +20,10 @@
 		<div class="btn_mantenimiento">
 			<fieldset>
 				<input class="btn btn-primary agregar" type="submit" value="Agregar"/>
+				<button class="btn btn-info "><i class="icon-refresh icon-white"></i></button>
+				<button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button>
 			</fieldset>
-		</div>   
+		</div>    
 	</form>
 </div>
 
@@ -30,18 +32,14 @@
 	    <thead>
 	        <th class="title_table">ROL</th>
 	        <th class="descripcion_table">DESCRIPCI&Oacute;N</th>
-	        <th class="" colspan="2">Accion</th>
 	    </thead>
 		<tbody> 
 			<?php $i=0; 
 				foreach($roles as $rol){
 					if($i<17){?>
-				<tr>
+				<tr onclick="llamar(<?php echo $rol['id_rol'];?>);">
 					<td><?php echo $rol['rol']?></td>
 					<td><?php echo $rol['descripcion']?></td>
-					<td><button class="btn btn-info "><i class="icon-refresh icon-white"></i></button></td>
-					<td><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
-
 				</tr>
 			<?php }$i++;}?>
 		</tbody>

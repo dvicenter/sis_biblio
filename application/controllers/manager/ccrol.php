@@ -5,18 +5,30 @@ class Ccrol extends CI_Controller
     {
         parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('manager/Cdrol');
+		$this->load->model('manager/cdrol');
 	}
 
 	function listar() 
 	{	
-		$this->data['roles']=$this->Cdrol->listar();
+		$this->data['roles']=$this->cdrol->listar();
 		echo $this->load->view("module/manager/rol/rol_user",$this->data);
 	}
 
 	function insertar($rol,$descripcion) 
 	{	
 		$this->data=array($this->Cdrol->insertar($rol,$descripcion));
+		echo json_encode($this->data);
+	}
+
+	function modificar($id_rol,$rol,$descripcion) 
+	{	
+		$this->data=array($this->cdrol->modificar($rol,$descripcion));
+		echo json_encode($this->data);
+	}
+
+	function eliminar($id_rol) 
+	{	
+		$this->data=array($this->cdrol->eliminar($rol,$descripcion));
 		echo json_encode($this->data);
 	}
 } 

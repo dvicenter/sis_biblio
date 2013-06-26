@@ -25,5 +25,17 @@
 				return $data;
 			}
 		}
+
+		function modificar($id_rol,$rol,$descripcion)
+		{
+			$query = "CALL SPRABMRol(2,'$id_rol','$rol','$descripcion')";
+			$query = $this->db->query($query);
+		}
+
+		function eliminar($id_rol)
+		{
+			$query = "CALL SPRABMRol(3,'$id_rol',null,null)";
+			$query = $this->db->query($query);
+		}
 	}
  ?>

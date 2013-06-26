@@ -330,6 +330,9 @@ $(document).ready(function(){
 		}
 	}
 
+	function llamar(n)
+	{
+	}
 	function validar()
 	{
 
