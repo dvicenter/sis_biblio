@@ -180,11 +180,15 @@ $(document).ready(function(){
 													});
 												
 											}
-										}}
+										}
 								}
+							}
 						}
+					}
 				});
 		}
+
+
 
 	function insertar_rol()
 	{	var rol=$("#mod_rol input[name='rol']").val();

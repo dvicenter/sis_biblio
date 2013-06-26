@@ -6,11 +6,8 @@
 			<div class="control-group">
 			  <label class="control-label" for="input_man_accion">Accion:</label> 
 			  <div class="controls">
-<<<<<<< HEAD
 				<input type="text" class="input-xlarge" id="input_man_accion" data-toggle="popover" data-placement="right" data-content="" required />
-=======
-				<input type="text" class="input-xlarge" id="input_man_accion" name="input_man_accion" required />
->>>>>>> e73c3d3b1db865f015acff321c2efb78837fdca8
+
 			  </div>
 			</div>
 		  </fieldset>

@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-<div id="mod_request_record" action="nuevo.php">
-	<form id="form_user" class="form-horizontal">
-=======
-<div id="mod_request_record">
-	<form class="form-horizontal" action="">
->>>>>>> e73c3d3b1db865f015acff321c2efb78837fdca8
+
+<div id="mod_request_record" >
+	<form id="form_user" class="form-horizontal" action="nuevo.php">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
