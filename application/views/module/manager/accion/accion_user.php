@@ -1,27 +1,18 @@
-<?php  $acciones=array(
-			array($Accion='karina',$Estado='kari'),
-			array($Accion='Kelly',$Estado='Kelly'),
-			array($Accion='karina',$Estado='kari'),
-			array($Accion='Kelly',$Estado='Kelly'),
-			array($Accion='karina',$Estado='kari'),
-			array($Accion='Kelly',$Estado='Kelly'),
-			array($Accion='karina',$Estado='kari'),
-			array($Accion='Kelly',$Estado='Kelly'),
-			);?>
-<div id="rol">
+
+<div id="mod_accion">
 	<div class="form_user">
 		<form class="form-horizontal" action="">
 		  <fieldset>
 			<div class="control-group">
 			  <label class="control-label" for="input_man_accion">Accion:</label> 
 			  <div class="controls">
-				<input type="text" class="input-xlarge" id="input_man_accion" required />
+				<input type="text" class="input-xlarge" id="input_man_accion" name="input_man_accion" required />
 			  </div>
 			</div>
 		  </fieldset>
 		<div class="btn_mantenimiento">
 			<fieldset>
-				<input class="btn btn-primary " type="submit" value="Agregar"/>
+				<a class="btn btn-primary agregar" value="Agregar" href="javascript:;">agregar</a>
 			</fieldset>
 		</div>		
 		</form>
@@ -29,19 +20,19 @@
 
 
 		<div id="tabla">
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table id="table_acc" class="table table-striped table-bordered table-condensed table-hover">
 
 		    <thead>
 		        <th class="title_table">ACCION</th>
-		        <th class="estado_table">ESTADO</th>
 		    </thead>
 			<tbody>
-				<?php foreach($acciones as $accion){?>
+				<?php $i=0; foreach($acciones as $accion){
+					if($i<17){?>
 				<tr>
-				<td><?php echo $accion[0]?></td>
-				<td><?php echo $accion[1]?></td>
+				<td><?php  
+					echo $accion['accion'];?></td>
 				</tr>
-				<?php }?>
+				<?php $i++;}}?>
 			</tbody>
 		</table>
 		</div>

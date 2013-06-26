@@ -1,5 +1,5 @@
 <?php 
-	class CDAccion extends CI_Model
+	class Cdaccion extends CI_Model
 	{
 		public function __construct() 
 	    {
@@ -9,17 +9,17 @@
 
 		function listar()
 		{
-			$query = "CALL CMRSPRABMRol(0,null,null)";
+			$query = "CALL SPRABMAccion(0,null,null)";
 			$query = $this->db->query($query);
 			return $query->result_array();
 		}
 
 		function insertar($accion)
-		{
+		{	
 			$data = array(
 						'accion' => $accion,
 						);                   
-			if ($this->db->query("CALL CMRSPRABMRol(1,'$accion')")) 
+			if ($this->db->query("CALL SPRABMAccion(1,1,'$accion')")) 
 			{
 				return $data;
 			}

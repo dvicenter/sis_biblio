@@ -13,7 +13,7 @@
 		<div class="control-group">
 		  <label class="control-label" for="input01">Sujeto:</label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required> <a href="#" class="btn"><i class="icon-search"></i></a>
+			<input type="text" name="m_idsujeto" class="input-xlarge" required> <a href="#" class="btn"><i class="icon-search"></i></a>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -22,7 +22,7 @@
 		<div class="control-group">
 		  <label class="control-label" for="input01">User:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required>
+			<input type="text" class="input-xlarge" name="m_user" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -31,7 +31,7 @@
 		<div class="control-group">
 		  <label class="control-label" for="input01">Contrase&ntilde;a:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required>
+			<input type="text" class="input-xlarge" name="m_contra" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -41,14 +41,14 @@
 				<label class="control-label" for="input01">Activo:</label>
 				<div class="controls">
 				<label class="checkbox">
-					<input type="checkbox" required>
+					<input type="checkbox" name="m_chek" required>
 				</label>
 				</div>
 			</div>
 		</fieldset>
 		<div class="btn_mantenimiento">
 			<fieldset>
-				<input class="btn btn-primary " type="submit" value="Agregar" />
+				<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;">Agregar</a>
 			</fieldset>
 		</div>		
 	</form>
@@ -56,7 +56,7 @@
 
 <div id="tabla">
 
-<table class="table table-striped table-bordered table-condensed table-hover">
+<table id="tabla_user"class="table table-striped table-bordered table-condensed table-hover">
 
     <thead>
       
@@ -67,11 +67,11 @@
     </thead>
 	<tbody>
 	
-		<?php foreach($user as $user_usuario){?>
+		<?php foreach($usuario as $user_usuario){?>
 		<tr>
-		<td><?php echo $user_usuario[0]?></td>
-		<td><?php echo $user_usuario[1]?></td>
-		<td><?php echo $user_usuario[2]?></td>
+		<td><?php echo $user_usuario['usuario']?></td>
+		<td><?php echo $user_usuario['contrasenia']?></td>
+		<td><?php echo $user_usuario['active']?></td>
 		</tr>
 		<?php }?>
 	</tbody>
