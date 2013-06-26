@@ -3,45 +3,45 @@
 	<form class="form-horizontal">
 	  <fieldset class="pos_left">
 		<div class="control-group">
-		  <label class="control-label bold_label">Apellidos: </label> 
+		  <label class="control-label bold_label" for="input_man_apellidos">Apellidos: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required>
+			<input type="text" class="input-xlarge" required id="input_man_apellidos">
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset class="pos_right">
 		<div class="control-group">
-		  <label class="control-label bold_label">Nombres: </label> 
+		  <label class="control-label bold_label" for="input_man_nombre">Nombres: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required>
+			<input type="text" class="input-xlarge" required id="input_man_nombre">
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label bold_label">Asesor: </label> 
+		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required><a href="#" class="btn btn_search_mod" required><i class="icon-search"></i></a>
-			<p class="help-block"></p>
+			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" required data-source="">
+			<p class="help-block">Ejm: Fernando Garcia</p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label bold_label">T&iacute;tulo: </label> 
+		  <label class="control-label bold_label" for="input_man_titulo">T&iacute;tulo: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xxlarge" required>
+			<input type="text" class="input-xxlarge" required id="input_man_titulo">
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset class="pos_left">
 		<div class="control-group">
-		  <label class="control-label bold_label">Facultad: </label> 
+		  <label class="control-label bold_label" for="select_man_facultad">Facultad: </label> 
 		  <div class="controls">
-			<select class="span3" required>
+			<select class="span3" required id="select_man_facultad">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -54,9 +54,9 @@
 	  </fieldset>
 	  <fieldset style="margin-left: 13px;" class="pos_right">
 		<div class="control-group">
-		  <label class="control-label bold_label">Escuela: </label> 
+		  <label class="control-label bold_label" for="select_man_escuela">Escuela: </label> 
 		  <div class="controls">
-			<select class="span3" required>
+			<select class="span3" required id="select_man_escuela">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -69,9 +69,9 @@
 	  </fieldset>
 	  <fieldset class="pos_left">
 		<div class="control-group">
-		  <label class="control-label bold_label">Especialidad: </label> 
+		  <label class="control-label bold_label" for="select_man_especialidad">Especialidad: </label> 
 		  <div class="controls">
-			<select class="span3" required>
+			<select class="span3" required id="select_man_especialidad">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -84,18 +84,18 @@
 	  </fieldset>
 	  <fieldset class="pos_right">
 		<div class="control-group">
-		  <label class="control-label bold_label">Voucher: </label> 
+		  <label class="control-label bold_label" for="input_man_voucher" >Voucher: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required>
+			<input type="text" class="input-xlarge" required id="input_man_voucher">
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label bold_label">Correo: </label> 
+		  <label class="control-label bold_label" for="input_man_correo">Correo: </label> 
 		  <div class="controls">
-			<input type="email" class="input-xxlarge" required>
+			<input type="email" class="input-xxlarge" required id="input_man_correo">
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -109,7 +109,7 @@
 	        </ul> 
 	        <div class="tab-content">
 	          <div class="tab-pane active" id="introduccion_tes">
-	            <textarea name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." required></textarea>
+	            <textarea name="introduccion_tes" rows="5" placeholder="Escriba su INTRODUCCION aqui..." required></textarea>
 	          </div>
 	          <div class="tab-pane" id="objetivo_tes">
 	            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." required></textarea>
