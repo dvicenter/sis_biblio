@@ -25,16 +25,16 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="introduccion">
-            <textarea id="input_introduccion" name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." data-toggle="popover" data-placement="top" data-content="" required></textarea>
+            <textarea id="input_introduccion" name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
           <div class="tab-pane" id="objetivo">
-            <textarea id="input_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="right" data-content="" required></textarea>
+            <textarea id="input_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
           <div class="tab-pane" id="resumen">
-            <textarea id="input_resumen" name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="right" data-content="" required></textarea>
+            <textarea id="input_resumen" name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
           <div class="tab-pane" id="conclusion">
-            <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content="" required></textarea>
+            <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
         </div>
   </div>

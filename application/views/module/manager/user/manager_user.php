@@ -8,40 +8,40 @@
 
 <div id="manager_user">
 <div class="form_user">
-	<form class="form-horizontal">
+	<form id="form_adm_user" class="form-horizontal">
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label" for="input01">Sujeto:</label> 
+		  <label class="control-label" for="input_adm_sujeto">Sujeto:</label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required> <a href="#" class="btn"><i class="icon-search"></i></a>
+			<input id="input_adm_sujeto" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required> <a href="#" class="btn"><i class="icon-search"></i></a>
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label" for="input01">User:</label>
+		  <label class="control-label" for="input_adm_user">User:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required>
+			<input id="input_adm_user" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label" for="input01">Contrase&ntilde;a:</label>
+		  <label class="control-label" for="input_adm_contra">Contrase&ntilde;a:</label>
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required>
+			<input id="input_adm_contra" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	    <fieldset>
 			<div class="control-group">
-				<label class="control-label" for="input01">Activo:</label>
+				<label class="control-label" for="input_adm_activo">Activo:</label>
 				<div class="controls">
 				<label class="checkbox">
-					<input type="checkbox" required>
+					<input id="input_adm_activo" type="checkbox" data-toggle="popover" data-placement="right" data-content="" required>
 				</label>
 				</div>
 			</div>

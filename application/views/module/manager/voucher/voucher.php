@@ -7,17 +7,17 @@
 			);?>
 
 <div id="voucher">
-	<form class="form-horizontal">
+	<form id="form_voucher" class="form-horizontal" enctype="multipart/form-data">
 	<div class="form_user">		
 	  <fieldset class="pos_left">
 		<div class="control-group">
 			<div class="controls">
-			<input type="file" required></div>
+			<input id="input_control" type="file" data-toggle="popover" data-placement="bottom" data-content="" required></div>
 			<p class="help-block"></p>
 		</div>
 	  </fieldset>
 	  <fieldset class="btn_voucher pos_right">
-			<a class="btn btn-primary " href="">Cargar</a>
+			<input class="btn btn-primary " type="submit" value="Cargar">
 	</fieldset>
 	</div>	
 

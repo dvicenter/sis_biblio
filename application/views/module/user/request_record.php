@@ -1,10 +1,10 @@
 <div id="mod_request_record" action="nuevo.php">
-	<form class="form-horizontal">
+	<form id="form_user" class="form-horizontal">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
 		  <div class="controls">
-			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" required data-source="">
+			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" required data-source="">
 			<p class="help-block">Ejm: Garc&iacute;a Fernando</p>
 		  </div>
 		</div>
@@ -13,7 +13,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_titulo">T&iacute;tulo: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xxlarge" required id="input_man_titulo">
+			<input type="text" class="input-xxlarge" required id="input_man_titulo" data-toggle="popover" data-placement="right" data-content="" >
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -27,7 +27,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_voucher" >Voucher: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required id="input_man_voucher">
+			<input type="text" class="input-xlarge" required id="input_man_voucher" data-toggle="popover" data-placement="right" data-content="" >
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -36,7 +36,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_correo">Correo: </label> 
 		  <div class="controls">
-			<input type="email" class="input-xxlarge" required id="input_man_correo">
+			<input type="email" class="input-xxlarge" required id="input_man_correo" data-toggle="popover" data-placement="right" data-content="" >
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -50,16 +50,16 @@
 	        </ul> 
 	        <div class="tab-content">
 	          <div class="tab-pane active" id="introduccion_tes">
-	            <textarea name="introduccion_tes" rows="5" placeholder="Escriba su INTRODUCCION aqui..." required></textarea>
+	            <textarea id="input_user_introduccion" name="introduccion_tes" rows="5" placeholder="Escriba su INTRODUCCION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="objetivo_tes">
-	            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." required></textarea>
+	            <textarea id="input_user_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="resumen_tes">
-	            <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." required></textarea>
+	            <textarea id="input_user_resumen" name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="conclusion_tes">
-	            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." required></textarea>
+	            <textarea id="input_user_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	        </div>
         </div>
