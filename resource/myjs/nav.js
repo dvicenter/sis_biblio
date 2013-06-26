@@ -53,7 +53,8 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
-				aprecer_input();
+				aparecer_input();
+				validar();
 					
 				$('#module_constancia').click(function(){
 			//	alert('da');console.info('j');
@@ -70,7 +71,7 @@ $(document).ready(function(){
 	}
 
 	
-	function aprecer_input()
+	function aparecer_input()
 	{
 		var check  = $(".opcion").children();
 		$(this).change(function(){
@@ -158,4 +159,10 @@ $(document).ready(function(){
 		if(($(selector).parent()).find('.import')){
 			$($(selector_top).parent()).addClass('active');
 		}
+	}
+
+	function validar()
+	{
+		$('#input01').validCampo(/[a-zA-Z-_]/,'#form_component','No se aceptan caracteres especiales.');
+		$('#comment_body').validCampo(/[a-zA-Z-_]$/,'#form_component','No se aceptan caracteres especiales.');
 	}

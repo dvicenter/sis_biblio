@@ -12,12 +12,12 @@
  
 <div id="componente">
 <div class="form_user">
-	<form class="form-horizontal" action="nuevo.php">
+	<form id="form_component" class="form-horizontal" action="nuevo.php">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label" for="input01">Componente:</label> 
 		  <div class="controls">
-			<input id="input01" type="text" class="input-xlarge3" name="input01" required> 
+			<input id="input01" type="text" class="input-xlarge3" name="input01"  data-toggle="popover" data-placement="right" data-content="" required> 
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -26,7 +26,7 @@
 	<div class="control-group">
 		  <label class="control-label" for="comment_body">Descripci&oacute;n:</label> 
 		  <div class="controls">
-		<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7" required></textarea>
+		<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
 	</fieldset>  
 </div>
 
@@ -61,6 +61,8 @@
 	</tbody>
 </table>
 
+
 </div>
+
 
 </div>
