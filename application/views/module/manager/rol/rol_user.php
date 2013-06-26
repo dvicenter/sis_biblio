@@ -21,7 +21,7 @@
 			<fieldset>
 				<input class="btn btn-primary agregar" type="submit" value="Agregar"/>
 			</fieldset>
-		</div>  
+		</div>   
 	</form>
 </div>
 
@@ -30,6 +30,7 @@
 	    <thead>
 	        <th class="title_table">ROL</th>
 	        <th class="descripcion_table">DESCRIPCI&Oacute;N</th>
+	        <th class="" colspan="2">Accion</th>
 	    </thead>
 		<tbody> 
 			<?php $i=0; 
@@ -38,6 +39,9 @@
 				<tr>
 					<td><?php echo $rol['rol']?></td>
 					<td><?php echo $rol['descripcion']?></td>
+					<td><button class="btn btn-info "><i class="icon-refresh icon-white"></i></button></td>
+					<td><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
+
 				</tr>
 			<?php }$i++;}?>
 		</tbody>
