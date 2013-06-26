@@ -9,5 +9,7 @@ class Ccrequestrecord extends CI_Controller{
 	{	$data=$this->Cdrequestrecord->buscar_asesor();
 		echo json_encode($data);
 	}
-	
+	function insertar_solitud()
+	{	
+	}
 }

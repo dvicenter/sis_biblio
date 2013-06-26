@@ -18,42 +18,12 @@
 		  </div>
 		</div>
 	  </fieldset>
-	  <fieldset class="pos_left">
-		<div class="control-group" id="facultad_request_record">
-		  	<?php //$this->load->view('util/combo_facultad')?>
-		</div>
-	  </fieldset>
 	  <fieldset style="margin-left: 13px;" class="pos_right">
-		<div class="control-group">
-		  <label class="control-label bold_label" for="select_man_escuela">Escuela: </label> 
-		  <div class="controls">
-			<select class="span3" required id="select_man_escuela">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-			<p class="help-block"></p>
-		  </div>
+		<div class="control-group" id="escuela_request_record">
+		 
 		</div>
 	  </fieldset>
-	  <fieldset class="pos_left">
-		<div class="control-group">
-		  <label class="control-label bold_label" for="select_man_especialidad">Especialidad: </label> 
-		  <div class="controls">
-			<select class="span3" required id="select_man_especialidad">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-			<p class="help-block"></p>
-		  </div>
-		</div>
-	  </fieldset>
-	  <fieldset class="pos_right">
+	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_voucher" >Voucher: </label> 
 		  <div class="controls">

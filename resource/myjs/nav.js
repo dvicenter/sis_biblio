@@ -111,7 +111,6 @@ $(document).ready(function(){
 						$('#input_man_asesor').click(function(){
 							buscar_asesor();
 						});
-						cargar_facultad();
 					}
 				}
 			}
@@ -173,6 +172,7 @@ $(document).ready(function(){
 			url:'/sis_biblio/util/ccfacultad/cargar_facultad',
 			type:"POST",
 			success:function(data){
+				console.info(data);
 				$('#facultad_request_record').html(data);
 			}
 		});
