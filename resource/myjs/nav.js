@@ -113,6 +113,12 @@ $(document).ready(function(){
 						insertar_rol();
 					})
 				}
+				else ($("#mod_accion").is(":visible") == true){
+					
+					$('#mod_accion .agregar').click(function(){
+						insertar_accion();
+					})
+				} 
 		}
 		});
 	}
@@ -143,6 +149,35 @@ $(document).ready(function(){
 							tds += '<td>'+rol+'</td><td>'+descripcion+'</td>';							
 							tds += '</tr>';
 							$("#table_aum").append(tds);
+						}
+					});
+	}
+	
+	function insertar_accion()
+	{
+					var accion=$("#mod_accion input[name='accion']").val();
+					$.ajax({
+						url:'/sis_biblio/manager/CCAccion/insertar/'+accion,
+						type:'post',
+						dataType:'json',
+						//date:'accion='+accion+',
+						success:function(data){
+							console.info(data);
+							var accion;
+							
+							$.each(data,function(a,b){
+								accion=b.accion;
+								
+							});
+							console.info(accion);
+							//$('#mod_accion table tr:last').after('<td>'+accion+'</td>');
+							
+							$('tr:last td', $("#table_acc"));
+
+							var tds = '<tr>';							
+							tds += '<td>'+rol+'</td><td>';							
+							tds += '</tr>';
+							$("#table_acc").append(tds);
 						}
 					});
 	}

@@ -37,7 +37,7 @@
 	</div>
 	<div class="btn_mantenimiento">
 		<fieldset>
-			<a class="btn btn-primary " href="">Agregar</a>
+			<a class="btn btn-primary agregar" href="">Agregar</a>
 			<a class="btn btn-info" href="">Modificar</a>
 			<a class="btn btn-danger" href="">Eliminar</a>
 			<a class="btn " href="">Cancelar</a>
@@ -45,7 +45,7 @@
 	</div>
 
 		<div id="tabla">
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table id="table_acc" class="table table-striped table-bordered table-condensed table-hover">
 
 		    <thead>
 		      
