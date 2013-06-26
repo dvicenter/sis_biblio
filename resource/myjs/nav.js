@@ -154,14 +154,13 @@ $(document).ready(function(){
 			$($(selector_top).parent()).addClass('active');
 		}
 	}
-<<<<<<< HEAD
 
 	function validar()
 	{
 		$('#input01').validCampo(/[a-zA-Z-_]/,'#form_component','No se aceptan caracteres especiales.');
 		$('#comment_body').validCampo(/[a-zA-Z-_]$/,'#form_component','No se aceptan caracteres especiales.');
 	}
-=======
+
 	function buscar_asesor()
 	{	$.ajax({
 			url:'/sis_biblio/user/ccrequestrecord/buscar_asesor',
@@ -176,4 +175,3 @@ $(document).ready(function(){
 			}
 		});
 	}
->>>>>>> df8a8421714ae25499adbdd36f20a982e3a4d148
