@@ -20,5 +20,16 @@ class Ccaccion extends CI_Controller
 		//echo $this->load->view("module/manager/accion/accion_user",$this->data);
 		echo json_encode($this->data);
 	}
+	function modificar($id_accion,$accion) 
+	{	
+		$this->data=array($this->cdaccion->modificar($accion));
+		echo json_encode($this->data);
+	}
+
+	function eliminar($id_accion) 
+	{	
+		$this->data=array($this->cdaccion->eliminar($accion));
+		echo json_encode($this->data);
+	}
 } 
 ?>

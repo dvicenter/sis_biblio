@@ -116,6 +116,10 @@ $(document).ready(function(){
 										insertar_rol();
 
 									})
+									$('#mod_rol .editar').click(function(){
+										editar_rol();
+
+									})
 								}
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
@@ -206,7 +210,7 @@ $(document).ready(function(){
 					});
 					$('tr:last td', $("#table_aum"));
 					var tds = '<tr>';							
-					tds += '<td>'+rol+'</td><td>'+descripcion+'</td>';							
+					tds += '<td>'+rol+'<td>'+descripcion+"</td><td><button class='btn btn-info '><i class='icon-pencil icon-white'></i></button></td><td><button class='btn btn-danger '><i class='icon-fullscreen icon-white'></i></button></td>";							
 					tds += '</tr>';
 					$("#table_aum").append(tds);
 				},
@@ -218,7 +222,7 @@ $(document).ready(function(){
 	
 	function insertar_accion()
 	{
-					var accion=$("#mod_accion input[name='input_man_accion']").val();
+					var accion=$("#mod_accion input[name='accion']").val();
 					$.ajax({
 						url:'/sis_biblio/manager/ccaccion/insertar/'+accion,
 						type:'post',
@@ -236,7 +240,7 @@ $(document).ready(function(){
 							$('tr:last td', $("#table_acc"));
 
 							var tds = '<tr>';							
-							tds += '<td>'+accion+'</td>';							
+							tds += '<td>'+accion+"</td><td><button class='btn btn-info '><i class='icon-pencil icon-white'></i></button></td><td><button class='btn btn-danger '><i class='icon-fullscreen icon-white'></i></button></td>";							
 							tds += '</tr>';
 							$("#table_acc").append(tds);
 						}
@@ -246,7 +250,7 @@ $(document).ready(function(){
 	function insertar_componente()
 	{	
 					var componente=$("#mod_componente input[name='componente']").val();
-					var descripcion_componente=$("#mod_componente textarea[name='txtcomp']").val();
+					var descripcion_componente=$("#mod_componente textarea[name='txt_comp']").val();
 					$.ajax({
 						url:'/sis_biblio/manager/cccomponente/insertar/'+componente+'/'+descripcion_componente,
 						type:'post',
@@ -265,7 +269,7 @@ $(document).ready(function(){
 							$('tr:last td', $("#table_comp"));
 
 							var tds = '<tr>';							
-							tds += '<td>'+componente+'</td><td>'+descripcion_componente+'</td>';							
+							tds += '<td>'+componente+'<td>'+descripcion_componente+"</td><td><button class='btn btn-info '><i class='icon-pencil icon-white'></i></button></td><td><button class='btn btn-danger '><i class='icon-fullscreen icon-white'></i></button></td>";							
 							tds += '</tr>';
 							$("#table_comp").append(tds);
 						},
