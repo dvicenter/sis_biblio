@@ -6,7 +6,7 @@
 		<div class="control-group">
 		  <label class="control-label" for="input01">Componente:</label> 
 		  <div class="controls">
-			<input id="input01" type="text" class="input-xlarge3" name="input01"  data-toggle="popover" data-placement="right" data-content="" required> 
+			<input id="input01" type="text" class="input-xlarge3" name="componente"  data-toggle="popover" data-placement="right" data-content="" required> 
 
 			<p class="help-block"></p>
 		  </div>
@@ -16,7 +16,7 @@
 	<div class="control-group">
 		<label class="control-label" for="comment_body">Descripci&oacute;n:</label> 
 		<div class="controls">
-			<textarea class="text_area" cols="200" id="comment_body" name="comment[body]" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
+			<textarea class="text_area" cols="200" id="comment_body" name="txt_comp" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
 		</div>
 	</div>
 	</fieldset>  
@@ -26,6 +26,8 @@
 	
 	<fieldset>
 	<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;">agregar</a>
+	<button class="btn btn-info "><i class="icon-refresh icon-white"></i></button>
+	<button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button>
 	</fieldset>
 
 	</div>
@@ -34,12 +36,14 @@
 
 <div id="tabla">
 
-<table id="table_comp" class="table table-striped table-bordered table-condensed table-hover">
+<table id="table_comp" class="table table-striped table-bordered table-condensed table-hover table_de_2">
 
     <thead>
       
         <th class="title_table">COMPONENTE</th>
         <th class="descripcion_table">DESCRIPCION</th>
+		<th class="title_table">EDITAR</th>
+        <th class="descripcion_table">ELIMINAR</th>
             
     </thead>
 	<tbody>
@@ -50,6 +54,8 @@
 				<tr>
 					<td><?php echo $componente['componente']?></td>
 					<td><?php echo $componente['descripcion_componente']?></td>
+					<td style="text-align:center;"><button class="btn btn-info "><i class="icon-pencil icon-white"></i></button></td>
+					<td style="text-align:center;"><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
 				</tr>
 			<?php }$i++;}?>
 	</tbody>

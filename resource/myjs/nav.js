@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var asesores=[];
 $(document).ready(function(){
 	$('#tesis').click(function(){

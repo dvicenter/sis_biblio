@@ -24,5 +24,17 @@
 				return $data;
 			}
 		}
+		function modificar($id_accion)
+		{
+			$query = "CALL SPRABMAccion(2,'$id_accion','$accion')";
+			$query = $this->db->query($query);
+		}
+
+		function eliminar($id_accion)
+		{
+			$query = "CALL SPRABMAccion(3,'$id_accion',null)";
+			$query = $this->db->query($query);
+		}
 	}
+	
  ?>

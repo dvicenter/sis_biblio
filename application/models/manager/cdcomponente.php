@@ -25,5 +25,18 @@
 				return $data;
 			}
 		}
+		function modificar($id_componente,$componente,$descripcion_componente)
+		{
+			$query = "CALL SPRABMComponente(2,'$id_componente','$componente','$descripcion_componente')";
+			$query = $this->db->query($query);
+		}
+
+		function eliminar($id_componente)
+		{
+			$query = "CALL SPRABMComponente(3,'$id_componente',null,null)";
+			$query = $this->db->query($query);
+		}
+	
 	}
+	
  ?>

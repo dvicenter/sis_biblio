@@ -32,6 +32,8 @@
 	    <thead>
 	        <th class="title_table">ROL</th>
 	        <th class="descripcion_table">DESCRIPCI&Oacute;N</th>
+			<th class="title_table">EDITAR</th>
+	        <th class="descripcion_table">ELIMINAR</th>
 	    </thead>
 		<tbody> 
 			<?php $i=0; 
@@ -40,8 +42,8 @@
 				<tr onclick="llamar(<?php echo $rol['id_rol'];?>);">
 					<td><?php echo $rol['rol']?></td>
 					<td><?php echo $rol['descripcion']?></td>
-					<td><button class="btn btn-info "><i class="icon-pencil icon-white"></i></button></td>
-					<td><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
+					<td style="text-align:center;"><button class="btn btn-info "><i class="icon-pencil icon-white"></i></button></td>
+					<td style="text-align:center;"><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
 				</tr>
 			<?php }$i++;}?>
 		</tbody>
