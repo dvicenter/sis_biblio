@@ -1,4 +1,3 @@
-
 <div id="mod_request_record" >
 	<form id="form_user" class="form-horizontal" action="nuevo.php">
 	  <fieldset>
@@ -49,7 +48,6 @@
 	            <textarea id="input_user_introduccion" name="introduccion_tes" rows="5" placeholder="Escriba su INTRODUCCION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="objetivo_tes">
-<<<<<<< HEAD
 	            <textarea id="input_user_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="resumen_tes">
@@ -57,15 +55,6 @@
 	          </div>
 	          <div class="tab-pane" id="conclusion_tes">
 	            <textarea id="input_user_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
-=======
-	            <textarea name="objetivo_tes" rows="5" placeholder="Escriba su OBJETIVO aqui..." required></textarea>
-	          </div>
-	          <div class="tab-pane" id="resumen_tes">
-	            <textarea name="resumen_tes" rows="5" placeholder="Escriba su RESUMEN aqui..." required></textarea>
-	          </div>
-	          <div class="tab-pane" id="conclusion_tes">
-	            <textarea name="conclusion_tes" rows="5" placeholder="Escriba su CONCLUSION aqui..." required></textarea>
->>>>>>> e73c3d3b1db865f015acff321c2efb78837fdca8
 	          </div>
 	        </div>
         </div>

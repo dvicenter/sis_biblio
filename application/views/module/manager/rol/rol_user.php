@@ -19,7 +19,7 @@
 		</fieldset>
 		<div class="btn_mantenimiento">
 			<fieldset>
-				<a class="btn btn-primary agregar" href="javascript:;">Agregar</a>
+				<input class="btn btn-primary agregar" type="submit" value="Agregar"/>
 				<button class="btn btn-info "><i class="icon-refresh icon-white"></i></button>
 				<button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button>
 			</fieldset>

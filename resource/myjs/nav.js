@@ -111,47 +111,38 @@ $(document).ready(function(){
 							validar();
 
 							if($("#mod_rol").is(":visible") == true)
-								{
-									$('#mod_rol .agregar').click(function(){
+								{	$('#mod_rol .agregar').click(function(){
 										insertar_rol();
-
 									})
 								}
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
-										{
-											$('#mod_accion .agregar').click(function(){
+										{	$('#mod_accion .agregar').click(function(){
 											insertar_accion();
 											});
 										}
-																		
 									else 
-										{ 
-											if($("#mod_componente").is(":visible") == true)
+										{ 	if($("#mod_componente").is(":visible") == true)
 												{											
 													$('#mod_componente .agregar').click(function(){
 													insertar_componente();
+													validar_componente();
 													});
 												}
-																			
 									else 
-										{
-										
-											if($("#manager_user").is(":visible") == true){
+										{	if($("#manager_user").is(":visible") == true){
 												
 												$('#manager_user .agregar').click(function(){
 												insertar_user();
 											});
 											}
 											else
-											{
-												if($("#mod_request_record").is(":visible") == true){
+											{	if($("#mod_request_record").is(":visible") == true){
 													var asesor=[];
 													var as;
 													$('#input_man_asesor').click(function(){
 														buscar_asesor();
 													});
-													
 													$("#mod_request_record .enviar").click(function(){
 														var asesor=$('#input_man_asesor').val();
 														var titulo=$('#input_man_titulo').val();
@@ -330,42 +321,42 @@ $(document).ready(function(){
 		}
 	}
 
-	function llamar(n)
-	{
+	function validar_componente(n)
+	{	$('#input01').validCampo(/^[a-zA-Z_-\s]*$/,'#form_component','No se aceptan caracteres especiales.');
+		$('#comment_body').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_component','No se aceptan caracteres especiales.');
 	}
 	function validar()
 	{
 
 		//validacion componente
-		$('#input01').validCampo(/^[a-zA-Z_-\s]*$/,'#form_component','No se aceptan caracteres especiales.');
-		$('#comment_body').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_component','No se aceptan caracteres especiales.');
+		
 		//validacion accion
 		$('#input_man_accion').validCampo(/^[a-zA-z\s]*$/,'#form_accion','Se acepta solo caracteres alfabeticos.');
 		//validacion rol
 		$('#input_man_rol').validCampo(/^[a-zA-z\s]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
 		$('#inpur_man_descripcion').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
 		//validacion tesis
-		$('#titulo').validCampo(/^[a-zA-Z_-áéíóúÁÉÍÓÚ \xF1 \xD1 \s\.\d]*$/,'#form_nuevo_tesis','No acepta caracteres especiales.');
-		$('#autor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
-		$('#asesor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
+		$('#titulo').validCampo(/^[a-zA-Z_-Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s\.\d]*$/,'#form_nuevo_tesis','No acepta caracteres especiales.');
+		$('#autor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
+		$('#asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
 		$('#anio').validCampo(/[\d{2}\/\d{2}\/\d{4}]/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
-		$('#input_introduccion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
-		$('#input_objetivo').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
-		$('#input_resumen').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
-		$('#input_conclusion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_introduccion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_objetivo').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_resumen').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
 		//validacion solicitud constancia usuario
-		$('#input_man_asesor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
-		$('#input_man_titulo').validCampo(/^[a-zA-Z_-áéíóúÁÉÍÓÚ \xF1 \xD1 \s\.\d]*$/,'#form_user','No acepta caracteres especiales.');
+		$('#input_man_asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
+		$('#input_man_titulo').validCampo(/^[a-zA-Z_-Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s\.\d]*$/,'#form_user','No acepta caracteres especiales.');
 		$('#input_man_voucher').validCampo(/^[\d]*$/,'#form_user','Se aceptan solo caracteres numericos.');
 		$('#input_man_correo').validCampo(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/,'#form_user','Verifique que tenga formato de correo electronico.');
-		$('#input_user_introduccion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		$('#input_user_objetivo').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		$('#input_user_resumen').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		$('#input_user_conclusion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		$('#input_user_introduccion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		$('#input_user_objetivo').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		$('#input_user_resumen').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		$('#input_user_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
 		//validacion adm usuario
 		$('#input_adm_sujeto').validCampo(/^[a-zA-Z_-\s]*$/,'#form_adm_user','No se aceptan caracteres especiales.');
 		$('#input_adm_user').validCampo(/^[a-zA-Z_-\d]*$/,'#form_adm_user','No se aceptan caracteres especiales.');
-		$('#input_adm_contra').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_adm_user','No se aceptan caracteres especiales.');
+		$('#input_adm_contra').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_adm_user','No se aceptan caracteres especiales.');
 		//validar file
 		$('#input_control').validCampo(/^.+\.txt$/,'#form_voucher','Solo se acepta formato .txt');
 		//validar asignacion rol
