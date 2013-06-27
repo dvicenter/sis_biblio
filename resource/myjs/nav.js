@@ -95,21 +95,15 @@ $(document).ready(function(){
 	
 });
 	function load_module_date(url,id_nav_left,id_nav_top)
-		{
-			$.ajax(
-				{
+		{	$.ajax({
 					url:url,
 					beforeSend:function()
-						{
-							$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
-
+						{	$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
 						},
 					success:function(data)
-						{
-							active(id_nav_left,id_nav_top);
+						{	active(id_nav_left,id_nav_top);
 							$('#module_content').html(data);
 							validar();
-
 							if($("#mod_rol").is(":visible") == true)
 								{	$('#mod_rol .agregar').click(function(){
 										insertar_rol();
@@ -123,54 +117,23 @@ $(document).ready(function(){
 										}
 									else 
 										{ 	if($("#mod_componente").is(":visible") == true)
-												{											
-													$('#mod_componente .agregar').click(function(){
+												{	$('#mod_componente .agregar').click(function(){
 													insertar_componente();
 													validar_componente();
 													});
 												}
 									else 
 										{	if($("#manager_user").is(":visible") == true){
-												
 												$('#manager_user .agregar').click(function(){
 												insertar_user();
-											});
+												});
 											}
 											else
 											{	if($("#mod_request_record").is(":visible") == true){
-													var asesor=[];
-													var as;
-													$('#input_man_asesor').click(function(){
-														buscar_asesor();
-													});
-													$("#mod_request_record .enviar").click(function(){
-														var asesor=$('#input_man_asesor').val();
-														var titulo=$('#input_man_titulo').val();
-														var voucher=$('#input_man_voucher').val();
-														var correo=$('#input_man_correo').val();
-														var introduccion=$("#mod_request_record textarea[name='introduccion_tes']").val();
-														var objetivo=$("#mod_request_record textarea[name='objetivo_tes']").val();
-														var resumen=$("#mod_request_record textarea[name='resumen_tes']").val();
-														var conclusion=$("#mod_request_record textarea[name='conclusion_tes']").val();
-														var id_docente
-														var id_sujeto=$("#id_sujeto_login").val()
-														$.each(asesores,function(a,b){
-															if(b[1]==asesor)
-															{	id_docente=b[0];
-															}
-														});
-														console.info(id_docente);
-														$.ajax({
-															url:'/sis_biblio/user/ccrequestrecord/insertar_solitud',
-															dataType:'post',
-															data:"asesor="+asesor+"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
-															success:function(data){
-																
-															}
-														});
-													});
-												
-											}
+													if(validar_solicitar_constancia()){
+														insertar_solictiud_tesis();
+													}
+												}
 										}
 								}
 							}
@@ -268,49 +231,77 @@ $(document).ready(function(){
 	}
 	
 	function insertar_user()
-	{				var id_sujeto=1;
-					var id_usuario=8;
-					var usuario=$("#manager_user input[name='m_user']").val();
-					var contrasenia=$("#manager_user input[name='m_contra']").val();
-					var estado=$("#manager_user input[name='m_chek']").val();
-					if(estado=='on')
-					{	var active=1;
-					}
-					else
-					{	var active=0;
-					}
-					$.ajax({
-						url:'/sis_biblio/manager/ccusuario/insertar/'+id_usuario+'/'+usuario+'/'+contrasenia+'/'+id_sujeto+'/'+active,
-						type:'post',
-						dataType:'json',
-						success:function(data){
-							console.info(data);
-							var usuario;
-							var id_usuario;
-							var contrasenia;
-							var id_sujeto;
-							var active;
-							
-							$.each(data,function(a,b){
-								usuario=b.usuario;
-								id_usuario=b.id_usuario;
-								contrasenia=b.contrasenia;
-								id_sujeto=b.id_sujeto;
-								active=b.active;
-								
-							});
-							//$('#manager_user table tr:last').after('<td>'+user+'</td>'<td>'+contrasenia+'</td><td>'+active+'</td>);
-							
-							$('tr:last td', $("#tabla_user"));
-
-							var tds = '<tr>';							
-							tds += '<td>'+usuario+'</td><td>'+contrasenia+'</td><td>'+active+'</td>';							
-							tds += '</tr>';
-							$("#table_user").append(tds);
-						}
-					});
+	{	var id_sujeto=1;
+		var id_usuario=8;
+		var usuario=$("#manager_user input[name='m_user']").val();
+		var contrasenia=$("#manager_user input[name='m_contra']").val();
+		var estado=$("#manager_user input[name='m_chek']").val();
+		if(estado=='on')
+			{	var active=1;
+			}
+		else
+			{	var active=0;
+			}
+		$.ajax({
+			url:'/sis_biblio/manager/ccusuario/insertar/'+id_usuario+'/'+usuario+'/'+contrasenia+'/'+id_sujeto+'/'+active,
+			type:'post',
+			dataType:'json',
+			success:function(data){
+				console.info(data);
+				var usuario;
+				var id_usuario;
+				var contrasenia;
+				var id_sujeto;
+				var active;
+				$.each(data,function(a,b){
+					usuario=b.usuario;
+					id_usuario=b.id_usuario;
+					contrasenia=b.contrasenia;
+					id_sujeto=b.id_sujeto;
+					active=b.active;
+				});
+				//$('#manager_user table tr:last').after('<td>'+user+'</td>'<td>'+contrasenia+'</td><td>'+active+'</td>);
+				$('tr:last td', $("#tabla_user"));
+				var tds = '<tr>';							
+					tds += '<td>'+usuario+'</td><td>'+contrasenia+'</td><td>'+active+'</td>';							
+					tds += '</tr>';
+					$("#table_user").append(tds);
+				}
+			});
 	}
-
+	function insertar_solictiud_tesis()
+	{	var asesor=[];
+		var as;
+		$('#input_man_asesor').click(function(){
+			buscar_asesor();
+		});
+		$("#mod_request_record .enviar").click(function(){
+			var asesor=$('#input_man_asesor').val();
+			var titulo=$('#input_man_titulo').val();
+			var voucher=$('#input_man_voucher').val();
+			var correo=$('#input_man_correo').val();
+			var introduccion=$("#mod_request_record textarea[name='introduccion_tes']").val();
+			var objetivo=$("#mod_request_record textarea[name='objetivo_tes']").val();
+			var resumen=$("#mod_request_record textarea[name='resumen_tes']").val();
+			var conclusion=$("#mod_request_record textarea[name='conclusion_tes']").val();
+			var id_docente
+			var id_sujeto=$("#id_sujeto_login").val()
+			$.each(asesores,function(a,b){
+				if(b[1]==asesor)
+				{	id_docente=b[0];
+				}
+			});
+			console.info(id_docente);
+			$.ajax({
+				url:'/sis_biblio/user/ccrequestrecord/insertar_solitud',
+				dataType:'post',
+				data:"asesor="+asesor+"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
+				success:function(data){
+					
+				}
+			});
+		});
+	}
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');
@@ -343,14 +334,19 @@ $(document).ready(function(){
 		$('#input_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
 	}
 	function validar_solicitar_constancia()
-	{	$('#input_man_asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
-		$('#input_man_titulo').validCampo(/^[a-zA-Z_-Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s\.\d]*$/,'#form_user','No acepta caracteres especiales.');
-		$('#input_man_voucher').validCampo(/^[\d]*$/,'#form_user','Se aceptan solo caracteres numericos.');
-		$('#input_man_correo').validCampo(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/,'#form_user','Verifique que tenga formato de correo electronico.');
-		$('#input_user_introduccion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		$('#input_user_objetivo').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		$('#input_user_resumen').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		$('#input_user_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');	
+	{	var asesor=$('#input_man_asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
+		var titulo=$('#input_man_titulo').validCampo(/^[a-zA-Z_-Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s\.\d]*$/,'#form_user','No acepta caracteres especiales.');
+		var voucher=$('#input_man_voucher').validCampo(/^[\d]*$/,'#form_user','Se aceptan solo caracteres numericos.');
+		var correo=$('#input_man_correo').validCampo(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/,'#form_user','Verifique que tenga formato de correo electronico.');
+		var introduccion=$('#input_user_introduccion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		var objetivo=$('#input_user_objetivo').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		var resumen=$('#input_user_resumen').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		var conclusion=$('#input_user_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		if(asesor==true)
+		{
+			alert('hola');
+		}
+		return true;
 	}
 	function validar_usuario()
 	{	$('#input_adm_sujeto').validCampo(/^[a-zA-Z_-\s]*$/,'#form_adm_user','No se aceptan caracteres especiales.');
