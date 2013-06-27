@@ -13,13 +13,13 @@
 		<div class="control-group">
 			 <label class="control-label" for="inpur_man_descripcion">Descripci&oacute;n:</label> 
 			 <div class="controls">
-				<textarea class="text_area" cols="200" id="inpur_man_descripcion" name="textarea" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
+				<textarea class="text_area" cols="200" id="inpur_man_descripcion" name="textarea" rows="7" data-toggle="popover" data-placement="right" data-content=""></textarea>
 			</div>
 		</div>
 		</fieldset>
 		<div class="btn_mantenimiento">
 			<fieldset>
-				<input class="btn btn-primary agregar" type="submit" value="Agregar"/>
+				<a class="btn btn-primary agregar" href="javascript:;">Agregar</a>
 				<button class="btn btn-info "><i class="icon-refresh icon-white"></i></button>
 				<button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button>
 			</fieldset>
