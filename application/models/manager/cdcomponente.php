@@ -38,9 +38,13 @@
 		}
 
 		function eliminar($id_componente)
-		{
+		{	$data = array(
+						'id_componente' => $id_componente
+						);
 			$query = "CALL SPRABMComponente(3,'$id_componente',null,null)";
-			$query = $this->db->query($query);
+			if($this->db->query($query))
+			{	return $data;
+			}
 		}
 	
 	}

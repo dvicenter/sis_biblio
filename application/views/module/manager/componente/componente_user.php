@@ -16,7 +16,7 @@
 	<div class="control-group">
 		<label name="desc" class="control-label"  for="comment_body">Descripci&oacute;n:</label> 
 		<div class="controls">
-			<textarea class="text_area" cols="200" id="comment_body" name="txt_comp" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
+			<textarea class="text_area" cols="200" id="comment_body" name="desc_componente" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
 		</div>
 	</div>
 	</fieldset>  
@@ -25,7 +25,7 @@
 <div class="btn_mantenimiento">
 	
 	<fieldset>
-	<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;">agregar</a>
+	<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;" >agregar</a>
 	<a input type="submit" class="btn btn-primary modificar" value='Modificar' href="javascript:;">modificar</a>
 	
 	
@@ -53,11 +53,11 @@
 				foreach($componentes as $componente){
 					if($i<17){?>
 				<tr>
-					<td style="display:none;"><?php echo $componente['id_componente']?></td>
+					<td style="display:none;" ><?php echo $componente['id_componente']?></td>
 					<td><?php echo $componente['componente']?></td>
 					<td><?php echo $componente['descripcion_componente']?></td>
 					<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
-					<td style="text-align:center;"><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
+					<td style="text-align:center;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
 				</tr>
 			<?php }$i++;}?>
 	</tbody>

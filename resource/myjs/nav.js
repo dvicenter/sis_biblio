@@ -147,6 +147,15 @@ $(document).ready(function(){
 												$('#mod_componente .modificar').click(function(){
 													modificar_componente();
 													});
+													
+												$('#mod_componente .eliminar').click(function(){
+													var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
+													var pos=pos_+1;
+													
+													eliminar_componente(pos);
+													
+													});
+												
 												$('#mod_componente #table_comp td .editar').click(function() {
 													var pos_editar_=$("#table_comp td .editar").index(this);
 													pos_editar=pos_editar_+1;
@@ -255,7 +264,7 @@ $(document).ready(function(){
 	function insertar_componente()
 	{	
 					var componente=$("#mod_componente input[name='componente']").val();
-					var descripcion_componente=$("#mod_componente textarea[name='txtcomp']").val();
+					var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").val();
 					$.ajax({
 						url:'/sis_biblio/manager/cccomponente/insertar/'+componente+'/'+descripcion_componente,
 						type:'post',
@@ -274,7 +283,7 @@ $(document).ready(function(){
 							$('tr:last td', $("#table_comp"));
 
 							var tds = '<tr>';							
-							tds += '<td>'+componente+'</td><td>'+descripcion_componente+'</td>';							
+							tds += '<td>'+componente+'</td><td>'+descripcion_componente+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";							
 							tds += '</tr>';
 							$("#table_comp").append(tds);
 						},
@@ -376,6 +385,22 @@ $(document).ready(function(){
 					}
 			});
 	}
+	
+	function eliminar_componente(pos)
+	{	
+		var idcomp=$("#mod_componente #table_comp tr:nth-child("+pos+") td:nth-child(1)").html();
+			$.ajax({
+				url:'/sis_biblio/manager/cccomponente/eliminar/'+idcomp,
+				type:'post',
+				dataType:'json',
+				success:function(data)
+				{$("#mod_componente #table_comp tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})},
+				error:function(data)
+					{	console.info(data)
+					}
+			});
+	}
+	
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');
