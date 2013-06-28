@@ -23,13 +23,13 @@ class Cccomponente extends CI_Controller
 	
 	function modificar($id_componente,$componente,$descripcion_componente) 
 	{	
-		$this->data=array($this->cdcomponente->modificar($componente,$descripcion_componente));
+		$this->data=array($this->cdcomponente->modificar($id_componente,$componente,$descripcion_componente));
 		echo json_encode($this->data);
 	}
 
 	function eliminar($id_componente) 
 	{	
-		$this->data=array($this->cdcomponente->eliminar($componente,$descripcion_componente));
+		$this->data=array($this->cdcomponente->eliminar($id_componente,$componente,$descripcion_componente));
 		echo json_encode($this->data);
 	}
 } 

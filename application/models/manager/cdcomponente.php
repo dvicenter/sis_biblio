@@ -26,9 +26,15 @@
 			}
 		}
 		function modificar($id_componente,$componente,$descripcion_componente)
-		{
+		{	$data = array(
+						'id_componente' => $id_componente,
+						'componente' => $componente,
+						'descripcion_componente' => $descripcion_componente
+						);
 			$query = "CALL SPRABMComponente(2,'$id_componente','$componente','$descripcion_componente')";
-			$query = $this->db->query($query);
+			if($this->db->query($query))
+			{	return $data;
+			}
 		}
 
 		function eliminar($id_componente)
