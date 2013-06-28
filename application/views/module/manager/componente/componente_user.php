@@ -4,17 +4,17 @@
 	<form id="form_component" class="form-horizontal" action="nuevo.php">
 	  <fieldset>
 		<div class="control-group">
-		  <label class="control-label" for="input01">Componente:</label> 
+		  <label name="comp" class="control-label" for="input01">Componente:</label> 
 		  <div class="controls">
 			<input id="input01" type="text" class="input-xlarge3" name="componente"  data-toggle="popover" data-placement="right" data-content="" required> 
-
+			<input type="hidden" name="id_comp"/>
 			<p class="help-block"></p>
 		  </div>
 		</div>
 	  </fieldset>
 	<fieldset>
 	<div class="control-group">
-		<label class="control-label" for="comment_body">Descripci&oacute;n:</label> 
+		<label name="desc" class="control-label"  for="comment_body">Descripci&oacute;n:</label> 
 		<div class="controls">
 			<textarea class="text_area" cols="200" id="comment_body" name="txt_comp" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
 		</div>
@@ -26,8 +26,9 @@
 	
 	<fieldset>
 	<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;">agregar</a>
-	<button class="btn btn-info "><i class="icon-refresh icon-white"></i></button>
-	<button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button>
+	<a input type="submit" class="btn btn-primary modificar" value='Modificar' href="javascript:;">modificar</a>
+	
+	
 	</fieldset>
 
 	</div>
@@ -39,7 +40,7 @@
 <table id="table_comp" class="table table-striped table-bordered table-condensed table-hover table_de_2">
 
     <thead>
-      
+		<th style="width:4%; display:none;"></th>
         <th class="title_table">COMPONENTE</th>
         <th class="descripcion_table">DESCRIPCION</th>
 		<th class="title_table">EDITAR</th>
@@ -52,9 +53,10 @@
 				foreach($componentes as $componente){
 					if($i<17){?>
 				<tr>
+					<td style="display:none;"><?php echo $componente['id_componente']?></td>
 					<td><?php echo $componente['componente']?></td>
 					<td><?php echo $componente['descripcion_componente']?></td>
-					<td style="text-align:center;"><button class="btn btn-info "><i class="icon-pencil icon-white"></i></button></td>
+					<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
 					<td style="text-align:center;"><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
 				</tr>
 			<?php }$i++;}?>

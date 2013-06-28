@@ -8,9 +8,11 @@
 		}
 
 		function listar()
-		{
-			$query = "CALL SPRABMAccion(0,0,null)";
+		{	$pInicio=1;
+			$pFinal=5;
+			$query = "CALL SPRCNSAccion(1,".$pInicio.",".$pFinal.")";
 			$query = $this->db->query($query);
+			
 			return $query->result_array();
 		}
 

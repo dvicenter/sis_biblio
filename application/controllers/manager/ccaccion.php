@@ -9,8 +9,7 @@ class Ccaccion extends CI_Controller
 	}
 
 	function listar() 
-	{	
-		$this->data['acciones']=$this->cdaccion->listar();
+	{	$this->data['acciones']=$this->cdaccion->listar();
 		echo $this->load->view("module/manager/accion/accion_user",$this->data);
 	}
 

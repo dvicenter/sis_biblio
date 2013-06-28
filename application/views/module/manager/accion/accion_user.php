@@ -34,7 +34,7 @@
 		    </thead>
 			<tbody>
 				<?php $i=0; foreach($acciones as $accion){
-					if($i<17){?>
+					if($i<10){?>
 				<tr>
 				<td><?php  
 					echo $accion['accion'];?></td>
@@ -44,6 +44,18 @@
 				<?php $i++;}}?>
 			</tbody>
 		</table>
+		</div>
+		<div class="pagination loading">
+		  <ul name="paginador_accion">
+			<li><a href="#"><</a></li>
+			<li class="active">
+			  <a href="#">1</a>
+			</li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">></a></li>
+		  </ul>
 		</div>
 </div>
 	
