@@ -44,6 +44,8 @@ $(document).ready(function(){
 		load_module_not_date('/sis_biblio/module/voucher/voucher', '#load_voucher', 'null');
 	});
 
+	
+	
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
 		$.ajax({
@@ -96,35 +98,71 @@ $(document).ready(function(){
 	
 });
 	function load_module_date(url,id_nav_left,id_nav_top)
-		{	$.ajax({
+		{
+			$.ajax(
+				{
 					url:url,
 					beforeSend:function()
-						{	$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
+						{
+							$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
+
 						},
 					success:function(data)
-						{	active(id_nav_left,id_nav_top);
+						{
+							active(id_nav_left,id_nav_top);
 							$('#module_content').html(data);
 							validar();
+
 							if($("#mod_rol").is(":visible") == true)
-								{	$('#mod_rol .agregar').click(function(){
+								{
+									$('#mod_rol .agregar').click(function(){
 										insertar_rol();
+
+									})
+									$('#mod_rol .editar').click(function(){
+										editar_rol();
+
 									})
 								}
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
-										{	$('#mod_accion .agregar').click(function(){
+										{	
+											$("#mod_accion ul[name='paginador_accion'] li").click(function(){
+												var index=$("#mod_accion ul[name='paginador_accion'] li").index(this);
+												alert(index);
+											});
+											$('#mod_accion .agregar').click(function(){
 											insertar_accion();
 											});
 										}
+																		
 									else 
-										{ 	if($("#mod_componente").is(":visible") == true)
-												{	$('#mod_componente .agregar').click(function(){
-														insertar_componente();
+										{ 
+											if($("#mod_componente").is(":visible") == true)
+												{											
+													$('#mod_componente .agregar').click(function(){
+													insertar_componente();
+
+													});
+												$('#mod_componente .modificar').click(function(){
+													modificar_componente();
+													});
+												$('#mod_componente #table_comp td .editar').click(function() {
+													var pos_editar_=$("#table_comp td .editar").index(this);
+													pos_editar=pos_editar_+1;
+													
+												var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+												var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+												var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+												$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
+												$("#mod_componente input[name='componente']").attr('value',componente);
+												$("#mod_componente input[name='componente']").focus();
+												$("#mod_componente textarea[name='txt_comp']").attr('value',descripcion);
 													});
 													$('#mod_componente .modificar').click(function(){
 														modificar_componente();
 													});
-												$('#mod_componente #table_comp td .editar').click(function() {
+														$('#mod_componente #table_comp td .editar').click(function() {
 														var pos_editar_=$("#table_comp td .editar").index(this);
 														pos_editar=pos_editar_+1;
 														var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
@@ -445,3 +483,4 @@ $(document).ready(function(){
 				$('#input_man_asesor').typeahead().data('typeahead').source = asesor;
 			}
 		});
+	}
