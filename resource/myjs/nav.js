@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var asesores=[];
 $(document).ready(function(){
 	$('#tesis').click(function(){
@@ -131,13 +130,15 @@ $(document).ready(function(){
 											}
 											else
 											{	if($("#mod_request_record").is(":visible") == true){
-													if(validar_solicitar_constancia()){
-														insertar_solictiud_tesis();
-													}
+													var asesor=[];
+													$('#input_man_asesor').click(function(){
+														buscar_asesor();
+													});
+													insertar_solictiud_tesis();
 												}
+											}
 										}
 								}
-							}
 						}
 					}
 				});
@@ -173,7 +174,8 @@ $(document).ready(function(){
 	
 	function insertar_accion()
 	{
-					var accion=$("#mod_accion input[name='input_man_accion']").val();
+					var accion=$("#mod_accion input[name='accion']").val();
+					console.info(accion);
 					$.ajax({
 						url:'/sis_biblio/manager/ccaccion/insertar/'+accion,
 						type:'post',
@@ -271,37 +273,40 @@ $(document).ready(function(){
 			});
 	}
 	function insertar_solictiud_tesis()
-	{	var asesor=[];
-		var as;
-		$('#input_man_asesor').click(function(){
-			buscar_asesor();
+	{	$("#mod_request_record form").submit(function(){
+		var asesor=$('#input_man_asesor').val();
+		var titulo=$('#input_man_titulo').val();
+		var voucher=$('#input_man_voucher').val();
+		var correo=$('#input_man_correo').val();
+		var introduccion=$("#mod_request_record textarea[name='introduccion_tes']").val();
+		var objetivo=$("#mod_request_record textarea[name='objetivo_tes']").val();
+		var resumen=$("#mod_request_record textarea[name='resumen_tes']").val();
+		var conclusion=$("#mod_request_record textarea[name='conclusion_tes']").val();
+		var id_docente;
+		var id_sujeto=$("#id_sujeto_login").val();
+		$.each(asesores,function(a,b){
+			if(b[1]==asesor)
+			{	id_docente=b[0];
+			}
 		});
-		$("#mod_request_record .enviar").click(function(){
-			var asesor=$('#input_man_asesor').val();
-			var titulo=$('#input_man_titulo').val();
-			var voucher=$('#input_man_voucher').val();
-			var correo=$('#input_man_correo').val();
-			var introduccion=$("#mod_request_record textarea[name='introduccion_tes']").val();
-			var objetivo=$("#mod_request_record textarea[name='objetivo_tes']").val();
-			var resumen=$("#mod_request_record textarea[name='resumen_tes']").val();
-			var conclusion=$("#mod_request_record textarea[name='conclusion_tes']").val();
-			var id_docente
-			var id_sujeto=$("#id_sujeto_login").val()
-			$.each(asesores,function(a,b){
-				if(b[1]==asesor)
-				{	id_docente=b[0];
-				}
-			});
-			console.info(id_docente);
+		if(validar_asesor(asesor)){
 			$.ajax({
 				url:'/sis_biblio/user/ccrequestrecord/insertar_solitud',
-				dataType:'post',
-				data:"asesor="+asesor+"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
+				type:'POST',
+				data:"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
 				success:function(data){
-					
+					$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
+				},
+				error:function(data){
+					alert('error');
 				}
 			});
-		});
+		}
+		else{
+			$('#mod_request_record .msg_request_record').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'></strong></div>");
+			$('#mod_request_record .msg_request_record .error_request_record .msg').html('Asesor incorrecto');
+		}
+	});
 	}
 	function active(selector,selector_top)
 	{
@@ -335,7 +340,8 @@ $(document).ready(function(){
 		$('#input_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
 	}
 	function validar_solicitar_constancia()
-	{	var asesor=$('#input_man_asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
+	{	var resultado;
+		var asesor=$('#input_man_asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s,]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
 		var titulo=$('#input_man_titulo').validCampo(/^[a-zA-Z_-Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s\.\d]*$/,'#form_user','No acepta caracteres especiales.');
 		var voucher=$('#input_man_voucher').validCampo(/^[\d]*$/,'#form_user','Se aceptan solo caracteres numericos.');
 		var correo=$('#input_man_correo').validCampo(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/,'#form_user','Verifique que tenga formato de correo electronico.');
@@ -343,11 +349,15 @@ $(document).ready(function(){
 		var objetivo=$('#input_user_objetivo').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
 		var resumen=$('#input_user_resumen').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
 		var conclusion=$('#input_user_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		if(asesor==true)
-		{
-			alert('hola');
+		console.info(asesor,titulo,voucher,correo,introduccion,objetivo,resumen,conclusion);
+		if((asesor==true)&&(titulo==true)&&(voucher==true)&&(correo==true)&&(introduccion==true)&&(objetivo==true)&&(resumen==true)&&(conclusion==true))
+		{	resultado=true;
 		}
-		return true;
+		else
+		{	resultado=false;
+			alert('invalido');
+		}
+		return resultado;
 	}
 	function validar_usuario()
 	{	$('#input_adm_sujeto').validCampo(/^[a-zA-Z_-\s]*$/,'#form_adm_user','No se aceptan caracteres especiales.');
@@ -365,6 +375,16 @@ $(document).ready(function(){
 	}
 	function validar_componente_accion()
 	{	$('#input_acc_asig').validCampo(/^[a-zA-z\s]*$/,'#form_acc_asig','Se acepta solo caracteres alfabeticos.');
+	}
+	function validar_asesor(asesor)
+	{	var resultado=false;
+		$.each(asesores,function(a,b){
+			if(b[1]==asesor)
+			{	resultado=true;
+				alert('asesor valido');
+			}
+		});
+		return resultado;
 	}
 	function validar()
 	{

@@ -1,5 +1,5 @@
 <div id="mod_request_record" >
-	<form id="form_user" class="form-horizontal" action="nuevo.php">
+	<form id="form_user" class="form-horizontal" action="/sis_biblio/module/user/request_record" method="post">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
@@ -48,18 +48,19 @@
 	            <textarea id="input_user_introduccion" name="introduccion_tes" rows="5" placeholder="Escriba su INTRODUCCION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="objetivo_tes">
-	            <textarea id="input_user_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
+	            <textarea id="input_user_objetivo" name="objetivo_tes" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="resumen_tes">
-	            <textarea id="input_user_resumen" name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
+	            <textarea id="input_user_resumen" name="resumen_tes" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="conclusion_tes">
-	            <textarea id="input_user_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
+	            <textarea id="input_user_conclusion" name="conclusion_tes" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	        </div>
         </div>
         <div class="btn_tesi">
-	        <a class="btn btn-primary enviar" href="javascript:;">Enviar</a>
+	        <input class="btn btn-primary enviar" value="Enviar" type="submit"/>
         </div>
 	</form>
+	<div class="msg_request_record"></div>
 </div>
