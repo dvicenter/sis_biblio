@@ -43,6 +43,8 @@ $(document).ready(function(){
 		load_module_not_date('/sis_biblio/module/voucher/voucher', '#load_voucher', 'null');
 	});
 
+	
+	
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
 		$.ajax({
@@ -123,7 +125,11 @@ $(document).ready(function(){
 								}
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
-										{
+										{	
+											$("#mod_accion ul[name='paginador_accion'] li").click(function(){
+												var index=$("#mod_accion ul[name='paginador_accion'] li").index(this);
+												alert(index);
+											});
 											$('#mod_accion .agregar').click(function(){
 											insertar_accion();
 											});
