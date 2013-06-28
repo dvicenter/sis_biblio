@@ -1,4 +1,5 @@
 var asesores=[];
+var pos_editar;
 $(document).ready(function(){
 	$('#tesis').click(function(){
 		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
@@ -141,6 +142,31 @@ $(document).ready(function(){
 												{											
 													$('#mod_componente .agregar').click(function(){
 													insertar_componente();
+
+													});
+												$('#mod_componente .modificar').click(function(){
+													modificar_componente();
+
+													});
+													
+												
+												$('#mod_componente #table_comp td .editar').click(function() {
+													var pos_editar_=$("#table_comp td .editar").index(this);
+													pos_editar=pos_editar_+1;
+													
+												var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+												var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+												var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+												
+												console.info(idcomponente);
+												$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
+												
+												console.info(componente);
+												$("#mod_componente input[name='componente']").attr('value',componente);
+												$("#mod_componente input[name='componente']").focus();
+												console.info(descripcion);
+												$("#mod_componente textarea[name='txt_comp']").attr('value',descripcion);
+												
 													});
 												}
 																			
@@ -278,6 +304,29 @@ $(document).ready(function(){
 							tds += '<td>'+componente+'<td>'+descripcion_componente+"</td><td><button class='btn btn-info '><i class='icon-pencil icon-white'></i></button></td><td><button class='btn btn-danger '><i class='icon-fullscreen icon-white'></i></button></td>";							
 							tds += '</tr>';
 							$("#table_comp").append(tds);
+						},
+						error:function(data)
+						{
+							console.info(data)
+						}
+					});
+	}
+	
+	function modificar_componente()
+	{				var idcomp=$("#mod_componente input[name='id_comp']").attr('value');
+					var componente=$("#mod_componente input[name='componente']").attr('value');
+					var descripcion_componente=$("#mod_componente textarea[name='txt_comp']").attr('value');
+					console.info(idcomp);
+					$.ajax({
+						url:'/sis_biblio/manager/cccomponente/modificar/'+idcomp+'/'+componente+'/'+descripcion_componente,
+						type:'post',
+						dataType:'json',
+						success:function(data){$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html(componente);
+							$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html(descripcion_componente);
+												
+							//$('#mod_componente table tr:last').after('<td>'+componente+'</td><td>'+descripcion_componente+'</td>');
+							
+							//$('tr:last td', $("#table_comp"));
 						},
 						error:function(data)
 						{
