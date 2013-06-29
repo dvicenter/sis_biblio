@@ -139,19 +139,15 @@ $(document).ready(function(){
 									else 
 										{ 
 											if($("#mod_componente").is(":visible") == true)
-												{											
-													$('#mod_componente .agregar').click(function(){
+												{	$('#mod_componente .agregar').click(function(){
 													insertar_componente();
-
 													});
 												$('#mod_componente .modificar').click(function(){
 													modificar_componente();
 													});
-													
 												$('#mod_componente .eliminar').click(function(){
 													var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
 													var pos=pos_+1;
-													
 													eliminar_componente(pos);
 													
 													});
@@ -367,7 +363,6 @@ $(document).ready(function(){
 						$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
 					},
 					error:function(data){
-						alert('error');
 					}
 				});
 		}
@@ -481,7 +476,6 @@ $(document).ready(function(){
 		$.each(asesores,function(a,b){
 			if(b[1]==asesor)
 			{	resultado=true;
-				alert('asesor valido');
 			}
 		});
 		return resultado;
