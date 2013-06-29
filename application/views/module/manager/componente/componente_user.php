@@ -5,7 +5,7 @@
 				<div class="control-group">
 			  		<label class="control-label" for="input_man_componente">Componente:</label> 
 			  		<div class="controls">
-						<input id="input_man_componente" type="text" class="input-xlarge3" name="componente"  data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/> 
+						<input id="input_man_componente" type="text" class="input-xlarge3" name="componente"  data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
 						<input type="hidden" name="id_comp"/>
 			  		</div>
 				</div>
@@ -20,9 +20,15 @@
 			</fieldset>  
 			<div class="btn_mantenimiento">
 				<fieldset>
+<<<<<<< HEAD
 					<input type="submit" class="btn btn-primary agregar" value='Agregar' >
 					<a class="btn btn-info modificar" href="javascript:;" disabled>Modificar</a>
 					<a class="btn cancelar" href="javascript:;" disabled>Cancelar</a>
+=======
+					<input type="submit" class="btn btn-primary agregar" value='Agregar'" >
+					<a style="cursor:no-drop;" class="btn btn-info modificar" href="javascript:;" disabled>Modificar</a>
+					<a style="cursor:no-drop;" class="btn cancelar" href="javascript:;" disabled>Cancelar</a>
+>>>>>>> 669a8940ec3b2b693900e8ba72acb02457b96bc5
 				</fieldset>
 			</div>
 		</form>
