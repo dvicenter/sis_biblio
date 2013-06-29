@@ -59,7 +59,7 @@ table thead .action_table{width: 12%;}
 #consult_asesor .table_dates_{height: 117px;}
 /*END CONSTANCIA*/
 /*STAR USER*/
-.form_user{float:left; font-weight: bold;width: 100%;}
+.form_user{float:left; font-weight: bold;width: 64%;}
 .form_user label{ font-weight: bold;}
 #mod_request_record{margin-left: 4%;margin-right: 4%;}
 #mod_request_record label{width: 104px;}
@@ -89,7 +89,7 @@ table thead .action_table{width: 12%;}
 .tab-pane textarea{position: relative; width: 95%;}
 .tab-content {height: 120px;}
 .text_area {width: 315px; height: 100px;}
-.btn_mantenimiento{margin-left: 510px;margin-bottom: 10px;}
+.btn_mantenimiento{margin-left: 510px;margin-bottom: 10px;font-weight: normal;}
 #manager_user .btn_mantenimiento{margin-left:465px;}
 /*STAR ROL*/
 #rol .btn_mantenimiento{margin-left:465px;}
@@ -108,6 +108,7 @@ table thead .action_table{width: 12%;}
 .input-xlarge2{width: 400px}
 .input-xlarge3{width: 315px;}
 .bold_label{font-weight: bold;}
+.response{position: relative;left: -7%;}
 /*END UTIL*/
 
 /*STAR ROLE ASSIGNMENT*/

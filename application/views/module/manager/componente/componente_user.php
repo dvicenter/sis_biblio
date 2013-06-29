@@ -21,10 +21,14 @@
 			<div class="btn_mantenimiento">
 				<fieldset>
 					<input type="submit" class="btn btn-primary agregar" value='Agregar'" >
-					<a class="btn btn-info modificar" href="javascript:;">modificar</a>
+					<a class="btn btn-info modificar" href="javascript:;" disabled>Modificar</a>
+					<a class="btn cancelar" href="javascript:;" disabled>Cancelar</a>
 				</fieldset>
 			</div>
 		</form>
+	</div>
+	<div class="response pos_right">
+		
 	</div>	
 	<div id="tabla">
 		<table id="table_comp" class="table table-striped table-bordered table-condensed table-hover table_de_2">

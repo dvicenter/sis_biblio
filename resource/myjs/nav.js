@@ -172,35 +172,32 @@ $(document).ready(function(){
 											if($("#mod_componente").is(":visible") == true)
 												{	$("#mod_componente input[name='componente']").focus();								
 													$('#mod_componente form .agregar').click(function(evento){
-													evento.preventDefault();
-													insertar_componente();
-													$("#mod_componente form")[0].reset();
-													$("#mod_componente input[name='componente']").focus();
-													
+														evento.preventDefault();
+														insertar_componente();
+														$("#mod_componente form")[0].reset();
+														$("#mod_componente input[name='componente']").focus();
 													});
-												$('#mod_componente .modificar').click(function(){
-													modificar_componente();
+													$('#mod_componente .modificar').click(function(){
+														modificar_componente();
 													});
-												$('#mod_componente .eliminar').click(function(){
-													var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
-													var pos=pos_+1;
-													eliminar_componente(pos);
-													
+													$('#mod_componente .eliminar').click(function(){
+														var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
+														var pos=pos_+1;
+														eliminar_componente(pos);
 													});
-												
-												$('#mod_componente #table_comp td .editar').click(function() {
-													var pos_editar_=$("#table_comp td .editar").index(this);
-													pos_editar=pos_editar_+1;
-													
-												var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
-												var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
-												var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
-												$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
-												$("#mod_componente input[name='componente']").attr('value',componente);
-												$("#mod_componente input[name='componente']").focus();
-												$("#mod_componente textarea[name='txt_comp']").attr('value',descripcion);
+													$('#mod_componente #table_comp td .editar').click(function() {
+														$("#mod_componente input[name='componente']").focus();
+														$('#mod_componente .modificar').attr('disabled',true);
+														$("#mod_componente form")[0].reset();
+														$("#mod_componente input[name='componente']").attr('value','');
+														$("#mod_componente input[name='id_comp']").attr('value','');
+														$('#mod_componente form .agregar').attr('disabled',false);
 													});
-											
+													$('#mod_componente #table_comp td .editar').click(function() {
+														var pos_editar_=$("#table_comp td .editar").index(this);
+														pos_editar=pos_editar_+1;
+														editar_componente(pos_editar);
+													});
 												}
 									else 
 										{	if($("#manager_user").is(":visible") == true){
@@ -310,55 +307,6 @@ $(document).ready(function(){
 					}
 			});
 	}
-	function insertar_componente()
-	{	
-					var componente=$("#mod_componente input[name='componente']").val();
-					var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").val();
-					var d;
-					if(descripcion_componente!="")
-						{d=descripcion_componente;}
-					else {
-						d=" ";
-					}
-					validar_componente();
-					$.ajax({
-						url:'/sis_biblio/manager/cccomponente/insertar',
-						data:'componente='+componente+'&descripcion_componente='+descripcion_componente,
-						type:'post',
-						dataType:'json',
-						success:function(data){
-							var id_componente;
-							var componente;
-							var descripcion_componente;
-							$.each(data,function(a,b){
-								id_componente=b.id_componente;
-								componente=b.componente;
-								descripcion_componente=b.descripcion_componente;
-							});
-							console.info(data);
-							//$('#mod_componente table tr:last').after('<td>'+componente+'</td><td>'+descripcion_componente+'</td>');
-							
-							$('tr:last td', $("#table_comp"));
-
-							var tds = '<tr>';							
-							tds += "<td style='display:none;'>"+id_componente+'</td><td>'+componente+'</td><td>'+descripcion_componente+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";							
-							tds += '</tr>';
-							$("#table_comp").append(tds);
-							
-							$('#mod_componente .eliminar').click(function(){
-							var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
-							var pos=pos_+1;
-							//var filas=$('#table_comp >tbody >tr').length;alert(filas);
-								eliminar_componente(pos);
-							});
-						},
-						error:function(data)
-						{
-							console.info(data)
-						}
-					});
-	}
-	
 	function insertar_user()
 	{	var id_sujeto=1;
 		var id_usuario=8;
@@ -439,19 +387,82 @@ $(document).ready(function(){
 		}
 	});
 	}
+	/*ABM DE COMPONENTE*/
+	function insertar_componente()
+	{	var componente=$("#mod_componente input[name='componente']").val();
+		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").val();
+		validar_componente();
+			$.ajax({
+				url:'/sis_biblio/manager/cccomponente/insertar',
+				data:'componente='+componente+'&descripcion_componente='+descripcion_componente,
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					var id_componente;
+					var componente;
+					var descripcion_componente;
+				$.each(data,function(a,b){
+					id_componente=b.id_componente;
+					componente=b.componente;
+					descripcion_componente=b.descripcion_componente;
+				});
+				console.info(data);
+				$('tr:last td', $("#table_comp"));
+				var tds = '<tr>';							
+					tds += "<td style='display:none;'>"+id_componente+'</td><td>'+componente+'</td><td>'+descripcion_componente+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";							
+					tds += '</tr>';
+					$("#table_comp").append(tds);
+					$('#mod_componente .eliminar').click(function(){
+						var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
+						var pos=pos_+1;
+						eliminar_componente(pos);
+					});
+					$('#mod_componente #table_comp td .editar').click(function() {
+						var pos_editar_=$("#table_comp td .editar").index(this);
+						pos_editar=pos_editar_+1;
+						editar_componente(pos_editar);
+					});
+					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>")
+				},
+				error:function(data)
+				{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>")
+				}
+			});
+		}
+	function editar_componente(pos_editar)
+	{	$('#mod_componente form .agregar').attr('disabled',true);
+		var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+		var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+		var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+		$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
+		$("#mod_componente input[name='componente']").attr('value',componente);
+		$("#mod_componente input[name='componente']").focus();
+		$('#mod_componente .modificar').attr('disabled',false);
+		$('#mod_componente .cancelar').attr('disabled',false);
+		$("#mod_componente textarea[name='desc_componente']").attr('value',descripcion);
+	}
 	function modificar_componente()
 	{	var idcomp=$("#mod_componente input[name='id_comp']").attr('value');
 		var componente=$("#mod_componente input[name='componente']").attr('value');
-		var descripcion_componente=$("#mod_componente textarea[name='txt_comp']").attr('value');
+		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").attr('value');
 			$.ajax({
-				url:'/sis_biblio/manager/cccomponente/modificar/'+idcomp+'/'+componente+'/'+descripcion_componente,
+				url:'/sis_biblio/manager/cccomponente/modificar',
+				data:'id_componente='+idcomp+'&componente='+componente+'&descripcion_componente='+descripcion_componente,
 				type:'post',
 				dataType:'json',
-				success:function(data){$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html(componente);
+				success:function(data){
+					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html(componente);
 					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html(descripcion_componente);
-						},
+					$("#mod_componente form")[0].reset();
+					$("#mod_componente input[name='componente']").attr('value','');
+					$("#mod_componente input[name='id_comp']").attr('value','');
+					$('#mod_componente form .agregar').attr('disabled',false);
+					$('#mod_componente .modificar').attr('disabled',true);
+					$('#mod_componente form .cancelar').attr('disabled',true);
+					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>")
+				},
 				error:function(data)
-					{	console.info(data)
+					{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>")
 					}
 			});
 	}
@@ -472,7 +483,7 @@ $(document).ready(function(){
 					}
 			});
 	}
-	
+	/*ABM DE COMPONENTE*/
 	function active(selector,selector_top)
 	{
 		$('.nav-list > li').removeClass('active');

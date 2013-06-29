@@ -21,8 +21,10 @@ class Cccomponente extends CI_Controller
 		echo json_encode($this->data);
 	}
 	
-	function modificar($id_componente,$componente,$descripcion_componente) 
-	{	
+	function modificar() 
+	{	$id_componente=$_REQUEST['id_componente'];
+		$componente=$_REQUEST['componente'];
+		$descripcion_componente=$_REQUEST['descripcion_componente'];
 		$this->data=array($this->cdcomponente->modificar($id_componente,$componente,$descripcion_componente));
 		echo json_encode($this->data);
 	}
