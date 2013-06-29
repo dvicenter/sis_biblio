@@ -22,7 +22,7 @@ class Ccrol extends CI_Controller
 
 	function modificar($id_rol,$rol,$descripcion) 
 	{	
-		$this->data=array($this->cdrol->modificar($rol,$descripcion));
+		$this->data=array($this->cdrol->modificar($id_rol,$rol,$descripcion));
 		echo json_encode($this->data);
 	}
 

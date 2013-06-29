@@ -7,15 +7,14 @@
 			  <label class="control-label" for="input_man_accion">Accion:</label> 
 			  <div class="controls">
 				<input type="text" class="input-xlarge" name="accion" id="input_man_accion" data-toggle="popover" data-placement="right" data-content="" required />
-
+				<input type="hidden" name="id_acc"/>
 			  </div>
 			</div>
 		  </fieldset>
 		<div class="btn_mantenimiento">
 			<fieldset>
-				<a class="btn btn-primary agregar" value="Agregar" href="javascript:;">agregar</a>
-				<button class="btn btn-info "><i class="icon-refresh icon-white"></i></button>
-				<button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button>
+				<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;">agregar</a>
+				<a input type="submit" class="btn btn-primary modificar" value='Modificar' href="javascript:;">modificar</a>
 			</fieldset>
 		</div>		
 		</form>
@@ -26,6 +25,7 @@
 		<table id="table_acc" class="table table-striped table-bordered table-condensed  table-hover table_de_2">
 
 		    <thead>
+				<th style="width:4%; display:none;"></th>
 		        <th class="title_table">ACCION</th>
 				<th style="width:2%;">EDITAR</th>
 				<th style="width:2%;">ELIMINAR</th>
@@ -36,9 +36,9 @@
 				<?php $i=0; foreach($acciones as $accion){
 					if($i<10){?>
 				<tr>
-				<td><?php  
-					echo $accion['accion'];?></td>
-					<td  style="text-align:center;"><button class="btn btn-info "><i class="icon-pencil icon-white"></i></button></td>
+					<td style="display:none;"><?php echo $accion['id_accion']?></td>
+					<td><?php echo $accion['accion'];?></td>
+					<td  style="text-align:center;"><button class="btn btn-info editar "><i class="icon-pencil icon-white"></i></button></td>
 					<td  style="text-align:center;"><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
 				</tr>
 				<?php $i++;}}?>

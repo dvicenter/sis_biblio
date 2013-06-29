@@ -26,11 +26,20 @@
 				return $data;
 			}
 		}
-		function modificar($id_accion)
+		function modificar($id_accion,$accion)
 		{
+		$data = array (
+						'id_accion' => $id_accion,
+						'accion' => $accion,
+		);
 			$query = "CALL SPRABMAccion(2,'$id_accion','$accion')";
 			$query = $this->db->query($query);
+			if($this->db->query($query))
+			{	return $data;
+			}
 		}
+		
+
 
 		function eliminar($id_accion)
 		{
