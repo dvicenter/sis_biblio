@@ -21,7 +21,7 @@ class Ccaccion extends CI_Controller
 	}
 	function modificar($id_accion,$accion) 
 	{	
-		$this->data=array($this->cdaccion->modificar($accion));
+		$this->data=array($this->cdaccion->modificar($id_accion,$accion));
 		echo json_encode($this->data);
 	}
 

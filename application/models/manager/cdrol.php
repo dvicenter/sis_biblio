@@ -27,10 +27,19 @@
 		}
 
 		function modificar($id_rol,$rol,$descripcion)
-		{
+		{ $data=array(
+						'id_rol' => $id_rol,
+						'rol' => $rol,
+						'descripcion' => $descripcion
+		);
 			$query = "CALL SPRABMRol(2,'$id_rol','$rol','$descripcion')";
 			$query = $this->db->query($query);
+			if($this->db->query($query))
+			{	return $data;
+			}
 		}
+
+		
 
 		function eliminar($id_rol)
 		{

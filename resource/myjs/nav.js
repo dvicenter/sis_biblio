@@ -122,10 +122,22 @@ $(document).ready(function(){
 										insertar_rol();
 
 									})
-									$('#mod_rol .editar').click(function(){
-										editar_rol();
+									$('#mod_rol .modificar').click(function(){
+										modificar_rol();
 
-									})
+									});
+									$('#mod_rol #table_aum td .editar').click(function() {
+													var pos_editar_=$("#table_aum td .editar").index(this);
+													pos_editar=pos_editar_+1;
+													
+												var idrol=$('#table_aum tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+												var rol=$('#table_aum tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+												var descripcion=$('#table_aum tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+												$("#mod_rol input[name='id-rol']").attr('value',idrol);
+												$("#mod_rol input[name='rol']").attr('value',rol);
+												$("#mod_rol input[name='rol']").focus();
+												$("#mod_rol textarea[name='text_rol']").attr('value',descripcion);
+													});
 								}
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
@@ -137,6 +149,22 @@ $(document).ready(function(){
 											$('#mod_accion .agregar').click(function(){
 											insertar_accion();
 											});
+											$('#mod_accion .modificar').click(function(){
+											modificar_accion();
+											});
+											
+											$('#mod_accion #table_acc td .editar').click(function() {
+													var pos_editar_=$("#table_acc td .editar").index(this);
+													pos_editar=pos_editar_+1;
+													
+												var idaccion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+												var accion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+												$("#mod_accion input[name='id_acc']").attr('value',idaccion);
+												$("#mod_accion input[name='accion']").attr('value',accion);
+												$("#mod_accion input[name='accion']").focus();
+												
+													});
+											
 										}
 																		
 									else 
@@ -172,20 +200,7 @@ $(document).ready(function(){
 												$("#mod_componente input[name='componente']").focus();
 												$("#mod_componente textarea[name='txt_comp']").attr('value',descripcion);
 													});
-													$('#mod_componente .modificar').click(function(){
-														modificar_componente();
-													});
-														$('#mod_componente #table_comp td .editar').click(function() {
-														var pos_editar_=$("#table_comp td .editar").index(this);
-														pos_editar=pos_editar_+1;
-														var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
-														var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
-														var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
-														$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
-														$("#mod_componente input[name='componente']").attr('value',componente);
-														$("#mod_componente input[name='componente']").focus();
-														$("#mod_componente textarea[name='txt_comp']").attr('value',descripcion);
-													});
+											
 												}
 									else 
 										{	if($("#manager_user").is(":visible") == true){
@@ -212,7 +227,7 @@ $(document).ready(function(){
 		}
 	function insertar_rol()
 	{	var rol=$("#mod_rol input[name='rol']").val();
-		var descripcion=$("#mod_rol textarea[name='textarea']").val();
+		var descripcion=$("#mod_rol textarea[name='text_rol']").val();
 			$.ajax({
 					url:'/sis_biblio/manager/ccrol/insertar/'+rol+'/'+descripcion,
 					type:'post',
@@ -235,6 +250,23 @@ $(document).ready(function(){
 					}
 			});
 	}
+	function modificar_rol()
+	{	var idrol=$("#mod_rol input[name='id-rol']").attr('value');
+		var rol=$("#mod_rol input[name='rol']").attr('value');
+		var descripcion=$("#mod_rol textarea[name='text_rol']").attr('value');
+			$.ajax({
+				url:'/sis_biblio/manager/ccrol/modificar/'+idrol+'/'+rol+'/'+descripcion,
+				type:'post',
+				dataType:'json',
+				success:function(data){$('#table_rol tr:nth-child('+pos_editar+') td:nth-child(2)').html(rol);
+					$('#table_rol tr:nth-child('+pos_editar+') td:nth-child(3)').html(descripcion);
+						},
+				error:function(data)
+					{	console.info(data)
+					}
+			});
+	}
+	
 	function insertar_accion()
 	{
 					var accion=$("#mod_accion input[name='accion']").val();
@@ -261,6 +293,22 @@ $(document).ready(function(){
 							$("#table_acc").append(tds);
 						}
 					});
+	}
+	function modificar_accion()
+	{	var idaccion=$("#mod_accion input[name='id_acc']").attr('value');
+		var accion=$("#mod_accion input[name='accion']").attr('value');
+	$.ajax({
+				url:'/sis_biblio/manager/ccaccion/modificar/'+idaccion+'/'+accion,
+				type:'post',
+				dataType:'json',
+				success:function(data){$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html(accion);
+					
+						},
+				error:function(data)
+					{	
+					console.info(data)
+					}
+			});
 	}
 	function insertar_componente()
 	{	
