@@ -35,7 +35,10 @@ $(document).ready(function(){
 		load_module_date('/sis_biblio/manager/ccrol/listar', '#rol_user', 'null');
 	});
 	$('#componente').click(function(){
+		
 		load_module_date('/sis_biblio/manager/cccomponente/listar', '#componente_user', 'null');
+		
+		
 	});
 	$('#accion').click(function(){
 		load_module_date('/sis_biblio/manager/ccaccion/listar', '#accion_user', 'null');
@@ -139,8 +142,13 @@ $(document).ready(function(){
 									else 
 										{ 
 											if($("#mod_componente").is(":visible") == true)
-												{	$('#mod_componente .agregar').click(function(){
+												{	$("#mod_componente input[name='componente']").focus();								
+													$('#mod_componente form').submit(function(evento){
+													evento.preventDefault();
 													insertar_componente();
+													$("#mod_componente form")[0].reset();
+													$("#mod_componente input[name='componente']").focus();
+													
 													});
 												$('#mod_componente .modificar').click(function(){
 													modificar_componente();
@@ -263,6 +271,7 @@ $(document).ready(function(){
 	{	
 					var componente=$("#mod_componente input[name='componente']").val();
 					var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").val();
+					validar_componente();
 					$.ajax({
 						url:'/sis_biblio/manager/cccomponente/insertar/'+componente+'/'+descripcion_componente,
 						type:'post',
@@ -284,6 +293,13 @@ $(document).ready(function(){
 							tds += '<td>'+componente+'</td><td>'+descripcion_componente+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";							
 							tds += '</tr>';
 							$("#table_comp").append(tds);
+							
+							$('#mod_componente .eliminar').click(function(){
+							var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
+							var pos=pos_+1;
+							//var filas=$('#table_comp >tbody >tr').length;alert(filas);
+								eliminar_componente(pos);
+							});
 						},
 						error:function(data)
 						{
@@ -391,13 +407,14 @@ $(document).ready(function(){
 	
 	function eliminar_componente(pos)
 	{	
-		var idcomp=$("#mod_componente #table_comp tr:nth-child("+pos+") td:nth-child(1)").html();
+		var idcomp=$("#mod_componente #table_comp tr:nth-child("+pos+") td:nth-child(1)").html();console.info(idcomp);
 			$.ajax({
 				url:'/sis_biblio/manager/cccomponente/eliminar/'+idcomp,
 				type:'post',
 				dataType:'json',
 				success:function(data)
-				{$("#mod_componente #table_comp tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})},
+				{console.info(data);
+					$("#mod_componente #table_comp tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})},
 				error:function(data)
 					{	console.info(data)
 					}
@@ -415,7 +432,7 @@ $(document).ready(function(){
 	}
 
 	function validar_componente()
-	{	$('#input01').validCampo(/^[a-zA-Z_-\s]*$/,'#form_component','No se aceptan caracteres especiales.');
+	{	$('#input01').validCampo(/^[a-zA-Z_-\s][_a-z0-9-]*$/,'#form_component','No se aceptan caracteres especiales.');
 		$('#comment_body').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_component','No se aceptan caracteres especiales.');
 	}
 	function validar_accion(){

@@ -1,12 +1,12 @@
  
 <div id="mod_componente">
 <div class="form_user">
-	<form id="form_component" class="form-horizontal" action="nuevo.php">
+	<form id="form_component" class="form-horizontal">
 	  <fieldset>
 		<div class="control-group">
 		  <label name="comp" class="control-label" for="input01">Componente:</label> 
 		  <div class="controls">
-			<input id="input01" type="text" class="input-xlarge3" name="componente"  data-toggle="popover" data-placement="right" data-content="" required> 
+			<input id="input01" type="text" class="input-xlarge3" autocomplete="off" name="componente"  data-toggle="popover" data-placement="right" data-content="" required/> 
 			<input type="hidden" name="id_comp"/>
 			<p class="help-block"></p>
 		  </div>
@@ -16,7 +16,7 @@
 	<div class="control-group">
 		<label name="desc" class="control-label"  for="comment_body">Descripci&oacute;n:</label> 
 		<div class="controls">
-			<textarea class="text_area" cols="200" id="comment_body" name="desc_componente" rows="7" data-toggle="popover" data-placement="right" data-content="" required></textarea>
+			<textarea class="text_area" cols="200" id="comment_body" name="desc_componente" rows="7" data-toggle="popover" data-placement="right" data-content=""></textarea>
 		</div>
 	</div>
 	</fieldset>  
@@ -25,8 +25,8 @@
 <div class="btn_mantenimiento">
 	
 	<fieldset>
-	<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;" >agregar</a>
-	<a input type="submit" class="btn btn-primary modificar" value='Modificar' href="javascript:;">modificar</a>
+	<input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;" >
+	<a type="submit" class="btn btn-info modificar" value='Modificar' href="javascript:;">modificar</a>
 	
 	
 	</fieldset>
