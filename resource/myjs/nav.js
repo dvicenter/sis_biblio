@@ -187,12 +187,12 @@ $(document).ready(function(){
 													});
 													$('#mod_componente .cancelar').click(function() {
 														$("#mod_componente input[name='componente']").focus();
-														$('#mod_componente .cancelar').attr('disabled',true);
-														$('#mod_componente .modificar').attr('disabled',true);
+														$('#mod_componente .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
+														$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
 														$("#mod_componente form")[0].reset();
 														$("#mod_componente input[name='componente']").attr('value','');
 														$("#mod_componente input[name='id_comp']").attr('value','');
-														$('#mod_componente form .agregar').attr('disabled',false);
+														$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
 													});
 													$('#mod_componente #table_comp td .editar').click(function() {
 														var pos_editar_=$("#table_comp td .editar").index(this);
@@ -425,12 +425,12 @@ $(document).ready(function(){
 					});
 					$('#mod_componente .cancelar').click(function() {
 						$("#mod_componente input[name='componente']").focus();
-						$('#mod_componente .cancelar').attr('disabled',true);
-						$('#mod_componente .modificar').attr('disabled',true);
+						$('#mod_componente .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
+						$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});
 						$("#mod_componente form")[0].reset();
 						$("#mod_componente input[name='componente']").attr('value','');
 						$("#mod_componente input[name='id_comp']").attr('value','');
-						$('#mod_componente form .agregar').attr('disabled',false);
+						$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
 					});
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>")
 				},
@@ -440,15 +440,15 @@ $(document).ready(function(){
 			});
 		}
 	function editar_componente(pos_editar)
-	{	$('#mod_componente form .agregar').attr('disabled',true);
+	{	$('#mod_componente form .agregar').attr('disabled',true).css({'cursor':'no-drop'});
 		var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
 		var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
 		var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
 		$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
 		$("#mod_componente input[name='componente']").attr('value',componente);
 		$("#mod_componente input[name='componente']").focus();
-		$('#mod_componente .modificar').attr('disabled',false);
-		$('#mod_componente .cancelar').attr('disabled',false);
+		$('#mod_componente .modificar').attr('disabled',false).css({'cursor':''});
+		$('#mod_componente .cancelar').attr('disabled',false).css({'cursor':''});
 		$("#mod_componente textarea[name='desc_componente']").attr('value',descripcion);
 	}
 	function modificar_componente()
@@ -466,9 +466,9 @@ $(document).ready(function(){
 					$("#mod_componente form")[0].reset();
 					$("#mod_componente input[name='componente']").attr('value','');
 					$("#mod_componente input[name='id_comp']").attr('value','');
-					$('#mod_componente form .agregar').attr('disabled',false);
-					$('#mod_componente .modificar').attr('disabled',true);
-					$('#mod_componente form .cancelar').attr('disabled',true);
+					$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
+					$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
+					$('#mod_componente form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>")
 				},
 				error:function(data)
