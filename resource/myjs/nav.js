@@ -182,9 +182,11 @@ $(document).ready(function(){
 											}
 											else
 											{	if($("#mod_request_record").is(":visible") == true){
+												$("#input_man_asesor").focus();
 													var asesor=[];
+													buscar_asesor();
 													$('#input_man_asesor').click(function(){
-														buscar_asesor();
+														buscar_asesor();	
 													});
 													insertar_solictiud_tesis();
 												}
@@ -325,7 +327,7 @@ $(document).ready(function(){
 			});
 	}
 	function insertar_solictiud_tesis()
-	{	$("#mod_request_record form").submit(function(){
+	{	$("#mod_request_record form").submit(function(evento){
 		var asesor=$('#input_man_asesor').val();
 		var titulo=$('#input_man_titulo').val();
 		var voucher=$('#input_man_voucher').val();
@@ -341,18 +343,24 @@ $(document).ready(function(){
 			{	id_docente=b[0];
 			}
 		});
+		validar_solicitar_constancia();
+		evento.preventDefault();
 		if(validar_asesor(asesor)){
-			$.ajax({
-				url:'/sis_biblio/user/ccrequestrecord/insertar_solitud',
-				type:'POST',
-				data:"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
-				success:function(data){
-					$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
-				},
-				error:function(data){
-					alert('error');
-				}
-			});
+				$.ajax({
+					url:'/sis_biblio/user/ccrequestrecord/insertar_solitud',
+					type:'POST',
+					data:"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
+					success:function(data){
+						$("#mod_request_record form")[0].reset();
+						$("#input_man_asesor").focus();
+						$('#mod_request_record #myTab li').removeClass();
+						$('#mod_request_record #myTab li:nth-child(1)').addClass('active');
+						$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
+					},
+					error:function(data){
+						alert('error');
+					}
+				});
 		}
 		else{
 			$('#mod_request_record .msg_request_record').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'></strong></div>");
@@ -423,7 +431,6 @@ $(document).ready(function(){
 		}
 		else
 		{	resultado=false;
-			alert('invalido');
 		}
 		return resultado;
 	}

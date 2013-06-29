@@ -61,7 +61,7 @@ table thead .action_table{width: 12%;}
 /*STAR USER*/
 .form_user{float:left; font-weight: bold;width: 100%;}
 .form_user label{ font-weight: bold;}
-#mod_request_record{margin-left: 4%;}
+#mod_request_record{margin-left: 4%;margin-right: 4%;}
 #mod_request_record label{width: 104px;}
 #mod_request_record .controls{margin-left: 120px;}
 #mod_request_record .text_tesista{padding: 0% 22% 0% 2%;}

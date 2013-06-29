@@ -14,10 +14,8 @@
 			    	'border-color':'#e9322d',
 			    	'box-shadow':'0px 0px 6px #f8b9b7'
 		    	});
-
 				_this.attr('data-content',mensaje);
 				_this.popover('show');
-
 			    return false;
 
 		    }
@@ -35,7 +33,7 @@
 
 			    _this.popover('destroy');
 
-			    return true;
+			    return false;
 		    }
 		});
 

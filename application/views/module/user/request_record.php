@@ -1,10 +1,10 @@
 <div id="mod_request_record" >
-	<form id="form_user" class="form-horizontal" action="/sis_biblio/module/user/request_record" method="post">
+	<form id="form_user" class="form-horizontal">
 	  <fieldset>
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
 		  <div class="controls">
-			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" required data-source="">
+			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
 			<p class="help-block">Ejm: Garc&iacute;a Fernando</p>
 		  </div>
 		</div>
@@ -13,8 +13,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_titulo">T&iacute;tulo: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xxlarge" required id="input_man_titulo" data-toggle="popover" data-placement="right" data-content="" >
-			<p class="help-block"></p>
+			<input type="text" class="input-xxlarge" id="input_man_titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required>
 		  </div>
 		</div>
 	  </fieldset>
@@ -22,7 +21,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_voucher" >Voucher: </label> 
 		  <div class="controls">
-			<input type="text" class="input-xlarge" required id="input_man_voucher" data-toggle="popover" data-placement="right" data-content="" >
+			<input type="text" class="input-xlarge" required id="input_man_voucher" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" maxlength="7">
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -31,7 +30,7 @@
 		<div class="control-group">
 		  <label class="control-label bold_label" for="input_man_correo">Correo: </label> 
 		  <div class="controls">
-			<input type="email" class="input-xxlarge" required id="input_man_correo" data-toggle="popover" data-placement="right" data-content="" >
+		<input type="email" placeholder="unjfsc@micorreo.com" class="input-xxlarge" id="input_man_correo" data-toggle="popover" data-placement="right" autocomplete="off" data-content="" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -59,8 +58,15 @@
 	        </div>
         </div>
         <div class="btn_tesi">
-	        <input class="btn btn-primary enviar" value="Enviar" type="submit"/>
+	        <input class="btn btn-primary enviar" type="submit" value="Enviar" />
         </div>
 	</form>
 	<div class="msg_request_record"></div>
 </div>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$('#mod_request_record #input_man_voucher').validations('0123456789');
+});
+//-->
+</script>
