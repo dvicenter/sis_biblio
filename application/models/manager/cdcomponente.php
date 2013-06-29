@@ -15,13 +15,12 @@
 		}
 
 		function insertar($componente,$descripcion_componente)
-		{
-			$data = array(
-						'componente' => $componente,
-						'descripcion_componente' => $descripcion_componente
-						);                   
-			if ($this->db->query("CALL SPRABMComponente(1,1,'$componente','$descripcion_componente')")) 
-			{
+		{	if ($this->db->query("CALL SPRABMComponente(1,1,'$componente','$descripcion_componente')")) 
+			{	$query=$this->db->query("SELECT  tbl.id_componente,  tbl.componente,  tbl.descripcion_componente FROM  tbl_componente tbl order by tbl.id_componente desc limit 1");
+				$data;
+				foreach ($query->result() as $dato)
+				{	$data=$dato;
+				}
 				return $data;
 			}
 		}
