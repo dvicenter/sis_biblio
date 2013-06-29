@@ -8,8 +8,9 @@
 		}
 
 		function listar()
-		{	$pInicio=1;
-			$pFinal=5;
+		{
+			$pInicio=0;
+			$pFinal=16;
 			$query = "CALL SPRCNSAccion(1,".$pInicio.",".$pFinal.")";
 			$query = $this->db->query($query);
 			
@@ -17,23 +18,25 @@
 		}
 
 		function insertar($accion)
-		{	
-			$data = array(
-						'accion' => $accion,
-						);                   
+		{                  
 			if ($this->db->query("CALL SPRABMAccion(1,1,'$accion')")) 
 			{
-				return $data;
+				$query = $this->db->query("SELECT tbl.id_accion, tbl.accion FROM tbl_accion tbl order by tbl.id_accion desc limit 1");
+				$data;
+				foreach ($query->result() as $dato)
+				{	$data=$dato;
+				}
+					return $data;
+				
 			}
 		}
 		function modificar($id_accion,$accion)
 		{
-		$data = array (
-						'id_accion' => $id_accion,
-						'accion' => $accion,
-		);
+			$data = array (
+							'id_accion' => $id_accion,
+							'accion' => $accion
+							);
 			$query = "CALL SPRABMAccion(2,'$id_accion','$accion')";
-			$query = $this->db->query($query);
 			if($this->db->query($query))
 			{	return $data;
 			}

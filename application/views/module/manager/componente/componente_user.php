@@ -20,7 +20,7 @@
 			</fieldset>  
 			<div class="btn_mantenimiento">
 				<fieldset>
-					<input type="submit" class="btn btn-primary agregar" value='Agregar'" >
+					<input type="submit" class="btn btn-primary agregar" value='Agregar' >
 					<a class="btn btn-info modificar" href="javascript:;" disabled>Modificar</a>
 					<a class="btn cancelar" href="javascript:;" disabled>Cancelar</a>
 				</fieldset>

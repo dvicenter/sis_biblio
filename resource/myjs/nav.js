@@ -142,27 +142,39 @@ $(document).ready(function(){
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
 										{	
-											$("#mod_accion ul[name='paginador_accion'] li").click(function(){
+											/*$("#mod_accion ul[name='paginador_accion'] li").click(function(){
 												var index=$("#mod_accion ul[name='paginador_accion'] li").index(this);
 												alert(index);
-											});
-											$('#mod_accion .agregar').click(function(){
-											insertar_accion();
+											});*/
+											$("#mod_accion input[name='accion']").focus();
+											$('#mod_accion form .agregar').click(function(evento){
+												evento.preventDefault();											
+												insertar_accion();
+												$("#mod_accion form")[0].reset();
+												$("#mod_accion input[name='accion']").focus();
 											});
 											$('#mod_accion .modificar').click(function(){
 											modificar_accion();
 											});
 											
+											$('#mod_accion .eliminar').click(function(){
+														var pos_=$("#mod_accion #table_acc td .eliminar").index(this);
+														var pos=pos_+1;
+														eliminar_accion(pos);
+											});
+											$('#mod_accion .cancelar').click(function() {
+														$("#mod_accion input[name='accion']").focus();
+														$('#mod_accion .cancelar').attr('disabled',true);
+														$('#mod_accion .modificar').attr('disabled',true);
+														$("#mod_accion form")[0].reset();
+														$("#mod_accion input[name='accion']").attr('value','');
+														$("#mod_accion input[name='id_acc']").attr('value','');
+														$('#mod_accion form .agregar').attr('disabled',false);
+											});
 											$('#mod_accion #table_acc td .editar').click(function() {
-													var pos_editar_=$("#table_acc td .editar").index(this);
-													pos_editar=pos_editar_+1;
-													
-												var idaccion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(1)').html();
-												var accion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html();
-												$("#mod_accion input[name='id_acc']").attr('value',idaccion);
-												$("#mod_accion input[name='accion']").attr('value',accion);
-												$("#mod_accion input[name='accion']").focus();
-												
+														var pos_editar_=$("#table_acc td .editar").index(this);
+														pos_editar=pos_editar_+1;
+														editar_accion(pos_editar);
 													});
 											
 										}
@@ -170,7 +182,8 @@ $(document).ready(function(){
 									else 
 										{ 
 											if($("#mod_componente").is(":visible") == true)
-												{	$("#mod_componente input[name='componente']").focus();								
+												{	
+													$("#mod_componente input[name='componente']").focus();								
 													$('#mod_componente form .agregar').click(function(evento){
 														evento.preventDefault();
 														insertar_componente();
@@ -268,46 +281,109 @@ $(document).ready(function(){
 	function insertar_accion()
 	{
 					var accion=$("#mod_accion input[name='accion']").val();
-					console.info(accion);
+					//validar_accion();
 					$.ajax({
-						url:'/sis_biblio/manager/ccaccion/insertar/'+accion,
+						url:'/sis_biblio/manager/ccaccion/insertar',
+						data:'accion='+accion,
 						type:'post',
 						dataType:'json',
 						success:function(data){
-							console.info(data);
-							var accion;
-							
+							var id_accion;
+							var accion;							
 							$.each(data,function(a,b){
-								accion=b.accion;
-								
+								id_accion=b.id_accion;
+								accion=b.accion;								
 							});
-							//$('#mod_accion table tr:last').after('<td>'+accion+'</td>');
-							
+							console.info(data);							
 							$('tr:last td', $("#table_acc"));
-
 							var tds = '<tr>';							
-							tds += '<td>'+accion+'</td>';							
+							tds += "<td style='display:none;'>"+id_accion+'</td><td>'+accion+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";
 							tds += '</tr>';
 							$("#table_acc").append(tds);
+							$("#mod_accion .eliminar").click(function(){
+								var pos_=$("#mod_accion #table_acc td .eliminar").index(this);
+								var pos=pos_+1;
+								eliminar_accion(pos);
+							});
+							$('#mod_accion #table_acc td .editar').click(function(){
+								var pos_editar_=$("#table_acc td .editar").index(this);
+								pos_editar=pos_editar_+1;
+								editar_accion(pos_editar);
+							});
+							$('#mod_accion .cancelar').click(function(){
+								$("#mod_accion input[name='accion']").focus();
+								$('#mod_accion .cancelar').attr('disabled',true);
+								$('#mod_accion .modificar').attr('disabled',true);
+								$("#mod_accion form")[0].reset();
+								$("#mod_accion input[name='accion']").attr('value','');
+								$("#mod_accion input[name='id_acc']").attr('value','');
+								$('#mod_accion form .agregar').attr('disabled',false);
+							});
+							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion guardado</div>")
+						},
+						error:function(data)
+						{
+							$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>")
 						}
 					});
 	}
+	function editar_accion(pos_editar)
+	{
+		$('#mod_accion form .agregar').attr('disabled',true);
+		var idaccion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+		var accion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+		$("#mod_accion input[name='id_acc']").attr('value',idaccion);
+		$("#mod_accion input[name='accion']").attr('value',accion);
+		$("#mod_accion input[name='accion']").focus();
+		$('#mod_accion .modificar').attr('disabled',false);
+		$('#mod_accion .cancelar').attr('disabled',false);
+	}
 	function modificar_accion()
-	{	var idaccion=$("#mod_accion input[name='id_acc']").attr('value');
+	{	var idacc=$("#mod_accion input[name='id_acc']").attr('value');
 		var accion=$("#mod_accion input[name='accion']").attr('value');
-	$.ajax({
-				url:'/sis_biblio/manager/ccaccion/modificar/'+idaccion+'/'+accion,
+			$.ajax({
+						url:'/sis_biblio/manager/ccaccion/modificar',
+						data:'id_accion='+idacc+'&accion='+accion,
+						type:'post',
+						dataType:'json',
+						success:function(data){
+							$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html(accion);
+							$("#mod_accion form")[0].reset();
+							$("#mod_accion input[name='accion']").attr('value','');
+							$("#mod_accion input[name='id_acc']").attr('value','');
+							$('#mod_accion form .agregar').attr('disabled',false);
+							$('#mod_accion .modificar').attr('disabled',true);
+							$('#mod_accion form .cancelar').attr('disabled',true);
+							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion modificado</div>")
+									
+								},
+						error:function(data)
+								
+							{	$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>")
+							}
+					});
+	}
+
+	function eliminar_accion(pos)
+	{
+		var idacc = $("#mod_accion #table_acc tr:nth-child("+pos+") td:nth-child(1)").html();
+		console.info(idacc);
+			$.ajax({
+				url:'/sis_biblio/manager/ccaccion/eliminar/'+idacc,
 				type:'post',
 				dataType:'json',
-				success:function(data){$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html(accion);
-					
-						},
+				success:function(data)
+				{
+					console.info(data);
+					$("#mod_accion #table_acc tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})
+				},
 				error:function(data)
-					{	
-					console.info(data)
+					{
+						console.info(data)
 					}
 			});
 	}
+
 	function insertar_user()
 	{	var id_sujeto=1;
 		var id_usuario=8;
