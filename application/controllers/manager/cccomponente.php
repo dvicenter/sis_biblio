@@ -30,7 +30,7 @@ class Cccomponente extends CI_Controller
 	function eliminar($id_componente) 
 	{	
 		$this->data=array($this->cdcomponente->eliminar($id_componente));
-		echo json_encode($this->data);
+		
 	}
 } 
 ?>
