@@ -148,10 +148,12 @@ $(document).ready(function(){
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
 										{	
+											$("#mod_accion input[name='accion']").focus();
 											$("#mod_accion ul[name='paginador_accion'] li").click(function(){
 												var index=$("#mod_accion ul[name='paginador_accion'] li").index(this);
 											});
-											$('#mod_accion .agregar').click(function(){
+											$('#mod_accion form').submit(function(evento){
+												evento.preventDefault();
 											insertar_accion();
 											});
 											$('#mod_accion .modificar').click(function(){
@@ -185,7 +187,7 @@ $(document).ready(function(){
 											if($("#mod_componente").is(":visible") == true)
 												{	
 													$("#mod_componente input[name='componente']").focus();								
-													$('#mod_componente form .agregar').click(function(evento){
+													$('#mod_componente form').submit(function(evento){
 														evento.preventDefault();
 														insertar_componente();
 														$("#mod_componente form")[0].reset();
