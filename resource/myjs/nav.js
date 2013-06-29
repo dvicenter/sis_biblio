@@ -185,8 +185,9 @@ $(document).ready(function(){
 														var pos=pos_+1;
 														eliminar_componente(pos);
 													});
-													$('#mod_componente #table_comp td .editar').click(function() {
+													$('#mod_componente .cancelar').click(function() {
 														$("#mod_componente input[name='componente']").focus();
+														$('#mod_componente .cancelar').attr('disabled',true);
 														$('#mod_componente .modificar').attr('disabled',true);
 														$("#mod_componente form")[0].reset();
 														$("#mod_componente input[name='componente']").attr('value','');
@@ -421,6 +422,15 @@ $(document).ready(function(){
 						var pos_editar_=$("#table_comp td .editar").index(this);
 						pos_editar=pos_editar_+1;
 						editar_componente(pos_editar);
+					});
+					$('#mod_componente .cancelar').click(function() {
+						$("#mod_componente input[name='componente']").focus();
+						$('#mod_componente .cancelar').attr('disabled',true);
+						$('#mod_componente .modificar').attr('disabled',true);
+						$("#mod_componente form")[0].reset();
+						$("#mod_componente input[name='componente']").attr('value','');
+						$("#mod_componente input[name='id_comp']").attr('value','');
+						$('#mod_componente form .agregar').attr('disabled',false);
 					});
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>")
 				},
