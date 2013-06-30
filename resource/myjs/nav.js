@@ -38,8 +38,6 @@ $(document).ready(function(){
 	$('#componente').click(function(){
 		
 		load_module_date('/sis_biblio/manager/cccomponente/listar', '#componente_user', 'null');
-		
-		
 	});
 	$('#accion').click(function(){
 		load_module_date('/sis_biblio/manager/ccaccion/listar', '#accion_user', 'null');
@@ -99,6 +97,7 @@ $(document).ready(function(){
 		}).change();
 
 	}
+	
 });
 	function load_module_date(url,id_nav_left,id_nav_top)
 		{
@@ -150,26 +149,36 @@ $(document).ready(function(){
 							else 
 								{	if($("#mod_accion").is(":visible") == true)
 										{	
+											$("#mod_accion input[name='accion']").focus();
 											$("#mod_accion ul[name='paginador_accion'] li").click(function(){
 												var index=$("#mod_accion ul[name='paginador_accion'] li").index(this);
 											});
-											$('#mod_accion .agregar').click(function(){
+											$('#mod_accion form').submit(function(evento){
+												evento.preventDefault();
 											insertar_accion();
 											});
 											$('#mod_accion .modificar').click(function(){
 											modificar_accion();
 											});
 											
+											$('#mod_accion .eliminar').click(function(){
+														var pos_=$("#mod_accion #table_acc td .eliminar").index(this);
+														var pos=pos_+1;
+														eliminar_accion(pos);
+											});
+											$('#mod_accion .cancelar').click(function() {
+														$("#mod_accion input[name='accion']").focus();
+														$('#mod_accion .cancelar').attr('disabled',true);
+														$('#mod_accion .modificar').attr('disabled',true);
+														$("#mod_accion form")[0].reset();
+														$("#mod_accion input[name='accion']").attr('value','');
+														$("#mod_accion input[name='id_acc']").attr('value','');
+														$('#mod_accion form .agregar').attr('disabled',false);
+											});
 											$('#mod_accion #table_acc td .editar').click(function() {
-													var pos_editar_=$("#table_acc td .editar").index(this);
-													pos_editar=pos_editar_+1;
-													
-												var idaccion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(1)').html();
-												var accion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html();
-												$("#mod_accion input[name='id_acc']").attr('value',idaccion);
-												$("#mod_accion input[name='accion']").attr('value',accion);
-												$("#mod_accion input[name='accion']").focus();
-												
+														var pos_editar_=$("#table_acc td .editar").index(this);
+														pos_editar=pos_editar_+1;
+														editar_accion(pos_editar);
 													});
 											
 										}
@@ -177,8 +186,9 @@ $(document).ready(function(){
 									else 
 										{ 
 											if($("#mod_componente").is(":visible") == true)
-												{	$("#mod_componente input[name='componente']").focus();								
-													$('#mod_componente form .agregar').click(function(evento){
+												{	
+													$("#mod_componente input[name='componente']").focus();								
+													$('#mod_componente form').submit(function(evento){
 														evento.preventDefault();
 														insertar_componente();
 														$("#mod_componente form")[0].reset();
@@ -347,11 +357,10 @@ $(document).ready(function(){
 				$('#mod_rol form .agregar').attr('disabled',false).css({'cursor':''});
 				$('#mod_rol .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
 				$('#mod_rol form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
-				$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol modificado</div>")
+				$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol modificado</div>");
 			},
-			error:function(data)
-				{	
-					$('#mod_rol .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>")
+			error:function(data){
+					$('#mod_rol .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
 				}
 		});
 	}
@@ -373,39 +382,105 @@ $(document).ready(function(){
 	}
 	/*END ABM ROL*/
 	function insertar_accion()
-	{	var accion=$("#mod_accion input[name='accion']").val();
-		console.info(accion);
-		$.ajax({
-			url:'/sis_biblio/manager/ccaccion/insertar/'+accion,
-			type:'post',
-			dataType:'json',
-			success:function(data){
-				console.info(data);
-				var accion;
-				$.each(data,function(a,b){
-					accion=b.accion;
-				});
-				$('tr:last td', $("#table_acc"));
-				var tds = '<tr>';							
-				tds += '<td>'+accion+'</td>';							
-				tds += '</tr>';
-				$("#table_acc").append(tds);
-			}
-		});
+	{
+					var accion=$("#mod_accion input[name='accion']").val();
+					//validar_accion();
+					$.ajax({
+						url:'/sis_biblio/manager/ccaccion/insertar',
+						data:'accion='+accion,
+						type:'post',
+						dataType:'json',
+						success:function(data){
+							var id_accion;
+							var accion;							
+							$.each(data,function(a,b){
+								id_accion=b.id_accion;
+								accion=b.accion;								
+							});
+							console.info(data);							
+							$('tr:last td', $("#table_acc"));
+							var tds = '<tr>';							
+							tds += "<td style='display:none;'>"+id_accion+'</td><td>'+accion+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";
+							tds += '</tr>';
+							$("#table_acc").append(tds);
+							$("#mod_accion .eliminar").click(function(){
+								var pos_=$("#mod_accion #table_acc td .eliminar").index(this);
+								var pos=pos_+1;
+								eliminar_accion(pos);
+							});
+							$('#mod_accion #table_acc td .editar').click(function(){
+								var pos_editar_=$("#table_acc td .editar").index(this);
+								pos_editar=pos_editar_+1;
+								editar_accion(pos_editar);
+							});
+							$('#mod_accion .cancelar').click(function(){
+								$("#mod_accion input[name='accion']").focus();
+								$('#mod_accion .cancelar').attr('disabled',true);
+								$('#mod_accion .modificar').attr('disabled',true);
+								$("#mod_accion form")[0].reset();
+								$("#mod_accion input[name='accion']").attr('value','');
+								$("#mod_accion input[name='id_acc']").attr('value','');
+								$('#mod_accion form .agregar').attr('disabled',false);
+							});
+							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion guardado</div>");
+						},
+						error:function(data){
+							$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
+						}
+					});
+	}
+	function editar_accion(pos_editar)
+	{
+		$('#mod_accion form .agregar').attr('disabled',true);
+		var idaccion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+		var accion=$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+		$("#mod_accion input[name='id_acc']").attr('value',idaccion);
+		$("#mod_accion input[name='accion']").attr('value',accion);
+		$("#mod_accion input[name='accion']").focus();
+		$('#mod_accion .modificar').attr('disabled',false);
+		$('#mod_accion .cancelar').attr('disabled',false);
 	}
 	function modificar_accion()
-	{	var idaccion=$("#mod_accion input[name='id_acc']").attr('value');
+	{	var idacc=$("#mod_accion input[name='id_acc']").attr('value');
 		var accion=$("#mod_accion input[name='accion']").attr('value');
-	$.ajax({
-				url:'/sis_biblio/manager/ccaccion/modificar/'+idaccion+'/'+accion,
+			$.ajax({
+						url:'/sis_biblio/manager/ccaccion/modificar',
+						data:'id_accion='+idacc+'&accion='+accion,
+						type:'post',
+						dataType:'json',
+						success:function(data){
+							$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html(accion);
+							$("#mod_accion form")[0].reset();
+							$("#mod_accion input[name='accion']").attr('value','');
+							$("#mod_accion input[name='id_acc']").attr('value','');
+							$('#mod_accion form .agregar').attr('disabled',false);
+							$('#mod_accion .modificar').attr('disabled',true);
+							$('#mod_accion form .cancelar').attr('disabled',true);
+							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion modificado</div>");
+									
+								},
+						error:function(data)
+							{	$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
+							}
+					});
+	}
+
+	function eliminar_accion(pos)
+	{
+		var idacc = $("#mod_accion #table_acc tr:nth-child("+pos+") td:nth-child(1)").html();
+		console.info(idacc);
+			$.ajax({
+				url:'/sis_biblio/manager/ccaccion/eliminar/'+idacc,
 				type:'post',
 				dataType:'json',
-				success:function(data){$('#table_acc tr:nth-child('+pos_editar+') td:nth-child(2)').html(accion);
-					
-						},
+				success:function(data)
+				{
+					console.info(data);
+					$("#mod_accion #table_acc tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})
+				},
 				error:function(data)
-					{	
-					console.info(data)
+					{
+						console.info(data)
 					}
 			});
 	}
@@ -507,11 +582,11 @@ $(document).ready(function(){
 		else{
 			$("#manager_user input[name='m_chek']").attr('checked',false);
 		}
-		$("#manager_user #input_adm_sujeto").attr('value',sujeto).css({'cursor':'no-drop'});
+		$("#manager_user #input_adm_sujeto").attr('value',sujeto).css('cursor','no-drop');
 		$("#manager_user #input_adm_sujeto").attr('disabled',true);
 		$("#manager_user input[name='m_user']").focus();
-		$('#manager_user .modificar').attr('disabled',false).css({'cursor':''});
-		$('#manager_user .cancelar').attr('disabled',false).css({'cursor':''});
+		$('#manager_user .modificar').attr('disabled',false).css('cursor','');
+		$('#manager_user .cancelar').attr('disabled',false).css('cursor','');
 	}
 	function modificar_usuario()
 	{	var sujeto=$('#manager_user #input_adm_sujeto').val();
@@ -551,10 +626,10 @@ $(document).ready(function(){
 						$('#manager_user form .agregar').attr('disabled',false).css({'cursor':''});
 						$('#manager_user .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
 						$('#manager_user form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
-						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>")
+						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>");
 					},
 					error:function(data)
-						{	$('#manager_user .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>")
+						{	$('#manager_user .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
 						}
 				});
 			}
@@ -572,12 +647,12 @@ $(document).ready(function(){
 				url:'/sis_biblio/manager/ccusuario/eliminar/'+id_usuario,
 				type:'post',
 				dataType:'json',
-				success:function(data)
-				{console.info(data);
+				success:function(data){
+				console.info(data);
 					$("#manager_user #tabla_user tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});
 				},
-				error:function(data)
-					{	console.info(data);
+				error:function(data){
+						console.info(data);
 					}
 			});
 	}
@@ -702,12 +777,12 @@ $(document).ready(function(){
 					$("#mod_componente input[name='componente']").attr('value','');
 					$("#mod_componente input[name='id_comp']").attr('value','');
 					$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
-					$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
-					$('#mod_componente form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
+					$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});
+					$('#mod_componente form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>")
 				},
-				error:function(data)
-					{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>")
+				error:function(data){
+						$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
 					}
 			});
 	}
@@ -720,12 +795,13 @@ $(document).ready(function(){
 				url:'/sis_biblio/manager/cccomponente/eliminar/'+idcomp,
 				type:'post',
 				dataType:'json',
-				success:function(data)
-				{console.info(data);
-					$("#mod_componente #table_comp tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})},
-				error:function(data)
-					{	console.info(data)
-					}
+				success:function(data){
+					console.info(data);
+					$("#mod_componente #table_comp tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})
+				},
+				error:function(data){	
+					console.info(data);
+				}
 			});
 	}
 	/*ABM DE COMPONENTE*/

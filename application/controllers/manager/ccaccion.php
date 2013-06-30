@@ -13,22 +13,23 @@ class Ccaccion extends CI_Controller
 		echo $this->load->view("module/manager/accion/accion_user",$this->data);
 	}
 
-	function insertar($accion) 
+	function insertar() 
 	{	
+		$accion=$_REQUEST['accion'];
 		$this->data=array($this->cdaccion->insertar($accion));
-		//echo $this->load->view("module/manager/accion/accion_user",$this->data);
 		echo json_encode($this->data);
 	}
-	function modificar($id_accion,$accion) 
+	function modificar() 
 	{	
+		$id_accion=$_REQUEST['id_accion'];
+		$accion=$_REQUEST['accion'];
 		$this->data=array($this->cdaccion->modificar($id_accion,$accion));
 		echo json_encode($this->data);
 	}
 
 	function eliminar($id_accion) 
 	{	
-		$this->data=array($this->cdaccion->eliminar($accion));
-		echo json_encode($this->data);
+		$this->cdaccion->eliminar($id_accion);
 	}
 } 
 ?>

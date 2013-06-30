@@ -13,13 +13,16 @@
 		  </fieldset>
 		<div class="btn_mantenimiento">
 			<fieldset>
-				<a input type="submit" class="btn btn-primary agregar" value='Agregar' href="javascript:;">agregar</a>
-				<a input type="submit" class="btn btn-primary modificar" value='Modificar' href="javascript:;">modificar</a>
+				<input type="submit" class="btn btn-primary agregar" value='Agregar' >
+					<a class="btn btn-info modificar" href="javascript:;" disabled>Modificar</a>
+					<a class="btn cancelar" href="javascript:;" disabled>Cancelar</a>
 			</fieldset>
 		</div>		
 		</form>
 	</div>
-
+		<div class="response pos_right">
+		
+	</div
 
 		<div id="tabla">
 		<table id="table_acc" class="table table-striped table-bordered table-condensed  table-hover table_de_2">
@@ -33,15 +36,14 @@
 				
 		    </thead>
 			<tbody>
-				<?php $i=0; foreach($acciones as $accion){
-					if($i<10){?>
+				<?php  foreach($acciones as $accion){?>
 				<tr>
 					<td style="display:none;"><?php echo $accion['id_accion']?></td>
 					<td><?php echo $accion['accion'];?></td>
-					<td  style="text-align:center;"><button class="btn btn-info editar "><i class="icon-pencil icon-white"></i></button></td>
-					<td  style="text-align:center;"><button class="btn btn-danger "><i class="icon-fullscreen icon-white"></i></button></td>
+					<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
+					<td style="text-align:center;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
 				</tr>
-				<?php $i++;}}?>
+				<?php }?>
 			</tbody>
 		</table>
 		</div>
