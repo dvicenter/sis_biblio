@@ -2058,7 +2058,7 @@ table {
 
 .table-bordered th,
 .table-bordered td {
-  border-left: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;vertical-align: middle;
 }
 
 .table-bordered caption + thead tr:first-child th,

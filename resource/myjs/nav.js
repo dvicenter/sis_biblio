@@ -1,4 +1,5 @@
 var asesores=[];
+var sujetos=[];
 var pos_editar;
 $(document).ready(function(){
 	$('#tesis').click(function(){
@@ -98,7 +99,6 @@ $(document).ready(function(){
 		}).change();
 
 	}
-	
 });
 	function load_module_date(url,id_nav_left,id_nav_top)
 		{
@@ -209,8 +209,44 @@ $(document).ready(function(){
 												}
 									else 
 										{	if($("#manager_user").is(":visible") == true){
-												$('#manager_user .agregar').click(function(){
-												insertar_user();
+												buscar_sujeto();
+												$("#manager_user #input_adm_sujeto").focus();
+												$('#input_adm_sujeto').click(function(){
+													buscar_sujeto();	
+												});
+												validar_contrasenia_man();
+												$('#manager_user form').submit(function(evento){
+													evento.preventDefault();
+													insertar_user();
+													$("#manager_user form")[0].reset();
+													$("#manager_user #input_adm_sujeto").focus();
+												});
+												$('#manager_user .modificar').click(function(){
+													modificar_usuario();
+												});
+												$('#manager_user .eliminar').click(function(){
+													var pos_=$("#manager_user #tabla_user td .eliminar").index(this);
+													var pos=pos_+1;
+													eliminar_usuario(pos);
+												});
+												$('#manager_user .cancelar').click(function() {
+													$("#manager_user #input_adm_sujeto").focus();
+													$("#manager_user #input_adm_sujeto").attr('disabled',false);
+													$("#manager_user #input_adm_sujeto").attr('value','').css({'cursor':''});
+													$("#manager_user input[name='id_usuario_man']").attr('value','');
+													$("#manager_user input[name='id_sujeto_man']").attr('value','');
+													$('#manager_user .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
+													$('#manager_user .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
+													$("#manager_user form")[0].reset();
+													$("#manager_user input[name='m_user']").attr('value','');
+													$("#manager_user input[name='m_contra']").attr('value','');
+													$("#manager_user #input_adm_confir_contra").attr('value','');
+													$('#manager_user form .agregar').attr('disabled',false).css({'cursor':''});
+												});
+												$('#manager_user #tabla_user td .editar').click(function() {
+													var pos_editar_=$("#tabla_user td .editar").index(this);
+													pos_editar=pos_editar_+1;
+													editar_usuario(pos_editar);
 												});
 											}
 											else
@@ -230,7 +266,7 @@ $(document).ready(function(){
 					}
 				});
 		}
-	/*ABM ROL*/
+	/*STAR ABM ROL*/
 	function insertar_rol()
 	{	var rol=$("#mod_rol input[name='rol']").val();
 		var descripcion=$("#mod_rol textarea[name='text_rol']").val();
@@ -335,7 +371,7 @@ $(document).ready(function(){
 					}
 			});
 	}
-	/*ABM ROL*/
+	/*END ABM ROL*/
 	function insertar_accion()
 	{	var accion=$("#mod_accion input[name='accion']").val();
 		console.info(accion);
@@ -373,45 +409,180 @@ $(document).ready(function(){
 					}
 			});
 	}
+	/*STAR USUARIO*/
 	function insertar_user()
-	{	var id_sujeto=1;
-		var id_usuario=8;
+	{	var sujeto=$('#manager_user #input_adm_sujeto').val();
+		var id_sujeto;
 		var usuario=$("#manager_user input[name='m_user']").val();
 		var contrasenia=$("#manager_user input[name='m_contra']").val();
-		var estado=$("#manager_user input[name='m_chek']").val();
-		if(estado=='on')
+		var estado=$("#manager_user input[name='m_chek']");
+		if(estado.is(':checked'))
 			{	var active=1;
 			}
 		else
 			{	var active=0;
 			}
-		$.ajax({
-			url:'/sis_biblio/manager/ccusuario/insertar/'+id_usuario+'/'+usuario+'/'+contrasenia+'/'+id_sujeto+'/'+active,
-			type:'post',
-			dataType:'json',
-			success:function(data){
-				console.info(data);
-				var usuario;
-				var id_usuario;
-				var contrasenia;
-				var id_sujeto;
-				var active;
-				$.each(data,function(a,b){
-					usuario=b.usuario;
-					id_usuario=b.id_usuario;
-					contrasenia=b.contrasenia;
-					id_sujeto=b.id_sujeto;
-					active=b.active;
+		if(validar_sujeto(sujeto)){
+		$.each(sujetos,function(a,b){
+			if(b[1]==sujeto)
+			{	id_sujeto=b[0];
+			}
+		});
+			if(retorno_contrasenia_valido()==true){
+			$.ajax({
+				url:'/sis_biblio/manager/ccusuario/insertar/',
+				data:'usuario='+usuario+'&contrasenia='+contrasenia+'&id_sujeto='+id_sujeto+'&active='+active,
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					var usuario;
+					var id_usuario;
+					var contrasenia;
+					var id_sujeto;
+					var active;
+					var sujeto;
+					console.info(data);
+					$.each(data,function(a,b){
+						id_usuario=b.id_usuario;
+						id_sujeto=b.id_sujeto;
+						sujeto=b.sujeto;
+						usuario=b.usuario;
+						contrasenia=b.contrasenia;
+						active=b.active;
+					});
+					if(active==1){active='Habilitado';} else{active='Desahabilitado';}
+					$('tr:last td', $("#tabla_user"));
+					var tds = '<tr>';							
+						tds += "<td style='display:none;'>"+id_usuario+"</td><td style='display:none;'>"+id_sujeto+'</td><td>'+sujeto+'</td><td>'+usuario+"</td><td style='display:none;'>"+contrasenia+'</td><td>'+active+'</td>'+
+							"<td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td>"+
+							"<td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";							
+						tds += '</tr>';
+						$("#tabla_user").append(tds);
+						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Usuario guardado</div>");
+						$('#manager_user .modificar').click(function(){
+							modificar_usuario();
+						});
+						$('#manager_user .eliminar').click(function(){
+							var pos_=$("#manager_user #tabla_user td .eliminar").index(this);
+							var pos=pos_+1;
+							eliminar_usuario(pos);
+						});
+						$('#manager_user #tabla_user td .editar').click(function() {
+							var pos_editar_=$("#tabla_user td .editar").index(this);
+							pos_editar=pos_editar_+1;
+							editar_usuario(pos_editar);
+						});
+					},
+					error:function(data){
+						$('#manager_user .response').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; insertar</div>");
+					}
 				});
-				//$('#manager_user table tr:last').after('<td>'+user+'</td>'<td>'+contrasenia+'</td><td>'+active+'</td>);
-				$('tr:last td', $("#tabla_user"));
-				var tds = '<tr>';							
-					tds += '<td>'+usuario+'</td><td>'+contrasenia+'</td><td>'+active+'</td>';							
-					tds += '</tr>';
-					$("#table_user").append(tds);
-				}
+			}
+			else{
+				$('#manager_user #input_adm_contra').focus();
+				$('#manager_user .response').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong>No coinciden contrase&ntilde;a</strong></div>");
+			}
+		}
+		else{
+			$('#manager_user .response').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong>Sujeto inexistente</strong></div>");
+		}
+		
+	}
+	function editar_usuario(pos_editar)
+	{	$('#manager_user form .agregar').attr('disabled',true).css({'cursor':'no-drop'});
+		var id_usuario=$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+		var id_sujeto=$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+		var sujeto=$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+		var usuario=$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(4)').html();
+		var contrasenia=$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(5)').html();
+		var activo=$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(6)').attr('name');
+		$("#manager_user input[name='id_usuario_man']").attr('value',id_usuario);
+		$("#manager_user input[name='id_sujeto_man']").attr('value',id_sujeto);
+		$("#manager_user input[name='m_user']").attr('value',usuario);
+		$("#manager_user input[name='m_contra']").attr('value',contrasenia);
+		$("#manager_user #input_adm_confir_contra").attr('value',contrasenia);
+		if(activo==1){
+			$("#manager_user input[name='m_chek']").attr('checked',true);
+		}
+		else{
+			$("#manager_user input[name='m_chek']").attr('checked',false);
+		}
+		$("#manager_user #input_adm_sujeto").attr('value',sujeto).css({'cursor':'no-drop'});
+		$("#manager_user #input_adm_sujeto").attr('disabled',true);
+		$("#manager_user input[name='m_user']").focus();
+		$('#manager_user .modificar').attr('disabled',false).css({'cursor':''});
+		$('#manager_user .cancelar').attr('disabled',false).css({'cursor':''});
+	}
+	function modificar_usuario()
+	{	var sujeto=$('#manager_user #input_adm_sujeto').val();
+		var id_usuario=$("#manager_user input[name='id_usuario_man']").val();
+		var usuario=$("#manager_user input[name='m_user']").val();
+		var contrasenia=$("#manager_user input[name='m_contra']").val();
+		var estado=$("#manager_user input[name='m_chek']");
+		console.info(estado);
+		if(estado.is(':checked'))
+			{	var active='Habilitado';
+				estado=1;
+			}
+		else
+			{	var active='Deshabilitado';
+				estado=0;
+			}
+			if(retorno_contrasenia_valido()==true){
+				$.ajax({
+					url:'/sis_biblio/manager/ccusuario/modificar',
+					data:'id_usuario='+id_usuario+'&usuario='+usuario+'&contrasenia='+contrasenia+'&active='+estado,
+					type:'post',
+					dataType:'json',
+					success:function(data){
+						$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(3)').html(sujeto);
+						$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(4)').html(usuario);
+						$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(5)').html(contrasenia);
+						$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(6)').html(active);
+						$('#tabla_user tr:nth-child('+pos_editar+') td:nth-child(6)').attr('name',estado);
+						$("#manager_user form")[0].reset();
+						$("#manager_user #input_adm_sujeto").attr('value','').css({'cursor':''});
+						$("#manager_user #input_adm_sujeto").attr('disabled',false);
+						$("#manager_user input[name='id_usuario_man']").attr('value','');
+						$("#manager_user input[name='id_sujeto_man']").attr('value','');
+						$("#manager_user input[name='m_user']").attr('value','');
+						$("#manager_user input[name='m_contra']").attr('value','');
+						$("#manager_user #input_adm_confir_contra").attr('value','');
+						$('#manager_user form .agregar').attr('disabled',false).css({'cursor':''});
+						$('#manager_user .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
+						$('#manager_user form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
+						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>")
+					},
+					error:function(data)
+						{	$('#manager_user .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>")
+						}
+				});
+			}
+			else{
+				$('#manager_user #input_adm_contra').focus();
+				$('#manager_user .response').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong>No coinciden contrase&ntilde;a</strong></div>");
+			}
+		
+	}
+	
+	function eliminar_usuario(pos)
+	{	
+		var id_usuario=$("#manager_user #tabla_user tr:nth-child("+pos+") td:nth-child(1)").html();
+			$.ajax({
+				url:'/sis_biblio/manager/ccusuario/eliminar/'+id_usuario,
+				type:'post',
+				dataType:'json',
+				success:function(data)
+				{console.info(data);
+					$("#manager_user #tabla_user tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});
+				},
+				error:function(data)
+					{	console.info(data);
+					}
 			});
 	}
+
+	/*END USUARIO*/
 	function insertar_solictiud_tesis()
 	{	$("#mod_request_record form").submit(function(evento){
 		var asesor=$('#input_man_asesor').val();
@@ -496,10 +667,10 @@ $(document).ready(function(){
 						$("#mod_componente input[name='id_comp']").attr('value','');
 						$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
 					});
-					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>")
+					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>");
 				},
 				error:function(data)
-				{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>")
+				{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
 				}
 			});
 		}
@@ -634,6 +805,15 @@ $(document).ready(function(){
 		});
 		return resultado;
 	}
+	function validar_sujeto(sujeto)
+	{	var resultado=false;
+		$.each(sujetos,function(a,b){
+			if(b[1]==sujeto)
+			{	resultado=true;
+			}
+		});
+		return resultado;
+	}
 	function validar()
 	{
 	}	
@@ -663,4 +843,63 @@ $(document).ready(function(){
 				$('#input_man_asesor').typeahead().data('typeahead').source = asesor;
 			}
 		});
+	}
+	function buscar_sujeto()
+	{
+		$.ajax({
+			url:'/sis_biblio/manager/ccusuario/buscar_sujeto',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var sujeto=[];
+				$.each(data,function(a,b){
+					sujeto.push(b.sujeto);
+					sujetos.push([b.id_sujeto,b.sujeto]);
+				});
+				$('#input_adm_sujeto').typeahead().data('typeahead').source = sujeto;
+			}
+		});
+	}
+	function validar_contrasenia_man(){
+		$('#input_adm_confir_contra').keyup(function() {
+			var contrasenia=$('#manager_user #input_adm_contra').val();
+			  var confirmar_contrasenia=$('#manager_user #input_adm_confir_contra').val();
+			  if((confirmar_contrasenia==contrasenia)&&confirmar_contrasenia!=""&&contrasenia!="")
+			  {		class_contrasenia_valida();		
+			  }
+			  else
+			  {		class_contrasenia_invalida();
+			  }
+		});
+		$('#input_adm_contra').keyup(function() {
+			var contrasenia=$('#manager_user #input_adm_contra').val();
+			  var confirmar_contrasenia=$('#manager_user #input_adm_confir_contra').val();
+			  if((confirmar_contrasenia==contrasenia)&&confirmar_contrasenia!=""&&contrasenia!="")
+			  {		class_contrasenia_valida();
+			  }
+			  else
+			  {		class_contrasenia_invalida();
+			  }
+		});
+	}
+	function class_contrasenia_valida()
+	{	$('#manager_user .confirm_contra_igual').removeClass("icon-remove");
+	  	$('#manager_user .confirm_contra').addClass("icon-ok");
+	  	$('#manager_user .confirm_contra_igual').addClass("icon-ok");
+	}
+	function class_contrasenia_invalida()
+	{	$('#manager_user .confirm_contra').removeClass("icon-ok");
+	  	$('#manager_user .confirm_contra_igual').addClass("icon-remove");
+	}
+	function retorno_contrasenia_valido()
+	{	var resultado=false;
+		var contrasenia=$('#manager_user #input_adm_contra').val();
+		var confirmar_contrasenia=$('#manager_user #input_adm_confir_contra').val();
+		if(confirmar_contrasenia==contrasenia)
+		{	resultado=true;
+		}
+		else{
+			resultado=false;
+		}
+		return resultado;
 	}

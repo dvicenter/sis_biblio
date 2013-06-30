@@ -27,9 +27,7 @@
 			</div>
 		</form>
 	</div>
-	<div class="response pos_right">
-		
-	</div>	
+	<div class="response pos_right"></div>	
 	<div id="tabla">
 		<table id="table_comp" class="table table-striped table-bordered table-condensed table-hover table_de_2">
 		    <thead>
