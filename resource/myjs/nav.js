@@ -137,8 +137,10 @@ $(document).ready(function(){
 											});
 											$('#mod_accion form').submit(function(evento){
 												evento.preventDefault();
-												if($('#mod_rol .agregar').attr('disabled')=='disabled'){}else{
-											insertar_accion();}
+												if($('#mod_accion .agregar').attr('disabled')=='disabled'){}else{
+													insertar_accion();
+													$('#mod_accion form')[0].reset();
+												}
 											});
 											$('#mod_accion .modificar').click(function(){
 											modificar_accion();
@@ -159,7 +161,6 @@ $(document).ready(function(){
 														pos_editar=pos_editar_+1;
 														editar_accion(pos_editar);
 													});
-											
 										}
 																		
 									else 
@@ -169,8 +170,9 @@ $(document).ready(function(){
 													$("#mod_componente input[name='componente']").focus();								
 													$('#mod_componente form').submit(function(evento){
 														evento.preventDefault();
-														if($('#mod_rol .agregar').attr('disabled')=='disabled'){}else{
-														insertar_componente();}
+														if($('#mod_componente .agregar').attr('disabled')=='disabled'){}else{
+															insertar_componente();
+														}
 														$("#mod_componente form")[0].reset();
 														$("#mod_componente input[name='componente']").focus();
 													});
@@ -202,10 +204,11 @@ $(document).ready(function(){
 												validar_contrasenia_man();
 												$('#manager_user form').submit(function(evento){
 													evento.preventDefault();
-													if($('#mod_rol .agregar').attr('disabled')=='disabled'){}else{
-													insertar_user();}
+													if($('#manager_user .agregar').attr('disabled')=='disabled'){}else{
+													insertar_user();
 													$("#manager_user form")[0].reset();
 													$("#manager_user #input_adm_sujeto").focus();
+													}
 												});
 												$('#manager_user .modificar').click(function(){
 													modificar_usuario();
@@ -451,7 +454,7 @@ $(document).ready(function(){
 		var id_sujeto;
 		var usuario=$("#manager_user input[name='m_user']").val();
 		var contrasenia=$("#manager_user input[name='m_contra']").val();
-		var estado=$("#manager_user input[name='m_chek']");
+		var estado=$("#manager_user input[name='m_chek']");alert('entro a insertar');
 		if(estado.is(':checked'))
 			{	var active=1;
 			}
@@ -466,7 +469,7 @@ $(document).ready(function(){
 		});
 			if(retorno_contrasenia_valido()==true){
 			$.ajax({
-				url:'/sis_biblio/manager/ccusuario/insertar/',
+				url:'/sis_biblio/manager/ccusuario/insertar',
 				data:'usuario='+usuario+'&contrasenia='+contrasenia+'&id_sujeto='+id_sujeto+'&active='+active,
 				type:'post',
 				dataType:'json',
@@ -496,9 +499,6 @@ $(document).ready(function(){
 						$("#tabla_user").append(tds);
 						$('#manager_user .confirm_contra_igual,#manager_user .confirm_contra').removeClass("icon-ok");
 						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Usuario guardado</div>");
-						$('#manager_user .modificar').click(function(){
-							modificar_usuario();
-						});
 						$('#manager_user .eliminar').click(function(){
 							var pos_=$("#manager_user #tabla_user td .eliminar").index(this);
 							var pos=pos_+1;
@@ -556,7 +556,6 @@ $(document).ready(function(){
 		var usuario=$("#manager_user input[name='m_user']").val();
 		var contrasenia=$("#manager_user input[name='m_contra']").val();
 		var estado=$("#manager_user input[name='m_chek']");
-		console.info(estado);
 		if(estado.is(':checked'))
 			{	var active='Habilitado';
 				estado=1;
