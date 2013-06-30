@@ -42,7 +42,7 @@ table thead .action_table{width: 12%;}
 /*STAR CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #consult_related input{width: 260px;}
-#consult_related .consult_right.well{height: 303px;width: 365px;}
+#consult_related .consult_right.well{height: 312px;width: 365px;}
 #consult_related .consult_student,#consult_related .consult_asesor{display: none;}
 #consult_related .active_consult{display: block;}
 #actual_tesis input{width: 247px;}
@@ -56,7 +56,7 @@ table thead .action_table{width: 12%;}
 #consult_student form fieldset{margin-left: 0px;}
 #consult_student form .control-group .controls{margin-left: 60px;}
 #consult_student form .control-group{margin-bottom: 0px;}
-#consult_asesor .table_dates_{height: 117px;}
+#consult_asesor .table_dates_{height: 116px;}
 /*END CONSTANCIA*/
 /*STAR USER*/
 .form_user{float:left; font-weight: bold;width: 75%;}

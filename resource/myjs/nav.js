@@ -58,16 +58,8 @@ $(document).ready(function(){
 
 				aparecer_input();
 				validar();
-
-				$('#module_constancia').click(function(){
-				active_consult('.consult_student', '.consult_asesor');
-				}); 		
 			}
 		});
-	}
-	function active_consult(active,desactive)
-	{	$(active).addClass('active_consult');
-		$(desactive).removeClass('active_consult');
 	}
 	function aparecer_input()
 	{
@@ -282,7 +274,6 @@ $(document).ready(function(){
 					$('#mod_rol .eliminar').click(function(){
 						var pos_=$("#mod_rol #table_aum td .eliminar").index(this);
 						var pos=pos_+1;
-						cancelar_usuario_();
 						cancelar_rol();
 						eliminar_rol(pos);
 					});
@@ -292,7 +283,7 @@ $(document).ready(function(){
 						editar_rol(pos_editar);
 					});
 					$('#mod_rol .cancelar').click(function() {
-						cancelar_usuario_();
+						cancelar_rol();
 					});
 					$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol guardado</div>")
 				},

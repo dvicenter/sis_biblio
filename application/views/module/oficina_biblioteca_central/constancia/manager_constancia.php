@@ -10,9 +10,10 @@
 			array($titulo='Implementaci&oacute;n de un sistema de informaci&oacute;n',$bachiller='Mariafernanda Nicho Alvarado',$asesor='Ing. Cesar Nicho Diaz',$facultad='FIISI'),
 			array($titulo='Sistema web a medidas',$bachiller='Alexander Nicho Alvarado',$asesor='Ing. Deyvis Valladares',$facultad='FIISI')
 			);?>
+<script src="/sis_biblio/resource/myjs/solicitud_constancia.js" type="text/javascript"></script>
 <div id="module_constancia">
     <ul class="control">
-      <li class="menu-control"><a href="" class="btn btn-info"><i class="icon-upload icon-white"></i> Exportar</a></li>
+      <li class="menu-control"><button class="btn btn-info" disabled><i class="icon-upload icon-white"></i>Exportar</button></li>
     </ul>
   <table class="table table-striped table-bordered table-condensed table-hover">
     <thead>
