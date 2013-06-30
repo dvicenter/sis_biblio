@@ -59,11 +59,7 @@ table thead .action_table{width: 12%;}
 #consult_asesor .table_dates_{height: 117px;}
 /*END CONSTANCIA*/
 /*STAR USER*/
-<<<<<<< HEAD
 .form_user{float:left; font-weight: bold;width: 75%;}
-=======
-.form_user{float:left; font-weight: bold;width: 66%;}
->>>>>>> 669a8940ec3b2b693900e8ba72acb02457b96bc5
 .form_user label{ font-weight: bold;}
 #mod_request_record{margin-left: 4%;margin-right: 4%;}
 #mod_request_record label{width: 104px;}

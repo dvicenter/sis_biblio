@@ -21,8 +21,8 @@
 		<div class="btn_mantenimiento">
 			<fieldset>
 				<input type="submit" class="btn btn-primary agregar" value="Agregar" />
-				<a style="cursor:no-drop;" class="btn btn-info modificar" href="javascript:;" disabled>Modificar</a>
-				<a style="cursor:no-drop;" class="btn cancelar" href="javascript:;" disabled>Cancelar</a>
+				<button style="cursor:no-drop;" class="btn btn-info modificar" href="javascript:;" disabled>Modificar</button>
+				<button style="cursor:no-drop;" class="btn cancelar" href="javascript:;" disabled>Cancelar</button>
 			</fieldset>
 		</div>    
 	</form>

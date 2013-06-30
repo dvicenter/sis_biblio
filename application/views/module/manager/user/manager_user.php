@@ -5,7 +5,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="input_adm_sujeto">Sujeto:</label> 
 			  <div class="controls">
-				<input id="input_adm_sujeto" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+				<input autocomplete="off" id="input_adm_sujeto" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 				<p style="font-weight: normal;" class="help-block">Ejm: Garc&iacute;a Fernando</p>
 				<input type="hidden" name="id_usuario_man"/>
 				<input type="hidden" name="id_sujeto_man"/>
@@ -16,7 +16,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="input_adm_user">User:</label>
 			  <div class="controls">
-				<input id="input_adm_user" name="m_user" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+				<input autocomplete="off" id="input_adm_user" name="m_user" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 				<p class="help-block"></p>
 			  </div>
 			</div>
@@ -52,8 +52,8 @@
 			<div class="btn_mantenimiento">
 				<fieldset>
 					<input type="submit" class="btn btn-primary agregar" value='Agregar' />
-					<a style="cursor:no-drop;" class="btn btn-info modificar" href="javascript:;" disabled>Modificar</a>
-					<a style="cursor:no-drop;" class="btn cancelar" href="javascript:;" disabled>Cancelar</a>
+					<button style="cursor:no-drop;" class="btn btn-info modificar" href="javascript:;" disabled>Modificar</button>
+					<button style="cursor:no-drop;" class="btn cancelar" href="javascript:;" disabled>Cancelar</button>
 				</fieldset>
 			</div>		
 		</form>

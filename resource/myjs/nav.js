@@ -45,9 +45,6 @@ $(document).ready(function(){
 	$('#load_voucher').click(function(){
 		load_module_not_date('/sis_biblio/module/voucher/voucher', '#load_voucher', 'null');
 	});
-
-	
-	
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
 		$.ajax({
@@ -68,14 +65,10 @@ $(document).ready(function(){
 			}
 		});
 	}
-
-	
 	function active_consult(active,desactive)
 	{	$(active).addClass('active_consult');
 		$(desactive).removeClass('active_consult');
 	}
-
-	
 	function aparecer_input()
 	{
 		var check  = $(".opcion").children();
@@ -95,7 +88,6 @@ $(document).ready(function(){
 				}
 			});
 		}).change();
-
 	}
 	
 });
@@ -107,7 +99,6 @@ $(document).ready(function(){
 					beforeSend:function()
 						{
 							$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
-
 						},
 					success:function(data)
 						{
@@ -117,11 +108,14 @@ $(document).ready(function(){
 
 							if($("#mod_rol").is(":visible") == true)
 								{	$("#mod_rol input[name='rol']").focus();
-									$('#mod_rol form').submit(function(evento){
-										evento.preventDefault();
+									
+								$('#mod_rol form').submit(function(evento){
+									evento.preventDefault();
+									if($('#mod_rol .agregar').attr('disabled')=='disabled'){}else{
 										insertar_rol();
 										$("#mod_rol form")[0].reset();
 										$("#mod_rol input[name='rol']").focus();
+									}
 									});
 									$('#mod_rol .modificar').click(function(){
 										modificar_rol();
@@ -129,6 +123,7 @@ $(document).ready(function(){
 									$('#mod_rol .eliminar').click(function(){
 										var pos_=$("#mod_rol #table_aum td .eliminar").index(this);
 										var pos=pos_+1;
+										cancelar_rol();
 										eliminar_rol(pos);
 									});
 									$('#mod_rol #table_aum td .editar').click(function() {
@@ -138,12 +133,7 @@ $(document).ready(function(){
 									});
 									$('#mod_rol .cancelar').click(function() {
 										$("#mod_rol input[name='rol']").focus();
-										$('#mod_rol .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
-										$('#mod_rol .modificar').attr('disabled',true).css({'cursor':'no-drop'});
-										$("#mod_rol form")[0].reset();
-										$("#mod_rol input[name='rol']").attr('value','');
-										$("#mod_rol input[name='id-rol']").attr('value','');
-										$('#mod_rol form .agregar').attr('disabled',false).css({'cursor':''});										
+										cancelar_rol();										
 									});
 								}
 							else 
@@ -155,7 +145,8 @@ $(document).ready(function(){
 											});
 											$('#mod_accion form').submit(function(evento){
 												evento.preventDefault();
-											insertar_accion();
+												if($('#mod_rol .agregar').attr('disabled')=='disabled'){}else{
+											insertar_accion();}
 											});
 											$('#mod_accion .modificar').click(function(){
 											modificar_accion();
@@ -164,16 +155,12 @@ $(document).ready(function(){
 											$('#mod_accion .eliminar').click(function(){
 														var pos_=$("#mod_accion #table_acc td .eliminar").index(this);
 														var pos=pos_+1;
+														cancelar_accion();
 														eliminar_accion(pos);
 											});
 											$('#mod_accion .cancelar').click(function() {
-														$("#mod_accion input[name='accion']").focus();
-														$('#mod_accion .cancelar').attr('disabled',true);
-														$('#mod_accion .modificar').attr('disabled',true);
-														$("#mod_accion form")[0].reset();
-														$("#mod_accion input[name='accion']").attr('value','');
-														$("#mod_accion input[name='id_acc']").attr('value','');
-														$('#mod_accion form .agregar').attr('disabled',false);
+												$("#mod_accion input[name='accion']").focus();
+														cancelar_accion();
 											});
 											$('#mod_accion #table_acc td .editar').click(function() {
 														var pos_editar_=$("#table_acc td .editar").index(this);
@@ -190,7 +177,8 @@ $(document).ready(function(){
 													$("#mod_componente input[name='componente']").focus();								
 													$('#mod_componente form').submit(function(evento){
 														evento.preventDefault();
-														insertar_componente();
+														if($('#mod_rol .agregar').attr('disabled')=='disabled'){}else{
+														insertar_componente();}
 														$("#mod_componente form")[0].reset();
 														$("#mod_componente input[name='componente']").focus();
 													});
@@ -200,16 +188,11 @@ $(document).ready(function(){
 													$('#mod_componente .eliminar').click(function(){
 														var pos_=$("#mod_componente #table_comp td .eliminar").index(this);
 														var pos=pos_+1;
+														cancelar_componente();
 														eliminar_componente(pos);
 													});
 													$('#mod_componente .cancelar').click(function() {
-														$("#mod_componente input[name='componente']").focus();
-														$('#mod_componente .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
-														$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
-														$("#mod_componente form")[0].reset();
-														$("#mod_componente input[name='componente']").attr('value','');
-														$("#mod_componente input[name='id_comp']").attr('value','');
-														$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
+														cancelar_componente();
 													});
 													$('#mod_componente #table_comp td .editar').click(function() {
 														var pos_editar_=$("#table_comp td .editar").index(this);
@@ -227,7 +210,8 @@ $(document).ready(function(){
 												validar_contrasenia_man();
 												$('#manager_user form').submit(function(evento){
 													evento.preventDefault();
-													insertar_user();
+													if($('#mod_rol .agregar').attr('disabled')=='disabled'){}else{
+													insertar_user();}
 													$("#manager_user form")[0].reset();
 													$("#manager_user #input_adm_sujeto").focus();
 												});
@@ -237,21 +221,12 @@ $(document).ready(function(){
 												$('#manager_user .eliminar').click(function(){
 													var pos_=$("#manager_user #tabla_user td .eliminar").index(this);
 													var pos=pos_+1;
+													cancelar_usuario_();
 													eliminar_usuario(pos);
 												});
 												$('#manager_user .cancelar').click(function() {
 													$("#manager_user #input_adm_sujeto").focus();
-													$("#manager_user #input_adm_sujeto").attr('disabled',false);
-													$("#manager_user #input_adm_sujeto").attr('value','').css({'cursor':''});
-													$("#manager_user input[name='id_usuario_man']").attr('value','');
-													$("#manager_user input[name='id_sujeto_man']").attr('value','');
-													$('#manager_user .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
-													$('#manager_user .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
-													$("#manager_user form")[0].reset();
-													$("#manager_user input[name='m_user']").attr('value','');
-													$("#manager_user input[name='m_contra']").attr('value','');
-													$("#manager_user #input_adm_confir_contra").attr('value','');
-													$('#manager_user form .agregar').attr('disabled',false).css({'cursor':''});
+													cancelar_usuario_();
 												});
 												$('#manager_user #tabla_user td .editar').click(function() {
 													var pos_editar_=$("#tabla_user td .editar").index(this);
@@ -304,6 +279,8 @@ $(document).ready(function(){
 				$('#mod_rol .eliminar').click(function(){
 					var pos_=$("#mod_rol #table_aum td .eliminar").index(this);
 					var pos=pos_+1;
+					cancelar_usuario_();
+					cancelar_rol();
 					eliminar_rol(pos);
 				});
 				$('#mod_rol #table_aum td .editar').click(function() {
@@ -312,13 +289,7 @@ $(document).ready(function(){
 					editar_rol(pos_editar);
 				});
 				$('#mod_rol .cancelar').click(function() {
-					$("#mod_rol input[name='rol']").focus();
-					$('#mod_rol .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
-					$('#mod_rol .modificar').attr('disabled',true).css({'cursor':'no-drop'});
-					$("#mod_rol form")[0].reset();
-					$("#mod_rol input[name='rol']").attr('value','');
-					$("#mod_rol input[name='id-rol']").attr('value','');
-					$('#mod_rol form .agregar').attr('disabled',false).css({'cursor':''});
+					cancelar_usuario_();
 				});
 				$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol guardado</div>")
 			},
@@ -382,10 +353,9 @@ $(document).ready(function(){
 	}
 	/*END ABM ROL*/
 	function insertar_accion()
-	{
-					var accion=$("#mod_accion input[name='accion']").val();
-					//validar_accion();
-					$.ajax({
+	{	var accion=$("#mod_accion input[name='accion']").val();
+		//validar_accion();
+		$.ajax({
 						url:'/sis_biblio/manager/ccaccion/insertar',
 						data:'accion='+accion,
 						type:'post',
@@ -411,16 +381,11 @@ $(document).ready(function(){
 							$('#mod_accion #table_acc td .editar').click(function(){
 								var pos_editar_=$("#table_acc td .editar").index(this);
 								pos_editar=pos_editar_+1;
+								cancelar_accion();
 								editar_accion(pos_editar);
 							});
 							$('#mod_accion .cancelar').click(function(){
-								$("#mod_accion input[name='accion']").focus();
-								$('#mod_accion .cancelar').attr('disabled',true);
-								$('#mod_accion .modificar').attr('disabled',true);
-								$("#mod_accion form")[0].reset();
-								$("#mod_accion input[name='accion']").attr('value','');
-								$("#mod_accion input[name='id_acc']").attr('value','');
-								$('#mod_accion form .agregar').attr('disabled',false);
+								cancelar_accion();
 							});
 							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion guardado</div>");
 						},
@@ -437,8 +402,8 @@ $(document).ready(function(){
 		$("#mod_accion input[name='id_acc']").attr('value',idaccion);
 		$("#mod_accion input[name='accion']").attr('value',accion);
 		$("#mod_accion input[name='accion']").focus();
-		$('#mod_accion .modificar').attr('disabled',false);
-		$('#mod_accion .cancelar').attr('disabled',false);
+		$('#mod_accion .modificar').attr('disabled',false).css('cursor','');
+		$('#mod_accion .cancelar').attr('disabled',false).css('cursor','');
 	}
 	function modificar_accion()
 	{	var idacc=$("#mod_accion input[name='id_acc']").attr('value');
@@ -453,9 +418,9 @@ $(document).ready(function(){
 							$("#mod_accion form")[0].reset();
 							$("#mod_accion input[name='accion']").attr('value','');
 							$("#mod_accion input[name='id_acc']").attr('value','');
-							$('#mod_accion form .agregar').attr('disabled',false);
-							$('#mod_accion .modificar').attr('disabled',true);
-							$('#mod_accion form .cancelar').attr('disabled',true);
+							$('#mod_accion form .agregar').attr('disabled',false).css('cursor','');
+							$('#mod_accion .modificar').attr('disabled',true).css('cursor','no-drop');
+							$('#mod_accion form .cancelar').attr('disabled',true).css('cursor','no-drop');
 							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion modificado</div>");
 									
 								},
@@ -525,14 +490,15 @@ $(document).ready(function(){
 						contrasenia=b.contrasenia;
 						active=b.active;
 					});
-					if(active==1){active='Habilitado';} else{active='Desahabilitado';}
+					if(active==1){estado='Habilitado';} else{estado='Desahabilitado';}
 					$('tr:last td', $("#tabla_user"));
 					var tds = '<tr>';							
-						tds += "<td style='display:none;'>"+id_usuario+"</td><td style='display:none;'>"+id_sujeto+'</td><td>'+sujeto+'</td><td>'+usuario+"</td><td style='display:none;'>"+contrasenia+'</td><td>'+active+'</td>'+
+						tds += "<td style='display:none;'>"+id_usuario+"</td><td style='display:none;'>"+id_sujeto+'</td><td>'+sujeto+'</td><td>'+usuario+"</td><td style='display:none;'>"+contrasenia+"</td><td name="+active+">"+estado+'</td>'+
 							"<td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td>"+
 							"<td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";							
 						tds += '</tr>';
 						$("#tabla_user").append(tds);
+						$('#manager_user .confirm_contra_igual,#manager_user .confirm_contra').removeClass("icon-ok");
 						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Usuario guardado</div>");
 						$('#manager_user .modificar').click(function(){
 							modificar_usuario();
@@ -624,9 +590,11 @@ $(document).ready(function(){
 						$("#manager_user input[name='m_contra']").attr('value','');
 						$("#manager_user #input_adm_confir_contra").attr('value','');
 						$('#manager_user form .agregar').attr('disabled',false).css({'cursor':''});
-						$('#manager_user .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
-						$('#manager_user form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
-						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>");
+						/*$('#manager_user .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
+						$('#manager_user form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});*/
+						$('#manager_user .confirm_contra_igual,#manager_user .confirm_contra').removeClass("icon-remove");
+						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Usuario modificado</div>");
+						cancelar_usuario_();
 					},
 					error:function(data)
 						{	$('#manager_user .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
@@ -731,16 +699,11 @@ $(document).ready(function(){
 					$('#mod_componente #table_comp td .editar').click(function() {
 						var pos_editar_=$("#table_comp td .editar").index(this);
 						pos_editar=pos_editar_+1;
+						cancelar_componente();
 						editar_componente(pos_editar);
 					});
 					$('#mod_componente .cancelar').click(function() {
-						$("#mod_componente input[name='componente']").focus();
-						$('#mod_componente .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
-						$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});
-						$("#mod_componente form")[0].reset();
-						$("#mod_componente input[name='componente']").attr('value','');
-						$("#mod_componente input[name='id_comp']").attr('value','');
-						$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
+						cancelar_componente();
 					});
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>");
 				},
@@ -978,4 +941,45 @@ $(document).ready(function(){
 			resultado=false;
 		}
 		return resultado;
+	}
+	function cancelar_usuario_()
+	{
+		
+		$("#manager_user #input_adm_sujeto").attr('disabled',false);
+		$("#manager_user #input_adm_sujeto").attr('value','').css({'cursor':''});
+		$("#manager_user input[name='id_usuario_man']").attr('value','');
+		$("#manager_user input[name='id_sujeto_man']").attr('value','');
+		$('#manager_user .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
+		$('#manager_user .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
+		$("#manager_user form")[0].reset();
+		$("#manager_user input[name='m_user']").attr('value','');
+		$("#manager_user input[name='m_contra']").attr('value','');
+		$("#manager_user #input_adm_confir_contra").attr('value','');
+		$('#manager_user form .agregar').attr('disabled',false).css({'cursor':''});
+	}
+	function cancelar_rol()
+	{
+		$('#mod_rol .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
+		$('#mod_rol .modificar').attr('disabled',true).css({'cursor':'no-drop'});
+		$("#mod_rol form")[0].reset();
+		$("#mod_rol input[name='rol']").attr('value','');
+		$("#mod_rol input[name='id-rol']").attr('value','');
+		$('#mod_rol form .agregar').attr('disabled',false).css({'cursor':''});
+	}
+	function cancelar_accion()
+	{	
+		$('#mod_accion .cancelar').attr('disabled',true).css('cursor','no-drop');
+		$('#mod_accion .modificar').attr('disabled',true).css('cursor','no-drop');
+		$("#mod_accion form")[0].reset();
+		$("#mod_accion input[name='accion']").attr('value','');
+		$("#mod_accion input[name='id_acc']").attr('value','');
+		$('#mod_accion form .agregar').attr('disabled',false).css('cursor','');
+	}
+	function cancelar_componente(){
+		$('#mod_componente .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
+		$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});
+		$("#mod_componente form")[0].reset();
+		$("#mod_componente input[name='componente']").attr('value','');
+		$("#mod_componente input[name='id_comp']").attr('value','');
+		$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
 	}
