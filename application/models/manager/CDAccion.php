@@ -7,16 +7,24 @@
 	        $this->load->database();
 		}
 
-		function listar()
-		{
-			$pInicio=0;
-			$pFinal=16;
-			$query = "CALL SPRCNSAccion(1,".$pInicio.",".$pFinal.")";
-			$query = $this->db->query($query);
-			
-			return $query->result_array();
-		}
+        function num_accion()
+        {   
+            return $this->db->get('tbl_accion')->num_rows();
+        }
 
+		function listar($per_page)
+		{
+		//	$pInicio=0;
+		//	$pFinal=16;
+		//	$query = "CALL SPRCNSAccion(1,".$pInicio.",".$pFinal.")";
+		//	$query = $this->db->query($query);
+		
+		//	return $query->result_array();
+        
+            $datos = $this->db->get('tbl_accion',$per_page,$this->uri->segment(3));
+            return $datos->result_array();
+		}
+        
 		function insertar($accion)
 		{                  
 			if ($this->db->query("CALL SPRABMAccion(1,1,'$accion')")) 
