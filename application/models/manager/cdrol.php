@@ -30,7 +30,7 @@
 						'id_rol' => $id_rol,
 						'rol' => $rol,
 						'descripcion' => $descripcion
-		);
+			);
 			$query = "CALL SPRABMRol(2,'$id_rol','$rol','$descripcion')";
 			if($this->db->query($query))
 			{	return $data;
