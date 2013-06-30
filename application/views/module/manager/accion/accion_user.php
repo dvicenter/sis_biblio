@@ -36,28 +36,21 @@
 				
 		    </thead>
 			<tbody>
-				<?php  foreach($acciones as $accion){?>
+				<?php foreach($accion as $acc):?>
 				<tr>
-					<td style="display:none;"><?php echo $accion['id_accion']?></td>
-					<td><?php echo $accion['accion'];?></td>
-					<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
+    				<td style="display:none;"><?php echo $acc['id_accion']?></td>
+  					<td><?php echo $acc['accion']?></td>
+                    <td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
 					<td style="text-align:center;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
+                <?php  endforeach; ?>
 				</tr>
-				<?php }?>
 			</tbody>
 		</table>
-		</div>
-		<div class="pagination loading">
+        <div class="pagination loading">
 		  <ul name="paginador_accion">
-			<li><a href="#"><</a></li>
-			<li class="active">
-			  <a href="#">1</a>
-			</li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">></a></li>
+			<li><?php echo $paginacion; ?></li>
 		  </ul>
 		</div>
 </div>
+        
 	
