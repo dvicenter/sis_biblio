@@ -359,7 +359,8 @@ $(document).ready(function(){
 	/*END ABM ROL*/
 	function insertar_accion()
 	{	var accion=$("#mod_accion input[name='accion']").val();
-		//validar_accion();
+		var fallos = validar_accion();
+		if (fallos == 0){
 		$.ajax({
 						url:'/sis_biblio/manager/ccaccion/insertar',
 						data:'accion='+accion,
@@ -398,6 +399,7 @@ $(document).ready(function(){
 							$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
 						}
 					});
+			};
 	}
 	function editar_accion(pos_editar)
 	{
@@ -638,6 +640,7 @@ $(document).ready(function(){
 		var voucher=$('#input_man_voucher').val();
 		var correo=$('#input_man_correo').val();
 		var introduccion=$("#mod_request_record textarea[name='introduccion_tes']").val();
+		if (introduccion=="") {alert('Vacio D:')};
 		var objetivo=$("#mod_request_record textarea[name='objetivo_tes']").val();
 		var resumen=$("#mod_request_record textarea[name='resumen_tes']").val();
 		var conclusion=$("#mod_request_record textarea[name='conclusion_tes']").val();
@@ -676,7 +679,8 @@ $(document).ready(function(){
 	function insertar_componente()
 	{	var componente=$("#mod_componente input[name='componente']").val();
 		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").val();
-		validar_componente();
+		var fallos = validar_componente();
+		if (fallos == 0) {
 			$.ajax({
 				url:'/sis_biblio/manager/cccomponente/insertar',
 				data:'componente='+componente+'&descripcion_componente='+descripcion_componente,
@@ -716,6 +720,7 @@ $(document).ready(function(){
 				{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
 				}
 			});
+			};
 		}
 	function editar_componente(pos_editar)
 	{	$('#mod_componente form .agregar').attr('disabled',true).css({'cursor':'no-drop'});
@@ -784,17 +789,20 @@ $(document).ready(function(){
 	}
 
 	function validar_componente()
-	{	var res = $('#input01').validCampo(/^[a-zA-Z_-\s]*$/,'#form_component','No se aceptan caracteres especiales.');
-		$('#comment_body').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_component','No se aceptan caracteres especiales.');
+	{	var res;
+		var res1 = $('#input_man_componente').validCampo(/^[a-zA-Z_-\s]*$/,'#form_component','No se aceptan caracteres especiales.');
+		var res2 = $('#comment_body').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_component','No se aceptan caracteres especiales.');
+		res = res1 + res2;
 		 return res;
 	}
 	function validar_accion(){
 		var res = $('#input_man_accion').validCampo(/^[a-zA-z\s]*$/,'#form_accion','Se acepta solo caracteres alfabeticos.');
 		return res;
 	}
-	function validar_rol(){
-		var res =	$('#input_man_rol').validCampo(/^[a-zA-z\s]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
-		$('#inpur_man_descripcion').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
+	function validar_rol(){var res;
+		var res1 =	$('#input_man_rol').validCampo(/^[a-zA-Z-_ áéíóú \xF1 \xD1 ÁÉÍÓÚ\s]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
+		var res2=$('#inpur_man_descripcion').validCampo(/^[a-zA-Z-_áéíóúÁÉÍÓÚ \xF1 \xD1 \s\.]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
+		res=res1+res2;
 		return res;
 	}
 	function validar_tesis(){
