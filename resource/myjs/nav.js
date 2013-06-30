@@ -409,6 +409,7 @@ $(document).ready(function(){
 	function modificar_accion()
 	{	var idacc=$("#mod_accion input[name='id_acc']").attr('value');
 		var accion=$("#mod_accion input[name='accion']").attr('value');
+		console.info(accion);
 			$.ajax({
 						url:'/sis_biblio/manager/ccaccion/modificar',
 						data:'id_accion='+idacc+'&accion='+accion,
