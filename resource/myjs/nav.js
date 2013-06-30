@@ -255,48 +255,53 @@ $(document).ready(function(){
 	function insertar_rol()
 	{	var rol=$("#mod_rol input[name='rol']").val();
 		var descripcion=$("#mod_rol textarea[name='text_rol']").val();
-		$.ajax({
-			url:'/sis_biblio/manager/ccrol/insertar',
-			data:'rol='+rol+'&descripcion_rol='+descripcion,
-			type:'post',
-			dataType:'json',
-			success:function(data){
-				var id_rol;
-				var rol;
-				var descripcion;
-				$.each(data,function(a,b){
-					id_rol=b.id_rol;
-					rol=b.rol;
-					descripcion=b.descripcion;
-				});
-				$('tr:last td', $("#table_aum"));
-				var tds = '<tr>';							
-				tds += "<td style='display:none;'>"+id_rol+'</td><td>'+rol+'</td><td>'+descripcion+"</td>" +
-						"<td style='text-align:center;'><button class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td>" +
-						"<td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white'></i></button></td>";						
-				tds += '</tr>';
-				$("#table_aum").append(tds);
-				$('#mod_rol .eliminar').click(function(){
-					var pos_=$("#mod_rol #table_aum td .eliminar").index(this);
-					var pos=pos_+1;
-					cancelar_usuario_();
-					cancelar_rol();
-					eliminar_rol(pos);
-				});
-				$('#mod_rol #table_aum td .editar').click(function() {
-					var pos_editar_=$("#table_aum td .editar").index(this);
-					pos_editar=pos_editar_+1;
-					editar_rol(pos_editar);
-				});
-				$('#mod_rol .cancelar').click(function() {
-					cancelar_usuario_();
-				});
-				$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol guardado</div>")
-			},
-			error:function(data)
-				{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>")
-				}
-		});
+		var fallos = validar_rol();
+		if (fallos == 0) {
+			
+			$.ajax({
+				url:'/sis_biblio/manager/ccrol/insertar',
+				data:'rol='+rol+'&descripcion_rol='+descripcion,
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					var id_rol;
+					var rol;
+					var descripcion;
+					$.each(data,function(a,b){
+						id_rol=b.id_rol;
+						rol=b.rol;
+						descripcion=b.descripcion;
+					});
+					$('tr:last td', $("#table_aum"));
+					var tds = '<tr>';							
+					tds += "<td style='display:none;'>"+id_rol+'</td><td>'+rol+'</td><td>'+descripcion+"</td>" +
+							"<td style='text-align:center;'><button class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td>" +
+							"<td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white'></i></button></td>";						
+					tds += '</tr>';
+					$("#table_aum").append(tds);
+					$('#mod_rol .eliminar').click(function(){
+						var pos_=$("#mod_rol #table_aum td .eliminar").index(this);
+						var pos=pos_+1;
+						cancelar_usuario_();
+						cancelar_rol();
+						eliminar_rol(pos);
+					});
+					$('#mod_rol #table_aum td .editar').click(function() {
+						var pos_editar_=$("#table_aum td .editar").index(this);
+						pos_editar=pos_editar_+1;
+						editar_rol(pos_editar);
+					});
+					$('#mod_rol .cancelar').click(function() {
+						cancelar_usuario_();
+					});
+					$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol guardado</div>")
+				},
+				error:function(data)
+					{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>")
+					}
+			});
+			
+		};
 	}
 	function editar_rol(pos_editar)
 	{	$('#mod_rol form .agregar').attr('disabled',true).css({'cursor':'no-drop'});
@@ -779,61 +784,71 @@ $(document).ready(function(){
 	}
 
 	function validar_componente()
-	{	$('#input_man_componente').validCampo(/^[a-zA-Z_-\s][_a-z0-9-]*$/,'#form_component','No se aceptan caracteres especiales.');
+	{	var res = $('#input01').validCampo(/^[a-zA-Z_-\s]*$/,'#form_component','No se aceptan caracteres especiales.');
 		$('#comment_body').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_component','No se aceptan caracteres especiales.');
+		 return res;
 	}
 	function validar_accion(){
-		$('#input_man_accion').validCampo(/^[a-zA-z\s]*$/,'#form_accion','Se acepta solo caracteres alfabeticos.');
+		var res = $('#input_man_accion').validCampo(/^[a-zA-z\s]*$/,'#form_accion','Se acepta solo caracteres alfabeticos.');
+		return res;
 	}
 	function validar_rol(){
-		$('#input_man_rol').validCampo(/^[a-zA-z\s]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
+		var res =	$('#input_man_rol').validCampo(/^[a-zA-z\s]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
 		$('#inpur_man_descripcion').validCampo(/^[a-zA-z_-\s\.]*$/,'#form_rol','Se acepta solo caracteres alfabeticos.');
+		return res;
 	}
 	function validar_tesis(){
-		$('#titulo').validCampo(/^[a-zA-Z_-Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s\.\d]*$/,'#form_nuevo_tesis','No acepta caracteres especiales.');
-		$('#autor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
-		$('#asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
+		var res = $('#titulo').validCampo(/^[a-zA-Z_-áéíóúÁÉÍÓÚ \xF1 \xD1 \s\.\d]*$/,'#form_nuevo_tesis','No acepta caracteres especiales.');
+		$('#autor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
+		$('#asesor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
 		$('#anio').validCampo(/[\d{2}\/\d{2}\/\d{4}]/,'#form_nuevo_tesis','Se acepta solo caracteres alfabeticos.');
-		$('#input_introduccion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
-		$('#input_objetivo').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
-		$('#input_resumen').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
-		$('#input_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_introduccion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_objetivo').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_resumen').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		$('#input_conclusion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
+		return res;
 	}
 	function validar_solicitar_constancia()
-	{	var resultado;
-		var asesor=$('#input_man_asesor').validCampo(/^[a-zA-zÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s,]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
-		var titulo=$('#input_man_titulo').validCampo(/^[a-zA-Z_-Ã¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“Ãš \xF1 \xD1 \s\.\d]*$/,'#form_user','No acepta caracteres especiales.');
-		var voucher=$('#input_man_voucher').validCampo(/^[\d]*$/,'#form_user','Se aceptan solo caracteres numericos.');
-		var correo=$('#input_man_correo').validCampo(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/,'#form_user','Verifique que tenga formato de correo electronico.');
-		var introduccion=$('#input_user_introduccion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		var objetivo=$('#input_user_objetivo').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		var resumen=$('#input_user_resumen').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		var conclusion=$('#input_user_conclusion').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
-		console.info(asesor,titulo,voucher,correo,introduccion,objetivo,resumen,conclusion);
-		if((asesor==true)&&(titulo==true)&&(voucher==true)&&(correo==true)&&(introduccion==true)&&(objetivo==true)&&(resumen==true)&&(conclusion==true))
-		{	resultado=true;
-		}
-		else
-		{	resultado=false;
-		}
-		return resultado;
+	{	
+		var res=$('#input_man_asesor').validCampo(/^[a-zA-záéíóúÁÉÍÓÚ \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
+		$('#input_man_titulo').validCampo(/^[a-zA-Z_-áéíóúÁÉÍÓÚ \xF1 \xD1 \s\.\d]*$/,'#form_user','No acepta caracteres especiales.');
+		$('#input_man_voucher').validCampo(/^[\d]*$/,'#form_user','Se aceptan solo caracteres numericos.');
+		$('#input_man_correo').validCampo(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/,'#form_user','Verifique que tenga formato de correo electronico.');
+		$('#input_user_introduccion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		$('#input_user_objetivo').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		$('#input_user_resumen').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		$('#input_user_conclusion').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		console.log(res);
+		
+		return res;
 	}
 	function validar_usuario()
-	{	$('#input_adm_sujeto').validCampo(/^[a-zA-Z_-\s]*$/,'#form_adm_user','No se aceptan caracteres especiales.');
+	{	
+		var res = $('#input_adm_sujeto').validCampo(/^[a-zA-Z_-\s]*$/,'#form_adm_user','No se aceptan caracteres especiales.');
 		$('#input_adm_user').validCampo(/^[a-zA-Z_-\d]*$/,'#form_adm_user','No se aceptan caracteres especiales.');
-		$('#input_adm_contra').validCampo(/^[a-zA-z-_Ã¡Ã©Ã­Ã³Ãº \xF1 \xD1 Ã�Ã‰Ã�Ã“Ãš\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_adm_user','No se aceptan caracteres especiales.');
+		$('#input_adm_contra').validCampo(/^[a-zA-z-_áéíóú \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_adm_user','No se aceptan caracteres especiales.');
+		return res;
 	}
 	function validar_file()
-	{	$('#input_control').validCampo(/^.+\.txt$/,'#form_voucher','Solo se acepta formato .txt');
+	{	
+		var res = $('#input_control').validCampo(/^.+\.txt$/,'#form_voucher','Solo se acepta formato .txt');
+		return res;
 	}
 	function validar_asignacion_rol()
-	{	$('#input_rol_asig').validCampo(/^[a-zA-z\s]*$/,'#form_rol_asig','Se acepta solo caracteres alfabeticos.');
+	{	
+		var res = $('#input_rol_asig').validCampo(/^[a-zA-z\s]*$/,'#form_rol_asig','Se acepta solo caracteres alfabeticos.');
+		return res;
 	}
+
 	function validar_asignacion_rol_componente()
-	{	$('#input_comp_asig').validCampo(/^[a-zA-z\s]*$/,'#form_comp_asig','Se acepta solo caracteres alfabeticos.');
+	{	
+		var res = $('#input_comp_asig').validCampo(/^[a-zA-z\s]*$/,'#form_comp_asig','Se acepta solo caracteres alfabeticos.');
+		return res;
 	}
 	function validar_componente_accion()
-	{	$('#input_acc_asig').validCampo(/^[a-zA-z\s]*$/,'#form_acc_asig','Se acepta solo caracteres alfabeticos.');
+	{	
+		var res = $('#input_acc_asig').validCampo(/^[a-zA-z\s]*$/,'#form_acc_asig','Se acepta solo caracteres alfabeticos.');
+		return res;
 	}
 	function validar_asesor(asesor)
 	{	var resultado=false;
