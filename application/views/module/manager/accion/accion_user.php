@@ -62,8 +62,9 @@
                   },
                   success: function(msg) {
                     console.info(msg);
-                    var i=1;
+                    
                     $.each(msg,function(a,b){
+                    	var i=1;
                     	$.each(b,function(c,d){
 	                        console.info(d.id_accion);
 	                        $('#table_acc tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_accion);
