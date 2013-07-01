@@ -55,13 +55,12 @@
                 var url = $(this).attr("href");
                 $.ajax({
                   type: "POST",
-                  data: "ajax=1",
                   url: url,
                   beforeSend: function() {
                     $("#table_acc").html();
                   },
                   success: function(msg) {
-                    console.info(url);
+                    console.info(msg);
                     $("#table_acc").html(msg);
                     applyPagination();
                   }

@@ -20,8 +20,7 @@
 		//	$query = $this->db->query($query);
 		
 		//	return $query->result_array();
-        
-            $datos = $this->db->get('tbl_accion',$per_page,$this->uri->segment(3));
+            $datos = $this->db->get('tbl_accion',$per_page,$this->uri->segment(4));
             return $datos->result_array();
 		}
         
