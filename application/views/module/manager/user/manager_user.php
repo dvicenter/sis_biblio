@@ -74,32 +74,80 @@
 	     		</tr>
 	    	</thead>
 			<tbody>
-				<?php foreach($usuario as $user_usuario){?>
+				<?php foreach($usuario as $user_usuario):?>
 					<tr>
-						<td style="display:none;"><?php echo $user_usuario['id_usuario']?></td>
-						<td style="display:none;"><?php echo $user_usuario['id_sujeto']?></td>
+						<td style="display:none;"><?php echo $user_usuario['id_usuario']?></td>		
+                        <td style="display:none;"><?php echo $user_usuario['id_sujeto']?></td>
 						<td><?php echo $user_usuario['sujeto']?></td>
 						<td><?php echo $user_usuario['usuario']?></td>
 						<td style="display:none;"><?php echo $user_usuario['contrasenia']?></td>
-						<td name="<?php echo $user_usuario['active'];?>" ><?php if($user_usuario['active']==1){
+                        <td name="<?php echo $user_usuario['active'];?>" ><?php if($user_usuario['active']==1){
 									echo 'Habilitado';}
 									else {if($user_usuario['active']==0){echo 'Deshabilitado';}				
 						}?></td>
 						<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
 						<td style="text-align:center;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
-					</tr>
-				<?php }?>
+					 <?php  endforeach; ?>
+                    </tr>
 			</tbody>
 		</table>
-	</div>
-	<div class="pagination loading">
-		<ul>
-			<li><a href="#">&lt;</a></li>
-		    <li class="active"><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">&gt;</a></li>
-	  </ul>
-	</div>
+	<script>
+          $(function() {
+            applyPagination();
+        
+            function applyPagination() {
+                var z;
+              $("#paginacion_usuario a").click(function() {
+                var pos_=$(this).parent().index();
+                var pos=pos_+1;
+                var url = $(this).attr("href");
+                $.ajax({
+                  type: "POST",
+                  dataType:'json',
+                  url: url,
+                  beforeSend: function() {
+                    $("#tabla_user").html();
+                  },
+                  success: function(msg) {
+                    var i;var r;
+                    $.each(msg,function(a,b){
+                    	i=0;
+                    	$.each(b,function(c,d){
+                    		i++;
+	                        $('#tabla_user tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_usuario);
+	                        $('#tabla_user tbody tr:nth-child('+i+') td:nth-child(2)').html(d.id_sujeto);
+                            $('#tabla_user tbody tr:nth-child('+i+') td:nth-child(3)').html(d.sujeto);
+                            $('#tabla_user tbody tr:nth-child('+i+') td:nth-child(4)').html(d.usuario);
+                            $('#tabla_user tbody tr:nth-child('+i+') td:nth-child(5)').html(d.contrasenia);
+                            $('#tabla_user tbody tr:nth-child('+i+') td:nth-child(6)').html(d.active);
+	                    	if($('#tabla_user tbody tr:nth-child('+i+')').is(':visible')!=true){
+		                    	console.info('entraaa');
+	                    		$("#tabla_user tbody tr:nth-child("+i+")").fadeIn();
+	                        }    
+                    	});
+                   	 	if(i%5!=0){
+  	                      var j=i%5;
+  	                      var z=5-j;
+  	                      while(z<6){
+  	                      	$("#tabla_user tbody tr:nth-child("+z+")").fadeOut();
+  	                      	z++;
+  	                      }
+  	                      r=1;
+                       }
+                    });
+                                      
+                    $('#paginacion_usuario a').parent().removeClass('active');
+                    $('#paginacion_usuario li:nth-child('+pos+')').addClass('active');
+                  }
+                });
+                return false;
+              });
+            }
+          });
+        </script>
+        <div id="paginacion_usuario" class="pagination loading">
+		  <ul>
+		  		<?php echo $paginacion; ?>
+		  </ul>
+		</div>
 </div>

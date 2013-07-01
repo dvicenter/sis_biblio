@@ -6,17 +6,28 @@
 	        parent::__construct();
 	        $this->load->database();
 		}
+        
+       function num_usuario()
+        {   
+            return $this->db->get('viw_usuario')->num_rows();
+          }
+        
+		function listar($per_page)
+		{
+		//	$query = "CALL SPRABMUsuario(0,null,null,null,null,null)";
+		//	$query = $this->db->query($query);
+		//	return $query->result_array();
+            $datos = $this->db->get('viw_usuario',$per_page,$this->uri->segment(4));
+            return $datos->result_array();      
+		}
+
+        
 		function buscar_sujeto()
 		{	$query = "CALL SPRCNSSujeto()";
 			$query = $this->db->query($query);
 			return $query->result_array();
 		}
-		function listar()
-		{
-			$query = "CALL SPRABMUsuario(0,null,null,null,null,null)";
-			$query = $this->db->query($query);
-			return $query->result_array();
-		}
+        
 
 		function insertar($usuario,$contrasenia,$id_sujeto,$active)
 		{	if ($this->db->query("CALL SPRABMUsuario(1,2,'$usuario','$contrasenia','$id_sujeto','$active')")) 

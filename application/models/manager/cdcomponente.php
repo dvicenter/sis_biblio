@@ -7,11 +7,18 @@
 	        $this->load->database();
 		}
 
-		function listar()
+        function num_componente()
+        {   
+            return $this->db->get('tbl_componente')->num_rows();
+        }
+        
+		function listar($per_page)
 		{
-			$query = "CALL SPRABMComponente(0,null,null,null)";
-			$query = $this->db->query($query);
-			return $query->result_array();
+		//	$query = "CALL SPRABMComponente(0,null,null,null)";
+		//	$query = $this->db->query($query);
+		//	return $query->result_array();
+            $datos = $this->db->get('tbl_componente',$per_page,$this->uri->segment(4));
+            return $datos->result_array();
 		}
 
 		function insertar($componente,$descripcion_componente)
@@ -24,6 +31,7 @@
 				return $data;
 			}
 		}
+        
 		function modificar($id_componente,$componente,$descripcion_componente)
 		{	$data = array(
 						'id_componente' => $id_componente,

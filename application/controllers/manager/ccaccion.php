@@ -19,7 +19,7 @@ class Ccaccion extends CI_Controller
         $config['base_url'] = base_url().'manager/ccaccion/listar_pag/';
         $config['total_rows'] = $this->cd_accion->num_accion();
         $config['per_page'] = 5;
-        $config['num_links'] = 5;
+        $config['num_links'] = 4;
         $config['num_tag_open'] = '<li>';
         $config['num_tag_cloase'] = '</li>';
         $config['cur_tag_open'] = "<li class='active'><a href='".base_url().'manager/ccaccion/listar_pag/0'."'>";

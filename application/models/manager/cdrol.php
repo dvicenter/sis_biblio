@@ -7,11 +7,19 @@
 	        $this->load->database();
 		}
 
-		function listar()
+        function num_rol()
+        {   
+            return $this->db->get('tbl_rol')->num_rows();
+        }
+        
+		function listar($per_page)
 		{
-			$query = "CALL SPRABMRol(0,null,null,null)";
-			$query = $this->db->query($query);
-			return $query->result_array();
+		//	$query = "CALL SPRABMRol(0,null,null,null)";
+		//	$query = $this->db->query($query);
+		//	return $query->result_array();
+        
+            $datos = $this->db->get('tbl_rol',$per_page,$this->uri->segment(4));
+            return $datos->result_array();
 		}
 
 		function insertar($rol,$descripcion)

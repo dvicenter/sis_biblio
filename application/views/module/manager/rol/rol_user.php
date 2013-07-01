@@ -42,17 +42,70 @@
 	        </tr>
 	    </thead>
 		<tbody> 
-			<?php $i=0; 
-				foreach($roles as $rol){?>
+			<?php foreach($roles as $rol):?>
 				<tr>
 					<td style="display:none;"><?php echo $rol['id_rol']?></td>
 					<td><?php echo $rol['rol']?></td>
 					<td><?php echo $rol['descripcion']?></td>
 					<td style="text-align:center;"><button class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
 					<td style="text-align:center;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white"></i></button></td>
-				</tr>
-			<?php }?>
+				    <?php  endforeach; ?>
+                </tr>
 		</tbody>
-	</table>
-	</div>
+	</table><script>
+          $(function() {
+            applyPagination();
+        
+            function applyPagination() {
+                var z;
+              $("#paginacion_rol a").click(function() {
+                var pos_=$(this).parent().index();
+                var pos=pos_+1;
+                var url = $(this).attr("href");
+                $.ajax({
+                  type: "POST",
+                  dataType:'json',
+                  url: url,
+                  beforeSend: function() {
+                    $("#table_aum").html();
+                  },
+                  success: function(msg) {
+                    var i;var r;
+                    $.each(msg,function(a,b){
+                    	i=0;
+                    	$.each(b,function(c,d){
+                    		i++;
+	                        $('#table_aum tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_rol);
+	                        $('#table_aum tbody tr:nth-child('+i+') td:nth-child(2)').html(d.rol);
+                            $('#table_aum tbody tr:nth-child('+i+') td:nth-child(3)').html(d.descripcion);
+	                    	if($('#table_aum tbody tr:nth-child('+i+')').is(':visible')!=true){
+		                    	console.info('entraaa');
+	                    		$("#table_aum tbody tr:nth-child("+i+")").fadeIn();
+	                        }    
+                    	});
+                   	 	if(i%5!=0){
+  	                      var j=i%5;
+  	                      var z=5-j;
+  	                      while(z<6){
+  	                      	$("#table_aum tbody tr:nth-child("+z+")").fadeOut();
+  	                      	z++;
+  	                      }
+  	                      r=1;
+                       }
+                    });
+                                      
+                    $('#paginacion_rol a').parent().removeClass('active');
+                    $('#paginacion_rol li:nth-child('+pos+')').addClass('active');
+                  }
+                });
+                return false;
+              });
+            }
+          });
+        </script>
+        <div id="paginacion_rol" class="pagination loading">
+		  <ul>
+		  		<?php echo $paginacion; ?>
+		  </ul>
+		</div>
 </div>
