@@ -46,10 +46,33 @@
 				</tr>
 			</tbody>
 		</table>
-        <div class="pagination loading">
-		  <ul name="paginador_accion">
-			<li><?php echo $paginacion; ?></li>
-		  </ul>
+        <script>
+          $(function() {
+            applyPagination();
+        
+            function applyPagination() {
+              $("#paginacion_accion a").click(function() {
+                var url = $(this).attr("href");
+                $.ajax({
+                  type: "POST",
+                  data: "ajax=1",
+                  url: url,
+                  beforeSend: function() {
+                    $("#table_acc").html();
+                  },
+                  success: function(msg) {
+                    console.info(url);
+                    $("#table_acc").html(msg);
+                    applyPagination();
+                  }
+                });
+                return false;
+              });
+            }
+          });
+        </script>
+        <div id="paginacion_accion" class="pagination loading">
+		  <?php echo $paginacion; ?>
 		</div>
 </div>
         
