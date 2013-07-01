@@ -51,7 +51,10 @@
             applyPagination();
         
             function applyPagination() {
+                var z;
               $("#paginacion_accion a").click(function() {
+                var pos_=$(this).parent().index();
+                var pos=pos_+1;
                 var url = $(this).attr("href");
                 $.ajax({
                   type: "POST",
@@ -61,18 +64,32 @@
                     $("#table_acc").html();
                   },
                   success: function(msg) {
-                    console.info(msg);
-                    
+                    var i;var r;
                     $.each(msg,function(a,b){
-                    	var i=1;
+                    	i=0;
                     	$.each(b,function(c,d){
-	                        console.info(d.id_accion);
+                    		i++;
 	                        $('#table_acc tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_accion);
 	                        $('#table_acc tbody tr:nth-child('+i+') td:nth-child(2)').html(d.accion);
-	                        i++;
+	                    	if($('#table_acc tbody tr:nth-child('+i+')').is(':visible')!=true){
+		                    	console.info('entraaa');
+	                    		$("#table_acc tbody tr:nth-child("+i+")").fadeIn();
+	                        }    
                     	});
+                   	 	if(i%5!=0){
+  	                      var j=i%5;
+  	                      var z=5-j;
+  	                      while(z<6){
+  	                      	$("#table_acc tbody tr:nth-child("+z+")").fadeOut();
+  	                      	z++;
+  	                      }
+  	                      r=1;
+                       }
                     });
-                    applyPagination();
+                    
+                   
+                    $('#paginacion_accion a').parent().removeClass('active');
+                    $('#paginacion_accion li:nth-child('+pos+')').addClass('active');
                   }
                 });
                 return false;
@@ -81,7 +98,9 @@
           });
         </script>
         <div id="paginacion_accion" class="pagination loading">
-		  <?php echo $paginacion; ?>
+		  <ul>
+		  		<?php echo $paginacion; ?>
+		  </ul>
 		</div>
 </div>
         
