@@ -16,7 +16,7 @@ class Ccaccion extends CI_Controller
     
     function listar()
     {
-         $config['base_url'] = base_url().'manager/ccaccion/listar/';
+        $config['base_url'] = base_url().'manager/ccaccion/listar_pag/';
         $config['total_rows'] = $this->cd_accion->num_accion();
         $config['per_page'] = 5;
         $config['num_links'] = 5;
@@ -63,6 +63,29 @@ class Ccaccion extends CI_Controller
         
         
         $this->load->view('module/manager/accion/accion_user',$data);
+    }
+	function listar_pag()
+    {
+         $config['base_url'] = base_url().'manager/ccaccion/listar_pag/';
+        $config['total_rows'] = $this->cd_accion->num_accion();
+        $config['per_page'] = 5;
+        $config['num_links'] = 5;
+        $config['first_link'] = 'Primero';
+        $config['last_link'] = 'Ultimo';
+        $config['next_link'] = 'Siguiente';
+        $config['prev_link'] = 'Anterior';
+        $config['cur_tag_open'] = '<b class="actual">';
+        $config['cur_tag_close'] = '</b>';
+        $config['full_tag_open'] = '<div id="paginacion">';
+        $config['full_tag_close'] = '</div>';
+        
+        //$this->pagination->initialize($config);
+        $data = array('accion'=>$this->cd_accion->listar($config['per_page']),
+        'paginacion'=>$this->pagination->create_links());
+        
+        
+        //$this->load->view('module/manager/accion/accion_user',$data);
+        echo json_encode($data);
     }
 
 	function insertar() 
