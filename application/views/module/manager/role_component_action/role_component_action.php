@@ -4,7 +4,7 @@
 		<div class="control">
 		  <label style="width: 85px;" class="control-label bold_label" for="input_acc_asig"> Componente: </label> 
 		  <div style="margin-left:100px;" class="controls">
-			<input id="input_acc_asig" type="text" class="input-xlarge2" data-toggle="popover" data-placement="right" data-content=""><a href="#" class="btn btn_search_mod" requerid><i class="icon-search"></i></a>
+			<input autocomplete="off" id="input_comp_asig" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>

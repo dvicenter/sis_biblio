@@ -9,6 +9,7 @@ class Cccomponente extends CI_Controller
          $this->load->library('pagination');
 	}
 
+	
 	function listar() 
 	{	
 		//$this->data['componentes']=$this->cdcomponente->listar();

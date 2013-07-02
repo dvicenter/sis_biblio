@@ -929,6 +929,24 @@ $(document).ready(function(){
 			}
 		});
 	}
+	function buscar_componente()
+	{
+		$.ajax({
+			url:'/sis_biblio/manager/cccomponente/buscar_componente',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var componente=[];
+				$.each(data,function(a,b){
+					componente.push(b.componente);
+					componentes.push([b.id_componente,b.componente]);
+				});
+				$('#input_comp_asig').typeahead().data('typeahead').source = componente;
+			}
+		});	
+		
+		
+	}
 	function validar_contrasenia_man(){
 		$('#input_adm_confir_contra').keyup(function() {
 			var contrasenia=$('#manager_user #input_adm_contra').val();
