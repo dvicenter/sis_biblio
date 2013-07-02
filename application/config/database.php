@@ -2,10 +2,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-/*$db['default']['hostname'] = 'moralesflores.com';
-$db['default']['username'] = 'moralesf';
-$db['default']['password'] = 'leavemealoNE18:*';
-$db['default']['database'] = 'moralesf_sis_biblio';*/
+// $db['default']['hostname'] = 'moralesflores.com';
+// $db['default']['username'] = 'moralesf';
+// $db['default']['password'] = 'leavemealoNE18:*';
+// $db['default']['database'] = 'moralesf_sis_biblio';
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';

@@ -42,7 +42,7 @@ table thead .action_table{width: 12%;}
 /*STAR CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #consult_related input{width: 260px;}
-#consult_related .consult_right.well{height: 303px;width: 365px;}
+#consult_related .consult_right.well{height: 312px;width: 365px;}
 #consult_related .consult_student,#consult_related .consult_asesor{display: none;}
 #consult_related .active_consult{display: block;}
 #actual_tesis input{width: 247px;}
@@ -56,10 +56,10 @@ table thead .action_table{width: 12%;}
 #consult_student form fieldset{margin-left: 0px;}
 #consult_student form .control-group .controls{margin-left: 60px;}
 #consult_student form .control-group{margin-bottom: 0px;}
-#consult_asesor .table_dates_{height: 117px;}
+#consult_asesor .table_dates_{height: 116px;}
 /*END CONSTANCIA*/
 /*STAR USER*/
-.form_user{float:left; font-weight: bold;width: 100%;}
+.form_user{float:left; font-weight: bold;width: 75%;}
 .form_user label{ font-weight: bold;}
 #mod_request_record{margin-left: 4%;margin-right: 4%;}
 #mod_request_record label{width: 104px;}
@@ -72,7 +72,7 @@ table thead .action_table{width: 12%;}
 /*END COMPONENTE*/
 
 /*STAR ACCION*/
-#btn_mantenimiento .btn_mant{display: inline-block; margin-left: 20px;}
+#btn_mantenimiento .btn_mant{display: inline-block; margin-left: 10px;}
 /*END ACCION*/
 
 
@@ -89,7 +89,7 @@ table thead .action_table{width: 12%;}
 .tab-pane textarea{position: relative; width: 95%;}
 .tab-content {height: 120px;}
 .text_area {width: 315px; height: 100px;}
-.btn_mantenimiento{margin-left: 510px;margin-bottom: 10px;}
+.btn_mantenimiento{margin-left: 510px;margin-bottom: 10px;font-weight: normal;}
 #manager_user .btn_mantenimiento{margin-left:465px;}
 /*STAR ROL*/
 #rol .btn_mantenimiento{margin-left:465px;}
@@ -108,6 +108,7 @@ table thead .action_table{width: 12%;}
 .input-xlarge2{width: 400px}
 .input-xlarge3{width: 315px;}
 .bold_label{font-weight: bold;}
+.response{position: absolute;right: 12%;}
 /*END UTIL*/
 
 /*STAR ROLE ASSIGNMENT*/

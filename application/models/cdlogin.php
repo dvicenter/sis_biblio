@@ -10,7 +10,8 @@ class Cdlogin extends CI_Model{
     {
 	    $data = array(
 	    'usuario' => $username,
-	    'contrasenia' => $password
+	    'contrasenia' => $password,
+	    'active'=>'1'
 	    );
    
     	$query = $this->db->get_where('tbl_usuario',$data);

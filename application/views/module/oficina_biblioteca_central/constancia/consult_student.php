@@ -16,7 +16,7 @@
 	      </div>
 	    </div>
 	  </fieldset>
-	  <ul style="margin-top: 60px;" class="nav nav-tabs">
+	  <ul style="margin-top: 61px;" class="nav nav-tabs">
 		  <li class="active"><a href="#introduccion_comp_alm" data-toggle="tab">Introducci&oacute;n</a></li>
 		  <li><a href="#objetivo_comp_alm" data-toggle="tab">Objetivo</a></li>
 		  <li><a href="#resumen_comp_alm" data-toggle="tab">Resumen</a></li>

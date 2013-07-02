@@ -12,8 +12,7 @@
 			);?>
 <div id="module_tesis">
     <ul class="control">
-      <li class="menu-control"><a href="#new_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</a> </li>
-      
+      <li class="menu-control"><button href="#new_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
       <li class="menu-control"><a href="#new_exportar" class="btn btn-info" data-toggle="modal"><i class="icon-upload icon-white"></i> Exportar</a></li>
       <li class="menu-control">
         <form class="form-search span4 offset2">
@@ -63,14 +62,14 @@
   </table>
   <div class="pagination loading">
   <ul>
-    <li><a href="#">←</a></li>
+    <li><a href="#">&lt;</a></li>
     <li class="active">
       <a href="#">1</a>
     </li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">4</a></li>
-    <li><a href="#">→</a></li>
+    <li><a href="#">&gt;</a></li>
   </ul>
 </div>
   <?php include_once 'new_tesis.php';?>

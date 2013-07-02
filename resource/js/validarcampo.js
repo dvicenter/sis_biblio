@@ -1,14 +1,16 @@
 ;(function( $ ) {
+	
 
 	$.fn.validCampo = function(regex,form,mensaje) {
+	var resultado=0;
 		var id = '#'+$(this).attr('id');
-
-		$(form).submit(function(){
 			var _this = $(id);
 		   var valor = $(id).val();
 		   var rex = regex;
-		   if (!rex.test(valor))
-		   {
+		   var valid = rex.test(valor);
+		   if (!valid)
+		   { 	
+		   		resultado++;
 		   		_this.css({
 			    	'color':'#b94a48',
 			    	'border-color':'#e9322d',
@@ -16,7 +18,6 @@
 		    	});
 				_this.attr('data-content',mensaje);
 				_this.popover('show');
-			    return false;
 
 		    }
 		    else
@@ -32,10 +33,7 @@
 
 
 			    _this.popover('destroy');
-
-			    return false;
 		    }
-		});
-
-	};
+		return resultado;
+	}
 })( jQuery );

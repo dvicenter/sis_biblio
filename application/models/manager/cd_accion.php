@@ -1,5 +1,5 @@
 <?php 
-	class Cdaccion extends CI_Model
+	class Cd_accion extends CI_Model
 	{
 		public function __construct() 
 	    {
@@ -20,8 +20,7 @@
 		//	$query = $this->db->query($query);
 		
 		//	return $query->result_array();
-        
-            $datos = $this->db->get('tbl_accion',$per_page,$this->uri->segment(3));
+            $datos = $this->db->get('tbl_accion',$per_page,$this->uri->segment(4));
             return $datos->result_array();
 		}
         
