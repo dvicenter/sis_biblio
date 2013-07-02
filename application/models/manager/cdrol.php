@@ -52,5 +52,10 @@
 			$query = "CALL SPRABMRol(3,'$id_rol',null,null)";
 			$query = $this->db->query($query);
 		}
+		function buscar_usuario_rol()
+		{	$query = "CALL SPRABMUsuario(0,0,0,0,0,0)";
+		$query = $this->db->query($query);
+		return $query->result_array();
+		}
 	}
  ?>

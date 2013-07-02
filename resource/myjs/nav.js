@@ -55,7 +55,7 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
-
+				buscar_usuario_rol();
 				aparecer_input();
 				validar();
 			}
@@ -910,6 +910,22 @@ $(document).ready(function(){
 					sujetos.push([b.id_sujeto,b.sujeto]);
 				});
 				$('#input_adm_sujeto').typeahead().data('typeahead').source = sujeto;
+			}
+		});
+	}
+	
+	function buscar_usuario_rol()
+	{	$.ajax({
+			url:'/sis_biblio/manager/ccrol/buscar_usuario_rol',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var usuario_rol=[];
+				$.each(data,function(a,b){
+				
+					usuario_rol.push(b.usuario);
+				});
+				$('#input_rol_asig').typeahead().data('typeahead').source = usuario_rol;
 			}
 		});
 	}
