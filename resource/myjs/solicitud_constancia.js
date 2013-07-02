@@ -1,6 +1,15 @@
 $(document).ready(function(){
 	$('#actual_tesis #search_student').click(function(){
 		active_consult('.consult_student', '.consult_asesor');
+		var id_plan_tesis=$("#actual_tesis input[name='id_plan_tesis_form']").attr('value');
+		var id_alumno=$("#actual_tesis input[name='id_alumno_form']").attr('value');
+		$.ajax({
+			url:'/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/informe_practica',
+			data:'id_plan_tesis='+id_plan_tesis+'id_alumno='+id_alumno,
+			success:function(){
+				
+			}
+		});
 	});
 	$('#actual_tesis #search_asesor').click(function(){
 		active_consult('.consult_asesor', '.consult_student');
@@ -20,6 +29,8 @@ $(document).ready(function(){
 			success:function(data){
 				$('#consult_related').modal('show');
 				$.each(data,function(a,b){
+					$("#actual_tesis input[name='id_plan_tesis_form']").attr('value',b.id_plan_tesis);
+					$("#actual_tesis input[name='id_alumno_form']").attr('value',b.id_alumno);
 					$('#actual_tesis #input01').attr('value',b.titulo);
 					$('#actual_tesis #input02').attr('value',b.tesista);
 					$('#actual_tesis #input03').attr('value',b.asesor);
@@ -30,7 +41,6 @@ $(document).ready(function(){
 				});
 			},
 			error: function(data){
-				
 			}
 		});
 	});

@@ -1,5 +1,7 @@
 <div id="actual_tesis">
 	<form class="form-horizontal well">
+		<input type="hidden" name="id_plan_tesis_form"/>
+		<input type="hidden" name="id_alumno_form"/>
 		 <fieldset>
 		  	<div class="control-group">
 		    	<label class="control-label" for="input01">T&iacute;tulo:</label>
