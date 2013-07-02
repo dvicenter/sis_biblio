@@ -9,10 +9,10 @@ $(document).ready(function(){
 		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
 	});
 	$('#constancia').click(function(){
-		load_module_date('/sis_biblio/module/constancia/manager_constancia', '#constancia', '#constancia_top');
+		load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module_not_date('/sis_biblio/module/constancia/manager_constancia', '#constancia', '#constancia_top');
+		load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
 	});
 	$('#user').click(function(){
 		load_module_date('/sis_biblio/manager/ccusuario/listar', '#user', 'null');

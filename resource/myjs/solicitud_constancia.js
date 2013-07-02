@@ -9,6 +9,31 @@ $(document).ready(function(){
 		$('.consult_student').removeClass('active_consult');
 		$('.consult_asesor').removeClass('active_consult');
 	});
+	$('#module_constancia #solicitud_constancia .comparation').click(function(){
+		var pos_=$('#module_constancia #solicitud_constancia td .comparation').index(this);
+		var pos=pos_+1;
+		var id_plan_tesis=$('#module_constancia #solicitud_constancia tbody tr:nth-child('+pos+') td:nth-child(2)').html();
+		$.ajax({
+			url:'/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_plan_tesis',
+			data:'id_plan_tesis='+id_plan_tesis,
+			dataType:'json',
+			success:function(data){
+				$('#consult_related').modal('show');
+				$.each(data,function(a,b){
+					$('#actual_tesis #input01').attr('value',b.titulo);
+					$('#actual_tesis #input02').attr('value',b.tesista);
+					$('#actual_tesis #input03').attr('value',b.asesor);
+					$("#actual_tesis textarea[name='introduccion']").attr('value',b.introduccion);
+					$("#actual_tesis textarea[name='objetivo']").attr('value',b.objetivo);
+					$("#actual_tesis textarea[name='resumen']").attr('value',b.resumen);
+					$("#actual_tesis textarea[name='conclusion']").attr('value',b.conclusion);
+				});
+			},
+			error: function(data){
+				
+			}
+		});
+	});
 });
 
 function active_consult(active,desactive)
