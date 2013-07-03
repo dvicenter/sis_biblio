@@ -67,5 +67,10 @@
 		return $query->result_array();
 		
 		}
+		function buscar_rol_usuario($id_usuario){
+			$query ="CALL SPRCNSListar_rol_usuario(".$id_usuario.")";
+			$query=$this->db->query($query);
+			return $query->result_array();
+		}
 	}
  ?>

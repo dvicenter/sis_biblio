@@ -936,11 +936,30 @@ $(document).ready(function(){
 			dataType:"json",
 			success:function(data){
 				var usuario_rol=[];
+				var usuarios_rol=[];
 				$.each(data,function(a,b){
 				usuario_rol.push(b.usuario);
+				usuarios_rol.push([b.id_usuario,b.usuario])
 				});
 				$('#input_rol_asig').typeahead().data('typeahead').source = usuario_rol;
-					
+				$('#mod_role_assignment .search_usuario_rol').click(function(){
+					var usuario=$('#input_rol_asig').val();
+					var id_usuario;
+				$.each(usuarios_rol,function(a,b){console.info(b[0]); 
+					if (usuario==b[1]){
+						id_usuario =b[0];
+					}
+					});
+				$.ajax({
+					url:'/sis_biblio/manager/ccrol/buscar_rol_usuario',
+					data:'id_usuario='+id_usuario,
+					type:'post', 
+					success: function(data){
+						$('#mod_role_assignment .roles_de_usuario').html(data);
+					}
+				});
+				});
+			
 			}
 		});
 	}

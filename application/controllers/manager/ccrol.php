@@ -113,6 +113,12 @@ class Ccrol extends CI_Controller
  		echo json_encode($data);
 		
  	}
+	function buscar_rol_usuario()
+	{ $id_usuario=$_REQUEST['id_usuario'];
+		$this->data['usuarios_roles']=$this->cdrol->buscar_rol_usuario($id_usuario);
+		echo $this->load->view('module/manager/role_assignment/roles_de_usuario',$this->data);
+		
+	}
 
 } 
 ?>

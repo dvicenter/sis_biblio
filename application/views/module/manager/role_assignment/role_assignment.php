@@ -1,10 +1,12 @@
 <div id="mod_role_assignment">
 	<form id="form_rol_asig" class="form-horizontal">
+	<input type="hidden" name="id_usuario_asignacion">
 	<fieldset>
 		<div class="control">
 		  <label style="width: 85px;" name="rol_asignacion" class="control-label bold_label" for="input_rol_asig"> Usuario: </label> 
 		  <div style="margin-left:100px;" class="controls">
-			<input autocomplete="off" id="input_rol_asig" type="text" name="rol_asignacion" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+			<input autocomplete="off" id="input_rol_asig" type="text" name="rol_asignacion" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="">
+			<a class="btn search_usuario_rol" href="javascript:;"><i class="icon-search"></i></a>
 			<p style="font-weight: normal;" class="help-block">Ejm: Garc&iacute;a Fernando</p>
 			<p class="help-block"></p>
 		  </div>
@@ -18,47 +20,8 @@
 		<th class="role_table">Rol</th>
       </tr>
     </thead>
-    <tbody>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Central</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Especializada</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Patrimonio</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Director de Escuela</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Decano</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Central</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Especializada</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Patrimonio</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Director de Escuela</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Decano</td>
-		</tr>
+    <tbody class="roles_de_usuario">
+	
     </tbody>
   </table>
   <div class="pos_left btns_nav_rol">
