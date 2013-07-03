@@ -4,7 +4,7 @@
 		<div class="control">
 		  <label style="width: 85px;" class="control-label bold_label" for="input_comp_asig"> Rol: </label> 
 		  <div style="margin-left:100px;" class="controls">
-			<input id="input_comp_asig" type="text" class="input-xlarge2" data-toggle="popover" data-provide="typeahead" data-placement="right" data-content="" ><a href="#" class="btn btn_search_mod" requerid><i class="icon-search"></i></a>
+			<input id="input_comp_asig" type="text" class="input-xlarge2" data-provide="typeahead" data-toggle="popover" data-placement="right" data-content="" ><a href="#" class="btn btn_search_mod" requerid><i class="icon-search"></i></a>
 			<p class="help-block"></p>
 		  </div>
 		</div>
