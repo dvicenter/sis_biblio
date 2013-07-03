@@ -18,7 +18,7 @@
   <table class="table table-striped table-bordered table-condensed table-hover" id="solicitud_constancia">
     <thead>
       <tr>
-        <th class="check_table"><input type="checkbox"/></th>
+        <th style="display:none;" class="check_table"><input type="checkbox"/></th>
         <th class="title_table">Titulo</th>
         <th class="author_table">Tesista</th>
         <th class="asesor_table">Asesor</th>
@@ -29,7 +29,7 @@
     <tbody>
     <?php foreach($planes_tesis as $plan_tesis){?>
       <tr>
-        <td class="check_table"><input type="checkbox"/></td>
+        <td style="display:none;" class="check_table"><input type="checkbox"/></td>
         <td style="display:none;"><?php echo $plan_tesis['id_plan_tesis'];?></td>
         <td><?php echo $plan_tesis['titulo'];?></td>
         <td><?php echo $plan_tesis['tesista'];?></td>

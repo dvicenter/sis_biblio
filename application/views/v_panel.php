@@ -16,6 +16,7 @@
 		<script src="<?php echo base_url();?>resource/myjs/nav.js"></script>
 		<script src="<?php echo base_url();?>resource/myjs/validations.js"></script>
 		<script src="<?php echo base_url();?>resource/myjs/utilities.js"></script>
+		<script> base_url="<?php echo base_url();?>"</script>
 	</head>
 	<body>
 		<section class="body">

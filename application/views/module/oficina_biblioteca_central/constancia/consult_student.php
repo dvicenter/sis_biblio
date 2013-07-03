@@ -4,7 +4,7 @@
 	    	<div class="control-group">
 	      	<label class="control-label" for="input01">T&iacute;tulo:</label>
 	      <div class="controls">
-	        <input type="text" class="input-xlarge" id="input01">
+	        <input type="text" class="input-xlarge" id="input01" disabled>
 	      </div>
 	    </div>
 	  </fieldset>
@@ -12,7 +12,7 @@
 	    	<div class="control-group">
 	      	<label class="control-label" for="input01">Asesor:</label>
 	      <div class="controls">
-	        <input type="text" class="input-xlarge" id="input03">
+	        <input type="text" class="input-xlarge" id="input03" disabled>
 	      </div>
 	    </div>
 	  </fieldset>
@@ -24,16 +24,16 @@
 		</ul>
 		 <div class="tab-content">
           <div class="tab-pane active" id="introduccion_comp_alm">
-            <textarea name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..."></textarea>
+            <textarea name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." disabled></textarea>
           </div>
           <div class="tab-pane" id="objetivo_comp_alm">
-            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..."></textarea>
+            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." disabled></textarea>
           </div>
           <div class="tab-pane" id="resumen_comp_alm">
-            <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..."></textarea>
+            <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." disabled></textarea>
           </div>
           <div class="tab-pane" id="conclusion_comp_alm">
-            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..."></textarea>
+            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." disabled></textarea>
           </div>
         </div>
 	</form>
