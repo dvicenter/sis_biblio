@@ -55,9 +55,7 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
-<<<<<<< HEAD
-				buscar_rol_componente();
-=======
+				
 				if($('#mod_role_assignment').is(':visible')){
 					
 					buscar_usuario_rol();
@@ -65,8 +63,11 @@ $(document).ready(function(){
 				else if($('#mod_role_component_action').is(':visible')){
 					buscar_componente_accion();
 					
+				}else if($('#mod_role_assignment_component').is(':visible')){
+					buscar_rol_componente();
+					
 				}
->>>>>>> 5e0fd2524db82248d39d9a1c293e15478cd96f7c
+				
 				aparecer_input();
 				validar();
 			}
