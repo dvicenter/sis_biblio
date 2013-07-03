@@ -12,12 +12,12 @@
     			<?php $this->load->view('module/oficina_biblioteca_central/constancia/consult_student');?>
     		</div>
     		<div class="consult_asesor">
-    			<?php $this->load->view('module/oficina_biblioteca_central/constancia/consult_asesor');?>
+    			<?php //$this->load->view('module/oficina_biblioteca_central/constancia/consult_asesor');?>
     		</div>
     	</div>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn">Desaprobar</a>
-    <a href="#" class="btn btn-primary">Aprobar</a>
+    <a href="javascript:;" class="btn desaprobar">Desaprobar</a>
+    <a href="javascript:;" class="btn btn-primary aprobar">Aprobar</a>
   </div>
 </div>

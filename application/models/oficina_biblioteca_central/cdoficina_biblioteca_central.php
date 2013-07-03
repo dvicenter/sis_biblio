@@ -14,4 +14,23 @@ class Cdoficina_biblioteca_central extends CI_Model{
 		$query = $this->db->query($query);
 		return $query->result_array();
 	}
+	function informe_practica($id_alumno){
+		$query="CALL SPRCNSInformePractica(1,3,'$id_alumno')";
+		$query = $this->db->query($query);
+		return $query->result_array();
+	}
+	function buscarXAsesor($id_docente)
+	{	$query="CALL SPRCNSMaterialBibliograficoXAsesor(".$id_docente.")";
+		$query = $this->db->query($query);
+		return $query->result_array();
+	}
+	function aprobacion_constancia($id_plan_tesis,$aprobacion)
+	{	$query="CALL SPRAPREstadoPlanTesis(".$id_plan_tesis.','.$aprobacion.")";
+		if($this->db->query($query))
+		{	return true;
+		}
+		else
+		{	return false;
+		}
+	}
 }

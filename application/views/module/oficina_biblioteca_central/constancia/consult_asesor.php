@@ -1,15 +1,3 @@
-<?php  $consults_asesor=array(
-			array($titulo='Implementaci&oacute;n de un sistema de informaci&oacute;n',$bachiller='Mariafernanda Nicho Alvarado',$asesor='Ing. Cesar Nicho Diaz',$anio='2013'),
-			array($titulo='Sistema web a medidas',$bachiller='Alexander Nicho Alvarado',$asesor='Ing. Deyvis Valladares',$anio='2013'),
-			array($titulo='Consultoria a la empresa FutgolPeru',$bachiller='Piero Alva Solo',$asesor='Ing. Kelly Grados Manrique',$anio='2013')/*,
-			array($titulo='Creaci&oacute;n del sistema web',$bachiller='Lionel Messi Ronaldo',$asesor='Ing. Karina Gonzales Angulo',$anio='2013'),
-			array($titulo='Implementaci&oacute;n de un sistema de informaci&oacute;n',$bachiller='Mariafernanda Nicho Alvarado',$asesor='Ing. Cesar Nicho Diaz',$anio='2013'),
-			array($titulo='Sistema web a medidas',$bachiller='Alexander Nicho Alvarado',$asesor='Ing. Deyvis Valladares',$anio='2013'),
-			array($titulo='Consultoria a la empresa FutgolPeru',$bachiller='Piero Alva Solo',$asesor='Ing. Kelly Grados Manrique',$anio='2013'),
-			array($titulo='Creaci&oacute;n del sistema web',$bachiller='Lionel Messi Ronaldo',$asesor='Ing. Karina Gonzales Angulo',$anio='2013'),
-			array($titulo='Implementaci&oacute;n de un sistema de informaci&oacute;n',$bachiller='Mariafernanda Nicho Alvarado',$asesor='Ing. Cesar Nicho Diaz',$anio='2013'),
-			array($titulo='Sistema web a medidas',$bachiller='Alexander Nicho Alvarado',$asesor='Ing. Deyvis Valladares',$anio='2013')*/
-			);?>
 <div id="consult_asesor">
 	<div class="table_dates_">
 		<table class="table table-striped table-bordered table-condensed table-hover">
@@ -18,12 +6,19 @@
 		        <th class="title_table">Titulo</th>
 		      </tr>
 		    </thead>
+		    <?php $j=0;?>
 		    <tbody>
-		    <?php $j=0;foreach($consults_asesor as $consult_asesor){?>
+		    <?php foreach($consults_asesor as $consult_asesor){
+		    	if($j>2){?><script>$(function(){$('#consult_asesor table tbody').addClass('three_dates');});</script> <?php }?>
 		      <tr>
-		        <td><?php echo $consult_asesor[0];?></td>
+		      	<td style="display:none"><?php echo $consult_asesor['id_material_bibliografico'];?></td>
+		      	<td style="display:none"><?php echo $consult_asesor['introduccion'];?></td>
+		      	<td style="display:none"><?php echo $consult_asesor['objetivo'];?></td>
+		      	<td style="display:none"><?php echo $consult_asesor['resumen'];?></td>
+		      	<td style="display:none"><?php echo $consult_asesor['conclusion'];?></td>
+		        <td><?php echo $consult_asesor['titulo'];?></td>
 		      </tr>
-		      <?php }?>
+		      <?php $j++;}?>
 		    </tbody>
 	  	</table>
   	</div>
@@ -35,16 +30,16 @@
 	</ul>
 	<div class="tab-content">
           <div class="tab-pane active" id="introduccion_ases">
-            <textarea name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..."></textarea>
+            <textarea name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." disabled></textarea>
         </div>
         <div class="tab-pane" id="objetivo_ases">
-            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..."></textarea>
+            <textarea name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." disabled></textarea>
         </div>
         <div class="tab-pane" id="resumen_ases">
-            <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..."></textarea>
+            <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." disabled></textarea>
         </div>
         <div class="tab-pane" id="conclusion_ases">
-            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..."></textarea>
+            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." disabled></textarea>
     	</div>
 	</div>
 </div>
