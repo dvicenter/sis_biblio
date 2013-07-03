@@ -55,7 +55,7 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
-				buscar_usuario_rol();
+				buscar_rol_componente();
 				aparecer_input();
 				validar();
 			}
@@ -929,19 +929,20 @@ $(document).ready(function(){
 			}
 		});
 	}
-	function buscar_componente()
+	function buscar_rol_componente()
 	{
 		$.ajax({
-			url:'/sis_biblio/manager/cccomponente/buscar_componente',
+			url:'/sis_biblio/manager/ccrol/buscar_rol',
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				var componente=[];
+				var componente_rol=[];
 				$.each(data,function(a,b){
-					componente.push(b.componente);
-					componentes.push([b.id_componente,b.componente]);
+				
+					componente_rol.push(b.rol);
+					
 				});
-				$('#input_comp_asig').typeahead().data('typeahead').source = componente;
+				$('#input_comp_asig').typeahead().data('typeahead').source = componente_rol;
 			}
 		});	
 		
