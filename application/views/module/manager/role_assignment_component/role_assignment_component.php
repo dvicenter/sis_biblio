@@ -4,7 +4,7 @@
 		<div class="control">
 		  <label style="width: 85px;" class="control-label bold_label" for="input_comp_asig"> Rol: </label> 
 		  <div style="margin-left:100px;" class="controls">
-			<input id="input_comp_asig" type="text" class="input-xlarge2" data-provide="typeahead" data-toggle="popover" data-placement="right" data-content="" ><a href="#" class="btn btn_search_mod" requerid><i class="icon-search"></i></a>
+			<input autocomplete="off" id="input_comp_asig" type="text" name="rol_comp" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 			<p class="help-block"></p>
 		  </div>
 		</div>
@@ -61,13 +61,13 @@
     </tbody>
   </table>
   <div class="pos_left btns_nav_rol">
-  <button class="btn" type="submit">
-  <<
+  <button class="btn btn-info" type="submit">
+ &lt;&lt;
   </button>
-  <button class="btn" type="submit">
-  >>
+  <button class="btn btn-info" type="submit">
+&gt;&gt;
   </button>
-  <button class="btn" type="submit">
+  <button class="btn btn-primary" type="submit">
   Guardar
   </button>
   <button class="btn" type="submit">

@@ -58,13 +58,15 @@ $(document).ready(function(){
 				$('#module_content').html(data);
 				
 				if($('#mod_role_assignment').is(':visible')){
-					
+				$("#mod_role_assignment input[name='rol_asignacion']").focus();
 					buscar_usuario_rol();
 				}
 				else if($('#mod_role_component_action').is(':visible')){
+				$("#mod_role_component_action input[name='rol_accion']").focus();
 					buscar_componente_accion();
 					
 				}else if($('#mod_role_assignment_component').is(':visible')){
+				$("#mod_role_assignment_component input[name='rol_comp']").focus();
 					buscar_rol_componente();
 					
 				}
