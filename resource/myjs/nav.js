@@ -55,7 +55,18 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
+<<<<<<< HEAD
 				buscar_rol_componente();
+=======
+				if($('#mod_role_assignment').is(':visible')){
+					
+					buscar_usuario_rol();
+				}
+				else if($('#mod_role_component_action').is(':visible')){
+					buscar_componente_accion();
+					
+				}
+>>>>>>> 5e0fd2524db82248d39d9a1c293e15478cd96f7c
 				aparecer_input();
 				validar();
 			}
@@ -922,10 +933,26 @@ $(document).ready(function(){
 			success:function(data){
 				var usuario_rol=[];
 				$.each(data,function(a,b){
-				
-					usuario_rol.push(b.usuario);
+				usuario_rol.push(b.usuario);
 				});
 				$('#input_rol_asig').typeahead().data('typeahead').source = usuario_rol;
+					
+			}
+		});
+	}
+	function buscar_componente_accion()
+	{	$.ajax({
+			url:'/sis_biblio/manager/cccomponente/buscar_componente_accion',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+			
+				var componente_accion=[];
+				$.each(data,function(a,b){
+				componente_accion.push(b.componente);
+				});
+				$('#mod_role_component_action #input_acc_asig').typeahead().data('typeahead').source = componente_accion;
+					
 			}
 		});
 	}

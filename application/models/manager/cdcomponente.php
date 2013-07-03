@@ -51,6 +51,11 @@
 			$query = "CALL SPRABMComponente(3,'$id_componente',null,null)";
 			$this->db->query($query);
 		}
+		function buscar_componente_accion()
+		{	$query = "CALL SPRABMComponente(0,0,0,0)";
+		$query = $this->db->query($query);
+		return $query->result_array();
+		}
 	
 	}
 	

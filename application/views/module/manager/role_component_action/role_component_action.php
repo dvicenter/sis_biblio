@@ -4,8 +4,13 @@
 		<div class="control">
 		  <label style="width: 85px;" class="control-label bold_label" for="input_acc_asig"> Componente: </label> 
 		  <div style="margin-left:100px;" class="controls">
+<<<<<<< HEAD
+			<input autocomplete="off" id="input_acc_asig" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+			<p style="font-weight: normal;" class="help-block">Ejm: Garc&iacute;a Fernando</p>
+=======
 			<input autocomplete="off" id="input_comp_asig" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 			<p class="help-block"></p>
+>>>>>>> 8e6f4c49adbfd5461535cd2d7c48b49515563be0
 		  </div>
 		</div>
 	</fieldset>

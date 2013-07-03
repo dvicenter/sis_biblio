@@ -106,5 +106,6 @@ class Ccaccion extends CI_Controller
 	{	
 		$this->cd_accion->eliminar($id_accion);
 	}
+	
 } 
 ?>
