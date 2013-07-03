@@ -106,6 +106,7 @@ class Ccrol extends CI_Controller
 	function buscar_rol()
 	{	$data=$this->cdrol->buscar_rol();
 		echo json_encode($data);
+		
 	}
 } 
 ?>
