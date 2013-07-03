@@ -21,6 +21,8 @@
             return $datos->result_array();
 		}
 
+		
+		
 		function insertar($componente,$descripcion_componente)
 		{	if ($this->db->query("CALL SPRABMComponente(1,1,'$componente','$descripcion_componente')")) 
 			{	$query=$this->db->query("SELECT  tbl.id_componente,  tbl.componente,  tbl.descripcion_componente FROM  tbl_componente tbl order by tbl.id_componente desc limit 1");
