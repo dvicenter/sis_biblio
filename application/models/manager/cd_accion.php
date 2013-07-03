@@ -56,6 +56,7 @@
 			$query = "CALL SPRABMAccion(3,'$id_accion',null)";
 			$query = $this->db->query($query);
 		}
+		
 	}
 	
  ?>

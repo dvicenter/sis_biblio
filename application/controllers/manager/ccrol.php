@@ -102,5 +102,17 @@ class Ccrol extends CI_Controller
 	function eliminar($id_rol) 
 	{	$this->data=array($this->cdrol->eliminar($id_rol));
 	}
+	
+	function buscar_rol()
+	{	$data=$this->cdrol->buscar_rol();
+		echo json_encode($data);
+		
+	}
+	function buscar_usuario_rol()
+ 	{	$data=$this->cdrol->buscar_usuario_rol();
+ 		echo json_encode($data);
+		
+ 	}
+
 } 
 ?>

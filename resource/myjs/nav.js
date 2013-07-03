@@ -13,6 +13,7 @@ $(document).ready(function(){
 	});
 	$('#constancia_top').click(function(){
 		load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
+		
 	});
 	$('#user').click(function(){
 		load_module_date('/sis_biblio/manager/ccusuario/listar', '#user', 'null');
@@ -55,7 +56,21 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
-
+				
+				if($('#mod_role_assignment').is(':visible')){
+				$("#mod_role_assignment input[name='rol_asignacion']").focus();
+					buscar_usuario_rol();
+				}
+				else if($('#mod_role_component_action').is(':visible')){
+				$("#mod_role_component_action input[name='rol_accion']").focus();
+					buscar_componente_accion();
+					
+				}else if($('#mod_role_assignment_component').is(':visible')){
+				$("#mod_role_assignment_component input[name='rol_comp']").focus();
+					buscar_rol_componente();
+					
+				}
+				
 				aparecer_input();
 				validar();
 			}
@@ -912,6 +927,57 @@ $(document).ready(function(){
 				$('#input_adm_sujeto').typeahead().data('typeahead').source = sujeto;
 			}
 		});
+	}
+	
+	function buscar_usuario_rol()
+	{	$.ajax({
+			url:'/sis_biblio/manager/ccrol/buscar_usuario_rol',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var usuario_rol=[];
+				$.each(data,function(a,b){
+				usuario_rol.push(b.usuario);
+				});
+				$('#input_rol_asig').typeahead().data('typeahead').source = usuario_rol;
+					
+			}
+		});
+	}
+	function buscar_componente_accion()
+	{	$.ajax({
+			url:'/sis_biblio/manager/cccomponente/buscar_componente_accion',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+			
+				var componente_accion=[];
+				$.each(data,function(a,b){
+				componente_accion.push(b.componente);
+				});
+				$('#mod_role_component_action #input_acc_asig').typeahead().data('typeahead').source = componente_accion;
+					
+			}
+		});
+	}
+	function buscar_rol_componente()
+	{
+		$.ajax({
+			url:'/sis_biblio/manager/ccrol/buscar_rol',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var componente_rol=[];
+				$.each(data,function(a,b){
+				
+					componente_rol.push(b.rol);
+					
+				});
+				$('#input_comp_asig').typeahead().data('typeahead').source = componente_rol;
+			}
+		});	
+		
+		
 	}
 	function validar_contrasenia_man(){
 		$('#input_adm_confir_contra').keyup(function() {

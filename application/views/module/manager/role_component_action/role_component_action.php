@@ -4,8 +4,8 @@
 		<div class="control">
 		  <label style="width: 85px;" class="control-label bold_label" for="input_acc_asig"> Componente: </label> 
 		  <div style="margin-left:100px;" class="controls">
-			<input id="input_acc_asig" type="text" class="input-xlarge2" data-toggle="popover" data-placement="right" data-content=""><a href="#" class="btn btn_search_mod" requerid><i class="icon-search"></i></a>
-			<p class="help-block"></p>
+			<input autocomplete="off" id="input_acc_asig" type="text" name="rol_accion" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+			<p style="font-weight: normal;" class="help-block">Ejm: Garc&iacute;a Fernando</p>
 		  </div>
 		</div>
 	</fieldset>
@@ -61,13 +61,13 @@
     </tbody>
   </table>
   <div class="pos_left btns_nav_rol">
-  <button class="btn" type="submit">
-  <<
+  <button class="btn btn-info" type="submit">
+  &lt;&lt;
   </button>
-  <button class="btn" type="submit">
-  >>
+  <button class="btn btn-info" type="submit">
+  &gt;&gt;
   </button>
-  <button class="btn" type="submit">
+  <button class="btn btn-primary" type="submit">
   Guardar
   </button>
   <button class="btn" type="submit">
