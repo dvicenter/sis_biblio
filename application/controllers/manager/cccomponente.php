@@ -65,5 +65,9 @@ class Cccomponente extends CI_Controller
 		$this->cdcomponente->eliminar($id_componente);
 		
 	}
+	function buscar_componente_accion()
+	{	$data=$this->cdcomponente->buscar_componente_accion();
+		echo json_encode($data);
+	}
 } 
 ?>

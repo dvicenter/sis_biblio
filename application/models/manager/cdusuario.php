@@ -49,5 +49,6 @@
 			$query = "CALL SPRABMUsuario(3,'".$id_usuario."',null,null,0,0)";
 			$this->db->query($query);
 		}
+	
 	}
  ?>
