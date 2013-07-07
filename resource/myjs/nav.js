@@ -301,7 +301,7 @@ $(document).ready(function(){
 					$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol guardado</div>")
 				},
 				error:function(data)
-					{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>")
+					{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
 					}
 			});
 			

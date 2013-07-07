@@ -6,8 +6,9 @@
 		<div class="control">
 		  <label style="width: 85px;" name="rol_asignacion" class="control-label bold_label" for="input_rol_asig"> Usuario: </label> 
 		  <div style="margin-left:100px;" class="controls">
-			<input autocomplete="off" id="input_rol_asig" type="text" name="rol_asignacion" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="">
-			<a class="btn search_usuario_rol" href="javascript:;"><i class="icon-search"></i></a>
+			<input autocomplete="off" id="input_rol_asig" type="text" name="rol_asignacion" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+			<input type="submit" class="btn search_usuario_rol" value="Buscar">
+			<div class="response pos_right"></div>
 			<p style="font-weight: normal;" class="help-block">Ejm: Garc&iacute;a Fernando</p>
 			<p class="help-block"></p>
 		  </div>
