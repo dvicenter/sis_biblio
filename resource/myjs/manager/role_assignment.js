@@ -63,7 +63,10 @@ $(document).ready(function(){
 				if($(this).is(":checked"))
 				    {	evento_btn_asignacion(false, true, false, false, '');
 						for (i = 0; i < field.length; i++) {
-			        	  field[i].checked = true;
+							var sele=$("#mod_role_assignment tbody.rol tr:eq("+i+") [name='check_rol_detail']").attr('disabled');
+							if(sele!='disabled'){
+								field[i].checked = true;
+							}
 			        	  }
 			        	  checkflag = "true";
 	        		   }
@@ -145,7 +148,7 @@ $(document).ready(function(){
 					var usuario=$('#input_rol_asig').val();
 					evento.preventDefault();
 					if(validar_usuario_existente(usuario)){
-						$('#mod_role_assignment .response').html('');
+					$('#mod_role_assignment .response').html('');
 					$('#mod_role_assignment input[name="check_rol_user"]').attr('disabled',false);
 					$("#mod_role_assignment #input_rol_asig").attr('disabled',true);
 			        $('#mod_role_assignment input[name="check_rol"]').attr('disabled',false);
@@ -169,11 +172,27 @@ $(document).ready(function(){
 						var field;
 						field=$("[name='ckeck_rol_user_detail']");
 						var checkflag = "false";
+						var tr_role_asigando=$('#mod_role_assignment table tbody.roles_de_usuario tr');
+						var tr_roles=$('#mod_role_assignment table tbody.rol tr');
+						var ids_rol_asignados;
+						var ids_roles=[];
+						$.each(tr_role_asigando,function(a,b){
+							ids_rol_asignados=$('#mod_role_assignment table tbody.roles_de_usuario tr:eq('+a+') td:eq(2)').html();
+							$.each(tr_roles,function(c,d){
+								ids_roles=$('#mod_role_assignment table tbody.rol tr:eq('+c+') [name="check_rol_detail"]').attr('value');
+								if(ids_roles==ids_rol_asignados){
+									$('#mod_role_assignment table tbody.rol tr:eq('+c+') [name="check_rol_detail"]').attr('disabled',true);
+								}
+							});
+						});
+						
+						console.info(ids_roles);
 						$('#mod_role_assignment input[name="check_rol_user"]').click(function(){
 							if($(this).is(":checked"))
 								{	evento_btn_asignacion(true, false, true, true, '');	
 									for (i = 0; i < field.length; i++) {
-									field[i].checked = true;}
+											field[i].checked = true;
+										}
 									checkflag = "true";
 						        }
 								else{evento_btn_asignacion(true, true, true, false, '');
