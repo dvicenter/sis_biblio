@@ -45,14 +45,15 @@ $(document).ready(function(){
 				dataType:'json',
 				success:function(data){
 					$.each(data,function(a,b){
-						$("#mod_role_assignment tbody.roles_de_usuario tr:eq("+row_rol_total+") [name='ckeck_rol_user_detail']").attr('value',b.id_usuario_rol);
+						total_row--;
+						$("#mod_role_assignment tbody.roles_de_usuario tr:nth-child("+total_row+") [name='ckeck_rol_user_detail']").attr('value',b.id_usuario_rol);
 					});
 					row_rol_total=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
 					roles_asignado_usuario();
 					$('#mod_role_assignment .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Rol(es) asignado con &eacute;xito</strong></div>");
 					evento_btn_asignacion(true, true, true, false, 'no-drop');
-			        $('#mod_role_assignment input[name="check_rol_user"]').attr('disabled',true);
-			        /*$('#mod_role_assignment input[name="check_rol"]').attr('disabled',true);
+			        /*$('#mod_role_assignment input[name="check_rol_user"]').attr('disabled',true);
+			        $('#mod_role_assignment input[name="check_rol"]').attr('disabled',true);
 			        $('#mod_role_assignment input[name="check_rol_detail"]').attr('disabled',true);*/
 			        $('#mod_role_assignment input[name="check_rol_user"]').attr('checked',false);
 			        $('#mod_role_assignment input[name="check_rol"]').attr('checked',false);
@@ -140,6 +141,7 @@ $(document).ready(function(){
 		evento_btn_asignacion(true, true, false, false, '');
 		var ids = $('#mod_role_assignment input:[name="check_rol_detail"]:checked');
 		var tr=$('#mod_role_assignment table tbody.rol tr');
+		row_rol_total=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
 		$.each(tr,function(index,value){
 			if($('#mod_role_assignment table tbody.rol tr:eq('+index+') input[name="check_rol_detail"]').is(':checked')==true)
 			{	var id=$('#mod_role_assignment table tbody.rol tr:eq('+index+') input[name="check_rol_detail"]').val();
@@ -150,7 +152,7 @@ $(document).ready(function(){
 				tds += "<td style='display:none;'>"+id+"</td>";
 				tds += '</tr>';
 				$("#mod_role_assignment table tbody.roles_de_usuario").append(tds).click(function(){
-					evento_btn_asignacion(false, true, true, false, '');
+					evento_btn_asignacion(true, false, true, false, '');
 				});
 			}
         });
@@ -199,7 +201,7 @@ $(document).ready(function(){
 						roles_asignado_usuario();
 						$('#mod_role_assignment input[name="check_rol_user"]').click(function(){
 							if($(this).is(":checked"))
-								{	evento_btn_asignacion(true, false, true, true, '');	
+								{	evento_btn_asignacion(true, false, true, false, '');	
 									for (i = 0; i < field.length; i++) {
 											field[i].checked = true;
 										}
