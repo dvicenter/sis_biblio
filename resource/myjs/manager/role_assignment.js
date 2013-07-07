@@ -29,20 +29,34 @@ $(document).ready(function(){
 			var row_rol_actual=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
 			var id_usuario=$("#mod_role_assignment [name='id_user']").attr('value');
 			var ids=[];
-			row_rol_total++;
-			while(row_rol_total<=row_rol_actual)
-			{	var id=$("#mod_role_assignment table tbody.roles_de_usuario tr:nth-child("+row_rol_total+") td:eq(0) [name='ckeck_rol_user_detail']").attr('value');
+			alert(row_rol_total);
+			var total_row=row_rol_total;
+			total_row++;
+			while(total_row<=row_rol_actual)
+			{	var id=$("#mod_role_assignment table tbody.roles_de_usuario tr:nth-child("+total_row+") td:eq(0) [name='ckeck_rol_user_detail']").attr('value');
 				ids.push(id);
-				row_rol_total++;
+				total_row++;
 			}
+			console.info(ids);
 			$.ajax({
 				url:base_url+'manager/ccrol/insert_new_rol_usuario',
 				data:'ids='+ids+'&id_usuario='+id_usuario,
 				type:'post',
 				dataType:'json',
 				success:function(data){
-					$('#mod_role_assignment .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Rol asignado con &eacute;xito</strong></div>");
-					
+					$.each(data,function(a,b){
+						$("#mod_role_assignment tbody.roles_de_usuario tr:eq("+row_rol_total+") [name='ckeck_rol_user_detail']").attr('value',b.id_usuario_rol);
+					});
+					row_rol_total=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
+					roles_asignado_usuario();
+					$('#mod_role_assignment .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Rol(es) asignado con &eacute;xito</strong></div>");
+					evento_btn_asignacion(true, true, true, false, 'no-drop');
+			        $('#mod_role_assignment input[name="check_rol_user"]').attr('disabled',true);
+			        /*$('#mod_role_assignment input[name="check_rol"]').attr('disabled',true);
+			        $('#mod_role_assignment input[name="check_rol_detail"]').attr('disabled',true);*/
+			        $('#mod_role_assignment input[name="check_rol_user"]').attr('checked',false);
+			        $('#mod_role_assignment input[name="check_rol"]').attr('checked',false);
+			        $('#mod_role_assignment input[name="check_rol_detail"]').attr('checked',false);
 				},
 				error:function(data){
 					$('#mod_role_assignment .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Oh no!</strong> se pudo guardar</div>");
@@ -61,7 +75,7 @@ $(document).ready(function(){
 	    	var checkflag = "false";
 			$('#mod_role_assignment input[name="check_rol"]').click(function(){
 				if($(this).is(":checked"))
-				    {	evento_btn_asignacion(false, true, false, false, '');
+				    {	evento_btn_asignacion(false, true, true, false, '');
 						for (i = 0; i < field.length; i++) {
 							var sele=$("#mod_role_assignment tbody.rol tr:eq("+i+") [name='check_rol_detail']").attr('disabled');
 							if(sele!='disabled'){
@@ -77,7 +91,7 @@ $(document).ready(function(){
 			        	}
 			    });
 			$('#mod_role_assignment tbody.rol input[name="check_rol_detail"]').click(function(){
-				evento_btn_asignacion(false, true, false, false, '');
+				evento_btn_asignacion(false, true, true, false, '');
 				var tr=$('#mod_role_assignment table tbody.rol tr');
 				$.each(tr,function(index,value){
 					if($('#mod_role_assignment table tbody.rol tr input[name="check_rol_detail"]').is(':checked')==false){
@@ -107,30 +121,40 @@ $(document).ready(function(){
 				success: function(response)
 					{	$.each(ids,function(index, value){
 							 ides=ids[index].value;
-							 $(ids).parent().parent().fadeOut('fast',function(){$(this).remove();});
+							$(ids).parent().parent().fadeOut('fast',function(){
+								$(this).remove();
+								$('#mod_role_assignment input[name="check_rol_detail"]').attr('disabled',false);
+								roles_asignado_usuario();
+							});
 						});
+					
+					evento_btn_asignacion(true, true, true, false, '');
+					row_rol_total=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
+					row_rol_total--;
 					$('#mod_role_assignment .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Rol eliminado con &eacute;xito</strong></div>");
 				    }
 				});	
 		}
 	});
 	$('#mod_role_assignment .left').click(function(){
-		$('.save').attr('disabled',false).css('cursor','');
+		evento_btn_asignacion(true, true, false, false, '');
 		var ids = $('#mod_role_assignment input:[name="check_rol_detail"]:checked');
 		var tr=$('#mod_role_assignment table tbody.rol tr');
-		$.each(tr,function(index,value){console.info(index);
-			if($('#mod_role_assignment table tbody.rol tr:eq('+index+') input:[name="check_rol_detail"]').is(':checked')==true)
-			{	var id=$('#mod_role_assignment table tbody.rol tr:eq('+index+') input:[name="check_rol_detail"]').val();
+		$.each(tr,function(index,value){
+			if($('#mod_role_assignment table tbody.rol tr:eq('+index+') input[name="check_rol_detail"]').is(':checked')==true)
+			{	var id=$('#mod_role_assignment table tbody.rol tr:eq('+index+') input[name="check_rol_detail"]').val();
 				var rol=$('#mod_role_assignment table tbody.rol tr:eq('+index+') td:eq(1)').html();
 				var tds = '<tr>';							
 				tds += "<td class='check_table'><input type='checkbox' name='ckeck_rol_user_detail' value="+id+">"+'</td>';
 				tds += "<td>"+rol+"</td>";
+				tds += "<td style='display:none;'>"+id+"</td>";
 				tds += '</tr>';
-				$("#mod_role_assignment table tbody.roles_de_usuario").append(tds);
+				$("#mod_role_assignment table tbody.roles_de_usuario").append(tds).click(function(){
+					evento_btn_asignacion(false, true, true, false, '');
+				});
 			}
         });
 	});
-});
 	function buscar_usuario_rol()
 	{	$.ajax({
 			url:base_url+'manager/ccrol/buscar_usuario_rol',
@@ -172,21 +196,7 @@ $(document).ready(function(){
 						var field;
 						field=$("[name='ckeck_rol_user_detail']");
 						var checkflag = "false";
-						var tr_role_asigando=$('#mod_role_assignment table tbody.roles_de_usuario tr');
-						var tr_roles=$('#mod_role_assignment table tbody.rol tr');
-						var ids_rol_asignados;
-						var ids_roles=[];
-						$.each(tr_role_asigando,function(a,b){
-							ids_rol_asignados=$('#mod_role_assignment table tbody.roles_de_usuario tr:eq('+a+') td:eq(2)').html();
-							$.each(tr_roles,function(c,d){
-								ids_roles=$('#mod_role_assignment table tbody.rol tr:eq('+c+') [name="check_rol_detail"]').attr('value');
-								if(ids_roles==ids_rol_asignados){
-									$('#mod_role_assignment table tbody.rol tr:eq('+c+') [name="check_rol_detail"]').attr('disabled',true);
-								}
-							});
-						});
-						
-						console.info(ids_roles);
+						roles_asignado_usuario();
 						$('#mod_role_assignment input[name="check_rol_user"]').click(function(){
 							if($(this).is(":checked"))
 								{	evento_btn_asignacion(true, false, true, true, '');	
@@ -204,7 +214,7 @@ $(document).ready(function(){
 								}
 							});
 						$('#mod_role_assignment tbody.roles_de_usuario input[name="ckeck_rol_user_detail"]').click(function(){
-							evento_btn_asignacion(true, false, true, true, '');
+							evento_btn_asignacion(true, false, true, false, '');
 							var tr=$('#mod_role_assignment table tbody.roles_de_usuario tr');
 							$.each(tr,function(index,value){
 								if($('#mod_role_assignment table tbody.roles_de_usuario tr input[name="ckeck_rol_user_detail"]').is(':checked')==false){
@@ -223,6 +233,25 @@ $(document).ready(function(){
 			}
 		});
 	}
+	function roles_asignado_usuario()
+	{
+		var tr_role_asigando=$('#mod_role_assignment table tbody.roles_de_usuario tr');
+		var tr_roles=$('#mod_role_assignment table tbody.rol tr');
+		var ids_rol_asignados;
+		var ids_roles=[];
+		$.each(tr_role_asigando,function(a,b){
+			ids_rol_asignados=$('#mod_role_assignment table tbody.roles_de_usuario tr:eq('+a+') td:eq(2)').html();
+			$.each(tr_roles,function(c,d){
+				ids_roles=$('#mod_role_assignment table tbody.rol tr:eq('+c+') [name="check_rol_detail"]').attr('value');
+				if(ids_roles==ids_rol_asignados){
+					$('#mod_role_assignment table tbody.rol tr:eq('+c+') [name="check_rol_detail"]').attr('disabled',true);
+				}
+			});
+		});
+		
+	}
+});
+	
 	function evento_btn_asignacion(izquierda,eliminar,guardar,cancelar,css)
 	{
 		if(izquierda==true){$('.left').attr('disabled',izquierda).css('cursor','no-drop');}else{$('.left').attr('disabled',izquierda).css('cursor','');}

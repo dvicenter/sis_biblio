@@ -66,7 +66,7 @@
 			return $query->result_array();
 		}
 		function buscar_rol_usuario($id_usuario){
-			$query ="CALL SPRCNSListar_rol_usuario(".$id_usuario.")";
+			$query ="CALL SPRCNSListar_rol_usuario(1,".$id_usuario.")";
 			$query=$this->db->query($query);
 			return $query->result_array();
 		}
@@ -81,8 +81,14 @@
 		}
 		function insert_new_rol_usuario($ids,$id_usuario)
 		{	$query="CALL SPRABMUsuarioRol(1,0,".$id_usuario.",".$ids.")";
-			$query=$this->db->query($query);
-			return true;
+			if ($this->db->query($query) )
+			{	$data;
+				$query=$this->db->query("CALL SPRCNSListar_rol_usuario(2,".$id_usuario.")");
+				foreach ($query->result() as $dato)
+					{	$data=$dato;
+					}
+				return $data;
+			}
 		}
 	}
  ?>

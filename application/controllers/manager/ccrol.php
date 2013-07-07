@@ -131,9 +131,11 @@ class Ccrol extends CI_Controller
 	{	$ids=$_REQUEST['ids'];
 		$id_usuario=$_REQUEST['id_usuario'];
 		$ids=explode(',', $ids);
+		$ids_r=array();
 		for($i=0;$i < sizeof($ids);$i++){
-			$this->cdrol->insert_new_rol_usuario($ids[$i],$id_usuario);
+			array_push($ids_r,$this->cdrol->insert_new_rol_usuario($ids[$i],$id_usuario));
 		}
+		echo json_encode($ids_r);
 	}
 
 } 
