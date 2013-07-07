@@ -23,7 +23,7 @@
 
         
 		function buscar_sujeto()
-		{	$query = "CALL SPRABMUsuario()";
+		{	$query = "CALL SPRCNSSujeto()";
 			$query = $this->db->query($query);
 			return $query->result_array();
 		}

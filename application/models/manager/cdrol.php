@@ -51,26 +51,38 @@
 		
 
 		function eliminar($id_rol)
-		{
-			$query = "CALL SPRABMRol(3,'$id_rol',null,null)";
+		{	$query = "CALL SPRABMRol(3,'$id_rol',null,null)";
 			$query = $this->db->query($query);
 		}
 		
 		function buscar_rol()
 		{	$query = "CALL SPRABMRol(0,0,0,0)";
 			$query = $this->db->query($query);
-		return $query->result_array();
+			return $query->result_array();
 		}
 		function buscar_usuario_rol()
 		{	$query = "CALL SPRABMUsuario(0,0,0,0,0,0)";
-		$query = $this->db->query($query);
-		return $query->result_array();
-		
+			$query = $this->db->query($query);
+			return $query->result_array();
 		}
 		function buscar_rol_usuario($id_usuario){
 			$query ="CALL SPRCNSListar_rol_usuario(".$id_usuario.")";
 			$query=$this->db->query($query);
 			return $query->result_array();
+		}
+		function rol()
+		{	$query = "CALL SPRABMRol(0,0,0,0)";
+			$query=$this->db->query($query);
+			return $query->result_array();
+		}
+		function eliminar_usuario_rol($ids)
+		{	$query="DELETE FROM tbl_usuario_rol WHERE id_usuario_rol in (".$ids.")";
+			$query=$this->db->query($query);
+		}
+		function insert_new_rol_usuario($ids,$id_usuario)
+		{	$query="CALL SPRABMUsuarioRol(1,0,".$id_usuario.",".$ids.")";
+			$query=$this->db->query($query);
+			return true;
 		}
 	}
  ?>

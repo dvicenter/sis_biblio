@@ -114,10 +114,26 @@ class Ccrol extends CI_Controller
 		
  	}
 	function buscar_rol_usuario()
-	{ $id_usuario=$_REQUEST['id_usuario'];
+	{ 	$id_usuario=$_REQUEST['id_usuario'];
 		$this->data['usuarios_roles']=$this->cdrol->buscar_rol_usuario($id_usuario);
-		echo $this->load->view('module/manager/role_assignment/roles_de_usuario',$this->data);
+		echo $this->load->view('module/manager/role_assignment/rol_user_assignment',$this->data);
 		
+	}
+	function rol()
+	{	$this->data['roles']=$this->cdrol->rol();
+		echo $this->load->view('module/manager/role_assignment/rol',$this->data);
+	}
+	function eliminar_usuario_rol()
+	{	$ids=$_REQUEST['ids'];
+		$this->cdrol->eliminar_usuario_rol($ids);
+	}
+	function insert_new_rol_usuario()
+	{	$ids=$_REQUEST['ids'];
+		$id_usuario=$_REQUEST['id_usuario'];
+		$ids=explode(',', $ids);
+		for($i=0;$i < sizeof($ids);$i++){
+			$this->cdrol->insert_new_rol_usuario($ids[$i],$id_usuario);
+		}
 	}
 
 } 

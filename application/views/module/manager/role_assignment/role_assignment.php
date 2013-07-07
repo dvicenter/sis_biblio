@@ -1,6 +1,7 @@
+<script src="/sis_biblio/resource/myjs/manager/role_assignment.js" type="text/javascript"></script>
 <div id="mod_role_assignment">
 	<form id="form_rol_asig" class="form-horizontal">
-	<input type="hidden" name="id_usuario_asignacion">
+	<input type="hidden" name="id_user"/>
 	<fieldset>
 		<div class="control">
 		  <label style="width: 85px;" name="rol_asignacion" class="control-label bold_label" for="input_rol_asig"> Usuario: </label> 
@@ -16,7 +17,7 @@
     <table class="pos_left table table-striped table-bordered table-condensed" >
     <thead>
       <tr>
-        <th class="check_table"><input type="checkbox"/></th>
+        <th class="check_table"><input type="checkbox" name="check_rol_user" disabled/></th>
 		<th class="role_table">Rol</th>
       </tr>
     </thead>
@@ -24,70 +25,21 @@
 	
     </tbody>
   </table>
-  <div class="pos_left btns_nav_rol">
-  <button class="btn btn-info" type="submit">
- &lt;&lt;
-  </button>
-  <button class="btn btn-info" type="submit">
- &gt;&gt;
-  </button>
-  <button class="btn btn-primary" type="submit">
-  Guardar
-  </button>
-  <button class="btn" type="submit">
-  Cancelar
-  </button>
-  </div>
- 
-  
+	  <div class="pos_left btns_nav_rol">
+	  	<button class="btn btn-info left" type="submit">&lt;&lt;</button>
+	  	<button class="btn btn-danger delete" type="submit">Eliminar</button>
+	  	<button class="btn btn-primary save" type="submit">Guardar</button>
+	  	<button class="btn cancel" type="submit">Cancelar</button>
+	  </div>
   <table class="pos_right table table-striped table-bordered table-condensed" >
     <thead>
       <tr>
-        <th class="check_table"><input type="checkbox"/></th>
+        <th class="check_table"><input type="checkbox" name="check_rol"/></th>
 		<th class="role_table">Rol</th>
       </tr>
     </thead>
-    <tbody>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Central</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Especializada</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Patrimonio</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Director de Escuela</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Decano</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Central</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Biblioteca Especializada</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Jefe de Patrimonio</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Director de Escuela</td>
-		</tr>
-		<tr>
-			<td class="check_table"><input type="checkbox"/></td>
-			<td> Decano</td>
-		</tr>
-    </tbody>
+    	<tbody class="rol">
+		
+   		</tbody>
   </table>
 </div>
