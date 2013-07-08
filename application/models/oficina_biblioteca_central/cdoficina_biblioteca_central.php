@@ -33,4 +33,15 @@ class Cdoficina_biblioteca_central extends CI_Model{
 		{	return false;
 		}
 	}
+	
+	function num_tesis()
+    {   
+         return $this->db->get('viw_tesis')->num_rows();
+    }
+        
+	function listar_tesis($per_page)
+	{    
+         $datos = $this->db->get('viw_tesis',$per_page,$this->uri->segment(4));
+         return $datos->result_array();
+	}
 }

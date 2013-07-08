@@ -10,12 +10,28 @@
         <input type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="autor">Autor:</label>
         <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" required/>
+        <label for="autor">Facultad:</label>
+        <select class="">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
         <input type="text" id="asesor" data-toggle="popover" data-placement="right" data-content="" required/>
-        <label for="anio">Fecha:</label>
-        <input type="date" id="anio" data-toggle="popover" data-placement="right" data-content="" required/>
+        <label for="anio">A&ntilde;o:</label>
+        <input type="text" id="anio" data-toggle="popover" data-placement="right" data-content="" required maxlength="4"/>
+        <label for="autor">Escuela:</label>
+        <select class="">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
       </fieldset>
       <ul class="nav nav-tabs" id="myTab">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introduccion</a></li>
@@ -45,3 +61,10 @@
     </form>
   </div>
 </div>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$('#new_tesis #anio').validations('0123456789');
+});
+//-->
+</script>

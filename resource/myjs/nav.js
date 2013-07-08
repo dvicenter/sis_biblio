@@ -3,10 +3,13 @@ var sujetos=[];
 var pos_editar;
 $(document).ready(function(){
 	$('#tesis').click(function(){
-		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		//load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
 	});
 	$('#tesis_top').click(function(){
-		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		//load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top'
+		);
 	});
 	$('#constancia').click(function(){
 		load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
