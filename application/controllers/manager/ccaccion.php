@@ -106,6 +106,34 @@ class Ccaccion extends CI_Controller
 	{	
 		$this->cd_accion->eliminar($id_accion);
 	}
-	
+	function buscar_componente_accion()
+	{	$data=$this->cd_accion->buscar_componente_accion();
+ 		echo json_encode($data);
+	}
+	function buscar_acciones_componentes()
+	{	$id_componente=$_REQUEST['id_componente'];
+		$this->data['componentes_accion']=$this->cd_accion->buscar_acciones_componentes($id_componente);
+		echo $this->load->view('module/manager/role_component_action/accion_componente_assignment',$this->data);
+	}
+	function accion()
+	{	$this->data['acciones']=$this->cd_accion->accion();
+		echo $this->load->view('module/manager/role_component_action/accion',$this->data);
+	}
+	function eliminar_componente_accion()
+	{	$ids=$_REQUEST['ids'];
+		$this->cd_accion->eliminar_componente_accion($ids);
+	}
+	function insert_new_componente_accion()
+	{	$ids=$_REQUEST['ids'];
+		$id_componente=$_REQUEST['id_componente'];
+		$ids=explode(',', $ids);
+		$ids_r=array();
+		for($i=0;$i < sizeof($ids);$i++){
+			$this->cd_accion->insert_new_componente_accion($ids[$i],$id_componente);
+		}
+		$ids++;
+		$data = $this->cd_accion->ultimos_componente_accion($id_componente,sizeof($ids));
+		echo json_encode($data);
+	}
 } 
 ?>

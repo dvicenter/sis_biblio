@@ -56,11 +56,7 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
-				 if($('#mod_role_component_action').is(':visible')){
-				$("#mod_role_component_action input[name='rol_accion']").focus();
-					buscar_componente_accion();
-					
-				}else if($('#mod_role_assignment_component').is(':visible')){
+				if($('#mod_role_assignment_component').is(':visible')){
 				$("#mod_role_assignment_component input[name='rol_comp']").focus();
 					buscar_rol_componente();
 					
@@ -931,22 +927,22 @@ $(document).ready(function(){
 			}
 		});
 	}
-	function buscar_componente_accion()
-	{	$.ajax({
-			url:'/sis_biblio/manager/cccomponente/buscar_componente_accion',
-			type:"POST",
-			dataType:"json",
-			success:function(data){
-			
-				var componente_accion=[];
-				$.each(data,function(a,b){
-				componente_accion.push(b.componente);
-				});
-				$('#mod_role_component_action #input_acc_asig').typeahead().data('typeahead').source = componente_accion;
-					
-			}
-		});
-	}
+//	function buscar_componente_accion()
+//	{	$.ajax({
+//			url:'/sis_biblio/manager/cccomponente/buscar_componente_accion',
+//			type:"POST",
+//			dataType:"json",
+//			success:function(data){
+//			
+//				var componente_accion=[];
+//				$.each(data,function(a,b){
+//				componente_accion.push(b.componente);
+//				});
+//				$('#mod_role_component_action #input_acc_asig').typeahead().data('typeahead').source = componente_accion;
+//					
+//			}
+//		});
+//	}
 	function buscar_rol_componente()
 	{
 		$.ajax({
