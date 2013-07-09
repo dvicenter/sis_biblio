@@ -3,10 +3,13 @@ var sujetos=[];
 var pos_editar;
 $(document).ready(function(){
 	$('#tesis').click(function(){
-		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		//load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
 	});
 	$('#tesis_top').click(function(){
-		load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		//load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top'
+		);
 	});
 	$('#constancia').click(function(){
 		load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
@@ -56,11 +59,7 @@ $(document).ready(function(){
 			success:function(data){
 				active(id_nav_left,id_nav_top);
 				$('#module_content').html(data);
-				 if($('#mod_role_component_action').is(':visible')){
-				$("#mod_role_component_action input[name='rol_accion']").focus();
-					buscar_componente_accion();
-					
-				}else if($('#mod_role_assignment_component').is(':visible')){
+				if($('#mod_role_assignment_component').is(':visible')){
 				$("#mod_role_assignment_component input[name='rol_comp']").focus();
 					buscar_rol_componente();
 					
@@ -931,22 +930,22 @@ $(document).ready(function(){
 			}
 		});
 	}
-	function buscar_componente_accion()
-	{	$.ajax({
-			url:'/sis_biblio/manager/cccomponente/buscar_componente_accion',
-			type:"POST",
-			dataType:"json",
-			success:function(data){
-			
-				var componente_accion=[];
-				$.each(data,function(a,b){
-				componente_accion.push(b.componente);
-				});
-				$('#mod_role_component_action #input_acc_asig').typeahead().data('typeahead').source = componente_accion;
-					
-			}
-		});
-	}
+//	function buscar_componente_accion()
+//	{	$.ajax({
+//			url:'/sis_biblio/manager/cccomponente/buscar_componente_accion',
+//			type:"POST",
+//			dataType:"json",
+//			success:function(data){
+//			
+//				var componente_accion=[];
+//				$.each(data,function(a,b){
+//				componente_accion.push(b.componente);
+//				});
+//				$('#mod_role_component_action #input_acc_asig').typeahead().data('typeahead').source = componente_accion;
+//					
+//			}
+//		});
+//	}
 	function buscar_rol_componente()
 	{
 		$.ajax({

@@ -48,15 +48,42 @@
 			{	return $data;
 			}
 		}
-		
-
-
 		function eliminar($id_accion)
 		{
 			$query = "CALL SPRABMAccion(3,'$id_accion',null)";
 			$query = $this->db->query($query);
 		}
-		
+		function buscar_componente_accion()
+		{	$query = "CALL SPRABMComponente(0,0,0,0)";
+			$query = $this->db->query($query);
+			return $query->result_array();
+		}
+		function buscar_acciones_componentes($id_componente)
+		{	$query ="CALL SPRCNSComponenteAccion(1,".$id_componente.",0)";
+			$query=$this->db->query($query);
+			return $query->result_array();
+		}
+		function accion()
+		{	$query = "CALL SPRABMAccion(0,0,0)";
+			$query=$this->db->query($query);
+			return $query->result_array();
+		}
+		function eliminar_componente_accion($ids)
+		{	$query="DELETE FROM tbl_componente_accion WHERE id_componente_accion in (".$ids.")";
+			$query=$this->db->query($query);
+		}
+		function insert_new_componente_accion($ids,$id_componente)
+		{	$query="CALL SPRABMComponenteAccion(1,0,".$id_componente.",".$ids.")";
+			$this->db->query($query);
+		}
+		function ultimos_componente_accion($id_componente,$limit)
+		{	$data=array();
+			$query_=$this->db->query("CALL SPRCNSComponenteAccion(2,".$id_componente.",".$limit.")");
+				foreach ($query_->result() as $dato)
+					{	array_push($data, $dato);
+					}
+				return $data;
+		}
 	}
 	
  ?>

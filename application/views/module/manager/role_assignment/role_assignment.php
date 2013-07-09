@@ -9,8 +9,7 @@
 			<input autocomplete="off" id="input_rol_asig" type="text" name="rol_asignacion" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 			<input type="submit" class="btn search_usuario_rol" value="Buscar">
 			<div class="response pos_right"></div>
-			<p style="font-weight: normal;" class="help-block">Ejm: Garc&iacute;a Fernando</p>
-			<p class="help-block"></p>
+			<p style="font-weight: normal;" class="help-block">Ejm: Administrador</p>
 		  </div>
 		</div>
 	</fieldset>

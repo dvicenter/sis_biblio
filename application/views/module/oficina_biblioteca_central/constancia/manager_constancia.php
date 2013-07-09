@@ -1,4 +1,4 @@
-<script src="/sis_biblio/resource/myjs/solicitud_constancia.js" type="text/javascript"></script>
+<script src="<?php echo base_url()?>resource/myjs/solicitud_constancia.js" type="text/javascript"></script>
 <div id="module_constancia">
     <ul class="control">
       <li class="menu-control"><button class="btn btn-info" disabled><i class="icon-upload icon-white"></i>Exportar</button></li>
