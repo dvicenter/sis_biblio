@@ -66,8 +66,47 @@ class Cccomponente extends CI_Controller
 		$this->cdcomponente->eliminar($id_componente);
 		
 	}
+	function componente()
+	{	
+		$this->data['componentes']=$this->cdcomponente->componente_accion();
+		echo $this->load->view('module/manager/role_assignment_component/component',$this->data);
+	}
+
+	function buscar_rol_componente()
+	{
+		$data=$this->cdcomponente->buscar_rol_componente();
+ 		echo json_encode($data);
+	}
+
+
 	function buscar_componente_accion()
 	{	$data=$this->cdcomponente->buscar_componente_accion();
+		echo json_encode($data);
+	}
+
+	function buscar_rol_componente_accion()
+	{ 	
+		$id_rol=$_POST['id_rol'];
+		$this->data['roles_componentes']=$this->cdcomponente->buscar_rol_componente_accion($id_rol);
+		echo $this->load->view('module/manager/role_assignment_component/component_rol_assignment',$this->data);
+		
+	}
+
+	function eliminar_rol_componente_accion()
+	{	$ids=$_REQUEST['ids'];
+		$this->cdcomponente->eliminar_rol_componente_accion($ids);
+	}
+
+	function insert_new_rol_componente_accion()
+	{	$ids=$_REQUEST['ids'];
+		$id_componente=$_REQUEST['id_componente'];
+		$ids=explode(',', $ids);
+		$ids_r=array();
+		for($i=0;$i < sizeof($ids);$i++){
+			$this->cdcomponente->insert_new_rol_componente_accion($ids[$i],$id_componente);
+		}
+		$ids++;
+		$data = $this->cdcomponente->ultimos_rol_componente_accion($id_componente,sizeof($ids));
 		echo json_encode($data);
 	}
 } 
