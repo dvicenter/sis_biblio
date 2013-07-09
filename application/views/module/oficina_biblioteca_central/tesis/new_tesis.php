@@ -7,13 +7,13 @@
     <form id="form_nuevo_tesis" >
       <fieldset> 
         <label for="titulo">Titulo:</label>
-        <input type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
+        <input autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="autor">Autor:</label>
         <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" required/>
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
-        <input type="text" id="asesor" data-toggle="popover" data-placement="right" data-content="" required/>
+        <input id="asesor" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
         <label for="anio">A&ntilde;o:</label>
         <input type="text" id="anio" data-toggle="popover" data-placement="right" data-content="" required maxlength="4"/>
         

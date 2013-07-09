@@ -1,7 +1,7 @@
 <script src="/sis_biblio/resource/myjs/tesis/tesis.js"></script>
 <div id="module_tesis">
     <ul class="control">
-      <li class="menu-control"><button id="add_tesis" href="#new_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
+      <li class="menu-control"><button id="add_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
       <li class="menu-control"><a href="#new_exportar" class="btn btn-info" data-toggle="modal" disabled><i class="icon-upload icon-white"></i> Exportar</a></li>
       <li class="menu-control">
         <form class="form-search span4 offset2">
