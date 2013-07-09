@@ -4,7 +4,7 @@
     <h3 id="myModalLabel">Agregar Tesis</h3>
   </div>
   <div class="modal-body">
-    <form id="form_nuevo_tesis" action="nuevo.php" method="POST" >
+    <form id="form_nuevo_tesis" >
       <fieldset> 
         <label for="titulo">Titulo:</label>
         <input type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
@@ -41,11 +41,10 @@
   </div>
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
-        <input class="btn btn-primary" type="submit" value="Agregar"/>
+        <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
     </form>
   </div>
-</div>
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
