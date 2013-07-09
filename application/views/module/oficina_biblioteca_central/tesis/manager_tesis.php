@@ -1,13 +1,13 @@
 <div id="module_tesis">
     <ul class="control">
-      <li class="menu-control"><button href="#new_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
-      <li class="menu-control"><a href="#new_exportar" class="btn btn-info" data-toggle="modal"><i class="icon-upload icon-white"></i> Exportar</a></li>
+      <li class="menu-control"><button id="add_tesis" href="#new_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
+      <li class="menu-control"><a href="#new_exportar" class="btn btn-info" data-toggle="modal" disabled><i class="icon-upload icon-white"></i> Exportar</a></li>
       <li class="menu-control">
         <form class="form-search span4 offset2">
           <div class="input-append">
-            <input class="span3" id="appendedDropdownButton" type="text" placeholder="Buscar">
+            <input class="span3" id="appendedDropdownButton" type="text" placeholder="Buscar" disabled>
             <div class="btn-group">
-              <button class="btn dropdown-toggle" data-toggle="dropdown">
+              <button class="btn dropdown-toggle" data-toggle="dropdown" disabled>
                 Filtro
                 <span class="caret"></span>
               </button>
@@ -46,7 +46,7 @@
 					<td><?php echo $ttesis['docente']?></td>
 					<td><?php echo $ttesis['anio']?></td>
 					<td>
-						<button class="btn"><i class="icon-pencil"></i></button>
+						<button class="btn" disabled><i class="icon-pencil"></i></button>
 					</td>
 				<?php  endforeach; ?>
                 </tr>

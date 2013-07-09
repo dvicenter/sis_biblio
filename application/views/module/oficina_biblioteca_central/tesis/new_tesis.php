@@ -1,6 +1,6 @@
 <div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3 id="myModalLabel">Agregar Tesis</h3>
   </div>
   <div class="modal-body">
@@ -10,28 +10,13 @@
         <input type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="autor">Autor:</label>
         <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" required/>
-        <label for="autor">Facultad:</label>
-        <select class="">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
         <input type="text" id="asesor" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="anio">A&ntilde;o:</label>
         <input type="text" id="anio" data-toggle="popover" data-placement="right" data-content="" required maxlength="4"/>
-        <label for="autor">Escuela:</label>
-        <select class="">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+        
       </fieldset>
       <ul class="nav nav-tabs" id="myTab">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introduccion</a></li>
