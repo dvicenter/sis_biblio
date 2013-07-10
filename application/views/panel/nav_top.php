@@ -3,7 +3,7 @@
     <div class="container">
       	<a class="brand" href="#">Sist. de Consultas de Tesis</a>
       	<ul class="nav">
-			<li class="active import">
+			<li  class="active import">
 				<a href="<?php echo base_url();?>">Inicio</a>
 			</li>
   			<li class="import">
@@ -15,19 +15,19 @@
 			<!-- <li class="import">
 				<a href="#">Material Bibliogr&aacute;fico</a>
 			</li>-->
-			<li class="dropdown">
+			<li class="dropdown ">
 			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			          Mantenimiento
 			          <b class="caret"></b>
 			    </a>
 			    <ul class="dropdown-menu">
-			    	<li>
+			    	<li class="modulo_deshabilitado">
 			    		<a id="rol" href="javascript:;">Rol</a>
 			    	</li>
-			    	<li>
+			    	<li class="modulo_deshabilitado">
 			    		<a id="componente" href="javascript:;">Componente</a>
 			    	</li>
-			    	<li>
+			    	<li class="modulo_deshabilitado">
 			    		<a  id="accion" href="javascript:;">Accion</a>
 			    	</li>
 					</li>

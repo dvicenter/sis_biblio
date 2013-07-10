@@ -650,8 +650,10 @@ $(document).ready(function(){
 				if(b.id_sujeto==id_sujeto){
 					console.info(b.id_componente);
 					switch (b.id_componente){
-						case '77': alert('hola');$('#accion').parent().addClass('modulo_habilitado');$('#accion').parent().removeClass('modulo_deshabilitado');
+						case '84':alert('asdasd'); $('#accion').parent().addClass('modulo_habilitado');$('#accion').parent().removeClass('modulo_deshabilitado');
 						break; 
+						case '77': $('#componente').parent().addClass('modulo_habilitado');$('#componente').parent().removeClass('modulo_deshabilitado');
+						break;
 				
 					}
 				}
