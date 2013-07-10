@@ -27,7 +27,7 @@
 			    	<li>
 			    		<a id="componente" href="javascript:;">Componente</a>
 			    	</li>
-			    	<li class="modulo_deshabilitado">
+			    	<li>
 			    		<a  id="accion" href="javascript:;">Accion</a>
 			    	</li>
 					</li>
