@@ -17,7 +17,8 @@
     	</div>
   </div>
   <div class="modal-footer">
-    <a href="javascript:;" class="btn desaprobar">Desaprobar</a>
+    <a href="javascript:;" class="btn close__">Cancelar</a>
+    <a href="javascript:;" class="btn btn-danger desaprobar">Desaprobar</a>
     <a href="javascript:;" class="btn btn-primary aprobar">Aprobar</a>
   </div>
 </div>
