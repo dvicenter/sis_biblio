@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	$('#consult_related .close__').click(function(){
+		$('#consult_related').modal('hide');
+	});
 	$('#actual_tesis #search_student').click(function(){
 		active_consult('.consult_student', '.consult_asesor');
 		var id_plan_tesis=$("#actual_tesis input[name='id_plan_tesis_form']").attr('value');

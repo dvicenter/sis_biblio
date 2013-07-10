@@ -1,19 +1,21 @@
 <div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <div class="response"></div>
     <h3 id="myModalLabel">Agregar Tesis</h3>
   </div>
   <div class="modal-body">
-    <form id="form_nuevo_tesis" action="nuevo.php" method="POST" >
+    <form id="form_nuevo_tesis" >
+    	<input id="id_material_bibliografico" type="hidden"/>
       <fieldset> 
         <label for="titulo">Titulo:</label>
-        <input type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
+        <input autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="autor">Autor:</label>
         <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" required/>
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
-        <input type="text" id="asesor" data-toggle="popover" data-placement="right" data-content="" required/>
+        <input id="asesor" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
         <label for="anio">A&ntilde;o:</label>
         <input type="text" id="anio" data-toggle="popover" data-placement="right" data-content="" required maxlength="4"/>
         
@@ -41,11 +43,10 @@
   </div>
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
-        <input class="btn btn-primary" type="submit" value="Agregar"/>
+        <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
     </form>
   </div>
-</div>
 <script type="text/javascript">
 <!--
 $(document).ready(function(){

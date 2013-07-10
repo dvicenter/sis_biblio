@@ -937,7 +937,13 @@ $(document).ready(function(){
 					asesor.push(b.docente);
 					asesores.push([b.id_docente,b.docente]);
 				});
-				$('#input_man_asesor').typeahead().data('typeahead').source = asesor;
+				if($('#mod_request_record').is(':visible')){
+					$('#input_man_asesor').typeahead().data('typeahead').source = asesor;
+				}
+				
+				if($('#module_tesis').is(':visible')){
+					$('#module_tesis #asesor').typeahead().data('typeahead').source = asesor;
+				}
 			}
 		});
 	}
@@ -957,22 +963,6 @@ $(document).ready(function(){
 			}
 		});
 	}
-//	function buscar_componente_accion()
-//	{	$.ajax({
-//			url:'/sis_biblio/manager/cccomponente/buscar_componente_accion',
-//			type:"POST",
-//			dataType:"json",
-//			success:function(data){
-//			
-//				var componente_accion=[];
-//				$.each(data,function(a,b){
-//				componente_accion.push(b.componente);
-//				});
-//				$('#mod_role_component_action #input_acc_asig').typeahead().data('typeahead').source = componente_accion;
-//					
-//			}
-//		});
-//	}
 	function buscar_rol_componente()
 	{
 		$.ajax({
