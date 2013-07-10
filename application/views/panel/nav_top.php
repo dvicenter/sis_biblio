@@ -6,16 +6,16 @@
 			<li  class="active import">
 				<a href="<?php echo base_url();?>">Inicio</a>
 			</li>
-  			<li class="import">
+  			<li class="import modulo_deshabilitado">
   				<a id="tesis_top" href="javascript:;">Tesis</a>
   			</li>
-			<li class="import">
+			<li class="import modulo_deshabilitado">
 				<a id="constancia_top" href="javascript:;">Solicitudes de Constancia</a>
 			</li>
 			<!-- <li class="import">
 				<a href="#">Material Bibliogr&aacute;fico</a>
 			</li>-->
-			<li class="dropdown ">
+			<li class="dropdown modulo_deshabilitado">
 			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			          Mantenimiento
 			          <b class="caret"></b>

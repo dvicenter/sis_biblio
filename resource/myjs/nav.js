@@ -650,10 +650,55 @@ $(document).ready(function(){
 				if(b.id_sujeto==id_sujeto){
 					console.info(b.id_componente);
 					switch (b.id_componente){
-						case '84':alert('asdasd'); $('#accion').parent().addClass('modulo_habilitado');$('#accion').parent().removeClass('modulo_deshabilitado');
+						case '84': $('#accion').parent().addClass('modulo_habilitado');$('#accion').parent().removeClass('modulo_deshabilitado');
+						$('#accion').parent().parent().parent().addClass('modulo_habilitado');
+						$('#accion').parent().parent().parent().removeClass('modulo_deshabilitado')
 						break; 
 						case '77': $('#componente').parent().addClass('modulo_habilitado');$('#componente').parent().removeClass('modulo_deshabilitado');
+						$('#componente').parent().parent().parent().addClass('modulo_habilitado');
+						$('#componente').parent().parent().parent().removeClass('modulo_deshabilitado')
 						break;
+						case '86': $('#rol').parent().addClass('modulo_habilitado');$('#rol').parent().removeClass('modulo_deshabilitado');
+						$('#rol').parent().parent().parent().addClass('modulo_habilitado');
+						$('#rol').parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '98': $('#constancia_top').parent().addClass('modulo_habilitado');$('#constancia_top').parent().removeClass('modulo_deshabilitado');
+						$('#constancia').parent().addClass('modulo_habilitado');$('#constancia').parent().removeClass('modulo_deshabilitado');
+						$('#constancia').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#constancia').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '96': $('#tesis').parent().addClass('modulo_habilitado');$('#tesis').parent().removeClass('modulo_deshabilitado');
+						$('#tesis').parent().addClass('modulo_habilitado');$('#tesis').parent().removeClass('modulo_deshabilitado');
+						$('#tesis').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#tesis').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '89': $('#request_record').parent().addClass('modulo_habilitado');$('#request_record').parent().removeClass('modulo_deshabilitado');
+						$('#request_record').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#request_record').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '87': $('#user').parent().addClass('modulo_habilitado');$('#user').parent().removeClass('modulo_deshabilitado');
+						$('#user').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#user').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '97': $('#load_voucher').parent().addClass('modulo_habilitado');$('#load_voucher').parent().removeClass('modulo_deshabilitado');
+						$('#load_voucher').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#load_voucher').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '91': $('#role_assignment').parent().addClass('modulo_habilitado');$('#role_assignment').parent().removeClass('modulo_deshabilitado');
+						$('#role_assignment').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#role_assignment').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '93': $('#role_assignment_component').parent().addClass('modulo_habilitado');$('#role_assignment_component').parent().removeClass('modulo_deshabilitado');
+						$('#role_assignment_component').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#role_assignment_component').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						case '94': $('#role_component_action').parent().addClass('modulo_habilitado');$('#role_component_action').parent().removeClass('modulo_deshabilitado');
+						$('#role_component_action').parent().parent().parent().parent().addClass('modulo_habilitado');
+						$('#role_component_action').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						break;
+						
+						
+						
 				
 					}
 				}

@@ -49,7 +49,7 @@
 
 		function componente_accion()
 		{
-			$query = "CALL SPRABMComponenteAccion(0,0,0,0)";
+			$query = "CALL SPRABMRolComponenteAccion(0,0,0,0)";
 			$query = $this->db->query($query);
 			return $query->result_array();
 		}
@@ -75,7 +75,7 @@
 
 		function eliminar($id_componente)
 		{
-			$query = "CALL SPRABMComponente(3,'$id_componente',null,null)";
+			$query = "CALL SPRABMComponente(3,".$id_componente.",null,null)";
 			$this->db->query($query);
 		}
 
@@ -86,7 +86,7 @@
 		}
 
 		function insert_new_rol_componente_accion($ids,$id_componente)
-		{	$query="CALL SPRABMComponenteAccion(1,0,".$id_componente.",".$ids.")";
+		{	$query="CALL SPRABMRolComponenteAccion(1,0,".$id_componente.",".$ids.")";
 			$this->db->query($query);
 		}
 
