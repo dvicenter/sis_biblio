@@ -1,3 +1,4 @@
+<script src="/sis_biblio/resource/myjs/tesis/export_tesis.js"></script>
 <div id="new_exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -32,6 +33,7 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <button class="btn btn-primary">Exportar</button>
+   <!--  <button class="btn btn-primary export">Exportar</button>-->
+   <a href="<?php echo base_url()?>oficina_biblioteca_central/report/example_001/export" class="btn btn-primary" target="_blank">Exportar</a>
   </div>
 </div>
