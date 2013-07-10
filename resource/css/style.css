@@ -70,7 +70,8 @@ table thead .action_table{width: 12%;}
 #mod_request_record .btn_tesi{margin-top: 15px;margin-right: 64%;}
 /*END USER*/
 /*STAR COMPONENTE*/
-
+.modulo_habilitado{display:block}
+.modulo_deshabilitado{display:none;}
 /*END COMPONENTE*/
 
 /*STAR ACCION*/

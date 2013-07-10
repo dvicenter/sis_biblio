@@ -1,7 +1,9 @@
 var asesores=[];
 var sujetos=[];
 var pos_editar;
+
 $(document).ready(function(){
+	habilitar_modulo();
 	$('#tesis').click(function(){
 		//load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
 		load_module_not_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
@@ -634,6 +636,31 @@ $(document).ready(function(){
 						console.info(data);
 					}
 			});
+	}
+	
+	function habilitar_modulo()
+	{
+		var id_sujeto=$("#id_sujeto_login").attr('value');
+		$.ajax({
+			url:base_url+'util/ccpermiso/habilitar_permiso',
+			dataType:'json',
+			success:function(data){
+			
+			$.each(data,function(a,b){
+				if(b.id_sujeto==id_sujeto){
+					console.info(b.id_componente);
+					switch (b.id_componente){
+						case '77': alert('hola');$('#accion').parent().addClass('modulo_habilitado');$('#accion').parent().removeClass('modulo_deshabilitado');
+						break; 
+				
+					}
+				}
+			});
+			
+			}
+		});
+		
+		
 	}
 
 	/*END USUARIO*/

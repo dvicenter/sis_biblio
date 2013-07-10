@@ -6,7 +6,7 @@
 		<div class="control">
 		  <label style="width: 85px;" class="control-label bold_label" for="input_comp_asig"> Rol: </label> 
 		  <div style="margin-left:100px;" class="controls">
-			<input autocomplete="off" id="input_comp_asig" type="text" name="rol_comp" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+			<input autocomplete="off" id="input_comp_asig" class="display:none" type="text" name="rol_comp" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
 			<input type="submit" class="btn search_rol_componente" value="Buscar"/>
 			<div class="response pos_right"></div>
 			<p style="font-weight: normal;" class="help-block">Ejm: Administrador</p>
@@ -24,6 +24,7 @@
       </tr>
     </thead>
     <tbody class="componente_de_rol">
+		
 		<!-- body de la tabla compomentes de un rol -->
     </tbody>
   </table>

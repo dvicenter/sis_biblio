@@ -4,5 +4,6 @@
 		<td><?php echo $rol_componente['componente']?></td>
 		<td><?php echo $rol_componente['accion']?></td>
 		<td style="display:none;"><?php echo $rol_componente['id_rol']?></td>
+
 	</tr>
 <?php }?>
