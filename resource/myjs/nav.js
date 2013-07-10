@@ -56,7 +56,7 @@ $(document).ready(function(){
 		$.ajax({
 			url:url,
 			beforeSend:function(data){
-				$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
+				$('#module_content').html('<div class="loading"><img src="'+base_url+'resource/img/utilities/gif/loading.gif"/></div>');
 			},
 			success:function(data){
 				active(id_nav_left,id_nav_top);
@@ -101,7 +101,7 @@ $(document).ready(function(){
 					url:url,
 					beforeSend:function()
 						{
-							$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
+							$('#module_content').html('<div class="loading"><img src="'+base_url+'resource/img/utilities/gif/loading.gif"/></div>');
 						},
 					success:function(data)
 						{
