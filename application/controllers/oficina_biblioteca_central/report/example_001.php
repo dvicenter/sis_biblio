@@ -1,11 +1,11 @@
 <?php
 //============================================================+
-// File name   : example_001.php
+// File name   : example_011.php
 // Begin       : 2008-03-04
 // Last Update : 2013-05-14
 //
-// Description : Example 001 for TCPDF class
-//               Default Header and Footer
+// Description : Example 011 for TCPDF class
+//               Colored Table (very simple table)
 //
 // Author: Nicola Asuni
 //
@@ -19,28 +19,73 @@
 /**
  * Creates an example PDF TEST document using TCPDF
  * @package com.tecnick.tcpdf
- * @abstract TCPDF - Example: Default Header and Footer
+ * @abstract TCPDF - Example: Colored Table
  * @author Nicola Asuni
  * @since 2008-03-04
  */
 
 // Include the main TCPDF library (search for installation path).
-function export(){
 require_once('tcpdf_include.php');
 
+// extend TCPF with custom functions
+class MYPDF extends TCPDF {
+
+	// Load table data from file
+	public function LoadData($file) {
+		// Read file lines
+		$lines = file($file);
+		$data = array();
+		foreach($lines as $line) {
+			$data[] = explode(';', chop($line));
+		}
+		return $data;
+	}
+
+	// Colored table
+	public function ColoredTable($header,$data) {
+		// Colors, line width and bold font
+		$this->SetFillColor(255, 0, 0);
+		$this->SetTextColor(255);
+		$this->SetDrawColor(128, 0, 0);
+		$this->SetLineWidth(0.3);
+		$this->SetFont('', 'B');
+		// Header
+		$w = array(40, 35, 40, 45);
+		$num_headers = count($header);
+		for($i = 0; $i < $num_headers; ++$i) {
+			$this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+		}
+		$this->Ln();
+		// Color and font restoration
+		$this->SetFillColor(224, 235, 255);
+		$this->SetTextColor(0);
+		$this->SetFont('');
+		// Data
+		$fill = 0;
+		foreach($data as $row) {
+			$this->Cell($w[0], 6, $row[0], 'LR', 0, 'L', $fill);
+			$this->Cell($w[1], 6, $row[1], 'LR', 0, 'L', $fill);
+			$this->Cell($w[2], 6, number_format($row[2]), 'LR', 0, 'R', $fill);
+			$this->Cell($w[3], 6, number_format($row[3]), 'LR', 0, 'R', $fill);
+			$this->Ln();
+			$fill=!$fill;
+		}
+		$this->Cell(array_sum($w), 0, '', 'T');
+	}
+}
+
 // create new PDF document
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle('TCPDF Example 001');
+$pdf->SetTitle('TCPDF Example 011');
 $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
-$pdf->setFooterData(array(0,64,0), array(0,64,128));
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 011', PDF_HEADER_STRING);
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -68,40 +113,23 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 
 // ---------------------------------------------------------
 
-// set default font subsetting mode
-$pdf->setFontSubsetting(true);
+// set font
+$pdf->SetFont('helvetica', '', 12);
 
-// Set font
-// dejavusans is a UTF-8 Unicode font, if you only need to
-// print standard ASCII chars, you can use core fonts like
-// helvetica or times to reduce file size.
-$pdf->SetFont('dejavusans', '', 14, '', true);
-
-// Add a page
-// This method has several options, check the source code documentation for more information.
+// add a page
 $pdf->AddPage();
 
-// set text shadow effect
-$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
+// column titles
+$header = array('Country', 'Capital', 'Area (sq km)', 'Pop. (thousands)');
 
-// Set some content to print
-$html = <<<EOD
-<h1>Welcome to <a href="http://www.tcpdf.org" style="text-decoration:none;background-color:#CC0000;color:black;">&nbsp;<span style="color:black;">TC</span><span style="color:white;">PDF</span>&nbsp;</a>!</h1>
-<i>This is the first example of TCPDF library.</i>
-<p>This text is printed using the <i>writeHTMLCell()</i> method but you can also use: <i>Multicell(), writeHTML(), Write(), Cell() and Text()</i>.</p>
-<p>Please check the source code documentation and other examples for further information.</p>
-<p style="color:#CC0000;">TO IMPROVE AND EXPAND TCPDF I NEED YOUR SUPPORT, PLEASE <a href="http://sourceforge.net/donate/index.php?group_id=128076">MAKE A DONATION!</a></p>
-EOD;
+// data loading
+$data = $pdf->LoadData('data/table_data_demo.txt');
 
-// Print text using writeHTMLCell()
-$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+// print colored table
+$pdf->ColoredTable($header, $data);
 
 // ---------------------------------------------------------
 
-// Close and output PDF document
-// This method has several options, check the source code documentation for more information.
-$pdf->Output('example_001.pdf', 'I');
-}
-//============================================================+
-// END OF FILE
-//============================================================+
+// close and output PDF document
+$pdf->Output('example_011.pdf', 'I');
+

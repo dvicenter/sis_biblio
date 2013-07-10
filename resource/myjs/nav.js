@@ -5,51 +5,51 @@ var pos_editar;
 $(document).ready(function(){
 	habilitar_modulo();
 	$('#tesis').click(function(){
-		//load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
-		load_module_not_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
+		//load_module_not_date(base_url+'module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
 	});
 	$('#tesis_top').click(function(){
-		//load_module_not_date('/sis_biblio/module/tesis/manager_tesis', '#tesis', '#tesis_top');
-		load_module_not_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top'
+		//load_module_not_date(base_url+'module/tesis/manager_tesis', '#tesis', '#tesis_top');
+		load_module_not_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tess_top'
 		);
 	});
 	$('#constancia').click(function(){
-		load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
 		
 	});
 	$('#user').click(function(){
-		load_module_date('/sis_biblio/manager/ccusuario/listar', '#user', 'null');
+		load_module_date(base_url+'manager/ccusuario/listar', '#user', 'null');
 	});
 	$('#role_assignment').click(function(){
-		load_module_not_date('/sis_biblio/module/role_assignment/role_assignment', '#role_assignment', 'null');
+		load_module_not_date(base_url+'module/role_assignment/role_assignment', '#role_assignment', 'null');
 	});
 	$('#request_record').click(function(){
-		load_module_date('/sis_biblio/module/user/request_record', '#request_record', 'null');
+		load_module_date(base_url+'module/user/request_record', '#request_record', 'null');
 	});
 	$('#tesis_consultation').click(function(){
-		load_module_not_date('/sis_biblio/module/user/tesis_consultation', '#tesis_consultation', 'null');
+		load_module_not_date(base_url+'module/user/tesis_consultation', '#tesis_consultation', 'null');
 	});
 	$('#role_assignment_component').click(function(){
-		load_module_not_date('/sis_biblio/module/role_assignment_component/role_assignment_component', '#role_assignment_component', 'null');
+		load_module_not_date(base_url+'module/role_assignment_component/role_assignment_component', '#role_assignment_component', 'null');
 	});
 	$('#role_component_action').click(function(){
-		load_module_not_date('/sis_biblio/module/role_component_action/role_component_action', '#role_component_action', 'null');
+		load_module_not_date(base_url+'module/role_component_action/role_component_action', '#role_component_action', 'null');
 	});
 	$('#rol').click(function(){
-		load_module_date('/sis_biblio/manager/ccrol/listar', '#rol_user', 'null');
+		load_module_date(base_url+'manager/ccrol/listar', '#rol_user', 'null');
 	});
 	$('#componente').click(function(){
 		
-		load_module_date('/sis_biblio/manager/cccomponente/listar', '#componente_user', 'null');
+		load_module_date(base_url+'manager/cccomponente/listar', '#componente_user', 'null');
 	});
 	$('#accion').click(function(){
-		load_module_date('/sis_biblio/manager/ccaccion/listar', '#accion_user', 'null');
+		load_module_date(base_url+'manager/ccaccion/listar', '#accion_user', 'null');
 	});
 	$('#load_voucher').click(function(){
-		load_module_not_date('/sis_biblio/module/voucher/voucher', '#load_voucher', 'null');
+		load_module_not_date(base_url+'module/voucher/voucher', '#load_voucher', 'null');
 	});
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
@@ -265,7 +265,7 @@ $(document).ready(function(){
 		if (fallos == 0) {
 			
 			$.ajax({
-				url:'/sis_biblio/manager/ccrol/insertar',
+				url:base_url+'manager/ccrol/insertar',
 				data:'rol='+rol+'&descripcion_rol='+descripcion,
 				type:'post',
 				dataType:'json',
@@ -326,7 +326,7 @@ $(document).ready(function(){
 		var descripcion=$("#mod_rol textarea[name='text_rol']").attr('value');
 		if(validar_rol()==0){
 		$.ajax({
-			url:'/sis_biblio/manager/ccrol/modificar/',
+			url:base_url+'manager/ccrol/modificar/',
 			data:'id_rol='+idrol+'&rol='+rol+'&descripcion_rol='+descripcion,
 			type:'post',
 			dataType:'json',
@@ -351,7 +351,7 @@ $(document).ready(function(){
 		var id_rol=$("#mod_rol #table_aum tr:nth-child("+pos+") td:nth-child(1)").html();
 		console.info(id_rol);
 			$.ajax({
-				url:'/sis_biblio/manager/ccrol/eliminar/'+id_rol,
+				url:base_url+'manager/ccrol/eliminar/'+id_rol,
 				type:'post',
 				dataType:'json',
 				success:function(data)
@@ -368,7 +368,7 @@ $(document).ready(function(){
 		var fallos = validar_accion();
 		if (fallos == 0){
 		$.ajax({
-						url:'/sis_biblio/manager/ccaccion/insertar',
+						url:base_url+'manager/ccaccion/insertar',
 						data:'accion='+accion,
 						type:'post',
 						dataType:'json',
@@ -423,7 +423,7 @@ $(document).ready(function(){
 		var accion=$("#mod_accion input[name='accion']").attr('value');
 		if(validar_accion()==0){
 			$.ajax({
-						url:'/sis_biblio/manager/ccaccion/modificar',
+						url:base_url+'manager/ccaccion/modificar',
 						data:'id_accion='+idacc+'&accion='+accion,
 						type:'post',
 						dataType:'json',
@@ -450,7 +450,7 @@ $(document).ready(function(){
 		var idacc = $("#mod_accion #table_acc tr:nth-child("+pos+") td:nth-child(1)").html();
 		console.info(idacc);
 			$.ajax({
-				url:'/sis_biblio/manager/ccaccion/eliminar/'+idacc,
+				url:base_url+'manager/ccaccion/eliminar/'+idacc,
 				type:'post',
 				dataType:'json',
 				success:function(data)
@@ -486,7 +486,7 @@ $(document).ready(function(){
 			if(retorno_contrasenia_valido()==true){
 				if(validar_usuario()==0){
 			$.ajax({
-				url:'/sis_biblio/manager/ccusuario/insertar',
+				url:base_url+'manager/ccusuario/insertar',
 				data:'usuario='+usuario+'&contrasenia='+contrasenia+'&id_sujeto='+id_sujeto+'&active='+active,
 				type:'post',
 				dataType:'json',
@@ -584,7 +584,7 @@ $(document).ready(function(){
 			if(retorno_contrasenia_valido()==true){
 				if(validar_usuario()==0){
 				$.ajax({
-					url:'/sis_biblio/manager/ccusuario/modificar',
+					url:base_url+'manager/ccusuario/modificar',
 					data:'id_usuario='+id_usuario+'&usuario='+usuario+'&contrasenia='+contrasenia+'&active='+estado,
 					type:'post',
 					dataType:'json',
@@ -625,7 +625,7 @@ $(document).ready(function(){
 	{	
 		var id_usuario=$("#manager_user #tabla_user tr:nth-child("+pos+") td:nth-child(1)").html();
 			$.ajax({
-				url:'/sis_biblio/manager/ccusuario/eliminar/'+id_usuario,
+				url:base_url+'manager/ccusuario/eliminar/'+id_usuario,
 				type:'post',
 				dataType:'json',
 				success:function(data){
@@ -687,7 +687,7 @@ $(document).ready(function(){
 		if(validar_asesor(asesor)){
 			if(validar_solicitar_constancia()==0){
 				$.ajax({
-					url:'/sis_biblio/user/ccrequestrecord/insertar_solitud',
+					url:base_url+'user/ccrequestrecord/insertar_solitud',
 					type:'POST',
 					data:"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
 					success:function(data){
@@ -714,7 +714,7 @@ $(document).ready(function(){
 		var fallos = validar_componente();
 		if (fallos == 0) {
 			$.ajax({
-				url:'/sis_biblio/manager/cccomponente/insertar',
+				url:base_url+'manager/cccomponente/insertar',
 				data:'componente='+componente+'&descripcion_componente='+descripcion_componente,
 				type:'post',
 				dataType:'json',
@@ -772,7 +772,7 @@ $(document).ready(function(){
 		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").attr('value');
 			if(validar_componente()==0){
 			$.ajax({
-				url:'/sis_biblio/manager/cccomponente/modificar',
+				url:base_url+'manager/cccomponente/modificar',
 				data:'id_componente='+idcomp+'&componente='+componente+'&descripcion_componente='+descripcion_componente,
 				type:'post',
 				dataType:'json',
@@ -799,7 +799,7 @@ $(document).ready(function(){
 		var idcomp=$("#mod_componente #table_comp tr:nth-child("+pos+") td:nth-child(1)").html();
 		console.info(idcomp);
 			$.ajax({
-				url:'/sis_biblio/manager/cccomponente/eliminar/'+idcomp,
+				url:base_url+'manager/cccomponente/eliminar/'+idcomp,
 				type:'post',
 				dataType:'json',
 				success:function(data){
@@ -917,7 +917,7 @@ $(document).ready(function(){
 	function cargar_facultad(tipo)
 	{
 		$.ajax({
-			url:'/sis_biblio/util/ccfacultad/cargar_facultad',
+			url:base_url+'util/ccfacultad/cargar_facultad',
 			type:"POST",
 			success:function(data){
 				if(tipo==1){
@@ -929,7 +929,7 @@ $(document).ready(function(){
 
 	function buscar_asesor()
 	{	$.ajax({
-			url:'/sis_biblio/user/ccrequestrecord/buscar_asesor',
+			url:base_url+'user/ccrequestrecord/buscar_asesor',
 			type:"POST",
 			dataType:"json",
 			success:function(data){
@@ -951,7 +951,7 @@ $(document).ready(function(){
 	function buscar_sujeto()
 	{
 		$.ajax({
-			url:'/sis_biblio/manager/ccusuario/buscar_sujeto',
+			url:base_url+'manager/ccusuario/buscar_sujeto',
 			type:"POST",
 			dataType:"json",
 			success:function(data){
@@ -967,7 +967,7 @@ $(document).ready(function(){
 	function buscar_rol_componente()
 	{
 		$.ajax({
-			url:'/sis_biblio/manager/ccrol/buscar_rol',
+			url:base_url+'manager/ccrol/buscar_rol',
 			type:"POST",
 			dataType:"json",
 			success:function(data){
