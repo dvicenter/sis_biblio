@@ -111,6 +111,9 @@ $(document).ready(function(){
 			$('#new_tesis #input_conclusion').attr('value','');
 		});
 	}
+	$('#new_exportar').on('shown',function(){
+		cargar_facultad(1);
+	});
 	function buscar_autor_tesis()
 	{
 		$.ajax({

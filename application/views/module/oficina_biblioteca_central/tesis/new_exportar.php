@@ -13,9 +13,6 @@
       </ul>
       <ul class=resultado>
         <li id="facultad">
-          <select  >
-            <option value="1">Ingenieria</option>
-          </select>
         </li>
         <li id="escuela">
           <select  >

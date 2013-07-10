@@ -914,14 +914,15 @@ $(document).ready(function(){
 	function validar()
 	{
 	}	
-	function cargar_facultad()
+	function cargar_facultad(tipo)
 	{
 		$.ajax({
 			url:'/sis_biblio/util/ccfacultad/cargar_facultad',
 			type:"POST",
 			success:function(data){
-				console.info(data);
-				$('#facultad_request_record').html(data);
+				if(tipo==1){
+					$('#new_exportar #facultad').html(data);
+				}
 			}
 		});
 	}
