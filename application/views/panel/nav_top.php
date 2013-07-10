@@ -6,11 +6,11 @@
 			<li  class="active import">
 				<a href="<?php echo base_url();?>">Inicio</a>
 			</li>
-  			<li class="import modulo_deshabilitado">
-  				<a id="tesis_top" href="javascript:;">Tesis</a>
+  			<li class="import">
+  				<a id="tesis_top" href="javascript:;">Control de Tesis</a>
   			</li>
-			<li class="import modulo_deshabilitado">
-				<a id="constancia_top" href="javascript:;">Solicitudes de Constancia</a>
+			<li class="import">
+				<a id="constancia_top" href="javascript:;">Solicitudes por Aprobar</a>
 			</li>
 			<!-- <li class="import">
 				<a href="#">Material Bibliogr&aacute;fico</a>

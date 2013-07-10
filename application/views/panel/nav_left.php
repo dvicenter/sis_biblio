@@ -11,10 +11,10 @@
              </div>
              <div id="nav_left_one" class="accordion-body collapse nav_left_body">
 	             <ul class="nav nav-list">
-	             	<li class="modulo_deshabilitado"><a id="constancia" href="javascript:;">Solicitudes de Constancia</a></li>
+	             	<li><a id="constancia" href="javascript:;">Solicitudes por Aprobar</a></li>
 	             	<!-- <li><a href="#">Informes de Pr&aacute;ctica</a></li>-->
 	             	<!-- <li><a href="#">Monograf&iacute;as</a></li>-->
-	             	<li class="modulo_deshabilitado"><a id="tesis" href="javascript:;">Tesis</a></li>
+	             	<li><a id="tesis" href="javascript:;">Control de Tesis</a></li>
 	             </ul>
              </div>
     	</li>

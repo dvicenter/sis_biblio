@@ -34,6 +34,6 @@
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
    <!--  <button class="btn btn-primary export">Exportar</button>-->
-   <a href="<?php echo base_url()?>oficina_biblioteca_central/report/example_001/export" class="btn btn-primary" target="_blank">Exportar</a>
+   <a href="<?php echo base_url()?>oficina_biblioteca_central/report/example_001.php" class="btn btn-primary" target="_blank">Exportar</a>
   </div>
 </div>
