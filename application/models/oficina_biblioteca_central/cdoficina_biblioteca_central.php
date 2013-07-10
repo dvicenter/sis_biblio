@@ -49,4 +49,12 @@ class Cdoficina_biblioteca_central extends CI_Model{
 		$query = $this->db->query($query);
 		return $query->result_array();
 	}
+	function insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio)
+	{	$query = "CALL SPRINSTesis(".$id_autor_tesis.",".$id_asesor.",'".$titulo."','".$introduccion."','".$objetivo."','".$resumen."','".$conclusion."',".$anio.",null,0000)";
+		$query = $this->db->query($query);
+	}
+	function editar_tesis($id_material_bibliografico,$introduccion,$objetivo,$resumen,$conclusion)
+	{	$query = "CALL SPRUPDTesis(".$id_material_bibliografico.",'".$introduccion."','".$objetivo."','".$resumen."','".$conclusion."')";
+		$query = $this->db->query($query);
+	}
 }

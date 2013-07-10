@@ -46,8 +46,12 @@
 					<td><?php echo $ttesis['alumno']?></td>
 					<td><?php echo $ttesis['docente']?></td>
 					<td><?php echo $ttesis['anio']?></td>
+					<td style="display:none;"><?php echo $ttesis['introduccion']?></td>
+					<td style="display:none;"><?php echo $ttesis['objetivo']?></td>
+					<td style="display:none;"><?php echo $ttesis['resumen']?></td>
+					<td style="display:none;"><?php echo $ttesis['conclusion']?></td>
 					<td>
-						<button class="btn" disabled><i class="icon-pencil"></i></button>
+						<button class="btn editar"><i class="icon-pencil"></i></button>
 					</td>
 				<?php  endforeach; ?>
                 </tr>

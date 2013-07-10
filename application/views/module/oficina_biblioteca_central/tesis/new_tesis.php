@@ -1,10 +1,12 @@
 <div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <div class="response"></div>
     <h3 id="myModalLabel">Agregar Tesis</h3>
   </div>
   <div class="modal-body">
     <form id="form_nuevo_tesis" >
+    	<input id="id_material_bibliografico" type="hidden"/>
       <fieldset> 
         <label for="titulo">Titulo:</label>
         <input autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>

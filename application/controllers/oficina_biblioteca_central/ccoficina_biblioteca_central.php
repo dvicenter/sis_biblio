@@ -67,4 +67,23 @@ class Ccoficina_biblioteca_central extends CI_Controller{
     {	$data=$this->cdoficina_biblioteca_central->buscar_autor_tesis();
 		echo json_encode($data);
     }
+    function insertar_tesis()
+    {	$id_autor_tesis=$_REQUEST['id_autor_tesis'];
+    	$id_asesor=$_REQUEST['id_asesor'];
+    	$titulo=$_REQUEST['titulo'];
+    	$introduccion=$_REQUEST['introduccion'];
+    	$objetivo=$_REQUEST['objetivo'];
+    	$resumen=$_REQUEST['resumen'];
+    	$conclusion=$_REQUEST['conclusion'];
+    	$anio=$_REQUEST['anio'];
+    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio);
+    }
+    function editar_tesis()
+    {	$id_material_bibliografico=$_REQUEST['id_material_bibliografico'];
+    	$introduccion=$_REQUEST['introduccion'];
+    	$objetivo=$_REQUEST['objetivo'];
+    	$resumen=$_REQUEST['resumen'];
+    	$conclusion=$_REQUEST['conclusion'];
+    	$this->cdoficina_biblioteca_central->editar_tesis($id_material_bibliografico,$introduccion,$objetivo,$resumen,$conclusion);
+    }
 }
