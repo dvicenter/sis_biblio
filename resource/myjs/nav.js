@@ -82,8 +82,8 @@ $(document).ready(function(){
 		  		var name = $(this).attr('name');
 
 				if ($(this).prop('checked')) 
-				{	$('form ul #'+name).focus();
-		  			$('form ul #'+name).css('display','block');
+				{	$('form ul #'+name).css('display','block');
+					$('form ul #'+name).focus();
 				}
 				else
 				{
