@@ -5,26 +5,23 @@
     <h3 id="myModalLabel">Exportar Tesis</h3>
   </div>
   <div class="modal-body">
-    <form action="" method="POST">
+    <form class="check_option" action="" method="POST">
       <ul class="opciones">
         <li class="opcion"><input type="checkbox" name="facultad"> Facultad </li>
-        <li class="opcion"><input type="checkbox" name="escuela"> Escuela </li>
-        <li class="opcion"><input type="checkbox" name="anio"> A&ntilde;o </li>
+        <li class="opcion"><input type="checkbox" name="escuela" disabled> Escuela </li>
         <li class="opcion"><input type="checkbox" name="asesor"> Asesor </li>
+        <li class="opcion"><input type="checkbox" name="anio"> A&ntilde;o </li>
       </ul>
       <ul class=resultado>
         <li id="facultad">
         </li>
         <li id="escuela">
-          <select  >
-            <option value="1">Ingenieria Sistemas</option>
-          </select>
-        </li>
-        <li id="anio">
-          <input type="date" >
         </li>
         <li id="asesor">
           <input id="input_export_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
+        </li>
+        <li id="anio">
+          <input type="text" maxlength="7">
         </li>
       </ul>
       
@@ -33,7 +30,14 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-   <!--  <button class="btn btn-primary export">Exportar</button>-->
-   <a href="<?php echo base_url()?>oficina_biblioteca_central/report/example_001.php" class="btn btn-primary" target="_blank">Exportar</a>
+    <button class="btn btn-primary export" disabled>Exportar</button>
+   <!-- <a href="<?php echo base_url()?>resource/report/example_001.php" class="btn btn-primary" target="_blank">Exportar</a>-->
   </div>
 </div>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$('#new_exportar #anio input').validations('0123456789');
+});
+//-->
+</script>

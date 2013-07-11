@@ -5,12 +5,10 @@ var pos_editar;
 $(document).ready(function(){
 	habilitar_modulo();
 	$('#tesis').click(function(){
-		//load_module_not_date(base_url+'module/tesis/manager_tesis', '#tesis', '#tesis_top');
 		load_module_not_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
 	});
 	$('#tesis_top').click(function(){
-		//load_module_not_date(base_url+'module/tesis/manager_tesis', '#tesis', '#tesis_top');
-		load_module_not_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tess_top'
+		load_module_not_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top'
 		);
 	});
 	$('#constancia').click(function(){
@@ -76,18 +74,14 @@ $(document).ready(function(){
 	{
 		var check  = $(".opcion").children();
 		$(this).change(function(){
-  				
 			check.each(function( index ) {
-
 		  		var name = $(this).attr('name');
-
 				if ($(this).prop('checked')) 
 				{	$('form ul #'+name).css('display','block');
-					$('form ul #'+name).focus();
+					$('form ul #'+name+' input').focus();
 				}
 				else
-				{
-					$('form ul #'+name).css('display','none');
+				{	$('form ul #'+name).css('display','none');
 				}
 			});
 		}).change();
@@ -973,7 +967,18 @@ $(document).ready(function(){
 			}
 		});
 	}
-
+	function cargar_escuela(tipo)
+	{
+		$.ajax({
+			url:base_url+'util/ccescuela/cargar_escuela',
+			type:"POST",
+			success:function(data){
+				if(tipo==1){
+					$('#new_exportar #escuela').html(data);
+				}
+			}
+		});
+	}
 	function buscar_asesor()
 	{	$.ajax({
 			url:base_url+'user/ccrequestrecord/buscar_asesor',
