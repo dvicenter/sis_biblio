@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$('#new_exportar').on('shown',function(){
+		buscar_asesor();
 		$('#new_exportar .export').click(function(){
 			$.ajax({
 				//url:base_url+'oficina_biblioteca_central/report/example_001',

@@ -82,7 +82,7 @@ $(document).ready(function(){
 		  		var name = $(this).attr('name');
 
 				if ($(this).prop('checked')) 
-				{
+				{	$('form ul #'+name).focus();
 		  			$('form ul #'+name).css('display','block');
 				}
 				else
@@ -991,7 +991,9 @@ $(document).ready(function(){
 				
 				if($('#module_tesis').is(':visible')){
 					$('#module_tesis #asesor').typeahead().data('typeahead').source = asesor;
+					$('#new_exportar #input_export_asesor').typeahead().data('typeahead').source = asesor;
 				}
+					
 			}
 		});
 	}

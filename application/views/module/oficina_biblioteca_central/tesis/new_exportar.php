@@ -24,7 +24,7 @@
           <input type="date" >
         </li>
         <li id="asesor">
-          <input type="text" ><a href="#" class="btn" ><i class="icon-search"></i></a>
+          <input id="input_export_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
         </li>
       </ul>
       
