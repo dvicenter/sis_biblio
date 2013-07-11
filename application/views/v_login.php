@@ -59,7 +59,7 @@
 			</section>
 			
 		</div>
-		 <section class="well">
+		<!--  <section class="well">
 				<div class="m_body">
 					<div class="slider-wrapper theme-default">
 			            <div id="slider" class="nivoSlider">
@@ -71,7 +71,7 @@
 			            </div>
 			        </div>
 	          	</div>
-          </section>
+          </section>-->
           <footer class="m_body">
           	<p class="login_footer">&copy; Derecho Reservados - Escuela Acad&eacute;mica Profesional Ingenier&iacute;a de Sistemas</p>
           </footer>
