@@ -57,4 +57,9 @@ class Cdoficina_biblioteca_central extends CI_Model{
 	{	$query = "CALL SPRUPDTesis(".$id_material_bibliografico.",'".$introduccion."','".$objetivo."','".$resumen."','".$conclusion."')";
 		$query = $this->db->query($query);
 	}
+	function reporte_negatividad($id_plan_tesis)
+	{	$query = "CALL SPRRPTReporteNegatividad(".$id_plan_tesis.")";
+		$query = $this->db->query($query);
+		return $query->result_array();
+	}
 }

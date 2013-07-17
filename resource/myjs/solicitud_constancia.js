@@ -51,7 +51,8 @@ $(document).ready(function(){
 		aprobacion_constancia(2);
 	});
 	$('#consult_related .aprobar').click(function(){
-		aprobacion_constancia(3);
+		//aprobacion_constancia(3);
+		reporte_negatividad();
 	});
 	$('#consult_related .close').click(function(){
 		$('.consult_student').removeClass('active_consult');
@@ -102,6 +103,19 @@ $(document).ready(function(){
 						{	$('#module_content').html(data);
 						}
 				});
+			}
+		});
+	}
+	function reporte_negatividad()
+	{	var id_plan_tesis=$("#actual_tesis input[name='id_plan_tesis_form']").attr('value');
+		$.ajax({
+			url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/reporte_negatividad',
+			type:'post',
+			data:'id_plan_tesis='+id_plan_tesis,
+			success:function(data){
+				console.info(data);
+//				window.location.href=base_url+"resource/report/example_001.php";
+				window.open(base_url+"resource/report/rpt_negatividad.php",'',"width=900,height=500,s crollbars=NO","_blank");
 			}
 		});
 	}
