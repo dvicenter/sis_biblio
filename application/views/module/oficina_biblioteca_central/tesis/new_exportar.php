@@ -1,27 +1,28 @@
 <script src="/sis_biblio/resource/myjs/tesis/export_tesis.js"></script>
 <div id="new_exportar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3 id="myModalLabel">Exportar Tesis</h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" style="overflow-y: inherit;">
     <form class="check_option" action="" method="POST">
       <ul class="opciones">
         <li class="opcion"><input type="checkbox" name="facultad"> Facultad </li>
         <li class="opcion"><input type="checkbox" name="escuela" disabled> Escuela </li>
-        <li class="opcion"><input type="checkbox" name="asesor"> Asesor </li>
         <li class="opcion"><input type="checkbox" name="anio"> A&ntilde;o </li>
+        <li class="opcion"><input type="checkbox" name="asesor"> Asesor </li>
       </ul>
       <ul class=resultado>
         <li id="facultad">
         </li>
         <li id="escuela">
         </li>
+        <li id="anio">
+          <input type="text" maxlength="4">
+        </li>
         <li id="asesor">
           <input id="input_export_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
-        </li>
-        <li id="anio">
-          <input type="text" maxlength="7">
+          <input type="hidden" name="id_input_export_asesor"/>
         </li>
       </ul>
       

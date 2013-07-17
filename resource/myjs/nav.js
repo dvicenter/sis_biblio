@@ -956,7 +956,7 @@ $(document).ready(function(){
 	{
 	}	
 	function cargar_facultad(tipo)
-	{
+	{	
 		$.ajax({
 			url:base_url+'util/ccfacultad/cargar_facultad',
 			type:"POST",
@@ -964,13 +964,22 @@ $(document).ready(function(){
 				if(tipo==1){
 					$('#new_exportar #facultad').html(data);
 				}
+				$('#select_man_facultad').change(function(){
+					idFacultad= $('#new_exportar #select_man_facultad option:selected').attr('value');
+					console.info($("#new_exportar form [name='escuela']").is(':checked'));
+					if($("#new_exportar form [name='escuela']").is(':checked')){
+						cargar_escuela(1, idFacultad);
+					};
+				});
 			}
 		});
 	}
-	function cargar_escuela(tipo)
+
+	function cargar_escuela(tipo,idFacultad)
 	{
 		$.ajax({
 			url:base_url+'util/ccescuela/cargar_escuela',
+			data:'idFacultad='+idFacultad,
 			type:"POST",
 			success:function(data){
 				if(tipo==1){

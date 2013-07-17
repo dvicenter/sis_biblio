@@ -36,7 +36,7 @@
 			        <th class="title_table">COMPONENTE</th>
 			        <th class="descripcion_table">DESCRIPCION</th>
 					<th class="title_table">EDITAR</th>
-			        <th class="descripcion_table">ELIMINAR</th>
+			        <th style="display:none;" class="descripcion_table">ELIMINAR</th>
             	</tr>
     		</thead>
 			<tbody>
@@ -46,7 +46,7 @@
 					<td><?php echo $componente['componente']?></td>
 					<td><?php echo $componente['descripcion_componente']?></td>
 					<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
-					<td style="text-align:center;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
+					<td style="text-align:center;display:none;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
 			 <?php  endforeach; ?>
             	</tr>
 		
