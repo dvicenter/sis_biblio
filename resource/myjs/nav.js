@@ -642,7 +642,6 @@ $(document).ready(function(){
 			
 			$.each(data,function(a,b){
 				if(b.id_sujeto==id_sujeto){
-					console.info(b.id_componente);
 					switch (b.id_componente){
 						case '84': $('#accion').parent().addClass('modulo_habilitado');$('#accion').parent().removeClass('modulo_deshabilitado');
 						$('#accion').parent().parent().parent().addClass('modulo_habilitado');

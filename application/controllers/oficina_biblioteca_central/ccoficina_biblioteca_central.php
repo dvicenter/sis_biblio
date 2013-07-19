@@ -86,16 +86,14 @@ class Ccoficina_biblioteca_central extends CI_Controller{
     	$conclusion=$_REQUEST['conclusion'];
     	$this->cdoficina_biblioteca_central->editar_tesis($id_material_bibliografico,$introduccion,$objetivo,$resumen,$conclusion);
     }
-    function reporte_negatividad()
-    {	$id_plan_tesis=$_REQUEST['id_plan_tesis'];
-    	$data=$this->cdoficina_biblioteca_central->reporte_negatividad($id_plan_tesis);
-    	//echo json_encode($data);
+    function reporte_negatividad($id_plan_tesis)
+    {	//echo json_encode($data);
     	$this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetTitle('Constancia de Negatividad');
         // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
-        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 001', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
+        $pdf->SetHeaderData('', PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 001', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
         $pdf->setFooterData($tc = array(0, 64, 0), $lc = array(0, 64, 128));
 
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
@@ -122,15 +120,29 @@ class Ccoficina_biblioteca_central extends CI_Controller{
  
 //Si tienes que imprimir carácteres ASCII estándar, puede utilizar las fuentes básicas como
 // Helvetica para reducir el tamaño del archivo.
-        $pdf->SetFont('freemono', '', 14, '', true);
+        $pdf->SetFont('dejavusans', '', 14, '', true);
 
 // Añadir una página
 // Este método tiene varias opciones, consulta la documentación para más información.
         $pdf->AddPage();
 
-//fijar efecto de sombra en el texto
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-
-// Establecemos el contenido para imprimir
+        
+    	$dates=$this->cdoficina_biblioteca_central->reporte_negatividad($id_plan_tesis);
+    	$titulo;$alumno;$asesor;$escuela;
+    	foreach($dates as $date)
+    	{	$titulo=$date['titulo'];
+    		$asesor=$date['asesor'];
+    	}
+    	$html =   $titulo ;
+    	$html .=   $asesor ;
+    	$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+ 
+// ---------------------------------------------------------
+// Cerrar el documento PDF y preparamos la salida
+// Este método tiene varias opciones, consulte la documentación para más información.
+        $nombre_archivo = utf8_decode("Constancia de negatividad.pdf");
+        $pdf->Output($nombre_archivo, 'I');
+        echo json_encode($pdf);
     }
 }
