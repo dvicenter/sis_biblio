@@ -8,7 +8,7 @@
       <tr>
         <th style="display:none;" class="check_table"><input type="checkbox"/></th>
         <th class="title_table">Titulo</th>
-        <th class="author_table">Tesista</th>
+        <th class="author_table">Solicitante</th>
         <th class="asesor_table">Asesor</th>
         <th class="year_table">Escuela</th>
         <th class="action_table">Acci&oacute;n</th>
@@ -20,7 +20,7 @@
         <td style="display:none;" class="check_table"><input type="checkbox"/></td>
         <td style="display:none;"><?php echo $plan_tesis['id_plan_tesis'];?></td>
         <td><?php echo $plan_tesis['titulo'];?></td>
-        <td><?php echo $plan_tesis['tesista'];?></td>
+        <td><?php echo $plan_tesis['solicitante'];?></td>
         <td><?php echo $plan_tesis['asesor'];?></td>
         <td><?php echo $plan_tesis['abreaviatura_escuela'];?></td>
         <td>

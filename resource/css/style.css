@@ -158,6 +158,7 @@ background: -moz-linear-gradient(top, #D9B81A, #E6CA37);
 /*END LOGIN*/
 /*STAR VOUCHER*/
 #voucher .btn_voucher{padding-left: 12px;font-weight: normal;}
+#voucher .voucher_pro{clear: both;width: 40%;margin: 0 auto;} 
 /*END VOUCHER*/
 
 
