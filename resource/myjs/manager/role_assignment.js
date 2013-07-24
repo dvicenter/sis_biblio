@@ -29,7 +29,6 @@ $(document).ready(function(){
 			var row_rol_actual=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
 			var id_usuario=$("#mod_role_assignment [name='id_user']").attr('value');
 			var ids=[];
-			alert(row_rol_total);
 			var total_row=row_rol_total;
 			total_row++;
 			while(total_row<=row_rol_actual)
@@ -37,7 +36,6 @@ $(document).ready(function(){
 				ids.push(id);
 				total_row++;
 			}
-			console.info(ids);
 			$.ajax({
 				url:base_url+'manager/ccrol/insert_new_rol_usuario',
 				data:'ids='+ids+'&id_usuario='+id_usuario,
@@ -51,6 +49,7 @@ $(document).ready(function(){
 					row_rol_total=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
 					roles_asignado_usuario();
 					$('#mod_role_assignment .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Rol(es) asignado con &eacute;xito</strong></div>");
+					$('#mod_role_assignment .response').delay(1000).fadeOut();
 					evento_btn_asignacion(true, true, true, false, 'no-drop');
 			        /*$('#mod_role_assignment input[name="check_rol_user"]').attr('disabled',true);
 			        $('#mod_role_assignment input[name="check_rol"]').attr('disabled',true);
@@ -61,6 +60,7 @@ $(document).ready(function(){
 				},
 				error:function(data){
 					$('#mod_role_assignment .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Oh no!</strong> se pudo guardar</div>");
+					$('#mod_role_assignment .response').delay(1000).fadeOut();
 				}
 			});
 		});
@@ -133,6 +133,7 @@ $(document).ready(function(){
 					row_rol_total=$('#mod_role_assignment table tbody.roles_de_usuario tr').length;
 					row_rol_total--;
 					$('#mod_role_assignment .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Rol eliminado con &eacute;xito</strong></div>");
+					$('#mod_role_assignment .response').delay(1000).fadeOut();
 				    }
 				});	
 		}
@@ -229,6 +230,7 @@ $(document).ready(function(){
 				});}
 					else{
 						$('#mod_role_assignment .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Usuario incorrecto</strong></div>");
+						$('#mod_role_assignment .response').delay(1000).fadeOut();
 					}
 				});
 			

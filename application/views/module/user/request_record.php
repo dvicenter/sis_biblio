@@ -4,7 +4,7 @@
 		<div class="control-group pos_left">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
 		  <div class="controls">
-			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
+			<input autocomplete="off" id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
 			<p class="help-block">Ejm: GARC&Iacute;A FERNANDO</p>
 		  </div>
 		</div>
@@ -12,7 +12,7 @@
 		  <label class="control-label bold_label" for="input_man_asesor">ACOMPA&Ntilde;ANTE: </label> 
 		  <div class="controls">
 			<input class="" id="check_acompaniante" type="checkbox" style="margin: 0 auto;">
-			<input id="input_man_acompaniante" type="text" class="span3" style="margin: 0 auto;width: 240px;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
+			<input autocomplete="off" id="input_man_acompaniante" type="text" class="span3" style="margin: 0 auto;width: 240px;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
 			<p class="help-block acom" style="margin-top:0">Ejm: ARIAS LUIS</p>
 		  </div>
 		  
@@ -62,7 +62,7 @@
 	            <textarea id="input_user_resumen" name="resumen_tes" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
 	          </div>
 	          <div class="tab-pane" id="conclusion_tes">
-	            <textarea id="input_user_conclusion" name="conclusion_tes" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content=""  required></textarea>
+	            <textarea id="input_user_conclusion" name="conclusion_tes" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="right" data-content="" ></textarea>
 	          </div>
 	        </div>
         </div>

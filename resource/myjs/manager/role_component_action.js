@@ -50,6 +50,7 @@ $(document).ready(function(){
 					row_componente_total=$('#mod_role_component_action table tbody.acciones_de_componente tr').length;
 					acciones_asignado_componente();
 					$('#mod_role_component_action .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Accion(es) asignado con &eacute;xito</strong></div>");
+					close_msg('#mod_role_component_action .response');
 					evento_btn_asignacion(true, true, true, false, 'no-drop');
 			        /*$('#mod_role_component_action input[name="check_componente_accion"]').attr('disabled',true);
 			        $('#mod_role_component_action input[name="check_accion"]').attr('disabled',true);
@@ -60,6 +61,7 @@ $(document).ready(function(){
 				},
 				error:function(data){
 					$('#mod_role_component_action .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Oh no!</strong> se pudo guardar</div>");
+					close_msg('#mod_role_component_action .response');
 				}
 			});
 		});
@@ -160,6 +162,7 @@ $(document).ready(function(){
 	});}
 		else{
 			$('#mod_role_component_action .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Componente incorrecto</strong></div>");
+			close_msg('#mod_role_component_action .response');
 		}
 	});
 	$('#mod_role_component_action .left').click(function(){
@@ -212,6 +215,7 @@ $(document).ready(function(){
 					row_rol_total=$('#mod_role_component_action table tbody.acciones_de_componente tr').length;
 					row_rol_total--;
 					$('#mod_role_component_action .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Componente eliminado con &eacute;xito</strong></div>");
+					close_msg('#mod_role_component_action .response');
 				    }
 				});	
 		}
@@ -265,4 +269,7 @@ function validar_componente_existente(componente)
 		}
 	});
 	return resultado;
+}
+function close_msg(id)
+{	$(id).delay(1000).fadeOut();
 }

@@ -6,7 +6,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="input_man_accion">Accion:</label> 
 			  <div class="controls">
-				<input type="text" class="input-xlarge" name="accion" id="input_man_accion" data-toggle="popover" data-placement="right" data-content="" required />
+				<input maxlength="10" autocomplete="off" type="text" class="input-xlarge" name="accion" id="input_man_accion" data-toggle="popover" data-placement="right" data-content="" required />
 				<input type="hidden" name="id_acc"/>
 			  </div>
 			</div>
@@ -78,7 +78,7 @@
                     	});
                    	 	if(i%5!=0){
   	                      var j=i%5;
-  	                      var z=5-j;
+  	                      var z=j+1;
   	                      while(z<6){
   	                      	$("#table_acc tbody tr:nth-child("+z+")").fadeOut();
   	                      	z++;

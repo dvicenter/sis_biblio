@@ -5,7 +5,7 @@
 			<div class="control-group">
 			  <label class="control-label" for="input_man_rol">Rol:</label> 
 			  <div class="controls">
-				<input autocomplete="off" type="text" class="input-xlarge3" name="rol" id="input_man_rol" data-toggle="popover" data-placement="right" data-content="" required>
+				<input maxlength="50" autocomplete="off" type="text" class="input-xlarge3" name="rol" id="input_man_rol" data-toggle="popover" data-placement="right" data-content="" required>
 			  <input type="hidden" name="id-rol"/>
 			  </div>
 			</div>
@@ -85,7 +85,7 @@
                     	});
                    	 	if(i%5!=0){
   	                      var j=i%5;
-  	                      var z=5-j;
+  	                      var z=j+1;
   	                      while(z<6){
   	                      	$("#table_aum tbody tr:nth-child("+z+")").fadeOut();
   	                      	z++;

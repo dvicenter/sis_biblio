@@ -29,7 +29,6 @@ $(document).ready(function(){
 			var row_comp_actual=$('#mod_role_assignment_component table tbody.componente_de_rol tr').length;
 			var id_componente=$("#mod_role_assignment_component [name='id_comp']").attr('value');
 			var ids=[];
-			alert(row_component_total);
 			var total_row=row_component_total;
 			total_row++;
 			while(total_row<=row_comp_actual)
@@ -51,6 +50,7 @@ $(document).ready(function(){
 					row_component_total=$('#mod_role_assignment_component table tbody.componente_de_rol tr').length;
 					componentes_asignado_rol();
 					$('#mod_role_assignment_component .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Componente(s) asignado con &eacute;xito</strong></div>");
+					close_msg('#mod_role_assignment_component .response');
 					evento_btn_asignacion(true, true, true, false, 'no-drop');
 			        /*$('#mod_role_assignment_component input[name="check_comp_rol"]').attr('disabled',true);
 			        $('#mod_role_assignment_component input[name="check_comp"]').attr('disabled',true);
@@ -61,6 +61,7 @@ $(document).ready(function(){
 				},
 				error:function(data){
 					$('#mod_role_assignment_component .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Oh no!</strong> se pudo guardar</div>");
+					close_msg('#mod_role_assignment_component .response');
 				}
 			});
 		});
@@ -133,6 +134,7 @@ $(document).ready(function(){
 					row_component_total=$('#mod_role_assignment_component table tbody.componente_de_rol tr').length;
 					row_component_total--;
 					$('#mod_role_assignment_component .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>Componente eliminado con &eacute;xito</strong></div>");
+					close_msg('#mod_role_assignment_component .response');
 				    }
 				});	
 		}
@@ -231,6 +233,7 @@ $(document).ready(function(){
 				});}
 					else{
 						$('#mod_role_assignment_component .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Rol incorrecto</strong></div>");
+						close_msg('#mod_role_assignment_component .response');
 					}
 				});
 			
@@ -271,4 +274,7 @@ $(document).ready(function(){
 			}
 		});
 		return resultado;
+	}
+	function close_msg(id)
+	{	$(id).delay(1000).fadeOut();
 	}

@@ -95,10 +95,10 @@
 	                    		$("#table_tesis tbody tr:nth-child("+i+")").fadeIn();
 	                        }    
                     	});
-                   	 	if(i%5!=0){
-  	                      var j=i%5;
-  	                      var z=5-j;
-  	                      while(z<6){
+                   	 	if(i%10!=0){
+  	                      var j=i%10;
+  	                      var z=j+1;
+  	                      while(z<11){
   	                      	$("#table_tesis tbody tr:nth-child("+z+")").fadeOut();
   	                      	z++;
   	                      }

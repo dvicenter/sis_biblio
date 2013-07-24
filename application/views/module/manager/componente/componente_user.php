@@ -5,7 +5,7 @@
 				<div class="control-group">
 			  		<label class="control-label" for="input_man_componente">Componente:</label> 
 			  		<div class="controls">
-						<input id="input_man_componente" type="text" class="input-xlarge3" name="componente"  data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
+						<input maxlength="50" id="input_man_componente" type="text" class="input-xlarge3" name="componente"  data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
 						<input type="hidden" name="id_comp"/>
 			  		</div>
 				</div>
@@ -78,13 +78,12 @@
 	                        $('#table_comp tbody tr:nth-child('+i+') td:nth-child(2)').html(d.componente);
                             $('#table_comp tbody tr:nth-child('+i+') td:nth-child(3)').html(d.descripcion);
 	                    	if($('#table_comp tbody tr:nth-child('+i+')').is(':visible')!=true){
-		                    	console.info('entraaa');
 	                    		$("#table_comp tbody tr:nth-child("+i+")").fadeIn();
 	                        }    
                     	});
                    	 	if(i%5!=0){
   	                      var j=i%5;
-  	                      var z=5-j;
+  	                      var z=j+1;
   	                      while(z<6){
   	                      	$("#table_comp tbody tr:nth-child("+z+")").fadeOut();
   	                      	z++;

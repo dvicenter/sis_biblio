@@ -306,10 +306,12 @@ $(document).ready(function(){
 					$('#mod_rol .cancelar').click(function() {
 						cancelar_rol();
 					});
-					$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol guardado</div>")
+					$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol guardado</div>");
+					close_msg('#mod_rol .response');
 				},
 				error:function(data)
-					{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
+					{	$('#mod_rol .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
+						close_msg('#mod_rol .response');
 					}
 			});
 			
@@ -347,9 +349,11 @@ $(document).ready(function(){
 				$('#mod_rol .modificar').attr('disabled',true).css({'cursor':'no-drop'});;
 				$('#mod_rol form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});;
 				$('#mod_rol .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Rol modificado</div>");
+				close_msg('#mod_rol .response');
 			},
 			error:function(data){
 					$('#mod_rol .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
+					close_msg('#mod_rol .response');
 				}
 		});}
 	}
@@ -362,10 +366,11 @@ $(document).ready(function(){
 				type:'post',
 				dataType:'json',
 				success:function(data)
-				{console.info(data);
-					$("#mod_rol #table_aum tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})},
+				{
+					$("#mod_rol #table_aum tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});},
 				error:function(data)
-					{	$('#mod_rol .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; eliminar</div>")
+					{	$('#mod_rol .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; eliminar</div>");
+						close_msg('#mod_rol .response');
 					}
 			});
 	}
@@ -387,11 +392,11 @@ $(document).ready(function(){
 								accion=b.accion;								
 							});
 							console.info(data);							
-							$('tr:last td', $("#table_acc"));
-							var tds = '<tr>';							
-							tds += "<td style='display:none;'>"+id_accion+'</td><td>'+accion+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";
-							tds += '</tr>';
-							$("#table_acc").append(tds);
+//							$('tr:last td', $("#table_acc"));
+//							var tds = '<tr>';							
+//							tds += "<td style='display:none;'>"+id_accion+'</td><td>'+accion+"</td><td style='text-align:center;'><button name='bot' class='btn btn-info editar'><i class='icon-pencil icon-white'></i></button></td><td style='text-align:center;'><button class='btn btn-danger eliminar'><i class='icon-fullscreen icon-white' ></i></button></td>";
+//							tds += '</tr>';
+//							$("#table_acc").append(tds);
 							$("#mod_accion .eliminar").click(function(){
 								var pos_=$("#mod_accion #table_acc td .eliminar").index(this);
 								var pos=pos_+1;
@@ -406,10 +411,18 @@ $(document).ready(function(){
 							$('#mod_accion .cancelar').click(function(){
 								cancelar_accion();
 							});
+							$.ajax({
+								url:base_url+'manager/ccaccion/listar',
+								success:function(){
+									
+								}
+							});
 							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion guardado</div>");
+							close_msg('#mod_accion .response');
 						},
 						error:function(data){
 							$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
+							close_msg('#mod_accion .response');
 						}
 					});
 			};
@@ -443,10 +456,11 @@ $(document).ready(function(){
 							$('#mod_accion .modificar').attr('disabled',true).css('cursor','no-drop');
 							$('#mod_accion form .cancelar').attr('disabled',true).css('cursor','no-drop');
 							$('#mod_accion .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Accion modificado</div>");
-									
+							close_msg('#mod_accion .response');			
 								},
 						error:function(data)
 							{	$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
+								close_msg('#mod_accion .response');
 							}
 					});
 			}
@@ -462,12 +476,11 @@ $(document).ready(function(){
 				dataType:'json',
 				success:function(data)
 				{
-					console.info(data);
-					$("#mod_accion #table_acc tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})
+					$("#mod_accion #table_acc tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});
 				},
 				error:function(data)
-					{
-						console.info(data)
+					{	$('#mod_accion .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; eliminar</div>");
+						close_msg('#mod_accion .response');
 					}
 			});
 	}
@@ -542,10 +555,12 @@ $(document).ready(function(){
 			else{
 				$('#manager_user #input_adm_contra').focus();
 				$('#manager_user .response').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong>No coinciden contrase&ntilde;a</strong></div>");
+				close_msg('#manager_user .response');
 			}
 		}
 		else{
 			$('#manager_user .response').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong>Sujeto inexistente</strong></div>");
+			close_msg('#manager_user .response');
 		}
 		
 	}
@@ -614,16 +629,19 @@ $(document).ready(function(){
 						$('#manager_user form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});*/
 						$('#manager_user .confirm_contra_igual,#manager_user .confirm_contra').removeClass("icon-remove");
 						$('#manager_user .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Usuario modificado</div>");
+						close_msg('#manager_user .response');
 						cancelar_usuario_();
 					},
 					error:function(data)
 						{	$('#manager_user .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
+							close_msg('#manager_user .response');
 						}
 				});}
 			}
 			else{
 				$('#manager_user #input_adm_contra').focus();
 				$('#manager_user .response').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong>No coinciden contrase&ntilde;a</strong></div>");
+				close_msg('#manager_user .response');
 			}
 		
 	}
@@ -640,7 +658,8 @@ $(document).ready(function(){
 					$("#manager_user #tabla_user tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});
 				},
 				error:function(data){
-						console.info(data);
+					$('#manager_user .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; eliminar</div>");
+					close_msg('#manager_user .response');
 					}
 			});
 	}
@@ -658,54 +677,50 @@ $(document).ready(function(){
 					switch (b.id_componente){
 						case '84': $('#accion').parent().addClass('modulo_habilitado');$('#accion').parent().removeClass('modulo_deshabilitado');
 						$('#accion').parent().parent().parent().addClass('modulo_habilitado');
-						$('#accion').parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#accion').parent().parent().parent().removeClass('modulo_deshabilitado');
 						break; 
 						case '77': $('#componente').parent().addClass('modulo_habilitado');$('#componente').parent().removeClass('modulo_deshabilitado');
 						$('#componente').parent().parent().parent().addClass('modulo_habilitado');
-						$('#componente').parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#componente').parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '86': $('#rol').parent().addClass('modulo_habilitado');$('#rol').parent().removeClass('modulo_deshabilitado');
 						$('#rol').parent().parent().parent().addClass('modulo_habilitado');
-						$('#rol').parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#rol').parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '98': $('#constancia_top').parent().addClass('modulo_habilitado');$('#constancia_top').parent().removeClass('modulo_deshabilitado');
 						$('#constancia').parent().addClass('modulo_habilitado');$('#constancia').parent().removeClass('modulo_deshabilitado');
 						$('#constancia').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#constancia').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#constancia').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '96': $('#tesis').parent().addClass('modulo_habilitado');$('#tesis').parent().removeClass('modulo_deshabilitado');
 						$('#tesis').parent().addClass('modulo_habilitado');$('#tesis').parent().removeClass('modulo_deshabilitado');
 						$('#tesis').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#tesis').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#tesis').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '89': $('#request_record').parent().addClass('modulo_habilitado');$('#request_record').parent().removeClass('modulo_deshabilitado');
 						$('#request_record').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#request_record').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#request_record').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '87': $('#user').parent().addClass('modulo_habilitado');$('#user').parent().removeClass('modulo_deshabilitado');
 						$('#user').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#user').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#user').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '97': $('#load_voucher').parent().addClass('modulo_habilitado');$('#load_voucher').parent().removeClass('modulo_deshabilitado');
 						$('#load_voucher').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#load_voucher').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#load_voucher').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '91': $('#role_assignment').parent().addClass('modulo_habilitado');$('#role_assignment').parent().removeClass('modulo_deshabilitado');
 						$('#role_assignment').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#role_assignment').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#role_assignment').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '93': $('#role_assignment_component').parent().addClass('modulo_habilitado');$('#role_assignment_component').parent().removeClass('modulo_deshabilitado');
 						$('#role_assignment_component').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#role_assignment_component').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#role_assignment_component').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
 						case '94': $('#role_component_action').parent().addClass('modulo_habilitado');$('#role_component_action').parent().removeClass('modulo_deshabilitado');
 						$('#role_component_action').parent().parent().parent().parent().addClass('modulo_habilitado');
-						$('#role_component_action').parent().parent().parent().parent().removeClass('modulo_deshabilitado')
+						$('#role_component_action').parent().parent().parent().parent().removeClass('modulo_deshabilitado');
 						break;
-						
-						
-						
-				
 					}
 				}
 			});
@@ -777,8 +792,12 @@ $(document).ready(function(){
 				$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
 				$("#mod_request_record #input_man_acompaniante").attr('disabled',true);
 				$("#mod_request_record #input_man_acompaniante").attr('required',false);
+				close_msg('#mod_request_record .msg_request_record');
 			},
 			error:function(data){
+				$('#mod_request_record .msg_request_record').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'></strong></div>");
+				$('#mod_request_record .msg_request_record .error_request_record .msg').html('No se pudo enviar la solicitud');
+				close_msg('#mod_request_record .msg_request_record');
 			}
 		});
 	}
@@ -822,9 +841,11 @@ $(document).ready(function(){
 						cancelar_componente();
 					});
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>");
+					close_msg('#mod_componente .response');
 				},
 				error:function(data)
 				{	$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
+					close_msg('#mod_componente .response');
 				}
 			});
 			};
@@ -860,10 +881,12 @@ $(document).ready(function(){
 					$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
 					$('#mod_componente .modificar').attr('disabled',true).css({'cursor':'no-drop'});
 					$('#mod_componente form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
-					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>")
+					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente modificado</div>");
+					close_msg('#mod_componente .response');
 				},
 				error:function(data){
 						$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
+						close_msg('#mod_componente .response');
 					}
 			});
 			}
@@ -879,10 +902,11 @@ $(document).ready(function(){
 				dataType:'json',
 				success:function(data){
 					console.info(data);
-					$("#mod_componente #table_comp tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();})
+					$("#mod_componente #table_comp tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});
 				},
 				error:function(data){	
-					console.info(data);
+					$('#mod_componente .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; eliminar</div>");
+					close_msg('#mod_componente .response');
 				}
 			});
 	}
@@ -1190,4 +1214,7 @@ $(document).ready(function(){
 		$("#mod_componente input[name='componente']").attr('value','');
 		$("#mod_componente input[name='id_comp']").attr('value','');
 		$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
+	}
+	function close_msg(id)
+	{	$(id).delay(1000).fadeOut();
 	}
