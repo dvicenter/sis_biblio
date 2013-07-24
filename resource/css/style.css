@@ -21,7 +21,7 @@ body{padding: 0px;margin: 0px;}
 #nav_left .nav-list li a{margin-right: 0;}
 
 table .check_table{text-align: center;width: 3%;}
-table thead .action_table{width: 12%;}
+table thead .action_table{width: 8%;}
 /*tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolute;}*/
 .table {width: 95%; margin: 0 auto; position: relative;}
 
@@ -33,8 +33,8 @@ table thead .action_table{width: 12%;}
 /*STAR TESIS*/
 #module_tesis table thead .title_table{width: 33%;}
 #module_tesis table thead .author_table{width: 25%;}
-#module_tesis table thead .asesor_table{width: 17%;}
-#module_tesis table thead .year_table{width: 10%;}
+#module_tesis table thead .asesor_table{width: 25%;}
+#module_tesis table thead .year_table{width: 6%;}
 |#module_tesis .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #module_tesis .control .menu-control:nth-child(3){float: right;}
 /*END TESIS*/
@@ -112,6 +112,7 @@ table thead .action_table{width: 12%;}
 .input-xlarge3{width: 315px;}
 .bold_label{font-weight: bold;}
 .response{position: absolute;right: 12%;}
+.check_acom{position: relative;float: right;top: 8px;right: -10px;}
 /*END UTIL*/
 
 /*STAR ROLE ASSIGNMENT*/

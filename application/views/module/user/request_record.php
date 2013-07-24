@@ -1,12 +1,21 @@
 <div id="mod_request_record" >
 	<form id="form_user" class="form-horizontal">
 	  <fieldset>
-		<div class="control-group">
+		<div class="control-group pos_left">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
 		  <div class="controls">
 			<input id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
-			<p class="help-block">Ejm: Garc&iacute;a Fernando</p>
+			<p class="help-block">Ejm: GARC&Iacute;A FERNANDO</p>
 		  </div>
+		</div>
+		<div class="control-group pos_right" style="margin-left: 30px;">
+		  <label class="control-label bold_label" for="input_man_asesor">ACOMPA&Ntilde;ANTE: </label> 
+		  <div class="controls">
+			<input class="" id="check_acompaniante" type="checkbox" style="margin: 0 auto;">
+			<input id="input_man_acompaniante" type="text" class="span3" style="margin: 0 auto;width: 240px;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
+			<p class="help-block acom" style="margin-top:0">Ejm: ARIAS LUIS</p>
+		  </div>
+		  
 		</div>
 	  </fieldset>
 	  <fieldset>

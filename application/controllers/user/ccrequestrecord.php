@@ -19,7 +19,9 @@ class Ccrequestrecord extends CI_Controller{
 		$resumen=$_REQUEST['resumen'];
 		$conclusion=$_REQUEST['conclusion'];
 		$id_docente=$_REQUEST['id_docente'];
-		$id_sujeto=$_REQUEST['id_sujeto'];
-		$this->Cdrequestrecord->insertar_solicitud($titulo,$introduccion,$objetivo,$resumen,$conclusion,$correo,$id_docente,$id_sujeto);
+		$id_sujeto1=$_REQUEST['id_sujeto1'];
+		$id_sujeto2=$_REQUEST['id_sujeto2'];
+		$pIns=$_REQUEST['pIns'];
+		$this->Cdrequestrecord->insertar_solicitud($titulo,$introduccion,$objetivo,$resumen,$conclusion,$correo,$id_docente,$id_sujeto1,$id_sujeto2,$pIns);
 	}
 }

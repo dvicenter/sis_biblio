@@ -242,7 +242,20 @@ $(document).ready(function(){
 													$('#input_man_asesor').click(function(){
 														buscar_asesor();	
 													});
-													insertar_solictiud_tesis();
+												$("#mod_request_record #check_acompaniante").click(function(){
+													if($(this).is(":checked")){
+														buscar_autor_acompa();
+														$("#mod_request_record #input_man_acompaniante").attr('disabled',false);
+														$("#mod_request_record #input_man_acompaniante").attr('required',true);
+														$("#mod_request_record #input_man_acompaniante").focus();
+													}
+													else{
+														$("#mod_request_record #input_man_acompaniante").attr('disabled',true);
+														$("#mod_request_record #input_man_acompaniante").attr('required',false);
+														$("#mod_request_record #input_man_acompaniante").attr('value',"");
+													}
+												});
+												insertar_solictiud_tesis();
 												}
 											}
 										}
@@ -716,36 +729,58 @@ $(document).ready(function(){
 		var resumen=$("#mod_request_record textarea[name='resumen_tes']").val();
 		var conclusion=$("#mod_request_record textarea[name='conclusion_tes']").val();
 		var id_docente;
-		var id_sujeto=$("#id_sujeto_login").val();
+		var id_sujeto1=$("#id_sujeto_login").val();
 		$.each(asesores,function(a,b){
 			if(b[1]==asesor)
 			{	id_docente=b[0];
 			}
 		});
-		validar_solicitar_constancia();
 		evento.preventDefault();
 		if(validar_asesor(asesor)){
 			if(validar_solicitar_constancia()==0){
-				$.ajax({
-					url:base_url+'user/ccrequestrecord/insertar_solitud',
-					type:'POST',
-					data:"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto="+id_sujeto,
-					success:function(data){
-						$("#mod_request_record form")[0].reset();
-						$("#input_man_asesor").focus();
-						$('#mod_request_record #myTab li').removeClass();
-						$('#mod_request_record #myTab li:nth-child(1)').addClass('active');
-						$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
-					},
-					error:function(data){
+				var id_sujeto2="0";
+				if($("#mod_request_record #check_acompaniante").is(":checked")){
+					var autor_acom=$("#mod_request_record #input_man_acompaniante").val();
+						if(validar_autor_acom(autor_acom)){
+							$.each(autores_acom,function(a,b){
+								if(b[1]==autor_acom)
+								{	id_sujeto2=b[0];
+								}
+							});
+							ajax_insertar_solicitud_tesis(titulo,voucher,correo,introduccion,objetivo,resumen,conclusion,id_docente,id_sujeto1,id_sujeto2,2);
+						}
+						else{
+							$('#mod_request_record .msg_request_record').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'></strong></div>");
+							$('#mod_request_record .msg_request_record .error_request_record .msg').html('Acompa&ntilde;ante inexistente');
+						}
+					}else{
+						ajax_insertar_solicitud_tesis(titulo,voucher,correo,introduccion,objetivo,resumen,conclusion,id_docente,id_sujeto1,id_sujeto2,1);
 					}
-				});}
+				}
 		}
 		else{
 			$('#mod_request_record .msg_request_record').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'></strong></div>");
 			$('#mod_request_record .msg_request_record .error_request_record .msg').html('Asesor inexistente');
 		}
 	});
+	}
+	function ajax_insertar_solicitud_tesis(titulo,voucher,correo,introduccion,objetivo,resumen,conclusion,id_docente,id_sujeto1,id_sujeto2,pIns){
+		$.ajax({
+			url:base_url+'user/ccrequestrecord/insertar_solitud',
+			type:'POST',
+			data:"&titulo="+titulo+"&voucher="+voucher+"&correo="+correo+"&introduccion="+introduccion+"&objetivo="+objetivo+"&resumen="+resumen+"&conclusion="+conclusion+"&id_docente="+id_docente+"&id_sujeto1="+id_sujeto1+"&id_sujeto2="+id_sujeto2+"&pIns="+pIns,
+			success:function(data){
+				$("#mod_request_record form")[0].reset();
+				$("#input_man_asesor").focus();
+				$('#mod_request_record #myTab li').removeClass();
+				$('#mod_request_record #myTab li:nth-child(1)').addClass('active');
+				$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
+				$("#mod_request_record #input_man_acompaniante").attr('disabled',true);
+				$("#mod_request_record #input_man_acompaniante").attr('required',false);
+			},
+			error:function(data){
+			}
+		});
 	}
 	/*ABM DE COMPONENTE*/
 	function insertar_componente()
@@ -900,6 +935,7 @@ $(document).ready(function(){
 		var res5=$('#input_user_objetivo').validCampo(/^[a-zA-z-_\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 \.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
 		var res6=$('#input_user_resumen').validCampo(/^[a-zA-z-_\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 \.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
 		var res7=$('#input_user_conclusion').validCampo(/^[a-zA-z-_\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 \.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_user','No se aceptan caracteres especiales.');
+		var res8=$("#input_man_acompaniante").validCampo(/^[a-zA-z,\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');
 		res=res0+res1+res2+res3+res4+res5+res6+res6+res7;
 		
 		return res;
@@ -946,6 +982,15 @@ $(document).ready(function(){
 	{	var resultado=false;
 		$.each(sujetos,function(a,b){
 			if(b[1]==sujeto)
+			{	resultado=true;
+			}
+		});
+		return resultado;
+	}
+	function validar_autor_acom(autor_acom){
+		var resultado=false;
+		$.each(autores_acom,function(a,b){
+			if(b[1]==autor_acom)
 			{	resultado=true;
 			}
 		});
@@ -1023,6 +1068,23 @@ $(document).ready(function(){
 					sujetos.push([b.id_sujeto,b.sujeto]);
 				});
 				$('#input_adm_sujeto').typeahead().data('typeahead').source = sujeto;
+			}
+		});
+	}
+	var autores_acom=[];
+	function buscar_autor_acompa()
+	{
+		$.ajax({
+			url:'/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_autor_tesis',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var autor_acom=[];
+				$.each(data,function(a,b){
+					autor_acom.push(b.alumno);
+					autores_acom.push([b.id_autor_interno,b.alumno]);
+				});
+				$('#mod_request_record #input_man_acompaniante').typeahead().data('typeahead').source = autor_acom;
 			}
 		});
 	}
