@@ -248,9 +248,9 @@ $(document).ready(function(){
 		var ids_componentes=[];
 		$.each(tr_componente_asigando,function(a,b){
 			ids_componente_asignados=$('#mod_role_assignment_component table tbody.componente_de_rol tr:eq('+a+') td:eq(3)').html();
-			
 			$.each(tr_componentes,function(c,d){
 				ids_componentes=$('#mod_role_assignment_component table tbody.componente tr:eq('+c+') [name="check_comp_detail"]').attr('value');
+				console.info(ids_componentes);
 				if(ids_componentes==ids_componente_asignados){
 					$('#mod_role_assignment_component table tbody.componente tr:eq('+c+') [name="check_comp_detail"]').attr('disabled',true);
 				}
