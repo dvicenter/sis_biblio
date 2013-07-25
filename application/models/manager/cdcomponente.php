@@ -14,15 +14,12 @@
         
 		function listar($per_page)
 		{
-		//	$query = "CALL SPRABMComponente(0,null,null,null)";
-		//	$query = $this->db->query($query);
-		//	return $query->result_array();
-            $datos = $this->db->get('tbl_componente',$per_page,$this->uri->segment(4));
+			$datos =$this->db->select('tbl.id_componente AS id_componente,tbl.componente AS componente,tbl.descripcion_componente AS descripcion_componente');
+			$this->db->order_by('tbl.id_componente','desc');
+            $datos = $this->db->get('tbl_componente tbl',$per_page,$this->uri->segment(4));
             return $datos->result_array();
 			
 		}
-
-		
 		
 		function insertar($componente,$descripcion_componente)
 		{	if ($this->db->query("CALL SPRABMComponente(1,1,'$componente','$descripcion_componente')")) 

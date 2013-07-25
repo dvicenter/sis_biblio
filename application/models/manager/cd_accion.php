@@ -14,13 +14,9 @@
 
 		function listar($per_page)
 		{
-		//	$pInicio=0;
-		//	$pFinal=16;
-		//	$query = "CALL SPRCNSAccion(1,".$pInicio.",".$pFinal.")";
-		//	$query = $this->db->query($query);
-		
-		//	return $query->result_array();
-            $datos = $this->db->get('tbl_accion',$per_page,$this->uri->segment(4));
+		$datos =$this->db->select('tbl.id_accion AS id_accion,tbl.accion AS accion');
+		$this->db->order_by('tbl.id_accion','desc');
+		$datos =$this->db->get('tbl_accion tbl',$per_page,$this->uri->segment(4));
             return $datos->result_array();
 		}
         

@@ -8,11 +8,6 @@ class Ccaccion extends CI_Controller
 		$this->load->model('manager/cd_accion');
         $this->load->library('pagination');
 	}
-
-//	function listar() 
-//	{	$this->data['acciones']=$this->cdaccion->listar();
-//		echo $this->load->view("module/manager/accion/accion_user",$this->data);
-//	}
     
     function listar()
     {
@@ -27,49 +22,9 @@ class Ccaccion extends CI_Controller
         $config['next_link'] = '';
         $config['next_tag_open'] = "<div style='displya:none'>";
         $config['next_tag_close'] = '</div>';
-        /*$config['first_link'] = 'Primero';
-        $config['last_link'] = 'Ultimo';
-        $config['next_link'] = 'Siguiente';
-        $config['prev_link'] = 'Anterior';
-        $config['cur_tag_open'] = '<b class="actual">';
-        $config['cur_tag_close'] = '</b>';
-        $config['full_tag_open'] = '<div id="paginacion">';
-        $config['full_tag_close'] = '</div>';*/
-        
-/*        $config['page_query_string'] = TRUE;
-         $config['use_page_numbers'] = TRUE;
-        $config['query_string_segment'] = 'page';
-         
-        $config['full_tag_open'] = '<div class="pagination"><ul>';
-        $config['full_tag_close'] = '</ul></div>';
-         
-        $config['first_link'] = '&laquo; First';
-        $config['first_tag_open'] = '<li class="prev page">';
-        $config['first_tag_close'] = '</li>';
-         
-        $config['last_link'] = 'Last &raquo;';
-        $config['last_tag_open'] = '<li class="next page">';
-        $config['last_tag_close'] = '</li>';
-         
-        $config['next_link'] = 'Next &rarr;';
-        $config['next_tag_open'] = '<li class="next page">';
-        $config['next_tag_close'] = '</li>';
-         
-        $config['prev_link'] = '&larr; Previous';
-        $config['prev_tag_open'] = '<li class="prev page">';
-        $config['prev_tag_close'] = '</li>';
-         
-        $config['cur_tag_open'] = '<li class="active"><a href="">';
-        $config['cur_tag_close'] = '</a></li>';
-         
-        $config['num_tag_open'] = '<li class="page">';
-        $config['num_tag_close'] = '</li>';
-  */      
         $this->pagination->initialize($config);
         $data = array('accion'=>$this->cd_accion->listar($config['per_page']),
         'paginacion'=>$this->pagination->create_links());
-        
-        
         $this->load->view('module/manager/accion/accion_user',$data);
     }
 	function listar_pag()

@@ -9,6 +9,10 @@ class Cdoficina_biblioteca_central extends CI_Model{
 		$query = $this->db->query($query);
 		return $query->result_array();
 	}
+	
+	function count_plan_tesis()
+	{	
+	}
 	function buscar_plan_tesis($id_plan_tesis)
 	{	$query="CALL SPRCNSPlanTesis(2,'$id_plan_tesis')";
 		$query = $this->db->query($query);

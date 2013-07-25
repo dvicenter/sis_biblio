@@ -11,17 +11,11 @@
         {   
             return $this->db->get('tbl_rol')->num_rows();
         }
-        
-		
-		
-		
 		function listar($per_page)
 		{
-		//	$query = "CALL SPRABMRol(0,null,null,null)";
-		//	$query = $this->db->query($query);
-		//	return $query->result_array();
-        
-            $datos = $this->db->get('tbl_rol',$per_page,$this->uri->segment(4));
+			$datos =$this->db->select('tbl.id_rol AS id_rol,tbl.rol AS rol,tbl.descripcion AS descripcion');
+			$this->db->order_by('tbl.id_rol','desc');
+            $datos = $this->db->get('tbl_rol tbl',$per_page,$this->uri->segment(4));
             return $datos->result_array();
 		}
 
