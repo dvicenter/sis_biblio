@@ -4,7 +4,8 @@ class Cdoficina_biblioteca_central extends CI_Model{
 	    {	parent::__construct();
 	        $this->load->database();
 		}
-	function listar()
+	
+	/*function listar()
 	{	$query="CALL SPRCNSPlanTesis(1,0)";
 		$query = $this->db->query($query);
 		return $query->result_array();
@@ -12,7 +13,7 @@ class Cdoficina_biblioteca_central extends CI_Model{
 	
 	function count_plan_tesis()
 	{	
-	}
+	}*/
 	function buscar_plan_tesis($id_plan_tesis)
 	{	$query="CALL SPRCNSPlanTesis(2,'$id_plan_tesis')";
 		$query = $this->db->query($query);
@@ -36,6 +37,17 @@ class Cdoficina_biblioteca_central extends CI_Model{
 		else
 		{	return false;
 		}
+	}
+	
+	function num_solicitud()
+    {   
+         return $this->db->get('viw_plan_tesis')->num_rows();
+    }
+        
+	function listar_solicitud($per_page)
+	{    
+         $datos = $this->db->get('viw_plan_tesis',$per_page,$this->uri->segment(4));
+         return $datos->result_array();
 	}
 	
 	function num_tesis()
