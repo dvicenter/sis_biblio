@@ -12,10 +12,10 @@ $(document).ready(function(){
 		);
 	});
 	$('#constancia').click(function(){
-		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar', '#constancia', '#constancia_top');
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
 		
 	});
 	$('#user').click(function(){

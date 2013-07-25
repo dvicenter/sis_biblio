@@ -6,10 +6,44 @@ class Ccoficina_biblioteca_central extends CI_Controller{
 		$this->load->model('oficina_biblioteca_central/cdoficina_biblioteca_central');
 		$this->load->library('pagination');
 	}
-	function listar(){
+	/*function listar(){
 		$this->data['planes_tesis']=$this->cdoficina_biblioteca_central->listar();
 		echo $this->load->view("module/oficina_biblioteca_central/constancia/manager_constancia",$this->data);
+	}*/
+	
+	function listar_solicitud()
+	{	$config['base_url'] = base_url().'oficina_biblioteca_central/ccoficina_biblioteca_central/solicitud_pag/';
+        $config['total_rows'] = $this->cdoficina_biblioteca_central->num_solicitud();
+        $config['per_page'] = 10;
+        $config['num_links'] = 4;
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_cloase'] = '</li>';
+        $config['cur_tag_open'] = "<li class='active'><a href='".base_url().'oficina_biblioteca_central/ccoficina_biblioteca_central/solicitud_pag/0'."'>";
+        $config['cur_tag_close'] = '</a></li>';
+        $config['next_link'] = '';
+        $config['next_tag_open'] = "<div style='displya:none'>";
+        $config['next_tag_close'] = '</div>';
+		
+		$this->pagination->initialize($config);
+        $data = array('solicitud'=>$this->cdoficina_biblioteca_central->listar_solicitud($config['per_page']),
+        'paginacion'=>$this->pagination->create_links());
+        
+        echo $this->load->view('module/oficina_biblioteca_central/constancia/manager_constancia',$data);
 	}
+	
+	function solicitud_pag()
+    {
+        $config['base_url'] = base_url().'oficina_biblioteca_central/ccoficina_biblioteca_central/solicitud_pag/';
+        $config['total_rows'] = $this->cdoficina_biblioteca_central->num_solicitud();
+        $config['per_page'] = 10;
+        $config['num_links'] = 4;
+        
+        $data = array('solicitud'=>$this->cdoficina_biblioteca_central->listar_solicitud($config['per_page']),
+        'paginacion'=>$this->pagination->create_links());
+        
+        echo json_encode($data);
+    }
+	
 	function buscar_plan_tesis()
 	{	$id_plan_tesis=$_REQUEST['id_plan_tesis'];
 		$data=$this->cdoficina_biblioteca_central->buscar_plan_tesis($id_plan_tesis);
