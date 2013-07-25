@@ -1143,7 +1143,7 @@ $(document).ready(function(){
 	function buscar_autor_acompa()
 	{
 		$.ajax({
-			url:'/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_autor_tesis',
+			url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_autor_tesis',
 			type:"POST",
 			dataType:"json",
 			success:function(data){
