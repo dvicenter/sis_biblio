@@ -128,7 +128,7 @@ class Ccoficina_biblioteca_central extends CI_Controller{
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetTitle('Constancia de Negatividad');
         // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
-        $pdf->SetHeaderData('', PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE , PDF_HEADER_STRING, array(0, 0, 0), array(0,0, 0));
+        //$pdf->SetHeaderData('', PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE , PDF_HEADER_STRING, array(0, 0, 0), array(0,0, 0));
         $pdf->setFooterData($tc = array(0, 0, 0), $lc = array(0, 0, 0));
 
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
@@ -162,22 +162,34 @@ class Ccoficina_biblioteca_central extends CI_Controller{
 // Este método tiene varias opciones, consulta la documentación para más información.
         $pdf->AddPage();
 
-        $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+        //$pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
         
     	$dates=$this->cdoficina_biblioteca_central->reporte_negatividad($id_plan_tesis);
-    	$titulo;$alumno;$asesor;$escuela;
+    	$titulo;$alumno_solicitante;$alumno_acompaniante;$asesor;$escuela;$proceso_tramite;$estado;
     	foreach($dates as $date)
-    	{	$titulo=$date['titulo'];
-    		$asesor=$date['asesor'];
+    	{	$titulo=strtoupper($date['titulo']);
+    		$asesor=strtoupper($date['asesor']);
+    		$alumno_solicitante=strtoupper($date['alumno_solicitante']);
+    		$alumno_acompaniante=strtoupper($date['alumno_acompaniante']);
+    		$escuela=strtoupper($date['escuela']);
+    		$proceso_tramite=$date['proceso_tramite'];
     	}
+    	switch ($proceso_tramite)
+    	{	case 1: $estado='TR&Aacute;MITE';break;
+    		case 2: $estado='NO IN&Eacute;DITO';break;
+    		case 3: $estado='IN&Eacute;DITO';break;
+    	}
+    	if($alumno_acompaniante!=''){
+    		$alumno_acompaniante=' y <b>'.$alumno_acompaniante.'</b>';
+    	}else{$alumno_acompaniante='';}
         $html = '<div style="text-align:center;">
                     <span > Universidad Nacional </span><br/>
                      "Jose Faustino Sanchez Carrion" <br/>
                      <b>OFICINA DE BIBLIOTECA CENTRAL</b> <br/><br/>
-                     <i style="font-style: italic;">Certificado de Negatividad</i>
+                     <i style="font-style: italic;">CERTIFICADO DE NEGATIVIDAD</i>
                 </div>
                 <div style="font-size:12px;">
-                    <p >
+                    <p style="text-align: justify;"	>
                         (Ley N&deg; 27705, Resolucion N&deg; 831-2002-ANR, Resolucion N&deg; 0101-2012-CU-UH, y Art. 13&deg;
                         inc. B) del Reglamento de Grados y Titulos) 
                     </p>
@@ -188,22 +200,19 @@ class Ccoficina_biblioteca_central extends CI_Controller{
                     <p>
                         <u><b>CERTIFICA:</b></u>
                     </p>
-                    <p>
-                        Que, el plan de tesis titulada  <b>"TRATAMIENTO DE FRUTAS PROCESADAS EN 
-                        CADENA FRIA A NIVEL INDUSTRIAL"</b>, Asesorado (a) por (el, la) <b>Lic RODOLFO 
-                        WILLIAM DEXTRE MENDOZA</b> desarrollado(s) por &eacute;l(los, las): <b>JHONNY 
-                        ALFREDO ESPINOZA LAZARO</b>, de la <b>E.A.P</b>. de <b>BROMATOLOG&Iacute;A Y NUTRICI&Oacute;N</b>,  
-                        no se encuentra registrado en esta Biblioteca.
-                    </p>
-                    <p>
+                    <p style="text-align: justify;">
+                        Que, el plan de tesis titulada  <b>'.$titulo.'</b>, Asesorado (a) por (el, la) <b>Ing. '.$asesor.'</b> desarrollado(s) por &eacute;l(los, las):
+                        <b>'.$alumno_solicitante.'</b>'.$alumno_acompaniante.', 
+                        de la <b>E.A.P</b>. de <b>'.$escuela.'</b>,  
+                        no se encuentra registrado en esta Biblioteca.<br><br>
+                        
                         Con Declaraci&oacute;n Jurada Simple, el (a) interesada da fe y conformidad de su
-                        trabajo de investigaci&oacute;n y su contenido  IN&Eacute;DITO, en caso contrario acepta 
+                        trabajo de investigaci&oacute;n y su contenido  <b>'.$estado.'</b>, en caso contrario acepta 
                         dar nulidad si existiera en otra Instituci&oacute;n: Tesis, Monograf&iacute;a y Trabajo de 
-                        Investigaci&oacute;n igual, similar con el t&iacute;tulo y/o contenido.
-                    </p>
-                    <p>
+                        Investigaci&oacute;n igual, similar con el t&iacute;tulo y/o contenido.<br><br>
+                        
                         Se expide el presente Certificado de Negatividad, a solicitud del interesado,
-                        Do&ntilde;a JHONNY ALFREDO ESPINOZA L&Aacute;ZARO   para los fines de titulaci&oacute;n en 
+                        <b>'.$alumno_solicitante.'</b>   para los fines de titulaci&oacute;n en 
                         m&eacute;rito al Art. 13&deg; inciso b del Reglamento General de Grados Acad&eacute;micos y 
                         T&iacute;tulos Profesionales de esta Universidad.
                     </p>
@@ -221,9 +230,7 @@ class Ccoficina_biblioteca_central extends CI_Controller{
                         </p>
                     </div>
                 </div>
-                <div style="text-align:center;position:fixed;bottom:0;width:100%;">
-                    <h3>RUMBO A LA ACREDITACI&Oacute;N</h3>
-                </div>
+                
                 ';
     	/*$html .=   $titulo ;
     	$html .=   $asesor ;*/

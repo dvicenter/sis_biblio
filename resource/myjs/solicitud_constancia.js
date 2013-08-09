@@ -49,9 +49,10 @@ $(document).ready(function(){
 	});
 	$('#consult_related .desaprobar').click(function(){
 		aprobacion_constancia(2);
+		reporte_negatividad();
 	});
 	$('#consult_related .aprobar').click(function(){
-		//aprobacion_constancia(3);
+		aprobacion_constancia(3);
 		reporte_negatividad();
 	});
 	$('#consult_related .close').click(function(){
