@@ -122,8 +122,9 @@ class Ccoficina_biblioteca_central extends CI_Controller{
     }
     function reporte_negatividad($id_plan_tesis)
     {	//echo json_encode($data);
+
     	$this->load->library('Pdf');
-        $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf = new Pdf(PDF_PAGE_ORIENTATION,PDF_UNIT,PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetTitle('Constancia de Negatividad');
         // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
@@ -141,6 +142,7 @@ class Ccoficina_biblioteca_central extends CI_Controller{
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
         $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->setPrintHeader(false);
 
 // se pueden modificar en el archivo tcpdf_config.php de libraries/config
         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
@@ -168,10 +170,64 @@ class Ccoficina_biblioteca_central extends CI_Controller{
     	{	$titulo=$date['titulo'];
     		$asesor=$date['asesor'];
     	}
-    	$html =   $titulo ;
-    	$html .=   $asesor ;
-    	$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
- 
+        $html = '<div style="text-align:center;">
+                    <span > Universidad Nacional </span><br/>
+                     "Jose Faustino Sanchez Carrion" <br/>
+                     <b>OFICINA DE BIBLIOTECA CENTRAL</b> <br/><br/>
+                     <i style="font-style: italic;">Certificado de Negatividad</i>
+                </div>
+                <div style="font-size:12px;">
+                    <p >
+                        (Ley N&deg; 27705, Resolucion N&deg; 831-2002-ANR, Resolucion N&deg; 0101-2012-CU-UH, y Art. 13&deg;
+                        inc. B) del Reglamento de Grados y Titulos) 
+                    </p>
+                    <p>
+                        <b>EL JEFE DE LA UNIDAD DE BIBLIOTECA CENTRAL</b>, Quien suscribe:
+                    </p>
+
+                    <p>
+                        <u><b>CERTIFICA:</b></u>
+                    </p>
+                    <p>
+                        Que, el plan de tesis titulada  <b>"TRATAMIENTO DE FRUTAS PROCESADAS EN 
+                        CADENA FRIA A NIVEL INDUSTRIAL"</b>, Asesorado (a) por (el, la) <b>Lic RODOLFO 
+                        WILLIAM DEXTRE MENDOZA</b> desarrollado(s) por &eacute;l(los, las): <b>JHONNY 
+                        ALFREDO ESPINOZA LAZARO</b>, de la <b>E.A.P</b>. de <b>BROMATOLOG&Iacute;A Y NUTRICI&Oacute;N</b>,  
+                        no se encuentra registrado en esta Biblioteca.
+                    </p>
+                    <p>
+                        Con Declaraci&oacute;n Jurada Simple, el (a) interesada da fe y conformidad de su
+                        trabajo de investigaci&oacute;n y su contenido  IN&Eacute;DITO, en caso contrario acepta 
+                        dar nulidad si existiera en otra Instituci&oacute;n: Tesis, Monograf&iacute;a y Trabajo de 
+                        Investigaci&oacute;n igual, similar con el t&iacute;tulo y/o contenido.
+                    </p>
+                    <p>
+                        Se expide el presente Certificado de Negatividad, a solicitud del interesado,
+                        Do&ntilde;a JHONNY ALFREDO ESPINOZA L&Aacute;ZARO   para los fines de titulaci&oacute;n en 
+                        m&eacute;rito al Art. 13&deg; inciso b del Reglamento General de Grados Acad&eacute;micos y 
+                        T&iacute;tulos Profesionales de esta Universidad.
+                    </p>
+                        Recibo N&deg; 1476453
+                    <p style="text-align:right;">
+                        <br>
+                        <span >Huacho,  Marzo 21 de 2013.</span>
+                    </p>
+                    
+                    <div height="500px" style="padding-top:300px;position:relative;">
+                        <p style="text-align:center;font-size:10px;">
+                            ..........................................................................<BR/>
+                            Ing. LINO  ROLANDO RODR&Iacute;GUEZ ALEGRE<BR/>
+                            JEFE DE LA OFICINA DE BIBLIOTECA CENTRAL
+                        </p>
+                    </div>
+                </div>
+                <div style="text-align:center;position:fixed;bottom:0;width:100%;">
+                    <h3>RUMBO A LA ACREDITACI&Oacute;N</h3>
+                </div>
+                ';
+    	/*$html .=   $titulo ;
+    	$html .=   $asesor ;*/
+    	$pdf->writeHTML($html, true, false, false, false, '');
 // ---------------------------------------------------------
 // Cerrar el documento PDF y preparamos la salida
 // Este método tiene varias opciones, consulte la documentación para más información.
