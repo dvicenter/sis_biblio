@@ -258,7 +258,7 @@ function evento_btn_asignacion(izquierda,eliminar,guardar,cancelar,css)
 	if(izquierda==true){$('.left').attr('disabled',izquierda).css('cursor','no-drop');}else{$('.left').attr('disabled',izquierda).css('cursor','');}
 	if(eliminar==true){$('.delete').attr('disabled',eliminar).css('cursor','no-drop');}else{$('.delete').attr('disabled',eliminar).css('cursor','');}
 	if(guardar==true){$('.save').attr('disabled',guardar).css('cursor','no-drop');}else{$('.save').attr('disabled',guardar).css('cursor','');}
-	$('.cancel').attr('disabled',cancelar).css('cursor',css);
+	if(cancelar==true){$('.cancel').attr('disabled',cancelar).css('cursor','no-drop');}else{$('.cancel').attr('disabled',cancelar).css('cursor','');};
 }
 function validar_componente_existente(componente)
 {	var resultado=false;
