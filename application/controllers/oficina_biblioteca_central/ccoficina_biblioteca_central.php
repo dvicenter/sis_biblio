@@ -127,15 +127,15 @@ class Ccoficina_biblioteca_central extends CI_Controller{
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetTitle('Constancia de Negatividad');
         // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
-        $pdf->SetHeaderData('', PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 001', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
-        $pdf->setFooterData($tc = array(0, 64, 0), $lc = array(0, 64, 128));
+        $pdf->SetHeaderData('', PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE , PDF_HEADER_STRING, array(0, 0, 0), array(0,0, 0));
+        $pdf->setFooterData($tc = array(0, 0, 0), $lc = array(0, 0, 0));
 
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
-        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 10));
         $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
 // se pueden modificar en el archivo tcpdf_config.php de libraries/config
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_NAME_MAIN);
 
 // se pueden modificar en el archivo tcpdf_config.php de libraries/config
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);

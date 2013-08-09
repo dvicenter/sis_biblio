@@ -141,11 +141,11 @@ if (!defined('PDF_AUTHOR')) {
 }
 
 if (!defined('PDF_HEADER_TITLE')) {
-	define ('PDF_HEADER_TITLE', 'TCPDF Example');
+	define ('PDF_HEADER_TITLE', 'UNIVERSIDAD NACIONAL JOSE FAUSTINO SANCHEZ CARRION');
 }
 
 if (!defined('PDF_HEADER_STRING')) {
-	define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
+	define ('PDF_HEADER_STRING', "OFICINA DE BIBLIOTECA CENTRAL");
 }
 
 if (!defined('PDF_UNIT')) {
@@ -189,7 +189,7 @@ if (!defined('PDF_FONT_NAME_DATA')) {
 }
 
 if (!defined('PDF_FONT_SIZE_DATA')) {
-	define ('PDF_FONT_SIZE_DATA', 8);
+	define ('PDF_FONT_SIZE_DATA',8);
 }
 
 if (!defined('PDF_FONT_MONOSPACED')) {

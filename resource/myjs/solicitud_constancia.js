@@ -95,7 +95,7 @@ $(document).ready(function(){
 			success:function(data){
 				$('#consult_related').modal('hide');
 				$.ajax({
-					url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar',
+					url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud',
 					beforeSend:function()
 						{	$('#module_content').html('<div class="loading"><img src="'+base_url+'resource/img/utilities/gif/loading.gif"/></div>');
 						},
