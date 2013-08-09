@@ -51,8 +51,8 @@ $(document).ready(function(){
 		aprobacion_constancia(2);
 	});
 	$('#consult_related .aprobar').click(function(){
-		aprobacion_constancia(3);
-		//reporte_negatividad();
+		//aprobacion_constancia(3);
+		reporte_negatividad();
 	});
 	$('#consult_related .close').click(function(){
 		$('.consult_student').removeClass('active_consult');
