@@ -61,7 +61,7 @@ $(document).ready(function(){
 	$('#module_constancia #solicitud_constancia .comparation').click(function(){
 		var pos_=$('#module_constancia #solicitud_constancia td .comparation').index(this);
 		var pos=pos_+1;
-		var id_plan_tesis=$('#module_constancia #solicitud_constancia tbody tr:nth-child('+pos+') td:nth-child(2)').html();
+		var id_plan_tesis=$('#module_constancia #solicitud_constancia tbody tr:nth-child('+pos+') td:nth-child(1)').html();
 		$.ajax({
 			url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_plan_tesis',
 			data:'id_plan_tesis='+id_plan_tesis,
@@ -97,7 +97,7 @@ $(document).ready(function(){
 				$.ajax({
 					url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar',
 					beforeSend:function()
-						{	$('#module_content').html('<div class="loading"><img src="/sis_biblio/resource/img/utilities/gif/loading.gif"/></div>');
+						{	$('#module_content').html('<div class="loading"><img src="'+base_url+'resource/img/utilities/gif/loading.gif"/></div>');
 						},
 					success:function(data)
 						{	$('#module_content').html(data);

@@ -3,7 +3,7 @@
     <ul class="control">
       <li class="menu-control"><button class="btn btn-info" disabled><i class="icon-upload icon-white"></i>Exportar</button></li>
     </ul>
-  <table id="table_solicitud" class="table table-striped table-bordered table-condensed table-hover" id="solicitud_constancia">
+  <table class="table table-striped table-bordered table-condensed table-hover" id="solicitud_constancia">
     <thead>
       <tr>
         <th style="display:none;" class="check_table"><input type="checkbox"/></th>
@@ -45,7 +45,7 @@
                   dataType:'json',
                   url: url,
                   beforeSend: function() {
-                    $("#table_solicitud").html();
+                    $("#solicitud_constancia").html();
                   },
                   success: function(msg) {
                     var i;var r;
@@ -53,21 +53,20 @@
                     	i=0;
                     	$.each(b,function(c,d){
                     		i++;
-	                        $('#table_solicitud tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_plan_tesis);
-							$('#table_solicitud tbody tr:nth-child('+i+') td:nth-child(2)').html(d.titulo);
-							$('#table_solicitud tbody tr:nth-child('+i+') td:nth-child(3)').html(d.solicitante);
-							$('#table_solicitud tbody tr:nth-child('+i+') td:nth-child(4)').html(d.asesor);
-							$('#table_solicitud tbody tr:nth-child('+i+') td:nth-child(5)').html(d.abreaviatura_escuela);
-	                    	if($('#table_solicitud tbody tr:nth-child('+i+')').is(':visible')!=true){
-		                    	console.info('entraaa');
-	                    		$("#table_solicitud tbody tr:nth-child("+i+")").fadeIn();
+	                        $('#solicitud_constancia tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_plan_tesis);
+							$('#solicitud_constancia tbody tr:nth-child('+i+') td:nth-child(2)').html(d.titulo);
+							$('#solicitud_constancia tbody tr:nth-child('+i+') td:nth-child(3)').html(d.solicitante);
+							$('#solicitud_constancia tbody tr:nth-child('+i+') td:nth-child(4)').html(d.asesor);
+							$('#solicitud_constancia tbody tr:nth-child('+i+') td:nth-child(5)').html(d.abreaviatura_escuela);
+	                    	if($('#solicitud_constancia tbody tr:nth-child('+i+')').is(':visible')!=true){
+	                    		$("#solicitud_constancia tbody tr:nth-child("+i+")").fadeIn();
 	                        }    
                     	});
                    	 	if(i%10!=0){
   	                      var j=i%10;
   	                      var z=j+1;
   	                      while(z<11){
-  	                      	$("#table_solicitud tbody tr:nth-child("+z+")").fadeOut();
+  	                      	$("#solicitud_constancia tbody tr:nth-child("+z+")").fadeOut();
   	                      	z++;
   	                      }
   	                      r=1;
