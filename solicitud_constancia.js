@@ -52,7 +52,7 @@ $(document).ready(function(){
 		reporte_negatividad();
 	});
 	$('#consult_related .aprobar').click(function(){
-		//aprobacion_constancia(3);
+		aprobacion_constancia(3);
 		reporte_negatividad();
 	});
 	$('#consult_related .close').click(function(){
@@ -96,7 +96,7 @@ $(document).ready(function(){
 			success:function(data){
 				$('#consult_related').modal('hide');
 				$.ajax({
-					url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud',
+					url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar',
 					beforeSend:function()
 						{	$('#module_content').html('<div class="loading"><img src="'+base_url+'resource/img/utilities/gif/loading.gif"/></div>');
 						},
