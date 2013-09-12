@@ -53,13 +53,18 @@
              <div id="nav_left_four" class="accordion-body collapse nav_left_body">
 	             <ul class="nav nav-list">
 	             	<li class="modulo_deshabilitado"><a id="user" href="javascript:;">Usuario</a></li>
-                    <li class="modulo_deshabilitado"><a id="load_voucher" href="javascript:;">Cargar Voucher</a></li>
+                    <li class="modulo_deshabilitado"><a id="load_voucher" href="javascript:;" data-toggle="modal">Cargar Voucher</a></li>
 	             	<li class="modulo_deshabilitado"><a id="role_assignment" href="javascript:;">Asignacion de roles</a></li>
 	             	<li class="modulo_deshabilitado"><a id="role_assignment_component" href="javascript:;">Asignacion de componentes y acci&oacute;n</a></li>
 	             	<li class="modulo_deshabilitado"><a id="role_component_action" href="javascript:;">Asignacion de acci&oacute;n</a></li>
-
+					
 	             </ul>
              </div>
     	</li>
     </ul>
 </div>
+<?php
+$this->load->view('module/manager/voucher/modalVoucher');
+?>
+
+

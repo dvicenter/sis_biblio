@@ -46,12 +46,9 @@ $(document).ready(function(){
 	$('#accion').click(function(){
 		load_module_date(base_url+'manager/ccaccion/listar', '#accion_user', 'null');
 	});
-	$('#load_voucher').click(function(){
-		load_module_not_date(base_url+'module/voucher/voucher', '#load_voucher', 'null');
-	});
+	
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
-	{
-		$.ajax({
+	{		$.ajax({
 			url:url,
 			beforeSend:function(data){
 				$('#module_content').html('<div class="loading"><img src="'+base_url+'resource/img/utilities/gif/loading.gif"/></div>');
