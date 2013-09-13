@@ -15,8 +15,7 @@ $(document).ready(function(){
 		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
-		
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');	
 	});
 	$('#user').click(function(){
 		load_module_date(base_url+'manager/ccusuario/listar', '#user', 'null');
@@ -48,6 +47,10 @@ $(document).ready(function(){
 	});
 	$('#load_voucher').click(function(){
 		load_module_not_date(base_url+'module/voucher/voucher', '#load_voucher', 'null');
+	});
+
+	$('#oficina').click(function(){
+		load_module_date(base_url+'manager/ccoficina/listar', '#oficina_user', 'null');
 	});
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{
@@ -199,6 +202,23 @@ $(document).ready(function(){
 														editar_componente(pos_editar);
 													});
 												}
+
+											else 
+												{	 
+													if($("#mod_oficina").is(":visible") == true)
+														{	
+															$("#mod_oficina input[name='oficina']").focus();								
+															$('#mod_oficina form').submit(function(evento){
+																evento.preventDefault();
+																if($('#mod_oficina .agregar').attr('disabled')=='disabled'){}else{
+																	insertar_oficina();
+																}
+																$("#mod_oficina form")[0].reset();
+																$("#mod_oficina input[name='oficina']").focus();
+														});
+														
+														}
+					
 									else 
 										{	if($("#manager_user").is(":visible") == true){
 												buscar_sujeto();
@@ -234,6 +254,7 @@ $(document).ready(function(){
 													editar_usuario(pos_editar);
 												});
 											}
+
 											else
 											{	if($("#mod_request_record").is(":visible") == true){
 												$("#input_man_asesor").focus();
@@ -257,6 +278,7 @@ $(document).ready(function(){
 												});
 												insertar_solictiud_tesis();
 												}
+											}
 											}
 										}
 								}
@@ -954,6 +976,67 @@ $(document).ready(function(){
 			}
 		});
 	}
+
+	/*ABM DE OFICINA*/
+	function insertar_oficina()
+	{	
+		var oficina=$("#input_man_oficina").val();
+		var descripcion_oficina=$("#mod_oficina textarea[name='desc_oficina']").val();		
+		if($("#mod_oficina input[name ='ofi_chek']").is(':checked'))
+			{	var activo=1;
+			}
+		else
+			{	var activo=0;
+			}
+			$.ajax({
+				url:base_url+'manager/ccoficina/insertar',
+				data:'oficina='+oficina+'&descripcion_oficina='+descripcion_oficina+'&activo='+activo,
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					var id_oficina;
+					var oficina;
+					var descripcion_oficina;
+					var activo;
+				$.each(data,function(a,b){
+					id_oficina=b.id_oficina;
+					oficina=b.oficina;
+					descripcion_oficina=b.descripcion_oficina;
+					activo=b.activo;
+				});
+				refresh_oficina('guardado');
+					$('#mod_oficina .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Oficina guardada</div>");
+					close_msg('#mod_oficina .response');
+					
+				},
+				error:function(data)
+				{	$('#mod_oficina .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
+					close_msg('#mod_oficina .response');
+				}
+			});
+			;
+		}
+
+		function refresh_oficina(msj){
+		$.ajax({
+			url:base_url+'manager/ccoficina/listar',
+			success:function(data){
+				$("#mod_oficina").html(data);
+				$('#mod_oficina .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Oficina " +msj+"</div>");
+				close_msg('#mod_oficina .response');
+
+				$('#mod_oficina form').submit(function(evento){
+					evento.preventDefault();
+					if($('#mod_oficina .agregar').attr('disabled')=='disabled'){}else{
+						insertar_oficina();
+					}
+					$("#mod_oficina form")[0].reset();
+					$("#mod_oficina input[name='oficina']").focus();
+				});
+							}
+		});
+	}
+
 	/*ABM DE COMPONENTE*/
 	function active(selector,selector_top)
 	{
