@@ -7,4 +7,13 @@ class Cdvoucher extends CI_Model{
 		return true;
 		//$query->result()
 	}
+	
+	function ultima_fecha()
+	{	$this->load->database();
+		$query=('select fecha_registro from tbl_voucher order by id_voucher DESC limit 1');
+		$fecha= $this->db->query($query);
+		$fecha=$fecha->result_array();
+		return $fecha[0]['fecha_registro'];
+		
+	}
 }
