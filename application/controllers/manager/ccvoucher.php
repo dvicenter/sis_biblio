@@ -13,7 +13,9 @@ class Ccvoucher extends CI_Controller{
 				$status = "Archivo subido: '.$archivo.'";
 				$filas=file("resource/file_tmp/".$archivo);
 				$i=0;
+				date_default_timezone_set('UTC');
 				$fecha_comp=date("Y-m-d");
+				
 				if ($this->cdvoucher->ultima_fecha()== $fecha_comp)
 				{
 					while ($i<count($filas)) {					
