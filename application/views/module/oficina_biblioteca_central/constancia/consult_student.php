@@ -16,11 +16,11 @@
 	      </div>
 	    </div>
 	  </fieldset>
+	  <h3>Informe de Practica</h3>
 	  <ul style="margin-top: 61px;" class="nav nav-tabs">
 		  <li class="active"><a href="#introduccion_comp_alm" data-toggle="tab">Introducci&oacute;n</a></li>
 		  <li><a href="#objetivo_comp_alm" data-toggle="tab">Objetivo</a></li>
 		  <li><a href="#resumen_comp_alm" data-toggle="tab">Resumen</a></li>
-		  <li><a href="#conclusion_comp_alm" data-toggle="tab">Conclusi&oacute;n</a></li>
 		</ul>
 		 <div class="tab-content">
           <div class="tab-pane active" id="introduccion_comp_alm">
@@ -31,9 +31,6 @@
           </div>
           <div class="tab-pane" id="resumen_comp_alm">
             <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." disabled></textarea>
-          </div>
-          <div class="tab-pane" id="conclusion_comp_alm">
-            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." disabled></textarea>
           </div>
         </div>
 	</form>
