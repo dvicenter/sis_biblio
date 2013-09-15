@@ -54,6 +54,13 @@ class Ccoficina extends CI_Controller
 		echo json_encode($this->data);
 	}
 
-	
+	function modificar() 
+	{	$id_oficina=$_REQUEST['id_oficina'];
+		$oficina=$_REQUEST['oficina'];
+		$descripcion_oficina=$_REQUEST['descripcion_oficina'];
+		$activo=$_REQUEST['activo'];
+		$this->data=array($this->cdoficina->modificar($id_oficina,$oficina,$descripcion_oficina,$activo));
+		echo json_encode($this->data);
+	}
 } 
 ?>
