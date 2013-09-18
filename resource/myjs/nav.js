@@ -224,7 +224,12 @@ $(document).ready(function(){
 																$('#mod_oficina .eliminar').click(function(){
 																var pos_=$("#mod_oficina #table_oficina td .eliminar").index(this);
 																var pos=pos_+1;
+																cancelar_oficina();
 																eliminar_oficina(pos);
+																});
+
+																$('#mod_oficina .cancelar').click(function() {
+																cancelar_oficina();
 																});
 
 																$('#mod_oficina #table_oficina td .editar').click(function() {
@@ -1149,7 +1154,10 @@ $(document).ready(function(){
 				$('#mod_oficina .modificar').click(function(){
 					modificar_oficina();
 				});
-							
+
+				$('#mod_oficina .cancelar').click(function() {
+					cancelar_oficina();
+				});			
 							}
 		});
 	}
@@ -1459,6 +1467,16 @@ $(document).ready(function(){
 		$("#mod_componente input[name='id_comp']").attr('value','');
 		$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
 	}
+
+	function cancelar_oficina(){
+		$('#mod_oficina .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
+		$('#mod_oficina .modificar').attr('disabled',true).css({'cursor':'no-drop'});
+		$("#mod_oficina form")[0].reset();
+		$("#mod_oficina input[name='oficina']").attr('value','');
+		$("#mod_oficina input[name='id_oficina']").attr('value','');
+		$('#mod_oficina form .agregar').attr('disabled',false).css({'cursor':''});
+	}
+
 	function close_msg(id)
 	{	$(id).delay(1000).fadeOut();
 	}

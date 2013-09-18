@@ -20,7 +20,7 @@
 			</fieldset>  
 			<div class="btn_mantenimiento">
 				<fieldset>
-					<input type="submit" class="btn btn-primary agregar" value='Agregar'" >
+					<input type="submit" class="btn btn-primary agregar" value='Agregar'>
 					<button style="cursor:no-drop;" class="btn btn-info modificar" href="javascript:;" disabled>Modificar</button>
 					<button style="cursor:no-drop;" class="btn cancelar" href="javascript:;" disabled>Cancelar</button>
 				</fieldset>
@@ -35,6 +35,7 @@
 					<th style="width:4%; display:none;"></th>
 			        <th class="title_table">COMPONENTE</th>
 			        <th class="descripcion_table">DESCRIPCION</th>
+					<th class="decripcion_table">OFICINA</th>
 					<th class="title_table">EDITAR</th>
 			        <th style="display:none;" class="descripcion_table">ELIMINAR</th>
             	</tr>
@@ -45,6 +46,8 @@
 					<td style="display:none;" ><?php echo $componente['id_componente']?></td>
 					<td><?php echo $componente['componente']?></td>
 					<td><?php echo $componente['descripcion_componente']?></td>
+					<td style="display:none;"><?php echo $componente['id_oficina']?></td>
+					<td><?php echo $componente['oficina']?></td>
 					<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
 					<td style="text-align:center;display:none;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
 			 <?php  endforeach; ?>
