@@ -215,16 +215,23 @@ $(document).ready(function(){
 																}
 																$("#mod_oficina form")[0].reset();
 																$("#mod_oficina input[name='oficina']").focus();
-														});
+																});
+
 																$('#mod_oficina .modificar').click(function(){
 																modificar_oficina();
-													});
+																});
+
+																$('#mod_oficina .eliminar').click(function(){
+																var pos_=$("#mod_oficina #table_oficina td .eliminar").index(this);
+																var pos=pos_+1;
+																eliminar_oficina(pos);
+																});
 
 																$('#mod_oficina #table_oficina td .editar').click(function() {
 																var pos_editar_=$("#table_oficina td .editar").index(this);
 																pos_editar=pos_editar_+1;
 																editar_oficina(pos_editar);
-													});
+																});
 														}
 					
 									else 
@@ -1065,14 +1072,13 @@ $(document).ready(function(){
 					//if(validar_oficina()==0){
 					$.ajax({
 						url:base_url+'manager/ccoficina/modificar',
-						data:'id_oficina='+id_oficina+'&oficina='+oficina+'&descripcion_oficina='+descripcion_oficina+'&activo='+,
+						data:'id_oficina='+id_oficina+'&oficina='+oficina+'&descripcion_oficina='+descripcion_oficina+'&activo='+activo,
 						type:'post',
 						dataType:'json',
 						success:function(data){
 							$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(2)').html(oficina);
 							$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(3)').html(descripcion_oficina);
 							$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(4)').html(activo);
-							$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(4)').attr('name',estado);
 							$("#mod_oficina form")[0].reset();
 							$("#mod_oficina input[name='oficina']").attr('value','');
 							$("#mod_oficina input[name='id_ofi']").attr('value','');
@@ -1092,6 +1098,24 @@ $(document).ready(function(){
 					//}
 			}
 
+			function eliminar_oficina(pos)
+						{	
+							var id_oficina=$("#mod_oficina #table_oficina tr:nth-child("+pos+") td:nth-child(1)").html();
+								$.ajax({
+									url:base_url+'manager/ccoficina/eliminar/'+id_oficina,
+									type:'post',
+									dataType:'json',
+									success:function(data){
+										$("#mod_oficina #table_oficina tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});
+										refresh_oficina('eliminado');
+									},
+									error:function(data){	
+										$('#mod_oficina .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; eliminar</div>");
+										close_msg('#mod_oficina .response');
+									}
+								});
+						}
+
 		function refresh_oficina(msj){
 		$.ajax({
 			url:base_url+'manager/ccoficina/listar',
@@ -1099,6 +1123,12 @@ $(document).ready(function(){
 				$("#mod_oficina").html(data);
 				$('#mod_oficina .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Oficina " +msj+"</div>");
 				close_msg('#mod_oficina .response');
+
+				$('#mod_oficina .eliminar').click(function(){
+					var pos_=$("#mod_oficina #table_oficina td .eliminar").index(this);
+					var pos=pos_+1;
+					eliminar_oficina(pos);
+				});
 
 				$('#mod_oficina #table_oficina td .editar').click(function() {
 					var pos_editar_=$("#table_oficina td .editar").index(this);

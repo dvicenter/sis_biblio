@@ -47,7 +47,7 @@
 			        <th class="descripcion_table">DESCRIPCION</th>
 			        <th class="descripcion_table">ESTADO</th>
 					<th class="title_table">EDITAR</th>
-			        <th style="display:none;" class="descripcion_table">ELIMINAR</th>
+			        <th style="class="descripcion_table">ELIMINAR</th>
             	</tr>
     		</thead>
 			<tbody>
@@ -61,7 +61,7 @@
 									else {if($oficina['activo']==0){echo 'Deshabilitado';}				
 						}?></td>
 					<td style="text-align:center;"><button name="bot" class="btn btn-info editar"><i class="icon-pencil icon-white"></i></button></td>
-					<td style="text-align:center;display:none;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
+					<td style="text-align:center;"><button class="btn btn-danger eliminar"><i class="icon-fullscreen icon-white" ></i></button></td>
 			 <?php  endforeach; ?>
             	</tr>
 		

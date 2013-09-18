@@ -62,5 +62,11 @@ class Ccoficina extends CI_Controller
 		$this->data=array($this->cdoficina->modificar($id_oficina,$oficina,$descripcion_oficina,$activo));
 		echo json_encode($this->data);
 	}
+
+    function eliminar($id_oficina) 
+    {   
+        $this->cdoficina->eliminar($id_oficina);
+        
+    }
 } 
 ?>

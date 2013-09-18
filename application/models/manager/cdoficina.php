@@ -22,7 +22,7 @@
 		}
 
 		function insertar($oficina,$descripcion_oficina,$activo)
-		{	if ($this->db->query("CALL SPRABMOficina(1,'$oficina','$descripcion_oficina','$activo')")) 
+		{	if ($this->db->query("CALL SPRABMOficina(1,0,'$oficina','$descripcion_oficina','$activo')")) 
 			{	$query=$this->db->query("SELECT  tbl.id_oficina,  tbl.oficina,  tbl.descripcion_oficina, tbl.activo FROM  tbl_oficina tbl order by tbl.id_oficina desc limit 1");
 				$data;
 				foreach ($query->result() as $dato)
@@ -43,6 +43,12 @@
 			if($this->db->query($query))
 			{	return $data;
 			}
+		}
+
+		function eliminar($id_oficina)
+		{
+			$query = "CALL SPRABMOficina(3,".$id_oficina.",null,null,null)";
+			$this->db->query($query);
 		}
 		
 	}
