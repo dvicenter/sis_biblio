@@ -9,7 +9,7 @@
   <div class="modal-body">
     <form id="form_nuevo_tesis" >
     	<input id="id_material_bibliografico" type="hidden"/>
-      <fieldset> 
+      <fieldset style="float: left;"> 
         <label for="titulo">Titulo:</label>
         <input autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="autor">Autor:</label>
@@ -32,7 +32,7 @@
         <div id="escuela_tesis">
         </div>
       </fieldset>
-      <ul class="nav nav-tabs" id="myTab">
+      <ul class="nav nav-tabs" id="myTab" style="clear: both;">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introduccion</a></li>
           <li><a href="#objetivo" data-toggle="tab">Objetivo</a></li>
           <li><a href="#resumen" data-toggle="tab">Resumen</a></li>
