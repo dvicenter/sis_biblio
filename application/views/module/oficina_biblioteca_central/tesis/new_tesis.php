@@ -19,7 +19,7 @@
         </div>
         <label for="anio">A&ntilde;o:</label>
         <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
-	        <input style="width: 180px;" type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" readonly/>
+	        <input style="width: 180px; " type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" readonly/>
 	        <span class="add-on"><i class="icon-calendar"></i></span>
 	    </div>
       </fieldset>
