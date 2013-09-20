@@ -9,6 +9,8 @@ $(document).ready(function(){
 				$('#new_tesis #titulo').focus();
 				buscar_asesor();
 				buscar_autor_tesis();
+				cargar_facultad(1);
+				cargar_escuela(1,7);
 			});
 			
 			$('#new_tesis form').submit(function(evento){

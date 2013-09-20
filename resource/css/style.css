@@ -37,6 +37,8 @@ table thead .action_table{width: 8%;}
 #module_tesis table thead .year_table{width: 6%;}
 |#module_tesis .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #module_tesis .control .menu-control:nth-child(3){float: right;}
+#new_tesis{width: 646px;}
+#new_tesis .modal-body{max-height: 550px;}
 /*END TESIS*/
 
 /*STAR CONSTANCIA*/
