@@ -1,3 +1,5 @@
+<link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
+<script type="text/javascript" src="<?php echo base_url()?>resource/js/bootstrap-datepicker.js"></script>
 <div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -16,7 +18,10 @@
         <div id="facultad_tesis">
         </div>
         <label for="anio">A&ntilde;o:</label>
-        <input type="text" id="anio" data-toggle="popover" data-placement="right" data-content="" required maxlength="4"/>
+        <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
+	        <input style="width: 180px;" type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" readonly/>
+	        <span class="add-on"><i class="icon-calendar"></i></span>
+	    </div>
       </fieldset>
 
       <fieldset>
@@ -58,7 +63,13 @@
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
-	$('#new_tesis #anio').validations('0123456789');
+	//$('#new_tesis #anio').validations('0123456789');
+	$('#new_tesis #anio').datepicker({
+		startView: 2,
+	    language: "es",
+	    minViewMode: 2,
+	    autoclose: true
+	});
 });
 //-->
 </script>
