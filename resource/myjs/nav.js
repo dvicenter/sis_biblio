@@ -1070,9 +1070,14 @@ $(document).ready(function(){
 			url:base_url+'util/ccfacultad/cargar_facultad',
 			type:"POST",
 			success:function(data){
-				if(tipo==1){
+				switch (tipo){
+					case 1:
+					$('#new_tesis #facultad_tesis').html(data);
+					break;
+					case 2:
 					$('#new_exportar #facultad').html(data);
-				}
+					break;
+				}	
 				$('#select_man_facultad').change(function(){
 					idFacultad= $('#new_exportar #select_man_facultad option:selected').attr('value');
 					console.info($("#new_exportar form [name='escuela']").is(':checked'));
@@ -1091,9 +1096,25 @@ $(document).ready(function(){
 			data:'idFacultad='+idFacultad,
 			type:"POST",
 			success:function(data){
-				if(tipo==1){
+			switch (tipo){
+					case 1:
+					if(idFacultad==1){
+						$('#new_tesis #escuela_tesis').html(data);
+					}
+					else if(idFacultad==7){
+						$('#new_tesis #escuela_tesis').html(data);
+					}
+					break;
+					case 2:
+					if(idFacultad==1){
+						$('#new_exportar #escuela').html(data);
+					}
+					else if(idFacultad==7){
+						$('#new_exportar #escuela').html(data);
+					}
 					$('#new_exportar #escuela').html(data);
-				}
+					break;
+				}		
 			}
 		});
 	}

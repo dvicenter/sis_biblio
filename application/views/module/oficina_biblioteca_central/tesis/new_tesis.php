@@ -14,14 +14,22 @@
         <input autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="autor">Autor:</label>
         <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" required/>
-      </fieldset>
-      <fieldset>
-        <label for="asesor">Asesor:</label>
-        <input id="asesor" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
+        <label for="facultad">Facultad:</label>
+        <div id="facultad_tesis">
+        </div>
         <label for="anio">A&ntilde;o:</label>
         <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
 	        <input style="width: 180px;" type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" readonly/>
 	        <span class="add-on"><i class="icon-calendar"></i></span>
+	    </div>
+      </fieldset>
+      <fieldset>
+        <label for="asesor">Asesor:</label>
+        <input id="asesor" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
+        <label for="acompaniante">Acompa&ntilde;ante:</label>
+        <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
+        <label for="escuela">Escuela:</label>
+        <div id="escuela_tesis">
         </div>
       </fieldset>
       <ul class="nav nav-tabs" id="myTab">
