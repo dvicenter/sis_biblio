@@ -17,6 +17,14 @@
 						<textarea class="text_area" cols="200" id="comment_body" name="desc_componente" rows="7" data-toggle="popover" data-placement="right" data-content=""></textarea>
 					</div>
 				</div>
+				<div class="control-group">
+				  <label class="control-label" for="input_oficina">Oficina:</label> 
+				  <div class="controls">
+					<input autocomplete="off" id="input_comp_oficina" type="text" class="input-xlarge" data-toggle="popover" data-placement="right" data-content="" required>
+					<input type="hidden" name="id_oficina_comp"/>
+				  </div>
+				</div>
+
 			</fieldset>  
 			<div class="btn_mantenimiento">
 				<fieldset>
@@ -35,7 +43,7 @@
 					<th style="width:4%; display:none;"></th>
 			        <th class="title_table">COMPONENTE</th>
 			        <th class="descripcion_table">DESCRIPCION</th>
-					<th class="decripcion_table">OFICINA</th>
+					<th class="descripcion_table">OFICINA</th>
 					<th class="title_table">EDITAR</th>
 			        <th style="display:none;" class="descripcion_table">ELIMINAR</th>
             	</tr>
@@ -80,6 +88,8 @@
 	                        $('#table_comp tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_componente);
 	                        $('#table_comp tbody tr:nth-child('+i+') td:nth-child(2)').html(d.componente);
                             $('#table_comp tbody tr:nth-child('+i+') td:nth-child(3)').html(d.descripcion);
+                            $('#table_comp tbody tr:nth-child('+i+') td:nth-child(4)').html(d.id_oficina);
+                            $('#table_comp tbody tr:nth-child('+i+') td:nth-child(5)').html(d.oficina);
 	                    	if($('#table_comp tbody tr:nth-child('+i+')').is(':visible')!=true){
 	                    		$("#table_comp tbody tr:nth-child("+i+")").fadeIn();
 	                        }    

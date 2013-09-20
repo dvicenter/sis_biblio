@@ -1,6 +1,7 @@
 var asesores=[];
 var sujetos=[];
 var pos_editar;
+var oficinas=[];
 
 $(document).ready(function(){
 	habilitar_modulo();
@@ -174,7 +175,11 @@ $(document).ready(function(){
 									else 
 										{ 
 											if($("#mod_componente").is(":visible") == true)
-												{	
+												{	buscar_oficina();
+													$("#mod_componente #input_comp_oficina").focus();
+													$('#input_comp_oficina').click(function(){
+														buscar_oficina();	
+													});
 													$("#mod_componente input[name='componente']").focus();								
 													$('#mod_componente form').submit(function(evento){
 														evento.preventDefault();
@@ -875,21 +880,30 @@ $(document).ready(function(){
 	function insertar_componente()
 	{	var componente=$("#mod_componente input[name='componente']").val();
 		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").val();
+		var oficina=$("#input_comp_oficina").val();
+		var id_oficina;
+		$.each(oficinas,function(a,b){
+			if(b[1]==oficina)
+			{	id_oficina=b[0];
+			}
+		});
 		var fallos = validar_componente();
 		if (fallos == 0) {
 			$.ajax({
 				url:base_url+'manager/cccomponente/insertar',
-				data:'componente='+componente+'&descripcion_componente='+descripcion_componente,
+				data:'componente='+componente+'&descripcion_componente='+descripcion_componente+'&id_oficina='+id_oficina,
 				type:'post',
 				dataType:'json',
 				success:function(data){
 					var id_componente;
 					var componente;
 					var descripcion_componente;
+					var id_oficina;
 				$.each(data,function(a,b){
 					id_componente=b.id_componente;
 					componente=b.componente;
 					descripcion_componente=b.descripcion_componente;
+					id_oficina=b.id_oficina;
 				});
 				refresh_componente('guardado');
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>");
@@ -907,26 +921,39 @@ $(document).ready(function(){
 		var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
 		var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
 		var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+		var oficina=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(5)').html();
+
 		$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
 		$("#mod_componente input[name='componente']").attr('value',componente);
 		$("#mod_componente input[name='componente']").focus();
 		$('#mod_componente .modificar').attr('disabled',false).css({'cursor':''});
 		$('#mod_componente .cancelar').attr('disabled',false).css({'cursor':''});
 		$("#mod_componente textarea[name='desc_componente']").attr('value',descripcion);
+		$("#input_comp_oficina").attr('value',oficina);
 	}
 	function modificar_componente()
 	{	var idcomp=$("#mod_componente input[name='id_comp']").attr('value');
 		var componente=$("#mod_componente input[name='componente']").attr('value');
 		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").attr('value');
-			if(validar_componente()==0){
+		var oficina=$("#input_comp_oficina").val();
+		var id_oficina;
+		$.each(oficinas,function(a,b){
+			if(b[1]==oficina)
+			{	id_oficina=b[0];
+			}
+		});
+
+		if(validar_componente()==0){
 			$.ajax({
 				url:base_url+'manager/cccomponente/modificar',
-				data:'id_componente='+idcomp+'&componente='+componente+'&descripcion_componente='+descripcion_componente,
+				data:'id_componente='+idcomp+'&componente='+componente+'&descripcion_componente='+descripcion_componente+'&id_oficina='+id_oficina,
 				type:'post',
 				dataType:'json',
 				success:function(data){
 					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html(componente);
 					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html(descripcion_componente);
+					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(4)').html(id_oficina);
+					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(5)').html(oficina);
 					$("#mod_componente form")[0].reset();
 					$("#mod_componente input[name='componente']").attr('value','');
 					$("#mod_componente input[name='id_comp']").attr('value','');
@@ -1201,6 +1228,7 @@ $(document).ready(function(){
 		$('#input_conclusion').validCampo(/^[a-zA-z-_\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
 		return res;
 	}
+
 	function validar_solicitar_constancia()
 	{	var res;
 		var res0=$('#input_man_asesor').validCampo(/^[a-zA-z,\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
@@ -1347,6 +1375,24 @@ $(document).ready(function(){
 			}
 		});
 	}
+
+	function buscar_oficina()
+	{
+		$.ajax({
+			url:base_url+'manager/cccomponente/buscar_oficina',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var oficina=[];
+				$.each(data,function(a,b){
+					oficina.push(b.oficina);
+					oficinas.push([b.id_oficina,b.oficina]);
+				});
+				$('#input_comp_oficina').typeahead().data('typeahead').source = oficina;
+			}
+		});
+	}
+
 	var autores_acom=[];
 	function buscar_autor_acompa()
 	{

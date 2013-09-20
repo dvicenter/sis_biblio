@@ -9,6 +9,10 @@ class Cccomponente extends CI_Controller
          $this->load->library('pagination');
 	}
 
+	function buscar_oficina()
+	{	$data=$this->cdcomponente->buscar_oficina();
+		echo json_encode($data);
+	}
 	
 	function listar() 
 	{	
@@ -29,7 +33,6 @@ class Cccomponente extends CI_Controller
         $this->pagination->initialize($config);
         $data = array('componentes'=>$this->cdcomponente->listar($config['per_page']),
         'paginacion'=>$this->pagination->create_links());
-        
         echo $this->load->view('module/manager/componente/componente_user',$data);
 	}
     
@@ -49,7 +52,9 @@ class Cccomponente extends CI_Controller
 	function insertar() 
 	{	$componente=$_REQUEST['componente'];
 		$descripcion_componente=$_REQUEST['descripcion_componente'];
-		$this->data=array($this->cdcomponente->insertar($componente,$descripcion_componente));
+		$id_oficina=$_REQUEST['id_oficina'];
+		echo $id_oficina;
+		$this->data=array($this->cdcomponente->insertar($componente,$descripcion_componente,$id_oficina));
 		echo json_encode($this->data);
 	}
 	
@@ -57,7 +62,8 @@ class Cccomponente extends CI_Controller
 	{	$id_componente=$_REQUEST['id_componente'];
 		$componente=$_REQUEST['componente'];
 		$descripcion_componente=$_REQUEST['descripcion_componente'];
-		$this->data=array($this->cdcomponente->modificar($id_componente,$componente,$descripcion_componente));
+		$id_oficina=$_REQUEST['id_oficina'];
+		$this->data=array($this->cdcomponente->modificar($id_componente,$componente,$descripcion_componente,$id_oficina));
 		echo json_encode($this->data);
 	}
 

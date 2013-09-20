@@ -39,6 +39,8 @@ table thead .action_table{width: 8%;}
 #module_tesis .control .menu-control:nth-child(3){float: right;}
 /*END TESIS*/
 
+#mod_componente table thead .componente_table{with:30%;}
+
 /*STAR CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #consult_related input{width: 260px;}
