@@ -158,7 +158,16 @@ $(document).ready(function(){
 					autor_tesis.push(b.alumno);
 					autores_tesis.push([b.id_autor_interno,b.alumno]);
 				});
-				$('#new_tesis #autor').typeahead().data('typeahead').source = autor_tesis;
+				if($('#new_tesis').is(':visible')){
+					$('#new_tesis #autor').typeahead({
+						source:autor_tesis,
+						items:4
+					});
+					$('#new_tesis #acompaniante').typeahead({
+						source:autor_tesis,
+						items:4
+					});
+				}
 			}
 		});
 	}
