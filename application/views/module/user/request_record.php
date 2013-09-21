@@ -4,7 +4,7 @@
 		<div class="control-group pos_left">
 		  <label class="control-label bold_label" for="input_man_asesor">Asesor: </label> 
 		  <div class="controls">
-			<input autocomplete="off" id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required>
+			<input autocomplete="off" id="input_man_asesor" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" required>
 			<p class="help-block">Ejm: GARC&Iacute;A FERNANDO</p>
 		  </div>
 		</div>

@@ -1134,9 +1134,12 @@ $(document).ready(function(){
 				}
 				
 				if($('#module_tesis').is(':visible')){
-					$('#module_tesis #asesor').typeahead().data('typeahead').source = asesor;
-					$('#new_exportar #input_export_asesor').typeahead().data('typeahead').source = asesor;
+					$('#module_tesis #asesor').typeahead({
+						source: asesor,
+						items:4
+					});
 				}
+				$('#new_exportar #input_export_asesor').typeahead().data('typeahead').source = asesor;
 					
 			}
 		});
@@ -1170,8 +1173,11 @@ $(document).ready(function(){
 					autor_acom.push(b.alumno);
 					autores_acom.push([b.id_autor_interno,b.alumno]);
 				});
-				$('#new_tesis #acompaniante').typeahead().data('typeahead').source = autor_acom;
-					
+				$('#mod_request_record #input_man_acompaniante').typeahead({
+					source:autor_acom,
+					items:4
+				});
+
 			}
 		});
 	}
