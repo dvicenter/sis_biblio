@@ -1,5 +1,8 @@
 <link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
+<script src="/sis_biblio/resource/myjs/tesis/tesis.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url()?>resource/js/bootstrap-datepicker.js"></script>
+
 <div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -16,6 +19,12 @@
         <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="facultad">Facultad:</label>
         <div id="facultad_tesis">
+
+        <ul class=resultado>
+        <li id="facultad">
+        </li>
+      
+
         </div>
         <label for="anio">A&ntilde;o:</label>
         <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
@@ -30,6 +39,15 @@
         <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
         <label for="escuela">Escuela:</label>
         <div id="escuela_tesis">
+           
+                <ul class=resultado>
+       
+                <li id="escuela">
+                </li>
+
+            </ul>
+
+
         </div>
       </fieldset>
       <ul class="nav nav-tabs" id="myTab" style="clear: both;">

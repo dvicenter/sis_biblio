@@ -1071,10 +1071,10 @@ $(document).ready(function(){
 			type:"POST",
 			success:function(data){
 				switch (tipo){
-					case 1:
+					case 2:
 					$('#new_tesis #facultad_tesis').html(data);
 					break;
-					case 2:
+					case 1:
 					$('#new_exportar #facultad').html(data);
 					break;
 				}	
@@ -1097,22 +1097,11 @@ $(document).ready(function(){
 			type:"POST",
 			success:function(data){
 			switch (tipo){
-					case 1:
-					if(idFacultad==1){
-						$('#new_tesis #escuela_tesis').html(data);
-					}
-					else if(idFacultad==7){
-						$('#new_tesis #escuela_tesis').html(data);
-					}
-					break;
 					case 2:
-					if(idFacultad==1){
+						$('#new_tesis #escuela_tesis').html(data);
+					break;
+					case 1:
 						$('#new_exportar #escuela').html(data);
-					}
-					else if(idFacultad==7){
-						$('#new_exportar #escuela').html(data);
-					}
-					$('#new_exportar #escuela').html(data);
 					break;
 				}		
 			}
