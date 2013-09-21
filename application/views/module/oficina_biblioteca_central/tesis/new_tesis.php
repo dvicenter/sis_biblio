@@ -29,6 +29,7 @@
         <input id="asesor" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
         <label for="acompaniante">Acompa&ntilde;ante:</label>
         <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
+        <input type="checkbox" name="acompa">
         <label for="escuela">Escuela:</label>
         <div id="escuela_tesis">
         </div>

@@ -1170,7 +1170,8 @@ $(document).ready(function(){
 					autor_acom.push(b.alumno);
 					autores_acom.push([b.id_autor_interno,b.alumno]);
 				});
-				$('#mod_request_record #input_man_acompaniante').typeahead().data('typeahead').source = autor_acom;
+				$('#new_tesis #acompaniante').typeahead().data('typeahead').source = autor_acom;
+					
 			}
 		});
 	}
