@@ -13,7 +13,7 @@
         <label for="titulo">Titulo:</label>
         <input autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
         <label for="autor">Autor:</label>
-        <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" required/>
+        <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
         <label for="facultad">Facultad:</label>
         <div id="facultad_tesis">
         </div>
@@ -25,7 +25,7 @@
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
-        <input id="asesor" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
+        <input autocomplete="off" id="asesor" type="text" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required />
         <label for="acompaniante">Acompa&ntilde;ante:</label>
         <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
         <label for="escuela">Escuela:</label>
