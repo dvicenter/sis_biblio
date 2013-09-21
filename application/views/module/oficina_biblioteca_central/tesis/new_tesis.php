@@ -12,31 +12,35 @@
   <div class="modal-body">
     <form id="form_nuevo_tesis" >
     	<input id="id_material_bibliografico" type="hidden"/>
-      <fieldset style="float: left;"> 
-        <label for="titulo">Titulo:</label>
-        <input autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" required/>
+    	<div>
+    		
+        <label for="titulo" style="float: left;">Titulo:</label>
+        <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
+    	</div>
+      <fieldset > 
         <label for="autor">Autor:</label>
-        <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
+        <input type="text" id="autor" class="span3" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
+        <label for="anio">A&ntilde;o:</label>
+        <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
+	        <input style="width: 230px; " type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" readonly/>
+	        <span class="add-on"><i class="icon-calendar"></i></span>
+	    </div>
         <label for="facultad">Facultad:</label>
         <div id="facultad_tesis">
 
         <ul class=resultado>
         <li id="facultad">
         </li>
-      
+        </ul>
 
         </div>
-        <label for="anio">A&ntilde;o:</label>
-        <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
-	        <input style="width: 180px; " type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" readonly/>
-	        <span class="add-on"><i class="icon-calendar"></i></span>
-	    </div>
+        
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
-        <input autocomplete="off" id="asesor" type="text" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required />
+        <input autocomplete="off" id="asesor" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required />
         <label for="acompaniante">Acompa&ntilde;ante:</label>
-        <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
+        <input id="acompaniante" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
         <label for="escuela">Escuela:</label>
         <div id="escuela_tesis">
            
@@ -87,6 +91,7 @@ $(document).ready(function(){
 	    minViewMode: 2,
 	    autoclose: true
 	});
+	
 });
 //-->
 </script>
