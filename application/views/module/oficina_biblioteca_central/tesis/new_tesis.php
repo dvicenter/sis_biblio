@@ -7,7 +7,8 @@
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <div class="response"></div>
-    <h3 id="myModalLabel">Agregar Tesis</h3>
+    <h3 id="myModalLabel"></h3>
+
   </div>
   <div class="modal-body">
     <form id="form_nuevo_tesis" >
