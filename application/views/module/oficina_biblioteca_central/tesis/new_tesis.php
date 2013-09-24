@@ -36,11 +36,15 @@
         </div>
         
       </fieldset>
+
       <fieldset>
         <label for="asesor">Asesor:</label>
         <input autocomplete="off" id="asesor" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required />
         <label for="acompaniante">Acompa&ntilde;ante:</label>
-        <input id="acompaniante" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
+
+        <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
+        <input type="checkbox" name="acompa">
+
         <label for="escuela">Escuela:</label>
         <div id="escuela_tesis">
            
@@ -58,11 +62,11 @@
           <li class="active"><a href="#introduccion" data-toggle="tab">Introduccion</a></li>
           <li><a href="#objetivo" data-toggle="tab">Objetivo</a></li>
           <li><a href="#resumen" data-toggle="tab">Resumen</a></li>
-          <li><a href="#conclusion" data-toggle="tab">Conclusion</a></li>
+          <li><a href="#conclusion" data-toggle="tab">Conclusión</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="introduccion">
-            <textarea id="input_introduccion" name="introduccion" rows="5" placeholder="Escriba su INTRODUCCION aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
+            <textarea id="input_introduccion" name="introduccion" rows="5" placeholder="Escriba su INTRODUCCIÓN aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
           <div class="tab-pane" id="objetivo">
             <textarea id="input_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
@@ -71,7 +75,7 @@
             <textarea id="input_resumen" name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
           <div class="tab-pane" id="conclusion">
-            <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
+            <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSIÓN aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
         </div>
   </div>
