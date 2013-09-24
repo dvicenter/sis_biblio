@@ -37,11 +37,10 @@ table thead .action_table{width: 8%;}
 #module_tesis table thead .year_table{width: 6%;}
 #module_tesis .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #module_tesis .control .menu-control:nth-child(3){float: right;}
+#new_tesis{width: 645px;margin-left: -324px;}
 #new_tesis .modal-body{max-height: 470px;}
 #new_tesis #facultad_tesis #select_man_facultad{width: 220px;}
 #new_tesis #escuela_tesis #select_man_escuela{width: 220px;}
-#new_tesis .typeahead {z-index: 9999;}
-#new_exportar .typeahead:hover {display: block;}
 /*END TESIS*/
 
 /*STAR CONSTANCIA*/
