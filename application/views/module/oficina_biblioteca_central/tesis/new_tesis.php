@@ -41,12 +41,10 @@
         <label for="asesor">Asesor:</label>
         <input autocomplete="off" id="asesor" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required />
         <label for="acompaniante">Acompa&ntilde;ante:</label>
-<<<<<<< HEAD
+
         <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
         <input type="checkbox" name="acompa">
-=======
-        <input id="acompaniante" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
->>>>>>> 155c6f44a00ede6fc053407e982f9483ff4c14bd
+
         <label for="escuela">Escuela:</label>
         <div id="escuela_tesis">
            
