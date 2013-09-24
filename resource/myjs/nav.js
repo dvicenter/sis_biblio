@@ -1166,6 +1166,7 @@ $(document).ready(function(){
 					source:autor_acom,
 					items:4
 				});
+
 			}
 		});
 	}
