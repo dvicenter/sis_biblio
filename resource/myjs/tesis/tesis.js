@@ -58,6 +58,9 @@ $(document).ready(function(){
 				var titulo=$('#new_tesis #titulo').val();
 				var asesor=$('#new_tesis #asesor').val();
 				var autor_tesis=$('#new_tesis #autor').val();
+				var acompaniante=$('#new_tesis #acompaniante').val();
+				var facultad=$('#new_tesis #facultad_tesis').val();
+				var escuela=$('#new_tesis #escuela_tesis').val();
 				var anio=$('#new_tesis #anio').val();
 				var id_autor_tesis;
 				var id_asesor;
@@ -76,7 +79,7 @@ $(document).ready(function(){
 							});
 							$.ajax({
 								url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/insertar_tesis',
-								data:'id_autor_tesis='+id_autor_tesis+'&id_asesor='+id_asesor+'&titulo='+titulo+'&introduccion='+introduccion+'&objetivo='+objetivo+'&resumen='+resumen+'&conclusion='+conclusion+'&anio='+anio,
+								data:'id_autor_tesis='+id_autor_tesis+'&id_asesor='+id_asesor+'&titulo='+titulo+'&introduccion='+introduccion+'&objetivo='+objetivo+'&resumen='+resumen+'&conclusion='+conclusion+'&anio='+anio+'&acompaniante='+acompaniante,
 								dataType:'json',
 								type:'post',
 								success:function(data){

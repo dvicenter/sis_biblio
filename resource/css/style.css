@@ -25,12 +25,12 @@ table thead .action_table{width: 8%;}
 /*tbody { height: 100px; overflow-x: hidden; overflow-y: scroll; position: absolute;}*/
 .table {width: 95%; margin: 0 auto; position: relative;}
 
-/*STAR CONTROL PANEL*/
+/*START CONTROL PANEL*/
 #control_panel ul li{list-style: none;display: inline-block;text-align: center;}
 #control_panel ul li a{color:#0088cc;}
 #control_panel ul li a:hover{text-decoration: none;}
 /*END CONTROL PANEL*/
-/*STAR TESIS*/
+/*START TESIS*/
 #module_tesis table thead .title_table{width: 33%;}
 #module_tesis table thead .author_table{width: 25%;}
 #module_tesis table thead .asesor_table{width: 25%;}
@@ -43,7 +43,7 @@ table thead .action_table{width: 8%;}
 #new_tesis #escuela_tesis #select_man_escuela{width: 220px;}
 /*END TESIS*/
 
-/*STAR CONSTANCIA*/
+/*START CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #consult_related input{width: 260px;}
 #consult_related .consult_right.well{height: 312px;width: 365px;}
@@ -64,7 +64,7 @@ table thead .action_table{width: 8%;}
 #consult_asesor table tbody.three_dates{overflow: auto;height: 84px;position: absolute;width: 100%;}
 #consult_asesor table tbody.three_dates tr td{width: 315px;}
 /*END CONSTANCIA*/
-/*STAR USER*/
+/*START USER*/
 .form_user{float:left; font-weight: bold;width: 75%;}
 .form_user label{ font-weight: bold;}
 #mod_request_record{margin-left: 4%;margin-right: 4%;}
@@ -73,17 +73,17 @@ table thead .action_table{width: 8%;}
 #mod_request_record .text_tesista{padding: 0% 22% 0% 2%;}
 #mod_request_record .btn_tesi{margin-top: 15px;margin-right: 64%;}
 /*END USER*/
-/*STAR COMPONENTE*/
+/*START COMPONENTE*/
 .modulo_habilitado{display:block}
 .modulo_deshabilitado{display:none;}
 /*END COMPONENTE*/
 
-/*STAR ACCION*/
+/*START ACCION*/
 #btn_mantenimiento .btn_mant{display: inline-block; margin-left: 10px;}
 /*END ACCION*/
 
 
-/*STAR ROL*/
+/*START ROL*/
 .modal-header{color:#3498DB;}
 .modal-body form fieldset{display: inline-block; position: relative; margin-left: 20px;}
 .modal-body form ul li{list-style: none; font-size: 14px; margin-top: 5px;}
@@ -98,12 +98,12 @@ table thead .action_table{width: 8%;}
 .text_area {width: 315px; height: 100px;}
 .btn_mantenimiento{margin-left: 510px;margin-bottom: 10px;font-weight: normal;}
 #manager_user .btn_mantenimiento{margin-left:465px;}
-/*STAR ROL*/
+/*START ROL*/
 #rol .btn_mantenimiento{margin-left:465px;}
 /*END ROL*/
 
 
-/*STAR UTIL*/
+/*START UTIL*/
 .loading{text-align: center;height: 100%;}
 .loading img{position: relative;top: 45%;width: 5%;}
 .ctrl_panel{background-image: url(../img/utilities/png/panel.png); background-repeat: no-repeat;height: 57px;width: 47px;}
@@ -119,27 +119,27 @@ table thead .action_table{width: 8%;}
 .check_acom{position: relative;float: right;top: 8px;right: -10px;}
 /*END UTIL*/
 
-/*STAR ROLE ASSIGNMENT*/
+/*START ROLE ASSIGNMENT*/
 #mod_role_assignment table {width: 40%;}
 #mod_role_assignment{margin-left: 10px;}
 #mod_role_assignment .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
 #mod_role_assignment .btns_nav_rol button{margin: 15px 0px 0px 0px;}
 /*END ROLE ASSIGNMENT*/
 
-/*STAR ROLE ASSIGNMENT COMPONENT*/
+/*START ROLE ASSIGNMENT COMPONENT*/
 #mod_role_assignment_component table {width: 40%;}
 #mod_role_assignment_component{margin-left: 10px;}
 #mod_role_assignment_component .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
 #mod_role_assignment_component .btns_nav_rol button{margin: 15px 0px 0px 0px;}
 /*END ROLE ASSIGNMENT COMPONENT*/
 
-/*STAR ROLE COMPONENT ACTION*/
+/*START ROLE COMPONENT ACTION*/
 #mod_role_component_action table {width: 40%;}
 #mod_role_component_action{margin-left: 10px;}
 #mod_role_component_action .btns_nav_rol{width: 85px;margin: 45px 20px 0px 20px;text-align: center;}
 #mod_role_component_action .btns_nav_rol button{margin: 15px 0px 0px 0px;}
 /*END ROLE ASSIGNMENT COMPONENT ACTION*/
-/*STAR LOGIN*/
+/*START LOGIN*/
 .unjfsc_login{margin-top: 10px;} 
 .btn_login{margin-top: 16px;}
 .m_body{width: 1000px;margin: 0 auto;}
@@ -161,7 +161,7 @@ background: -moz-linear-gradient(top, #D9B81A, #E6CA37);
 #login .log_alert p:nth-child(1){position: relative;left: 44px;}
 #login .log_alert p:nth-child(2){position: relative;left: 31px;}
 /*END LOGIN*/
-/*STAR VOUCHER*/
+/*START VOUCHER*/
 #voucher .btn_voucher{padding-left: 12px;font-weight: normal;}
 #voucher .voucher_pro{clear: both;width: 40%;margin: 0 auto;} 
 /*END VOUCHER*/
