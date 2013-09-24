@@ -16,7 +16,7 @@ $(document).ready(function(){
 		});
 		
 		$("#new_exportar form [name='escuela']").click(function(){
-			//cargar_escuela(1,1);
+			cargar_escuela(1,1);
 		});
 		$("#new_exportar form [name='asesor']").click(function(){
 			buscar_asesor();
@@ -40,6 +40,8 @@ $(document).ready(function(){
 	//		});
 		});
 	});
+
+// Hasta aquí es e
 	$('#new_exportar').on('hide',function(){
 		$('#new_exportar form')[0].reset();
 		$("#new_exportar form [name='escuela']").attr('disabled',true);

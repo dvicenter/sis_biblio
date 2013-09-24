@@ -5,6 +5,8 @@ $(document).ready(function(){
 		$('#module_tesis #add_tesis').click(function(){
 			pAbm=1;
 			$('#new_tesis').modal('show');
+
+
 			$('#new_tesis').on('shown',function(){
 				$('#new_tesis #titulo').focus();
 				buscar_asesor();
@@ -13,22 +15,22 @@ $(document).ready(function(){
            $("#new_tesis form [name='facultad']").click(function(){
 
 				cargar_facultad(2);
-				})
+				});
 
 
 
-    $("#new_tesis form [name='escuela']").click(function(){
+  /* $("#new_tesis form [name='escuela']").click(function(){
                    
 	       var id=$('#new_tesis #select_man_facultad option:selected').attr('value');
 			cargar_escuela(2, id);
 				})
 
+*/
 
-
-            $("#new_tesis form [name='escuela']").click(function(){
+            /*$("#new_tesis form [name='escuela']").click(function(){
 
 				cargar_escuela(2,7);
-				})
+				});*/
 			
               
 
@@ -36,15 +38,15 @@ $(document).ready(function(){
 			});
 			
 
-			$('#new_tesis').on('hide',function(){
+			/*$('#new_tesis').on('hide',function(){
 
                $('#new_tesis form')[0].reset();
 		$("#new_tesis form [name='escuela']").attr('disabled',true);
 		$('#new_tesis .resultado li').css('display','none');
 
-				})
+				});
 
-
+          */
 			
 			$('#new_tesis form').submit(function(evento){
 				evento.preventDefault();
@@ -158,16 +160,7 @@ $(document).ready(function(){
 					autor_tesis.push(b.alumno);
 					autores_tesis.push([b.id_autor_interno,b.alumno]);
 				});
-				if($('#new_tesis').is(':visible')){
-					$('#new_tesis #autor').typeahead({
-						source:autor_tesis,
-						items:4
-					});
-					$('#new_tesis #acompaniante').typeahead({
-						source:autor_tesis,
-						items:4
-					});
-				}
+				$('#new_tesis #autor').typeahead().data('typeahead').source = autor_tesis;
 			}
 		});
 	}

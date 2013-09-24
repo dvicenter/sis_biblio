@@ -1,6 +1,5 @@
-<link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
 <script src="/sis_biblio/resource/myjs/tesis/tesis.js"></script>
-
+<link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
 <script type="text/javascript" src="<?php echo base_url()?>resource/js/bootstrap-datepicker.js"></script>
 
 <div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -10,7 +9,7 @@
     <h3 id="myModalLabel">Agregar Tesis</h3>
   </div>
   <div class="modal-body">
-    <form id="form_nuevo_tesis" >
+    <form  id="form_nuevo_tesis"  action="cdfacultad.php" method="POST">
     	<input id="id_material_bibliografico" type="hidden"/>
       <fieldset style="float: left;"> 
         <label for="titulo">Titulo:</label>
@@ -18,13 +17,19 @@
         <label for="autor">Autor:</label>
         <input type="text" id="autor" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
         <label for="facultad">Facultad:</label>
-        <div id="facultad_tesis">
-
-        <ul class=resultado>
+           <ul class=resultado>
         <li id="facultad">
         </li>
-      
 
+        <li id="escuela">
+                </li>
+
+        </ul>
+
+
+        <div id="facultad_tesis">
+
+      
         </div>
         <label for="anio">A&ntilde;o:</label>
         <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
@@ -38,7 +43,8 @@
         <label for="acompaniante">Acompa&ntilde;ante:</label>
         <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
         <label for="escuela">Escuela:</label>
-        <div id="escuela_tesis">
+      
+     <!--   <div id="escuela_tesis">
            
                 <ul class=resultado>
        
@@ -49,6 +55,8 @@
 
 
         </div>
+      -->
+
       </fieldset>
       <ul class="nav nav-tabs" id="myTab" style="clear: both;">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introduccion</a></li>
@@ -75,8 +83,11 @@
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
+
+
     </form>
   </div>
+</div>
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
@@ -88,5 +99,5 @@ $(document).ready(function(){
 	    autoclose: true
 	});
 });
-//-->
+
 </script>
