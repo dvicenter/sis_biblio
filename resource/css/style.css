@@ -41,6 +41,7 @@ table thead .action_table{width: 8%;}
 #new_tesis .modal-body{max-height: 470px;}
 #new_tesis #facultad_tesis #select_man_facultad{width: 220px;}
 #new_tesis #escuela_tesis #select_man_escuela{width: 220px;}
+#new_tesis #acompaniante{width: 240px;}
 /*END TESIS*/
 
 /*START CONSTANCIA*/

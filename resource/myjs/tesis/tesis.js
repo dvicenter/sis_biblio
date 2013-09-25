@@ -1,50 +1,44 @@
 $(document).ready(function(){
 	var autores_tesis=[];
 	var pAbm;
+
 	if($('#module_tesis').is(':visible')){
 		$('#module_tesis #add_tesis').click(function(){
 			pAbm=1;
 			$('#new_tesis').modal('show');
 			$('#new_tesis').on('shown',function(){
+				
 				$('#new_tesis #titulo').focus();
 				buscar_asesor();
 				buscar_autor_tesis();
-				
-           $("#new_tesis form [name='facultad']").click(function(){
-
 				cargar_facultad(2);
-				})
-
-
-
-    $("#new_tesis form [name='escuela']").click(function(){
-                   
+				
+            
 	       var id=$('#new_tesis #select_man_facultad option:selected').attr('value');
 			cargar_escuela(2, id);
-				})
-
-
-
-            $("#new_tesis form [name='escuela']").click(function(){
-
+				
 				cargar_escuela(2,7);
-				})
-			
-              
-
-
+         
 			});
 			
 
 			$('#new_tesis').on('hide',function(){
 
                $('#new_tesis form')[0].reset();
-		$("#new_tesis form [name='escuela']").attr('disabled',true);
-		$('#new_tesis .resultado li').css('display','none');
+			   $("#new_tesis form [name='escuela']").attr('disabled',true);
+			   $('#new_tesis .resultado li').css('display','none');
 
-				})
+			})
 
-
+			$('[name="acompa"]').click(function(){
+				if ($('[name="acompa"]').is(':checked')){ 
+					$('#acompaniante').attr('disabled',false);
+					
+				}
+				else{
+					$('#acompaniante').attr('disabled',true);
+				}
+			});
 			
 			$('#new_tesis form').submit(function(evento){
 				evento.preventDefault();
@@ -209,4 +203,8 @@ $(document).ready(function(){
 		$('#new_tesis #asesor').attr('disabled',asesor);
 		$('#new_tesis #anio').attr('disabled',anio);
 	}
+
+	
 });
+
+	

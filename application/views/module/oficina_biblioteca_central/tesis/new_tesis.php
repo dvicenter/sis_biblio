@@ -42,8 +42,8 @@
         <input autocomplete="off" id="asesor" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required />
         <label for="acompaniante">Acompa&ntilde;ante:</label>
 
-        <input id="acompaniante" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required/>
-        <input type="checkbox" name="acompa">
+        <input autocomplete="off" id="acompaniante" type="text" class="span3" style="margin: 0 auto;width: 240px;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
+        <input name="acompa" type="checkbox" style="margin: 0 auto;">
 
         <label for="escuela">Escuela:</label>
         <div id="escuela_tesis">
