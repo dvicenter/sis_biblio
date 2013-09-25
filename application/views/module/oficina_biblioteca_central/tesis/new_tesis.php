@@ -1,16 +1,16 @@
-<link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
 <script src="/sis_biblio/resource/myjs/tesis/tesis.js"></script>
-
+<link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
 <script type="text/javascript" src="<?php echo base_url()?>resource/js/bootstrap-datepicker.js"></script>
 
 <div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <div class="response"></div>
-    <h3 id="myModalLabel">Agregar Tesis</h3>
+    <h3 id="myModalLabel"></h3>
+
   </div>
   <div class="modal-body">
-    <form id="form_nuevo_tesis" >
+    <form  id="form_nuevo_tesis"  action="cdfacultad.php" method="POST">
     	<input id="id_material_bibliografico" type="hidden"/>
     	<div>
     		
@@ -26,13 +26,12 @@
 	        <span class="add-on"><i class="icon-calendar"></i></span>
 	    </div>
         <label for="facultad">Facultad:</label>
+       
+
+
         <div id="facultad_tesis">
 
-        <ul class=resultado>
-        <li id="facultad">
-        </li>
-        </ul>
-
+      
         </div>
         
       </fieldset>
@@ -46,6 +45,7 @@
         <input name="acompa" type="checkbox" style="margin: 0 auto;">
 
         <label for="escuela">Escuela:</label>
+      
         <div id="escuela_tesis">
            
                 <ul class=resultado>
@@ -57,6 +57,8 @@
 
 
         </div>
+      
+
       </fieldset>
       <ul class="nav nav-tabs" id="myTab" style="clear: both;">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introduccion</a></li>
@@ -83,8 +85,11 @@
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
+
+
     </form>
   </div>
+</div>
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
@@ -97,5 +102,5 @@ $(document).ready(function(){
 	});
 	
 });
-//-->
+
 </script>

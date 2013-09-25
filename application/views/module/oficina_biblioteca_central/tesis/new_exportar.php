@@ -4,8 +4,8 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3 id="myModalLabel">Exportar Tesis</h3>
   </div>
-  <div class="modal-body" style="overflow-y: inherit;">
-    <form class="check_option" action="" method="post" style="position: relative;">
+  <div  class="modal-body" style="overflow-y: inherit;">
+    <form  class="check_option" action="" method="POST">
       <ul class="opciones">
         <li class="opcion"><input type="checkbox" name="facultad"> Facultad </li>
         <li class="opcion"><input type="checkbox" name="escuela" disabled> Escuela </li>

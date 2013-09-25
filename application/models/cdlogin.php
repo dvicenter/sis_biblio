@@ -17,6 +17,8 @@ class Cdlogin extends CI_Model{
     	$query = $this->db->get_where('tbl_usuario',$data);
     	return $query->result_array();
     }
+
+      
  	public function isLogged()
     {	if(isset($this->session->userdata['usuario']))
         {	return TRUE;

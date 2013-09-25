@@ -16,7 +16,7 @@ $(document).ready(function(){
 		});
 		
 		$("#new_exportar form [name='escuela']").click(function(){
-			//cargar_escuela(1,1);
+			cargar_escuela(1,1);
 		});
 		$("#new_exportar form [name='asesor']").click(function(){
 			buscar_asesor();
@@ -29,17 +29,11 @@ $(document).ready(function(){
 					$("#new_exportar .export").attr('disabled',true);
 				}
 	        });
-	//		$('#new_exportar .export').click(function(){
-	//			$.ajax({
-	//				//url:base_url+'oficina_biblioteca_central/report/example_001',
-	//				success:function(data){
-	//					var url="https://www.facebook.com/";
-	//					window.open(url, '_blank');
-	//				}
-	//			});
-	//		});
+	
 		});
 	});
+
+// Hasta aquí es e
 	$('#new_exportar').on('hide',function(){
 		$('#new_exportar form')[0].reset();
 		$("#new_exportar form [name='escuela']").attr('disabled',true);

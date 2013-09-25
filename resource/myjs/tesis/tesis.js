@@ -1,34 +1,34 @@
 $(document).ready(function(){
+	cargar_facultad(2);
+ 	cargar_escuela(2,1);
 	var autores_tesis=[];
 	var pAbm;
 
 	if($('#module_tesis').is(':visible')){
 		$('#module_tesis #add_tesis').click(function(){
 			pAbm=1;
+			$('#new_tesis #myModalLabel').html('Agregar Tesis');
 			$('#new_tesis').modal('show');
+
+
 			$('#new_tesis').on('shown',function(){
 				
 				$('#new_tesis #titulo').focus();
 				buscar_asesor();
 				buscar_autor_tesis();
-				cargar_facultad(2);
 				
-            
-	       var id=$('#new_tesis #select_man_facultad option:selected').attr('value');
-			cargar_escuela(2, id);
-				
-				cargar_escuela(2,7);
-         
+           $("#new_tesis form [name='combo_facultad']").click(function(){
+           		//alert("holaaaaa");
+				//cargar_facultad(2);
+				var id_f=$("#new_tesis form [name='combo_facultad'] option:selected").val();
+				//console.info(id_f);
+				cargar_escuela(2,id_f);
+				});
+
+
+              
+
 			});
-			
-
-			$('#new_tesis').on('hide',function(){
-
-               $('#new_tesis form')[0].reset();
-			   $("#new_tesis form [name='escuela']").attr('disabled',true);
-			   $('#new_tesis .resultado li').css('display','none');
-
-			})
 
 			$('[name="acompa"]').click(function(){
 				if ($('[name="acompa"]').is(':checked')){ 
@@ -39,6 +39,7 @@ $(document).ready(function(){
 					$('#acompaniante').attr('disabled',true);
 				}
 			});
+
 			
 			$('#new_tesis form').submit(function(evento){
 				evento.preventDefault();
@@ -102,6 +103,7 @@ $(document).ready(function(){
 		$('#module_tesis .editar').click(function(){
 			pAbm=2;
 			$('#new_tesis').modal('show');
+			$('#new_tesis #myModalLabel').html('Editar Tesis');
 			text_box(true,true,true,true);
 			var pos_editar_=$("#module_tesis #table_tesis td .editar").index(this);
 			pos_editar=pos_editar_+1;
@@ -155,16 +157,7 @@ $(document).ready(function(){
 					autor_tesis.push(b.alumno);
 					autores_tesis.push([b.id_autor_interno,b.alumno]);
 				});
-				if($('#new_tesis').is(':visible')){
-					$('#new_tesis #autor').typeahead({
-						source:autor_tesis,
-						items:4
-					});
-					$('#new_tesis #acompaniante').typeahead({
-						source:autor_tesis,
-						items:4
-					});
-				}
+				$('#new_tesis #autor').typeahead().data('typeahead').source = autor_tesis;
 			}
 		});
 	}
