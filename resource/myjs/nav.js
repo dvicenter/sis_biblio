@@ -1080,7 +1080,7 @@ $(document).ready(function(){
 				}	
 				$('#select_man_facultad').change(function(){
 					idFacultad= $('#new_exportar #select_man_facultad option:selected').attr('value');
-					console.info($("#new_exportar form [name='escuela']").is(':checked'));
+					//console.info($("#new_exportar form [name='escuela']").is(':checked'));
 					if($("#new_exportar form [name='escuela']").is(':checked')){
 						cargar_escuela(1, idFacultad);
 					};

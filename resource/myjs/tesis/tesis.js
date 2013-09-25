@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	cargar_facultad(2);
+ 	cargar_escuela(2,1);
 	var autores_tesis=[];
 	var pAbm;
 	if($('#module_tesis').is(':visible')){
@@ -11,10 +13,15 @@ $(document).ready(function(){
 				$('#new_tesis #titulo').focus();
 				buscar_asesor();
 				buscar_autor_tesis();
-				
-           $("#new_tesis form [name='facultad']").click(function(){
 
-				cargar_facultad(2);
+
+				
+           $("#new_tesis form [name='combo_facultad']").click(function(){
+           		//alert("holaaaaa");
+				//cargar_facultad(2);
+				var id_f=$("#new_tesis form [name='combo_facultad'] option:selected").val();
+				//console.info(id_f);
+				cargar_escuela(2,id_f);
 				});
 
 

@@ -25,18 +25,7 @@
 	        <span class="add-on"><i class="icon-calendar"></i></span>
 	    </div>
         <label for="facultad">Facultad:</label>
-           <ul class=resultado>
-        <li id="facultad">
-        </li>
-<<<<<<< HEAD
-=======
-        </ul>
->>>>>>> 155c6f44a00ede6fc053407e982f9483ff4c14bd
-
-        <li id="escuela">
-                </li>
-
-        </ul>
+       
 
 
         <div id="facultad_tesis">
@@ -56,7 +45,7 @@
 
         <label for="escuela">Escuela:</label>
       
-     <!--   <div id="escuela_tesis">
+        <div id="escuela_tesis">
            
                 <ul class=resultado>
        
@@ -67,7 +56,7 @@
 
 
         </div>
-      -->
+      
 
       </fieldset>
       <ul class="nav nav-tabs" id="myTab" style="clear: both;">
