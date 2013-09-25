@@ -6,6 +6,7 @@ $(document).ready(function(){
 	if($('#module_tesis').is(':visible')){
 		$('#module_tesis #add_tesis').click(function(){
 			pAbm=1;
+			$('#new_tesis #myModalLabel').html('Agregar Tesis');
 			$('#new_tesis').modal('show');
 
 
@@ -117,6 +118,7 @@ $(document).ready(function(){
 		$('#module_tesis .editar').click(function(){
 			pAbm=2;
 			$('#new_tesis').modal('show');
+			$('#new_tesis #myModalLabel').html('Editar Tesis');
 			text_box(true,true,true,true);
 			var pos_editar_=$("#module_tesis #table_tesis td .editar").index(this);
 			pos_editar=pos_editar_+1;
