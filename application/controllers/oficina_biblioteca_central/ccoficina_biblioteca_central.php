@@ -102,15 +102,19 @@ class Ccoficina_biblioteca_central extends CI_Controller{
 		echo json_encode($data);
     }
     function insertar_tesis()
-    {	$id_autor_tesis=$_REQUEST['id_autor_tesis'];
-    	$id_asesor=$_REQUEST['id_asesor'];
-    	$titulo=$_REQUEST['titulo'];
-    	$introduccion=$_REQUEST['introduccion'];
-    	$objetivo=$_REQUEST['objetivo'];
-    	$resumen=$_REQUEST['resumen'];
-    	$conclusion=$_REQUEST['conclusion'];
-    	$anio=$_REQUEST['anio'];
-    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio);
+    {	$id_autor_tesis=$this->input->post['id_autor_tesis'];
+    	$id_asesor=$this->input->post['id_asesor'];
+    	$titulo=$this->input->post['titulo'];
+    	$introduccion=$this->input->post['introduccion'];
+    	$objetivo=$this->input->post['objetivo'];
+    	$resumen=$this->input->post['resumen'];
+    	$conclusion=$this->input->post['conclusion'];
+    	$anio=$this->input->post['anio'];
+    	$acompaniante=$this->input->post['id_autor_acompa_tesis'];
+    	$id_facultad=$this->input->post['id_f'];
+    	$id_escuela=$this->input->post['id_e'];
+    	$cant=$this->input->post['cant'];
+    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio,$acompaniante,$id_facultad,$id_escuela,$cant);
     }
     function editar_tesis()
     {	$id_material_bibliografico=$_REQUEST['id_material_bibliografico'];

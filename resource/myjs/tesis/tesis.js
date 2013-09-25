@@ -18,25 +18,21 @@ $(document).ready(function(){
 				buscar_autor_tesis();
 				
            $("#new_tesis form [name='combo_facultad']").click(function(){
-           		//alert("holaaaaa");
-				//cargar_facultad(2);
 				var id_f=$("#new_tesis form [name='combo_facultad'] option:selected").val();
-				//console.info(id_f);
 				cargar_escuela(2,id_f);
 				});
-
-
-              
-
 			});
-
+			var cantidad_acompa="";
 			$('[name="acompa"]').click(function(){
 				if ($('[name="acompa"]').is(':checked')){ 
 					$('#acompaniante').attr('disabled',false);
-					
+					cantidad_acompa=2;
+					$('#acompaniante').focus();
 				}
 				else{
 					$('#acompaniante').attr('disabled',true);
+					$('#acompaniante').html('').attr('value','');
+					cantidad_acompa=1;
 				}
 			});
 
@@ -52,14 +48,32 @@ $(document).ready(function(){
 				var asesor=$('#new_tesis #asesor').val();
 				var autor_tesis=$('#new_tesis #autor').val();
 				var acompaniante=$('#new_tesis #acompaniante').val();
-				var facultad=$('#new_tesis #facultad_tesis').val();
-				var escuela=$('#new_tesis #escuela_tesis').val();
+				var facultad=$('#new_tesis [name="combo_facultad"] option:selected').val();
+				var escuela=$('#new_tesis [name="combo_escuela"] option:selected').attr('rel');
 				var anio=$('#new_tesis #anio').val();
 				var id_autor_tesis;
+				var id_autor_acompa_tesis;
 				var id_asesor;
 				if(validar_asesor(asesor))
-				{	if(validar_autor_tesis(autor_tesis))
-					{	if(anio<=2155&&anio>=1901){
+				{	if(cantidad_acompa==2){
+						if(validar_autor_tesis(acompaniante))
+						{
+							$.each(autores_tesis,function(a,b){
+								if(cantidad_acompa==2){
+									if(b[1]==autor_tesis)
+									{	id_autor_acompa_tesis=b[0];
+									}
+								}
+							});
+						}
+						else
+							{	$('#new_tesis #acompaniante').focus();
+								$('#new_tesis .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Autor(es) inexistente</strong></div>");
+							}
+					}
+					if(validar_autor_tesis(autor_tesis))
+					{	console.info(anio);
+						if(anio<=2155&&anio>=1901){
 							$.each(autores_tesis,function(a,b){
 								if(b[1]==autor_tesis)
 								{	id_autor_tesis=b[0];
@@ -72,12 +86,13 @@ $(document).ready(function(){
 							});
 							$.ajax({
 								url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/insertar_tesis',
-								data:'id_autor_tesis='+id_autor_tesis+'&id_asesor='+id_asesor+'&titulo='+titulo+'&introduccion='+introduccion+'&objetivo='+objetivo+'&resumen='+resumen+'&conclusion='+conclusion+'&anio='+anio+'&acompaniante='+acompaniante,
+								data:'id_autor_tesis='+id_autor_tesis+'&id_asesor='+id_asesor+'&titulo='+titulo+'&introduccion='+introduccion+'&objetivo='+objetivo+'&resumen='+
+								resumen+'&conclusion='+conclusion+'&anio='+anio+'&id_autor_acompa_tesis='+id_autor_acompa_tesis+'&id_f='+facultad+'&id_e='+escuela+"cant="+cantidad_acompa,
 								dataType:'json',
 								type:'post',
 								success:function(data){
 									$('#new_tesis').modal('hide');
-									load_module_date('/sis_biblio/oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
+									load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_tesis', '#tesis', '#tesis_top');
 								},
 								error:function(){
 									alert('Error al guardar');
@@ -86,12 +101,12 @@ $(document).ready(function(){
 						}
 						else{
 							$('#new_tesis #anio').focus();
-							$('#new_tesis .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>A&nacute;o inv&aacute;lido!</strong></div>");
+							$('#new_tesis .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>A&ntilde;o inv&aacute;lido!</strong></div>");
 						}
 					}
 					else{
 						$('#new_tesis #autor').focus();
-						$('#new_tesis .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Autor inexistente</strong></div>");
+						$('#new_tesis .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Autor(es) inexistente</strong></div>");
 					}
 				}
 				else
@@ -158,6 +173,10 @@ $(document).ready(function(){
 					autores_tesis.push([b.id_autor_interno,b.alumno]);
 				});
 				$('#new_tesis #autor').typeahead().data('typeahead').source = autor_tesis;
+				$('#new_tesis #acompaniante').typeahead({
+					items:4,
+					source:autor_tesis
+				});
 			}
 		});
 	}

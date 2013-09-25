@@ -17,12 +17,12 @@
         <label for="titulo" style="float: left;">Titulo:</label>
         <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
     	</div>
-      <fieldset > 
+      <fieldset> 
         <label for="autor">Autor:</label>
         <input type="text" id="autor" class="span3" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
         <label for="anio">A&ntilde;o:</label>
         <div class="input-append date" id="anio" data-date-viewmode="years" data-date-format="yyyy">
-	        <input style="width: 230px; " type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" readonly/>
+	        <input style="width: 230px; " type="text" data-toggle="popover" data-placement="right" data-content="" required maxlength="4" data-date-format="yyyy" name="anio" value="" readonly/>
 	        <span class="add-on"><i class="icon-calendar"></i></span>
 	    </div>
         <label for="facultad">Facultad:</label>
@@ -36,12 +36,12 @@
         
       </fieldset>
 
-      <fieldset>
+      <fieldset style="">
         <label for="asesor">Asesor:</label>
         <input autocomplete="off" id="asesor" class="span3" type="text" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" required />
         <label for="acompaniante">Acompa&ntilde;ante:</label>
 
-        <input autocomplete="off" id="acompaniante" type="text" class="span3" style="margin: 0 auto;width: 240px;" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
+        <input autocomplete="off" id="acompaniante" type="text" class="span3" style="" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
         <input name="acompa" type="checkbox" style="margin: 0 auto;">
 
         <label for="escuela">Escuela:</label>
