@@ -5,6 +5,7 @@ class Ccoficina_biblioteca_central extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->model('oficina_biblioteca_central/cdoficina_biblioteca_central');
 		$this->load->library('pagination');
+		$this->load->library('form_validation');
 	}
 	/*function listar(){
 		$this->data['planes_tesis']=$this->cdoficina_biblioteca_central->listar();
@@ -102,19 +103,19 @@ class Ccoficina_biblioteca_central extends CI_Controller{
 		echo json_encode($data);
     }
     function insertar_tesis()
-    {	$id_autor_tesis=$this->input->post['id_autor_tesis'];
-    	$id_asesor=$this->input->post['id_asesor'];
-    	$titulo=$this->input->post['titulo'];
-    	$introduccion=$this->input->post['introduccion'];
-    	$objetivo=$this->input->post['objetivo'];
-    	$resumen=$this->input->post['resumen'];
-    	$conclusion=$this->input->post['conclusion'];
-    	$anio=$this->input->post['anio'];
-    	$acompaniante=$this->input->post['id_autor_acompa_tesis'];
-    	$id_facultad=$this->input->post['id_f'];
-    	$id_escuela=$this->input->post['id_e'];
-    	$cant=$this->input->post['cant'];
-    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio,$acompaniante,$id_facultad,$id_escuela,$cant);
+    {	$id_autor_tesis=$this->input->post('id_autor_tesis');
+    	$id_asesor=$this->input->post('id_asesor');
+    	$titulo=$this->input->post('titulo');
+    	$introduccion=$this->input->post('introduccion');
+    	$objetivo=$this->input->post('objetivo');
+    	$resumen=$this->input->post('resumen');
+    	$conclusion=$this->input->post('conclusion');
+    	$anio=$this->input->post('anio');
+    	$acompaniante=$this->input->post('id_autor_acompa_tesis');
+    	//$id_facultad=$this->input->post['id_f'];
+    	//$id_escuela=$this->input->post['id_e'];
+    	$cant=$this->input->post('cant');
+    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio,$acompaniante,$cant);
     }
     function editar_tesis()
     {	$id_material_bibliografico=$_REQUEST['id_material_bibliografico'];
