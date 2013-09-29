@@ -6,17 +6,17 @@
       <li class="menu-control">
         <form class="form-search span4 offset2">
           <div class="input-append">
-            <input class="span3" id="appendedDropdownButton" type="text" placeholder="Buscar" disabled>
+            <input class="span3" id="appendedDropdownButton" type="text" placeholder="Buscar" >
             <div class="btn-group">
-              <button class="btn dropdown-toggle" data-toggle="dropdown" disabled>
+              <button id="listar" class="btn dropdown-toggle" data-toggle="dropdown" >
                 Filtro
-                <span class="caret"></span>
+                <span id="filtro" class="caret"></span>
               </button>
               <ul style="margin-left: -92px;" class="dropdown-menu">
-                <li><a href="#">Titulo</a></li>
-                <li><a href="#">Autor</a></li>
-                <li><a href="#">Asesor</a></li>
-                <li><a href="#">A&ntilde;o</a></li>
+                <li  class="lt_listar"><a href="#">Titulo</a></li>
+                <li  class="lt_listar"><a href="#">Autor</a></li>
+                <li  class="lt_listar"><a href="#">Asesor</a></li>
+                <li   class="lt_listar"><a href="#">A&ntilde;o</a></li>
               </ul>
             </div>
           </div>
