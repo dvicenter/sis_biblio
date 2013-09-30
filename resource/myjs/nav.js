@@ -13,7 +13,7 @@ $(document).ready(function(){
 		);
 	});
 	$('#constancia').click(function(){
-		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/lhistar_solicitud', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
 		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');	
@@ -838,7 +838,7 @@ $(document).ready(function(){
 								}
 							});
 							ajax_insertar_solicitud_tesis(titulo,voucher,correo,introduccion,objetivo,resumen,conclusion,id_docente,id_sujeto1,id_sujeto2,2);
-						}
+							}
 						else{
 							$('#mod_request_record .msg_request_record').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'></strong></div>");
 							$('#mod_request_record .msg_request_record .error_request_record .msg').html('Acompa&ntilde;ante inexistente');
@@ -864,7 +864,7 @@ $(document).ready(function(){
 				$("#input_man_asesor").focus();
 				$('#mod_request_record #myTab li').removeClass();
 				$('#mod_request_record #myTab li:nth-child(1)').addClass('active');
-				$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
+				$('#mod_request_record .msg_request_record').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong><br>Solicitud aceptada</div>");
 				$("#mod_request_record #input_man_acompaniante").attr('disabled',true);
 				$("#mod_request_record #input_man_acompaniante").attr('required',false);
 				close_msg('#mod_request_record .msg_request_record');
@@ -1396,8 +1396,10 @@ $(document).ready(function(){
 	var autores_acom=[];
 	function buscar_autor_acompa()
 	{
+		var id_alumno=1;
 		$.ajax({
 			url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_autor_tesis',
+			data:'id_alumno='+id_alumno,
 			type:"POST",
 			dataType:"json",
 			success:function(data){

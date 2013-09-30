@@ -13,7 +13,7 @@
 			<fieldset>
 				<div class="control-group">
 					<label class="control-label"  for="comment_body">Descripci&oacute;n:</label> 
-					<div class="controls">
+					<div class="controls" id="descripcion">
 						<textarea class="text_area" cols="200" id="comment_body" name="desc_componente" rows="7" data-toggle="popover" data-placement="right" data-content=""></textarea>
 					</div>
 				</div>

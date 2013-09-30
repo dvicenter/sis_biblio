@@ -39,7 +39,7 @@ table thead .action_table{width: 8%;}
 #module_tesis .control .menu-control:nth-child(3){float: right;}
 /*END TESIS*/
 
-#mod_componente table thead .componente_table{with:30%;}
+#mod_componente table thead .componente_table{width:30%;}
 
 /*STAR CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
@@ -114,6 +114,7 @@ table thead .action_table{width: 8%;}
 .input-xlarge3{width: 315px;}
 .bold_label{font-weight: bold;}
 .response{position: absolute;right: 12%;}
+.msg_request_record{position: absolute;right: 1%;}
 .check_acom{position: relative;float: right;top: 8px;right: -10px;}
 /*END UTIL*/
 
