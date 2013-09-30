@@ -58,6 +58,7 @@ $(document).ready(function(){
 			},
 			success:function(data){
 				active(id_nav_left,id_nav_top);
+				console.log(data);
 				$('#module_content').html(data);
 				if($('#mod_role_assignment_component').is(':visible')){
 				$("#mod_role_assignment_component input[name='rol_comp']").focus();

@@ -2,13 +2,14 @@
 <div id="module_tesis">
     <ul class="control">
       <li class="menu-control"><button id="add_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
-      <li class="menu-control"><a disabled id="export_ctrl_tesis" href="#new_exportar" class="btn btn-info" data-toggle="modal"><i class="icon-upload icon-white"></i> Exportar</a></li>
+      <li class="menu-control"><a disabled id="export_rl_tesis" href="#new_exportar" class="btn btn-info" data-toggle="modal"><i class="icon-upload icon-white"></i> Exportar</a></li>
       <li class="menu-control">
         <form class="form-search span4 offset2">
           <div class="input-append">
-            <input class="span3" id="appendedDropdownButton" type="text" placeholder="Buscar" disabled>
+            <input class="span3" id="appendedDropdownButton" type="text" placeholder="Buscar" >
+            
             <div class="btn-group">
-              <button class="btn dropdown-toggle" data-toggle="dropdown" disabled>
+              <button class="btn dropdown-toggle" data-toggle="dropdown" >
                 Filtro
                 <span class="caret"></span>
               </button>
