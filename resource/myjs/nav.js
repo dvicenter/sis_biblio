@@ -68,6 +68,7 @@ $(document).ready(function(){
 				
 				aparecer_input();
 				validar();
+				filtro();
 			}
 		});
 	}
@@ -903,6 +904,8 @@ $(document).ready(function(){
 			}
 	}
 	
+
+	
 	function eliminar_componente(pos)
 	{	
 		var idcomp=$("#mod_componente #table_comp tr:nth-child("+pos+") td:nth-child(1)").html();
@@ -1022,6 +1025,17 @@ $(document).ready(function(){
 		var res = $('#input_control').validCampo(/^.+\.txt$/,'#form_voucher','Solo se acepta formato .txt');
 		return res;
 	}
+	
+	function filtro(){
+	
+	$( ".lt_listar" ).click(function()  {
+	var filtro = $(this).html();
+	$("filtro:nth-child("+filtro+")").html();
+	$( "#listar" ).html(filtro);
+	
+});	
+	}
+
 	function validar_asignacion_rol()
 	{	
 		var res = $('#input_rol_asig').validCampo(/^[a-zA-z\s]*$/,'#form_rol_asig','Se acepta solo caracteres alfabeticos.');
