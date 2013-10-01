@@ -84,6 +84,20 @@ class Ccoficina_biblioteca_central extends CI_Controller{
         
         echo $this->load->view('module/oficina_biblioteca_central/tesis/manager_tesis',$data);
 	}
+
+    function buscar_filtro($index,$cadena)
+    {
+        if (isset($index)&&isset($cadena)) 
+        {
+        
+            $data['tesis'] = $this->cdoficina_biblioteca_central->buscar_filtro($index,$cadena,10,0);
+            echo $this->load->view('module/oficina_biblioteca_central/tesis/table_tesis',$data);
+        }
+        else{
+            echo "falta cadena";
+        }
+
+    }
 	
 	function tesis_pag()
     {

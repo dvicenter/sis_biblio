@@ -58,7 +58,6 @@ $(document).ready(function(){
 			},
 			success:function(data){
 				active(id_nav_left,id_nav_top);
-				console.log(data);
 				$('#module_content').html(data);
 				if($('#mod_role_assignment_component').is(':visible')){
 				$("#mod_role_assignment_component input[name='rol_comp']").focus();
@@ -1027,13 +1026,57 @@ $(document).ready(function(){
 	}
 	
 	function filtro(){
+		var con = 0;
+		var timer =0;
+		$( ".lt_listar" ).click(function()  {
+			var index = $(this).index();
+			con = index;
+			var filtro = $(this).html();
+			var cadena = $(".form-search input").val();
+			$("filtro:nth-child("+filtro+")").html();
+			$( "#listar" ).html(filtro);
+			if (cadena.length) {
+				clearInterval(timer);  //clear any interval on key up
+				timer = setTimeout(function() { 
+					buscar_filtro(index,cadena);
+				}, 1000);
+			}
+			else{
+				$('.alert-error').css('display','block');
+				$(".form-search input").focus();
+			}
+		});
+
+		$(".form-search input").click(function(){
+			$(this).keyup(function(){
+				var cadena = $(this).val();
+				clearInterval(timer);  //clear any interval on key up
+			    timer = setTimeout(function() { 
+			    	buscar_filtro(con,cadena);
+			    }, 1000);
+			});
+		});
+	}
 	
-	$( ".lt_listar" ).click(function()  {
-	var filtro = $(this).html();
-	$("filtro:nth-child("+filtro+")").html();
-	$( "#listar" ).html(filtro);
-	
-});	
+	function buscar_filtro(index , cadena)
+	{
+
+		$.ajax({
+				url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_filtro/'+index+'/'+cadena,
+				success:function(data)
+				{
+					$('#module_table').html(data);
+					if($('#mod_role_assignment_component').is(':visible')){
+					$("#mod_role_assignment_component input[name='rol_comp']").focus();
+						buscar_rol_componente();
+						
+					}
+					
+					validar();
+					filtro();
+				}
+		});
+
 	}
 
 	function validar_asignacion_rol()
