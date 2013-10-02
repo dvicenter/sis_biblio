@@ -67,7 +67,7 @@ $(document).ready(function(){
 				}}
 			});
 		});
-		$('#module_tesis .editar').click(function(){
+		$('#module_table .editar').click(function(){
 			pAbm=2;
 			$('#new_tesis').modal('show');
 			text_box(true,true,true,true);

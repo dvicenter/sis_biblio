@@ -87,10 +87,12 @@ class Ccoficina_biblioteca_central extends CI_Controller{
 
     function buscar_filtro($index,$cadena)
     {
+        $consulta = urldecode($cadena);
+            var_dump($consulta);
         if (isset($index)&&isset($cadena)) 
         {
         
-            $data['tesis'] = $this->cdoficina_biblioteca_central->buscar_filtro($index,$cadena,10,0);
+            $data['tesis'] = $this->cdoficina_biblioteca_central->buscar_filtro($index,$consulta,10,0);
             echo $this->load->view('module/oficina_biblioteca_central/tesis/table_tesis',$data);
         }
         else{

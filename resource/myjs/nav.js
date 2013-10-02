@@ -1027,21 +1027,18 @@ $(document).ready(function(){
 	
 	function filtro(){
 		var con = 0;
-		var timer =0;
+		var timer = 0;
 		$( ".lt_listar" ).click(function()  {
+			var cadena = $(".form-search .d-search").val();
 			var index = $(this).index();
 			con = index;
 			var filtro = $(this).html();
-			var cadena = $(".form-search input").val();
-			$("filtro:nth-child("+filtro+")").html();
 			$( "#listar" ).html(filtro);
 			if (cadena.length) {
-				clearInterval(timer);  //clear any interval on key up
-				timer = setTimeout(function() { 
-					buscar_filtro(index,cadena);
-				}, 1000);
+				$('.alert-error').css('display','none');
+				buscar_filtro(index,cadena);
 			}
-			else{
+			else{	
 				$('.alert-error').css('display','block');
 				$(".form-search input").focus();
 			}
@@ -1050,10 +1047,21 @@ $(document).ready(function(){
 		$(".form-search input").click(function(){
 			$(this).keyup(function(){
 				var cadena = $(this).val();
-				clearInterval(timer);  //clear any interval on key up
-			    timer = setTimeout(function() { 
-			    	buscar_filtro(con,cadena);
-			    }, 1000);
+				if (cadena.length) {
+					clearInterval(timer);  //clear any interval on key up
+			        timer = setTimeout(function() { 
+						$('.alert-error').css('display','none');	
+					console.log(cadena+" "+con); 
+			          buscar_filtro(con,cadena);
+			        }, 1000);
+/*
+					buscar_filtro(con,cadena);*/
+			}
+			else{
+				$('.alert-error').css('display','block');
+				$(".form-search input").focus();
+			}
+			
 			});
 		});
 	}
@@ -1071,9 +1079,7 @@ $(document).ready(function(){
 						buscar_rol_componente();
 						
 					}
-					
 					validar();
-					filtro();
 				}
 		});
 
