@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-09-2013 a las 23:16:03
+-- Tiempo de generación: 01-10-2013 a las 22:47:55
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.3.13
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sis_biblio`
 --
-CREATE DATABASE `sis_biblio` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `sis_biblio`;
 
 DELIMITER $$
 --
@@ -300,6 +298,39 @@ IF pIdCns = 1 THEN
     PREPARE STMT FROM "SELECT id_accion, accion, ? as Total FROM tbl_accion LIMIT ?,?";
     EXECUTE STMT USING @pTotal,@inicio,@fin;
 END IF;
+END$$
+
+DROP PROCEDURE IF EXISTS `SPRCNSAcompañante`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSAcompañante`(IN pId_sujeto INT(11))
+BEGIN
+  SELECT
+          viw.id_sujeto,
+          tbl.id_autor_interno,
+          tbl.id_alumno,
+          viw.alumno,
+          viw.id_facultad,
+          viw.id_escuela
+        FROM
+          tbl_autor_interno  tbl
+          INNER JOIN viw_alumno viw
+            ON tbl.id_alumno = viw.id_alumno
+   WHERE tbl.id_tipo_autor_interno IN (4,5) AND viw.id_sujeto<>pId_sujeto;
+END$$
+
+DROP PROCEDURE IF EXISTS `SPRCNSAlumnoxUsuario`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSAlumnoxUsuario`(IN pId_Usuario INT(11))
+BEGIN
+  SELECT
+  tbl_usuario.id_usuario,
+  tbl_alumno.id_alumno
+  FROM
+  sis_biblio.tbl_alumno
+  INNER JOIN sis_biblio.tbl_sujeto
+    ON tbl_alumno.id_sujeto = tbl_sujeto.id_sujeto
+  INNER JOIN sis_biblio.tbl_usuario
+    ON tbl_usuario.id_sujeto = tbl_sujeto.id_sujeto
+  WHERE
+    tbl_usuario.id_usuario=pId_Usuario;
 END$$
 
 DROP PROCEDURE IF EXISTS `SPRCNSAsesor`$$
@@ -771,7 +802,7 @@ CREATE TABLE IF NOT EXISTS `tbl_alumno_plantesis` (
   PRIMARY KEY (`id_alumno_planTesis`),
   KEY `FK_tbl_alumno_plantesis_tbl_alumno` (`id_alumno`),
   KEY `FK_tbl_alumno_plantesis_tbl_plan_tesis` (`id_plan_tesis`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=682 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=682 AUTO_INCREMENT=45 ;
 
 --
 -- Volcado de datos para la tabla `tbl_alumno_plantesis`
@@ -801,7 +832,27 @@ INSERT INTO `tbl_alumno_plantesis` (`id_alumno_planTesis`, `id_alumno`, `id_plan
 (21, 1, 49, '1'),
 (22, 1, 50, '1'),
 (23, 2, 65, '1'),
-(24, 7, 65, '0');
+(24, 7, 65, '0'),
+(25, 1, 71, '1'),
+(26, 1, 72, '1'),
+(27, 1, 73, '1'),
+(28, 1, 74, '1'),
+(29, 1, 75, '1'),
+(30, 1, 76, '1'),
+(31, 1, 77, '1'),
+(32, 1, 78, '1'),
+(33, 1, 79, '1'),
+(34, 1, 80, '1'),
+(35, 1, 81, '1'),
+(36, 1, 82, '1'),
+(37, 1, 83, '1'),
+(38, 1, 84, '1'),
+(39, 1, 85, '1'),
+(40, 1, 86, '1'),
+(41, 1, 87, '1'),
+(42, 1, 88, '1'),
+(43, 1, 89, '1'),
+(44, 1, 90, '1');
 
 -- --------------------------------------------------------
 
@@ -1316,7 +1367,7 @@ CREATE TABLE IF NOT EXISTS `tbl_plan_tesis` (
   PRIMARY KEY (`id_plan_tesis`),
   KEY `Reftbl_docente24` (`id_docente`),
   KEY `Reftbl_estado_plan_tesis32` (`id_estado_plan_tesis`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=348 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=348 AUTO_INCREMENT=91 ;
 
 --
 -- Volcado de datos para la tabla `tbl_plan_tesis`
@@ -1369,7 +1420,27 @@ INSERT INTO `tbl_plan_tesis` (`id_plan_tesis`, `titulo`, `introduccion`, `objeti
 (67, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
 (68, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
 (69, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
-(70, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1);
+(70, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
+(71, 'Tesis', 'ccccvg', 'hklj', 'bkjj', 'undefined', '1', NULL, 'marletlnt09@hotmail.com', 45, 1),
+(72, 'dgdg', 'dgdg', 'ggggg', 'aaaa', 'undefined', '1', NULL, 'nxbb@hotmail.com', 1, 1),
+(73, 'Prueba1', 'aasas', 'asdd', 'jcdc', 'undefined', '1', NULL, 'mar@gmail.com', 3, 1),
+(74, 'Pruebaaaa', 'aaaaa', 'ccccccccccccccccc', 'tyyyu', 'undefined', '1', NULL, 'sdd@hotmail.com', 10, 1),
+(75, 'Tesis Software', 'sdsada', 'dsad', 'dsada', 'undefined', '1', NULL, 'dey@gmail.com', 56, 1),
+(76, 'Tesis de Sistemas', 'shhs', 'hclkdhcdliuc', 'jbcdbc', 'undefined', '1', NULL, 'marle@gmail.com', 15, 1),
+(77, 'TESIS informacion', 'dsadsa', 'sadasdsa', 'rtreter', 'undefined', '1', NULL, 'leito@hotmail.com', 41, 1),
+(78, 'Tesis Civil', 'dsadas', 'Hdsada', 'dsadsa', 'undefined', '1', NULL, 'lkq@hotmail.com', 7, 1),
+(79, 'COSTOS', 'dasdasdas', 'dsadasd', 'dsadsa', 'undefined', '1', NULL, 'arturo@gmail.com', 12, 1),
+(80, 'Sistemas Operativos', 'HOla', 'hoa', 'hola', 'undefined', '1', NULL, 'artur@gmail.com', 46, 1),
+(81, 'dasda', 'dasda', 'ccc', 'dd', 'undefined', '1', NULL, 'dsadas@gmail.com', 37, 1),
+(82, 'jh', 'ddsadsad', 'mlfd', 'ln', 'undefined', '1', NULL, 'correo@gmail.com', 11, 1),
+(83, 'Tesis final', 'nkkdjx', 'ccrdhg', 'nnmcdjx', 'undefined', '1', NULL, 'msxsjx@hotmail.com', 63, 1),
+(84, 'Tesis base de datos ', 'abc', 'cba', 'bac', 'undefined', '1', NULL, 'hafhsd@hotmail.com', 1, 1),
+(85, 'Tesis de khkshas', 'bxsjggcs', 'gdyctutcu', 'vysaju2txjgz', 'undefined', '1', NULL, 'fhsffs@hotmail.com', 46, 1),
+(86, 'ingadsa', 'dsadsa', 'dsadsa', 'asdsadsa', 'undefined', '1', NULL, 'de@hotmail.com', 29, 1),
+(87, 'tesis', 'dasdas', 'dadsada', 'dsad', 'undefined', '1', NULL, 'cd@gmail.com', 30, 1),
+(88, 'dasdas', 'dasdsa', 'dsadas', 'dsadsadsa', 'undefined', '1', NULL, 'dp@gmail.com', 14, 1),
+(89, 'Tesis de Investigación', 'nskxksxks', 'bjcdjmchdm', 'bjddjdcjd', 'undefined', '1', NULL, 'marle@hotmail.com', 23, 1),
+(90, 'dsadsa', 'qqwq', 'qqq', 'qq', 'undefined', '1', NULL, 'e@gmail.com', 1, 1);
 
 -- --------------------------------------------------------
 

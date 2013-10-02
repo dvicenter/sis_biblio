@@ -98,8 +98,8 @@ class Ccoficina_biblioteca_central extends CI_Controller{
         echo json_encode($data);
     }
     function buscar_autor_tesis()
-    {	$id_alumno=$_REQUEST['id_alumno'];
-        $data=$this->cdoficina_biblioteca_central->buscar_autor_tesis($id_alumno);
+    {	$id_sujeto=$_REQUEST['id_sujeto'];
+        $data=$this->cdoficina_biblioteca_central->buscar_autor_tesis($id_sujeto);
 		echo json_encode($data);
     }
     function insertar_tesis()

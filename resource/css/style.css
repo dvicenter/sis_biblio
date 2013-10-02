@@ -139,10 +139,14 @@ table thead .action_table{width: 8%;}
 #mod_role_component_action .btns_nav_rol button{margin: 15px 0px 0px 0px;}
 /*END ROLE ASSIGNMENT COMPONENT ACTION*/
 /*STAR LOGIN*/
-.unjfsc_login{margin-top: 10px;} 
+.unjfsc_login{margin-top: 10px;}
+#pos_login_left{height: 85px; position: absolute; margin-right: 600px;display: inline-block; margin-top: 15px;} 
+#pos_login_right{height: 85px; position: absolute; margin-left: 600px;display: inline-block; margin-top: 25px;}
+#pos_login_center{height: 50%; width:50%; position: absolute; z-index: 1;}
+#pos_login_logo{ position: absolute; z-index: 0;}
 .btn_login{margin-top: 16px;}
 .m_body{width: 1000px;margin: 0 auto;}
-.m_body .top_login{position: relative;height: 110px;}
+.m_body .top_login{position: relative;height: 120px;}
 .m_body form{margin: 15px 0px 15px;position: absolute;right: 0px;}
 .btn-login{
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6CA37', endColorstr='#D9B81A');

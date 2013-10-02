@@ -1396,10 +1396,10 @@ $(document).ready(function(){
 	var autores_acom=[];
 	function buscar_autor_acompa()
 	{
-		var id_alumno=1;
+		var id_sujeto=$("#id_sujeto_login").attr('value');;
 		$.ajax({
 			url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_autor_tesis',
-			data:'id_alumno='+id_alumno,
+			data:'id_sujeto='+id_sujeto,
 			type:"POST",
 			dataType:"json",
 			success:function(data){

@@ -60,8 +60,8 @@ class Cdoficina_biblioteca_central extends CI_Model{
          $datos = $this->db->get('viw_tesis',$per_page,$this->uri->segment(4));
          return $datos->result_array();
 	}
-	function buscar_autor_tesis($id_alumno)
-	{	$query = "CALL SPRCNSAcompañante($id_alumno)";
+	function buscar_autor_tesis($id_sujeto)
+	{	$query = "CALL SPRCNSAcompañante($id_sujeto)";
 		$query = $this->db->query($query);
 		return $query->result_array();
 	}
