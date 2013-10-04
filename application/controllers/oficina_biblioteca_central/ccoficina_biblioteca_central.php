@@ -112,10 +112,9 @@ class Ccoficina_biblioteca_central extends CI_Controller{
     	$conclusion=$this->input->post('conclusion');
     	$anio=$this->input->post('anio');
     	$acompaniante=$this->input->post('id_autor_acompa_tesis');
-    	//$id_facultad=$this->input->post['id_f'];
-    	//$id_escuela=$this->input->post['id_e'];
+    	$id_escuela=$this->input->post['id_e'];
     	$cant=$this->input->post('cant');
-    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio,$acompaniante,$cant);
+    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio,$acompaniante,$cant,$id_escuela);
     }
     function editar_tesis()
     {	$id_material_bibliografico=$_REQUEST['id_material_bibliografico'];

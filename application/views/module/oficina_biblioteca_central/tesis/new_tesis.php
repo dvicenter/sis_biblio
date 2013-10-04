@@ -23,8 +23,8 @@
 	        <input style="width: 230px;" type="text" data-toggle="popover" data-placement="right" data-content="" maxlength="4" data-date-format="yyyy" name="anio" readonly required/>
 	        <div class="i_c" style="display: inline-block;"><span class="add-on"><i class="icon-calendar"></i></span></div>
 	    </div>
-       <!--  <label for="facultad">Facultad:</label>
-       <div id="facultad_tesis"></div>-->
+       <label for="facultad">Facultad:</label>
+       <div id="facultad_tesis"></div>
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
@@ -32,8 +32,8 @@
         <label for="acompaniante">Acompa&ntilde;ante:</label>
         <input autocomplete="off" id="acompaniante" type="text" class="span3" style="" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
         <div class="che_ac" style="display: inline-block;"><input name="acompa" type="checkbox" style="margin: 0 auto;"></div>
-        <!--<label for="escuela">Escuela:</label>
-          <div id="escuela_tesis"></div>-->
+        <label for="escuela">Escuela:</label>
+          <div id="escuela_tesis"></div>
       </fieldset>
       <ul class="nav nav-tabs" id="myTab" style="clear: both;">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introducci&oacute;n</a></li>
