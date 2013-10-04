@@ -61,7 +61,7 @@ class Cdoficina_biblioteca_central extends CI_Model{
          return $datos->result_array();
 	}
 	function buscar_autor_tesis()
-	{	$query = "CALL SPRCNSAutoresXTipoAutor(2)";
+	{	$query = "CALL SPRCNSAutoresXTipoAutor(4)";
 		$query = $this->db->query($query);
 		return $query->result_array();
 	}

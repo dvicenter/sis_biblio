@@ -183,7 +183,10 @@ $(document).ready(function(){
 					autor_tesis.push(b.alumno);
 					autores_tesis.push([b.id_autor_interno,b.alumno]);
 				});
-				$('#new_tesis #autor').typeahead().data('typeahead').source = autor_tesis;
+				$('#new_tesis #autor').typeahead({
+					items:4,
+					source:autor_tesis
+				});
 				$('#new_tesis #acompaniante').typeahead({
 					items:4,
 					source:autor_tesis
