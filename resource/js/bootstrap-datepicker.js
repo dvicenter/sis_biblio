@@ -572,6 +572,7 @@
 									type: 'changeYear',
 									date: this.viewDate
 								});
+								//alert('c');
 								if ( this.minViewMode == 2 ) {
 									this._setDate(UTCDate(year, month, day,0,0,0,0));
 								}

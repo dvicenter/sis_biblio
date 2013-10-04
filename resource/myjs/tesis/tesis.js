@@ -9,10 +9,17 @@ $(document).ready(function(){
 			pAbm=1;
 			$('#new_tesis #myModalLabel').html('Agregar Tesis');
 			$('#new_tesis').modal('show');
-
-
+			$('#new_tesis #anio input').attr('disabled',false);
+			$('#new_tesis #anio .i_c').css('display','inline-block');
+			$('#new_tesis #acompaniante').attr('disabled',true);
+			$('#new_tesis [name="anio"]').attr('value','');
+			$('#new_tesis .che_ac').html('<input name="acompa" type="checkbox" style="margin: 0 auto;">');
 			$('#new_tesis').on('shown',function(){
-				
+				$('#new_tesis #anio').datepicker({
+					startView: 2,
+				    minViewMode: 2,
+				    autoclose: true
+				});
 				$('#new_tesis #titulo').focus();
 				buscar_asesor();
 				buscar_autor_tesis();
@@ -22,7 +29,7 @@ $(document).ready(function(){
 				cargar_escuela(2,id_f);
 				});
 			});
-			var cantidad_acompa="";
+			var cantidad_acompa=1;
 			$('[name="acompa"]').click(function(){
 				if ($('[name="acompa"]').is(':checked')){ 
 					$('#acompaniante').attr('disabled',false);
@@ -50,9 +57,9 @@ $(document).ready(function(){
 				var acompaniante=$('#new_tesis #acompaniante').val();
 				var facultad=$('#new_tesis [name="combo_facultad"] option:selected').val();
 				var escuela=$('#new_tesis [name="combo_escuela"] option:selected').attr('rel');
-				var anio=$('#new_tesis #anio').val();
+				var anio=$('#new_tesis [name="anio"]').val();
 				var id_autor_tesis;
-				var id_autor_acompa_tesis;
+				var id_autor_acompa_tesis=0;
 				var id_asesor;
 				if(validar_asesor(asesor))
 				{	if(cantidad_acompa==2){
@@ -72,7 +79,7 @@ $(document).ready(function(){
 							}
 					}
 					if(validar_autor_tesis(autor_tesis))
-					{	console.info(anio);
+					{	
 						if(anio<=2155&&anio>=1901){
 							$.each(autores_tesis,function(a,b){
 								if(b[1]==autor_tesis)
@@ -87,7 +94,7 @@ $(document).ready(function(){
 							$.ajax({
 								url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/insertar_tesis',
 								data:'id_autor_tesis='+id_autor_tesis+'&id_asesor='+id_asesor+'&titulo='+titulo+'&introduccion='+introduccion+'&objetivo='+objetivo+'&resumen='+
-								resumen+'&conclusion='+conclusion+'&anio='+anio+'&id_autor_acompa_tesis='+id_autor_acompa_tesis+'&id_f='+facultad+'&id_e='+escuela+"cant="+cantidad_acompa,
+								resumen+'&conclusion='+conclusion+'&anio='+anio+'&id_autor_acompa_tesis='+id_autor_acompa_tesis+"&cant="+cantidad_acompa+"&id_e="+escuela,
 								dataType:'json',
 								type:'post',
 								success:function(data){
@@ -118,7 +125,11 @@ $(document).ready(function(){
 		$('#module_tesis .editar').click(function(){
 			pAbm=2;
 			$('#new_tesis').modal('show');
+			$('#new_tesis #anio input').attr('disabled',true);
+			$('#new_tesis #anio .i_c').css('display','none');
+			$('#new_tesis .che_ac').html('');
 			$('#new_tesis #myModalLabel').html('Editar Tesis');
+			$('#new_tesis #acompaniante').attr('disabled',true);
 			text_box(true,true,true,true);
 			var pos_editar_=$("#module_tesis #table_tesis td .editar").index(this);
 			pos_editar=pos_editar_+1;
@@ -202,7 +213,7 @@ $(document).ready(function(){
 		$('#new_tesis #titulo').attr('value',titulo);
 		$('#new_tesis #autor').attr('value',autor_tesis);
 		$('#new_tesis #asesor').attr('value',asesor);
-		$('#new_tesis #anio').attr('value',anio);
+		$('#new_tesis [name="anio"]').attr('value',anio);
 		$('#new_tesis #input_introduccion').attr('value',intro);
 		$('#new_tesis #input_objetivo').attr('value',objetivo);
 		$('#new_tesis #input_resumen').attr('value',resumen);

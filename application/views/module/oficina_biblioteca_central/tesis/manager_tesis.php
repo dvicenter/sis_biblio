@@ -1,4 +1,4 @@
-<script src="/sis_biblio/resource/myjs/tesis/tesis.js"></script>
+<script src="<?php echo base_url()?>resource/myjs/tesis/tesis.js"></script>
 <div id="module_tesis">
     <ul class="control">
       <li class="menu-control"><button id="add_tesis" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
