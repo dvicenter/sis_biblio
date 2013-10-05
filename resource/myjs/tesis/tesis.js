@@ -66,13 +66,10 @@ $(document).ready(function(){
 						if(validar_autor_tesis(acompaniante))
 						{
 							$.each(autores_tesis,function(a,b){
-								if(cantidad_acompa==2){
-									if(b[1]==autor_tesis)
+								if(b[1]==acompaniante)
 									{	id_autor_acompa_tesis=b[0];
 									}
-								}
 							});
-							//console.info(autores_tesis);
 						}
 						else
 							{	$('#new_tesis #acompaniante').focus();
@@ -91,8 +88,8 @@ $(document).ready(function(){
 								if(b[1]==asesor)
 								{	id_asesor=b[0];
 								}
-							});console.info(autores_tesis);
-							/*$.ajax({
+							});
+							$.ajax({
 								url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/insertar_tesis',
 								data:'id_autor_tesis='+id_autor_tesis+'&id_asesor='+id_asesor+'&titulo='+titulo+'&introduccion='+introduccion+'&objetivo='+objetivo+'&resumen='+
 								resumen+'&conclusion='+conclusion+'&anio='+anio+'&id_autor_acompa_tesis='+id_autor_acompa_tesis+"&cant="+cantidad_acompa+"&id_e="+escuela,
@@ -105,7 +102,7 @@ $(document).ready(function(){
 								error:function(){
 									alert('Error al guardar');
 								}
-							});*/
+							});
 						}
 						else{
 							$('#new_tesis #anio').focus();
