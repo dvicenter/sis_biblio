@@ -27,6 +27,9 @@ $(document).ready(function(){
 	$('#request_record').click(function(){
 		load_module_date(base_url+'module/user/request_record', '#request_record', 'null');
 	});
+	$('#monografias').click(function(){
+		load_module_not_date(base_url+'module/oficina_biblioteca_central/monografia/manager_monografia', '#monografias', 'null');
+	});
 	$('#tesis_consultation').click(function(){
 		load_module_not_date(base_url+'module/user/tesis_consultation', '#tesis_consultation', 'null');
 	});

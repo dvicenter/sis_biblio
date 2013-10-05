@@ -13,8 +13,9 @@
 	             <ul class="nav nav-list">
 	             	<li><a id="constancia" href="javascript:;">Solicitudes por Aprobar</a></li>
 	             	<!-- <li><a href="#">Informes de Pr&aacute;ctica</a></li>-->
-	             	<!-- <li><a href="#">Monograf&iacute;as</a></li>-->
+	             	<!-- <li><a href="#">Monograf&iacue;as</a></li>-->
 	             	<li><a id="tesis" href="javascript:;">Control de Tesis</a></li>
+                    <li><a id="monografias" href="javascript:;">Control de Monograf&iacute;as</a></li>
 	             </ul>
              </div>
     	</li>
