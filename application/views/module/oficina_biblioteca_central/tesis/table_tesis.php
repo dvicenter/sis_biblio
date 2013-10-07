@@ -1,3 +1,4 @@
+<script src="/sis_biblio/resource/myjs/tesis/tesis.js"></script>
 <table id="table_tesis" class="table table-striped table-bordered table-condensed table-hover">
     <thead>
       <tr>

@@ -67,7 +67,7 @@ $(document).ready(function(){
 				
 				aparecer_input();
 				validar();
-				filtro();
+				//filtro();
 			}
 		});
 	}
@@ -1025,65 +1025,65 @@ $(document).ready(function(){
 		return res;
 	}
 	
-	function filtro(){
-		var con = 0;
-		var timer = 0;
-		$( ".lt_listar" ).click(function()  {
-			var cadena = $(".form-search .d-search").val();
-			var index = $(this).index();
-			con = index;
-			var filtro = $(this).html();
-			$( "#listar" ).html(filtro);
-			if (cadena.length) {
-				$('.alert-error').css('display','none');
-				buscar_filtro(index,cadena);
-			}
-			else{	
-				$('.alert-error').css('display','block');
-				$(".form-search input").focus();
-			}
-		});
+// 	function filtro(){
+// 		var con = 0;
+// 		var timer = 0;
+// 		$( ".lt_listar" ).click(function()  {
+// 			var cadena = $(".form-search .d-search").val();
+// 			var index = $(this).index();
+// 			con = index;
+// 			var filtro = $(this).html();
+// 			$( "#listar" ).html(filtro);
+// 			if (cadena.length) {
+// 				$('.alert-error').css('display','none');
+// 				buscar_filtro(index,cadena);
+// 			}
+// 			else{	
+// 				$('.alert-error').css('display','block');
+// 				$(".form-search input").focus();
+// 			}
+// 		});
 
-		$(".form-search input").click(function(){
-			$(this).keyup(function(){
-				var cadena = $(this).val();
-				if (cadena.length) {
-					clearInterval(timer);  //clear any interval on key up
-			        timer = setTimeout(function() { 
-						$('.alert-error').css('display','none');	
-					console.log(cadena+" "+con); 
-			          buscar_filtro(con,cadena);
-			        }, 1000);
-/*
-					buscar_filtro(con,cadena);*/
-			}
-			else{
-				$('.alert-error').css('display','block');
-				$(".form-search input").focus();
-			}
+// 		$(".form-search input").click(function(){
+// 			$(this).keyup(function(){
+// 				var cadena = $(this).val();
+// 				if (cadena.length) {
+// 					clearInterval(timer);  //clear any interval on key up
+// 			        timer = setTimeout(function() { 
+// 						$('.alert-error').css('display','none');	
+// 					console.log(cadena+" "+con); 
+// 			          buscar_filtro(con,cadena);
+// 			        }, 1000);
+// /*
+// 					buscar_filtro(con,cadena);*/
+// 			}
+// 			else{
+// 				$('.alert-error').css('display','block');
+// 				$(".form-search input").focus();
+// 			}
 			
-			});
-		});
-	}
+// 			});
+// 		});
+// 	}
 	
-	function buscar_filtro(index , cadena)
-	{
+// 	function buscar_filtro(index , cadena)
+// 	{
 
-		$.ajax({
-				url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_filtro/'+index+'/'+cadena,
-				success:function(data)
-				{
-					$('#module_table').html(data);
-					if($('#mod_role_assignment_component').is(':visible')){
-					$("#mod_role_assignment_component input[name='rol_comp']").focus();
-						buscar_rol_componente();
+// 		$.ajax({
+// 				url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_filtro/'+index+'/'+cadena,
+// 				success:function(data)
+// 				{
+// 					$('#module_table').html(data);
+// 					if($('#mod_role_assignment_component').is(':visible')){
+// 					$("#mod_role_assignment_component input[name='rol_comp']").focus();
+// 						buscar_rol_componente();
 						
-					}
-					validar();
-				}
-		});
+// 					}
+// 					validar();
+// 				}
+// 		});
 
-	}
+// 	}
 
 	function validar_asignacion_rol()
 	{	
