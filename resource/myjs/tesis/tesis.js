@@ -139,7 +139,6 @@ $(document).ready(function(){
 					clearInterval(timer);  //clear any interval on key up
 			        timer = setTimeout(function() { 
 						$('.alert-error').css('display','none');	
-					console.log(cadena+" "+con); 
 			          buscar_filtro(con,cadena);
 			        }, 1000);
 /*
