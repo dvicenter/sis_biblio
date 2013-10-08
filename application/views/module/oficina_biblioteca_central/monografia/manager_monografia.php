@@ -34,7 +34,7 @@
       </tr>
     </thead>
     <tbody> 
-			<?php foreach($tesis as $ttesis):?>
+			<!--<?php foreach($tesis as $ttesis):?>-->
 				<tr>
 					<td style="display:none;"><?php echo $ttesis['id_material_bibliografico']?></td>
 					<td style="display:none;"><?php echo $ttesis['id_docente']?></td>
@@ -117,9 +117,9 @@
         </script>
         <div id="paginacion_tesis" class="pagination loading">
 		  <ul>
-		  		<?php echo $paginacion; ?>
+		  		<!--<?php echo $paginacion; ?>  -->
 		  </ul>
 		</div>
-  <?php include_once 'new_tesis.php';?>
-  <?php include_once 'new_exportar.php'; ?>
+  <!--<?php include_once 'new_tesis.php';?>-->
+  <!--<?php include_once 'new_exportar.php'; ?>-->
 </div>
