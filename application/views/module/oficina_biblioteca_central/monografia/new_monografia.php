@@ -1,6 +1,3 @@
-<link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
-<script type="text/javascript" src="<?php echo base_url()?>resource/js/bootstrap-datepicker.js"></script>
-
 <div id="new_monografia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
