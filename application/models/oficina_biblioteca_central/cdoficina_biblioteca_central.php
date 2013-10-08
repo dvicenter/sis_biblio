@@ -61,12 +61,12 @@ class Cdoficina_biblioteca_central extends CI_Model{
          return $datos->result_array();
 	}
 	function buscar_autor_tesis()
-	{	$query = "CALL SPRCNSAutoresXTipoAutor(2)";
+	{	$query = "CALL SPRCNSAutoresXTipoAutor(4)";
 		$query = $this->db->query($query);
 		return $query->result_array();
 	}
 	function insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio,$acompaniante,$cant,$id_escuela)
-	{	$query = "CALL SPRINSTesis(".$id_autor_tesis.",".$id_asesor.",'".$titulo."','".$introduccion."','".$objetivo."','".$resumen."','".$conclusion."',".$anio.",null,0000,".$acompaniante.",".$cant.")";
+	{	$query = "CALL SPRINSTesis(".$id_autor_tesis.",".$id_asesor.",'".$titulo."','".$introduccion."','".$objetivo."','".$resumen."','".$conclusion."',".$anio.",null,0000,".$acompaniante.",".$cant.",".$id_escuela.")";
 		$query = $this->db->query($query);
 	}
 	function editar_tesis($id_material_bibliografico,$introduccion,$objetivo,$resumen,$conclusion)

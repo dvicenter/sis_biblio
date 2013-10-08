@@ -66,11 +66,9 @@ $(document).ready(function(){
 						if(validar_autor_tesis(acompaniante))
 						{
 							$.each(autores_tesis,function(a,b){
-								if(cantidad_acompa==2){
-									if(b[1]==autor_tesis)
+								if(b[1]==acompaniante)
 									{	id_autor_acompa_tesis=b[0];
 									}
-								}
 							});
 						}
 						else
@@ -183,7 +181,10 @@ $(document).ready(function(){
 					autor_tesis.push(b.alumno);
 					autores_tesis.push([b.id_autor_interno,b.alumno]);
 				});
-				$('#new_tesis #autor').typeahead().data('typeahead').source = autor_tesis;
+				$('#new_tesis #autor').typeahead({
+					items:4,
+					source:autor_tesis
+				});
 				$('#new_tesis #acompaniante').typeahead({
 					items:4,
 					source:autor_tesis
