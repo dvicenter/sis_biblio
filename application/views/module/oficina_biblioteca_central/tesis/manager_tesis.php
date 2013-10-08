@@ -122,4 +122,5 @@
 		</div>
   <?php include_once 'new_tesis.php';?>
   <?php include_once 'new_exportar.php'; ?>
+  
 </div>

@@ -44,6 +44,21 @@ table thead .action_table{width: 8%;}
 #new_tesis #acompaniante{width: 240px;margin-bottom: 10px;}
 /*END TESIS*/
 
+/*START MONOGRAFIA*/
+#module_monografia table thead .title_table{width: 33%;}
+#module_monografia table thead .author_table{width: 25%;}
+#module_monografia table thead .asesor_table{width: 25%;}
+#module_monografia table thead .year_table{width: 6%;}
+#module_monografia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
+#module_monografia .control .menu-control:nth-child(3){float: right;}
+#new_monografia{width: 645px;margin-left: -324px;}
+#new_monografia .modal-body{max-height: 470px;}
+#new_monografia #facultad_tesis #select_man_facultad{width: 220px;}
+#new_monografia #escuela_tesis #select_man_escuela{width: 220px;}
+#new_monografia #acompaniante{width: 240px;margin-bottom: 10px;}
+/*END MONOGRAFIA*/
+
+
 /*START CONSTANCIA*/
 #module_constancia .control .menu-control{list-style: none; display: inline-block; vertical-align: top;}
 #consult_related input{width: 260px;}
