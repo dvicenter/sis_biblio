@@ -1,7 +1,7 @@
 <link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
 <script type="text/javascript" src="<?php echo base_url()?>resource/js/bootstrap-datepicker.js"></script>
 
-<div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="new_monografia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <div class="response"></div>
@@ -9,7 +9,7 @@
 
   </div>
   <div class="modal-body">
-    <form  id="form_nuevo_tesis"  action="cdfacultad.php" method="POST">
+    <form  id="form_nuevo_monografia"  action="cdfacultad.php" method="POST">
       <input id="id_material_bibliografico" type="hidden"/>
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
@@ -24,7 +24,7 @@
           <div class="i_c" style="display: inline-block;"><span class="add-on"><i class="icon-calendar"></i></span></div>
       </div>
        <label for="facultad">Facultad:</label>
-       <div id="facultad_tesis"></div>
+       <div id="facultad_monografia"></div>
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
@@ -33,7 +33,7 @@
         <input autocomplete="off" id="acompaniante" type="text" class="span3" style="" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
         <div class="che_ac" style="display: inline-block;"><input name="acompa" type="checkbox" style="margin: 0 auto;"></div>
         <label for="escuela">Escuela:</label>
-          <div id="escuela_tesis"></div>
+          <div id="escuela_monografia"></div>
       </fieldset>
       <ul class="nav nav-tabs" id="myTab" style="clear: both;">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introducci&oacute;n</a></li>
@@ -58,14 +58,14 @@
       </div>
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
-        <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
+        <input id="save_monografia" class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
     </form>
   </div>
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
-  //$('#new_tesis #anio').validations('0123456789');
+  //$('#new_monografia #anio').validations('0123456789');
   
   
 });
