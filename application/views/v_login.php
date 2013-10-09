@@ -34,7 +34,8 @@
 		<section class="well">
 				<div class="m_body">
 						<div><img id="pos_login_center" src="<?php echo base_url();?>resource/img/utilities/jpg/05.jpg" />
-							 <img id="pos_login_logo" src="<?php echo base_url();?>resource/img/utilities/jpg/08.jpg" />
+							 <img id="pos_login_center1" src="<?php echo base_url();?>resource/img/utilities/png/facultad.png" />	
+							 <img id="pos_login_logo" src="<?php echo base_url();?>resource/img/utilities/jpg/08.png" />
 						</div>
 
 							<?php echo form_open('acceder/sistema');?>					
@@ -62,11 +63,15 @@
 						</div>					
 	          	</div>
           </section>
-          <footer class="m_body">
-          	<p class="login_footer">&copy; Derecho Reservados - Escuela Acad&eacute;mica Profesional Ingenier&iacute;a de Sistemas</p>
-          </footer>
+          
+
          </div>
 	</body>
+
+	<body background="red"><footer class="m_body" >
+          	<p class="login_footer" >&copy; Derecho Reservados - Escuela Acad&eacute;mica Profesional Ingenier&iacute;a de Sistemas</p>
+          </footer></body>
 </html>
+
 <?php }?>
      <!-- <a href="http://web.unjfsc.edu.pe/site/"><img src="<?php echo base_url()?>resource/img/utilities/jpg/01.jpg" data-thumb="<?php echo base_url()?>resource/img/utilities/jpg/01.jpg" alt="" title="BIENVENIDO A LA UNJFSC" /></a>-->
