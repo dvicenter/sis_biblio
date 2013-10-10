@@ -101,5 +101,5 @@ $(function() {
        
       </ul>
     </div>
-  
+  <?php include_once 'new_monografia.php';?>
 </div>
