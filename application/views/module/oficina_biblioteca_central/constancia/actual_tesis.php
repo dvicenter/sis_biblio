@@ -33,7 +33,6 @@
 		  <li class="active"><a href="#introduccion_comp" data-toggle="tab">Introducci&oacute;n</a></li>
 		  <li><a href="#objetivo_comp" data-toggle="tab">Objetivo</a></li>
 		  <li><a href="#resumen_comp" data-toggle="tab">Resumen</a></li>
-		  <li><a href="#conclusion_comp" data-toggle="tab">Conclusi&oacute;n</a></li>
 		</ul>
 		 <div class="tab-content">
           <div class="tab-pane active" id="introduccion_comp">
@@ -44,9 +43,6 @@
           </div>
           <div class="tab-pane" id="resumen_comp">
             <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." disabled></textarea>
-          </div>
-          <div class="tab-pane" id="conclusion_comp">
-            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." disabled></textarea>
           </div>
         </div>
 	</form>
