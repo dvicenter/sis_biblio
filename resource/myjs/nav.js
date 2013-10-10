@@ -66,7 +66,12 @@ $(document).ready(function(){
 				}
 						aparecer_input();
 				validar();
+<<<<<<< HEAD
 				}
+=======
+				//filtro();
+			}
+>>>>>>> b570503f80c0a11078b3e9eb7fc6301d86d2c249
 		});
 	}
 	function aparecer_input()
@@ -901,6 +906,8 @@ $(document).ready(function(){
 			}
 	}
 	
+
+	
 	function eliminar_componente(pos)
 	{	
 		var idcomp=$("#mod_componente #table_comp tr:nth-child("+pos+") td:nth-child(1)").html();
@@ -1020,6 +1027,67 @@ $(document).ready(function(){
 		var res = $('#input_control').validCampo(/^.+\.txt$/,'#form_voucher','Solo se acepta formato .txt');
 		return res;
 	}
+	
+// 	function filtro(){
+// 		var con = 0;
+// 		var timer = 0;
+// 		$( ".lt_listar" ).click(function()  {
+// 			var cadena = $(".form-search .d-search").val();
+// 			var index = $(this).index();
+// 			con = index;
+// 			var filtro = $(this).html();
+// 			$( "#listar" ).html(filtro);
+// 			if (cadena.length) {
+// 				$('.alert-error').css('display','none');
+// 				buscar_filtro(index,cadena);
+// 			}
+// 			else{	
+// 				$('.alert-error').css('display','block');
+// 				$(".form-search input").focus();
+// 			}
+// 		});
+
+// 		$(".form-search input").click(function(){
+// 			$(this).keyup(function(){
+// 				var cadena = $(this).val();
+// 				if (cadena.length) {
+// 					clearInterval(timer);  //clear any interval on key up
+// 			        timer = setTimeout(function() { 
+// 						$('.alert-error').css('display','none');	
+// 					console.log(cadena+" "+con); 
+// 			          buscar_filtro(con,cadena);
+// 			        }, 1000);
+// /*
+// 					buscar_filtro(con,cadena);*/
+// 			}
+// 			else{
+// 				$('.alert-error').css('display','block');
+// 				$(".form-search input").focus();
+// 			}
+			
+// 			});
+// 		});
+// 	}
+	
+// 	function buscar_filtro(index , cadena)
+// 	{
+
+// 		$.ajax({
+// 				url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_filtro/'+index+'/'+cadena,
+// 				success:function(data)
+// 				{
+// 					$('#module_table').html(data);
+// 					if($('#mod_role_assignment_component').is(':visible')){
+// 					$("#mod_role_assignment_component input[name='rol_comp']").focus();
+// 						buscar_rol_componente();
+						
+// 					}
+// 					validar();
+// 				}
+// 		});
+
+// 	}
+
 	function validar_asignacion_rol()
 	{	
 		var res = $('#input_rol_asig').validCampo(/^[a-zA-z\s]*$/,'#form_rol_asig','Se acepta solo caracteres alfabeticos.');

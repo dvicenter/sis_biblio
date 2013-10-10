@@ -5,6 +5,7 @@ $(document).ready(function(){
 	var pAbm;
 
 	if($('#module_tesis').is(':visible')){
+		filtro();
 		$('#module_tesis #add_tesis').click(function(){
 			pAbm=1;
 			$('#new_tesis #myModalLabel').html('Agregar Tesis');
@@ -169,6 +170,66 @@ $(document).ready(function(){
 			$('#new_tesis #input_conclusion').attr('value','');
 		});
 	}
+
+	function filtro(){
+		var con = 0;
+		var timer = 0;
+		$( ".lt_listar" ).click(function()  {
+			var cadena = $(".form-search .d-search").val();
+			var index = $(this).index();
+			con = index;
+			var filtro = $(this).html();
+			$( "#listar" ).html(filtro);
+			if (cadena.length) {
+				$('.alert-error').css('display','none');
+				buscar_filtro(index,cadena);
+			}
+			else{	
+				$('.alert-error').css('display','block');
+				$(".form-search input").focus();
+			}
+		});
+
+		$(".form-search input").click(function(){
+			$(this).keyup(function(){
+				var cadena = $(this).val();
+				if (cadena.length) {
+					clearInterval(timer);  //clear any interval on key up
+			        timer = setTimeout(function() { 
+						$('.alert-error').css('display','none');	
+			          buscar_filtro(con,cadena);
+			        }, 1000);
+/*
+					buscar_filtro(con,cadena);*/
+			}
+			else{
+				$('.alert-error').css('display','block');
+				$(".form-search input").focus();
+			}
+			
+			});
+		});
+	}
+	
+	function buscar_filtro(index , cadena)
+	{
+
+		$.ajax({
+				url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_filtro/'+index+'/'+cadena,
+				success:function(data)
+				{
+					$('#module_table').html(data);
+					if($('#mod_role_assignment_component').is(':visible')){
+					$("#mod_role_assignment_component input[name='rol_comp']").focus();
+						buscar_rol_componente();
+						
+					}
+					validar();
+				}
+		});
+
+	}
+
 	function buscar_autor_tesis()
 	{
 		$.ajax({
