@@ -1,4 +1,4 @@
-body{padding: 0px;margin: 0px;}
+newbody{padding: 0px;margin: 0px;}
 .body .header{ height: 90px;}
 .header.img{height:100%;width:100%;}
 .header .position_session li{list-style:none;display: inline-block;}
@@ -53,8 +53,9 @@ table thead .action_table{width: 8%;}
 #module_monografia .control .menu-control:nth-child(3){float: right;}
 #new_monografia{width: 645px;margin-left: -324px;}
 #new_monografia .modal-body{max-height: 470px;}
-#new_monografia #facultad_tesis #select_man_facultad{width: 220px;}
-#new_monografia #escuela_tesis #select_man_escuela{width: 220px;}
+fieldset{display: inline-block;}
+#new_monografia #facultad_monografia #select_man_facultad{width: 220px;}
+#new_monografia #escuela_monografia #select_man_escuela{width: 220px;}
 #new_monografia #acompaniante{width: 240px;margin-bottom: 10px;}
 /*END MONOGRAFIA*/
 
