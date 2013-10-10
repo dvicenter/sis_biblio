@@ -1,4 +1,3 @@
-	alert("ho");
 $(document).ready(function(){
 	cargar_facultad(2);
  	cargar_escuela(2,1);
@@ -8,22 +7,16 @@ $(document).ready(function(){
 	if($('#module_monografia').is(':visible')){
 		$('#module_monografia #add_monografia').click(function(){
 			pAbm=1;
-<<<<<<< HEAD
 			//$('#new_monografia #myModalLabel').html('Agregar Tesis');
 			alert('clik');
 			$('#new_monografia').modal('show');
 			});}
 	});
 			/*$('#new_monografia #anio input').attr('disabled',false);
-=======
-			$('#new_monografia #myModalLabel').html('Agregar monografia');
-			$('#new_monografia #anio input').attr('disabled',false);
->>>>>>> b570503f80c0a11078b3e9eb7fc6301d86d2c249
 			$('#new_monografia #anio .i_c').css('display','inline-block');
 			$('#new_monografia #acompaniante').attr('disabled',true);
 			$('#new_monografia [name="anio"]').attr('value','');
 			$('#new_monografia .che_ac').html('<input name="acompa" type="checkbox" style="margin: 0 auto;">');
-			$('#new_monografia').modal('show');
 			$('#new_monografia').on('shown',function(){
 				$('#new_monografia #anio').datepicker({
 					startView: 2,
