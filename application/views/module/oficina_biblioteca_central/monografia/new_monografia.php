@@ -63,7 +63,7 @@
     </form>
   </div>
 <script type="text/javascript">
-<!--
+
 $(document).ready(function(){
   //$('#new_monografia #anio').validations('0123456789');
   
