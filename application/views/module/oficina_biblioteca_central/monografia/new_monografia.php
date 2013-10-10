@@ -55,6 +55,7 @@
             <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSI&Oacute;N aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
         </div>
+        
       </div>
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
