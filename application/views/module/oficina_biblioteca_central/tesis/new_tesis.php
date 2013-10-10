@@ -10,19 +10,19 @@
   </div>
   <div class="modal-body">
     <form  id="form_nuevo_tesis"  action="cdfacultad.php" method="POST">
-    	<input id="id_material_bibliografico" type="hidden"/>
-    	<div>
-	        <label for="titulo" style="float: left;">Titulo:</label>
-    	    <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
-    	</div>
+      <input id="id_material_bibliografico" type="hidden"/>
+      <div>
+          <label for="titulo" style="float: left;">Titulo:</label>
+          <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
+      </div>
       <fieldset> 
         <label for="autor">Autor:</label>
         <input type="text" id="autor" class="span3" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
         <label for="anio">A&ntilde;o:</label>
         <div class="input-append date" id="anio" data-date-format="yyyy">
-	        <input style="width: 230px;" type="text" data-toggle="popover" data-placement="right" data-content="" maxlength="4" data-date-format="yyyy" name="anio" readonly required/>
-	        <div class="i_c" style="display: inline-block;"><span class="add-on"><i class="icon-calendar"></i></span></div>
-	    </div>
+          <input style="width: 230px;" type="text" data-toggle="popover" data-placement="right" data-content="" maxlength="4" data-date-format="yyyy" name="anio" readonly required/>
+          <div class="i_c" style="display: inline-block;"><span class="add-on"><i class="icon-calendar"></i></span></div>
+      </div>
        <label for="facultad">Facultad:</label>
        <div id="facultad_tesis"></div>
       </fieldset>
@@ -55,7 +55,7 @@
             <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSI&Oacute;N aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
         </div>
-  	  </div>
+      </div>
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
@@ -65,9 +65,9 @@
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
-	//$('#new_tesis #anio').validations('0123456789');
-	
-	
+  //$('#new_tesis #anio').validations('0123456789');
+  
+  
 });
 
 </script>

@@ -64,10 +64,9 @@ $(document).ready(function(){
 					buscar_rol_componente();
 					
 				}
-				
-				aparecer_input();
+						aparecer_input();
 				validar();
-			}
+				}
 		});
 	}
 	function aparecer_input()

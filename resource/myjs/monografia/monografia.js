@@ -1,18 +1,15 @@
 $(document).ready(function(){
 	cargar_facultad(2);
  	cargar_escuela(2,1);
-	var autores_tesis=[];
+	var autores_monografia=[];
 	var pAbm;
 
 	if($('#module_monografia').is(':visible')){
 		$('#module_monografia #add_monografia').click(function(){
 			pAbm=1;
-			//$('#new_monografia #myModalLabel').html('Agregar Tesis');
-			alert('clik');
+			$('#new_monografia #myModalLabel').html('Agregar monografia');
 			$('#new_monografia').modal('show');
-			});}
-	});
-			/*$('#new_monografia #anio input').attr('disabled',false);
+			$('#new_monografia #anio input').attr('disabled',false);
 			$('#new_monografia #anio .i_c').css('display','inline-block');
 			$('#new_monografia #acompaniante').attr('disabled',true);
 			$('#new_monografia [name="anio"]').attr('value','');
@@ -26,12 +23,14 @@ $(document).ready(function(){
 				$('#new_monografia #titulo').focus();
 				buscar_asesor();
 				buscar_autor_tesis();
-				
-           $("#new_monografia form [name='combo_facultad']").click(function(){
+
+			$("#new_monografia form [name='combo_facultad']").click(function(){
 				var id_f=$("#new_monografia form [name='combo_facultad'] option:selected").val();
 				cargar_escuela(2,id_f);
 				});
 			});
+
+
 			var cantidad_acompa=1;
 			$('[name="acompa"]').click(function(){
 				if ($('[name="acompa"]').is(':checked')){ 
@@ -122,7 +121,10 @@ $(document).ready(function(){
 				$('#new_monografia .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>Asesor inexistente</strong></div>");
 				}}
 			});
+
 		});
+
+
 		$('#module_monografia .editar').click(function(){
 			pAbm=2;
 			$('#new_monografia').modal('show');
@@ -170,8 +172,9 @@ $(document).ready(function(){
 			$('#new_monografia #input_objetivo').attr('value','');
 			$('#new_monografia #input_resumen').attr('value','');
 			$('#new_monografia #input_conclusion').attr('value','');
-		});
-	}
+		});*/
+	};
+	
 	function buscar_autor_tesis()
 	{
 		$.ajax({
@@ -233,7 +236,3 @@ $(document).ready(function(){
 
 	
 });
-
-	
-
-*/
