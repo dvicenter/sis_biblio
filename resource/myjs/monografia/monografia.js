@@ -8,10 +8,17 @@ $(document).ready(function(){
 		$('#module_monografia #add_monografia').click(function(){
 			pAbm=1;
 			$('#new_monografia #myModalLabel').html('Agregar Monografía');
-			
+		alert('clic')	
 			$('#new_monografia').modal('show');
+
+		
+
+
+
 			});}
 	});
+
+
 			/*$('#new_monografia #anio input').attr('disabled',false);
 			$('#new_monografia #anio .i_c').css('display','inline-block');
 			$('#new_monografia #acompaniante').attr('disabled',true);
@@ -236,4 +243,4 @@ $(document).ready(function(){
 
 	
 
-*/
+	});

@@ -1,7 +1,5 @@
-
 <!--<link type="text/css" href="<?php //echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
-<script type="text/javascript" src="<?php //echo base_url?>resource/js/bootstrap-datepicker.js"></script>-->
-
+<script type="text/javascript" src="<?php //echo base_url()?>resource/js/bootstrap-datepicker.js"></script>-->
 
 <div id="new_monografia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -16,7 +14,8 @@
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
           <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
-       <fieldset> 
+      </div>
+      <fieldset> 
         <label for="autor">Autor:</label>
         <input type="text" id="autor" class="span3" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
         <label for="anio">A&ntilde;o:</label>
@@ -64,7 +63,7 @@
     </form>
   </div>
 <script type="text/javascript">
-
+<!--
 $(document).ready(function(){
   //$('#new_monografia #anio').validations('0123456789');
   
