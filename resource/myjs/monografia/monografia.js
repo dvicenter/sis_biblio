@@ -1,3 +1,4 @@
+	alert("ho");
 $(document).ready(function(){
 	cargar_facultad(2);
  	cargar_escuela(2,1);
@@ -8,12 +9,12 @@ $(document).ready(function(){
 		$('#module_monografia #add_monografia').click(function(){
 			pAbm=1;
 			$('#new_monografia #myModalLabel').html('Agregar monografia');
-			$('#new_monografia').modal('show');
 			$('#new_monografia #anio input').attr('disabled',false);
 			$('#new_monografia #anio .i_c').css('display','inline-block');
 			$('#new_monografia #acompaniante').attr('disabled',true);
 			$('#new_monografia [name="anio"]').attr('value','');
 			$('#new_monografia .che_ac').html('<input name="acompa" type="checkbox" style="margin: 0 auto;">');
+			$('#new_monografia').modal('show');
 			$('#new_monografia').on('shown',function(){
 				$('#new_monografia #anio').datepicker({
 					startView: 2,
