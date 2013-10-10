@@ -81,16 +81,16 @@
                       $.each(b,function(c,d){
                         i++;
                           $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(1)').html(d.id_material_bibliografico);
-              $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(2)').html(d.id_docente);
-              $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(3)').html(d.id_alumno);
-              $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(4)').html(d.id_autor_interno);
-              $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(5)').html(d.id_tipo_autor_interno);
-              $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(6)').html(d.facultad);
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(2)').html(d.id_docente);
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(3)').html(d.id_alumno);
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(4)').html(d.id_autor_interno);
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(5)').html(d.id_tipo_autor_interno);
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(6)').html(d.facultad);
                           $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(7)').html(d.titulo);
-                            $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(8)').html(d.alumno);
-              $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(9)').html(d.docente);
-                            $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(10)').html(d.anio);
-                        if($('#table_tesis tbody tr:nth-child('+i+')').is(':visible')!=true){
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(8)').html(d.alumno);
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(9)').html(d.docente);
+                          $('#table_tesis tbody tr:nth-child('+i+') td:nth-child(10)').html(d.anio);
+                          if($('#table_tesis tbody tr:nth-child('+i+')').is(':visible')!=true){
                           console.info('entraaa');
                           $("#table_tesis tbody tr:nth-child("+i+")").fadeIn();
                           }    

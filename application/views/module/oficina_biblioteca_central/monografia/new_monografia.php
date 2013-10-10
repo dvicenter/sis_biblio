@@ -16,8 +16,7 @@
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
           <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
-      </div>
-      <fieldset> 
+       <fieldset> 
         <label for="autor">Autor:</label>
         <input type="text" id="autor" class="span3" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
         <label for="anio">A&ntilde;o:</label>
@@ -57,6 +56,7 @@
             <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSI&Oacute;N aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
         </div>
+        
       </div>
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
