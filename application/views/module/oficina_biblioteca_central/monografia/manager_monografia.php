@@ -1,4 +1,4 @@
-<script src="/sis_biblio/resource/myjs/tesis/monografia.js"></script>
+<script src="/sis_biblio/resource/myjs/monografia/monografia.js"></script>
 <div id="module_monografia">
     <ul class="control">
       <li class="menu-control"><button id="add_monografia" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>

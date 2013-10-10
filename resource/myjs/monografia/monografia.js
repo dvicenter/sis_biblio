@@ -7,8 +7,9 @@ $(document).ready(function(){
 	if($('#module_monografia').is(':visible')){
 		$('#module_monografia #add_monografia').click(function(){
 			pAbm=1;
-			//$('#new_monografia #myModalLabel').html('Agregar Tesis');
-			alert('clik');
+			
+			$('#new_monografia #myModalLabel').html('Agregar Monografia');
+			
 			$('#new_monografia').modal('show');
 			});}
 	});
