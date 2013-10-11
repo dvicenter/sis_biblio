@@ -1,5 +1,7 @@
+
 <!--<link type="text/css" href="<?php //echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
-<script type="text/javascript" src="<?php //echo base_url()?>resource/js/bootstrap-datepicker.js"></script>-->
+<script type="text/javascript" src="<?php //echo base_url?>resource/js/bootstrap-datepicker.js"></script>-->
+
 
 <div id="new_monografia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -8,14 +10,18 @@
     <h3 id="myModalLabel"></h3>
 
   </div>
-  <div class="modal-body">
-    <form  id="form_nuevo_monografia"  action="cdfacultad.php" method="POST">
-      <input id="id_material_bibliografico" type="hidden"/>
+
+<div class="modal-body">
+    <form  id="form_nuevo_monografia" action="cdfacultad.php" method="POST">
+    <p> sasda </p>
+    </form>
+ </div>
+</div>
+    <!-- <input id="id_material_bibliografico" type="hidden"/>
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
           <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
-      </div>
-      <fieldset> 
+       <fieldset> 
         <label for="autor">Autor:</label>
         <input type="text" id="autor" class="span3" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
         <label for="anio">A&ntilde;o:</label>
@@ -41,12 +47,9 @@
           <li><a href="#resumen" data-toggle="tab">Resumen</a></li>
           <li><a href="#conclusion" data-toggle="tab">Conclusi&oacute;n</a></li>
       </ul>
-      <div class="tab-content">
+       <div class="tab-content">
           <div class="tab-pane active" id="introduccion">
             <textarea id="input_introduccion" name="introduccion" rows="5" placeholder="Escriba su INTRODUCCI&Oacute;N aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
-          </div>
-          <div class="tab-pane" id="objetivo">
-            <textarea id="input_objetivo" name="objetivo" rows="5" placeholder="Escriba su OBJETIVO aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
           <div class="tab-pane" id="resumen">
             <textarea id="input_resumen" name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
@@ -56,15 +59,16 @@
           </div>
         </div>
         
-      </div>
+     </div> 
+
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_monografia" class="btn btn-primary" type="submit" value="Agregar"/>
-      </div>
-    </form>
-  </div>
+      </div> -->
+
+     
 <script type="text/javascript">
-<!--
+
 $(document).ready(function(){
   //$('#new_monografia #anio').validations('0123456789');
   
