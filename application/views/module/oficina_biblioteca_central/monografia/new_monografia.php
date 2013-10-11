@@ -10,6 +10,7 @@
     <h3 id="myModalLabel"></h3>
 
   </div>
+<<<<<<< HEAD
 
 <div class="modal-body">
     <form  id="form_nuevo_monografia" action="cdfacultad.php" method="POST">
@@ -18,6 +19,13 @@
  </div>
 </div>
     <!-- <input id="id_material_bibliografico" type="hidden"/>
+=======
+  <div class="modal-body">
+   
+    <form  id="form_nuevo_monografia"  action="cdfacultad.php" method="POST">
+     
+      <input id="id_material_bibliografico" type="hidden"/>
+>>>>>>> 26d7136f9c00eeb9c1399b3a44297cb39182a0ef
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
           <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
@@ -64,9 +72,17 @@
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_monografia" class="btn btn-primary" type="submit" value="Agregar"/>
+<<<<<<< HEAD
       </div> -->
 
      
+=======
+      </div>
+       
+        </form>
+  </div>
+</div>
+>>>>>>> 26d7136f9c00eeb9c1399b3a44297cb39182a0ef
 <script type="text/javascript">
 
 $(document).ready(function(){

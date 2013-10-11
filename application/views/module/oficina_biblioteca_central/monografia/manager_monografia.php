@@ -2,7 +2,9 @@
 <div id="module_monografia">
     <ul class="control">
       <li class="menu-control"><button id="add_monografia" class="btn btn-primary" data-toggle="modal"><i class="icon-plus-sign icon-white"></i> Agregar</button></li>
+
       <li class="menu-control"><a disabled id="export_rl_monografia" href="#new_exportar" class="btn btn-info" data-toggle="modal"><i class="icon-upload icon-white"></i> Exportar</a></li>
+
       <li class="menu-control">
           <div style="display:none;" class="alert alert-error span3">
             <strong>Error!</strong> Ingrese algo en el campo.
@@ -29,10 +31,13 @@
       </li>
     </ul>
     <div id="module_table">
+
   <?php  echo $this->load->view('module/oficina_biblioteca_central/monografia/table_monografia'); ?>
       
     </div>
-  <!-- <table id="table_monografia" class="table table-striped table-bordered table-condensed table-hover">
+
+  <!-- <table id="table_tesis" class="table table-striped table-bordered table-condensed table-hover">
+
     <thead>
       <tr>
         <th class="title_table">Titulo</th>
@@ -43,6 +48,7 @@
       </tr>
     </thead>
     <tbody> 
+
       <?php foreach($monografia as $tmonografia):?>
         <tr>
           <td style="display:none;"><?php echo $tmonografia['id_material_bibliografico']?></td>
@@ -59,6 +65,8 @@
           <td style="display:none;"><?php echo $tmonografia['objetivo']?></td>
           <td style="display:none;"><?php echo $tmonografia['resumen']?></td>
           <td style="display:none;"><?php echo $tmonografia['conclusion']?></td>
+
+     
           <td>
             <button class="btn editar"><i class="icon-pencil"></i></button>
           </td>
@@ -66,8 +74,10 @@
                 </tr>
   </tbody>
   </table> -->
- 
+
+  <!--<?php include_once 'new_tesis.php';?>
+  <?php include_once 'new_exportar.php'; ?>-->
   <?php include_once 'new_monografia.php';?>
-  <?php include_once 'new_exportar.php'; ?>
+
   
 </div>
