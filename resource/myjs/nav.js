@@ -1079,6 +1079,9 @@ $(document).ready(function(){
 					case 1:
 					$('#new_exportar #facultad').html(data);
 					break;
+					case 3:
+					$('#new_monografia #facultad').html(data);
+					break;
 				}	
 				$('#select_man_facultad').change(function(){
 					idFacultad= $('#new_exportar #select_man_facultad option:selected').attr('value');
@@ -1104,6 +1107,9 @@ $(document).ready(function(){
 					break;
 					case 1:
 						$('#new_exportar #escuela').html(data);
+					break;
+					case 3:
+						$('#new_monografia #escuela').html(data);
 					break;
 				}		
 			}

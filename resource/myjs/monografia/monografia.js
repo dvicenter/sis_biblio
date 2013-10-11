@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  cargar_facultad(2);
-  cargar_escuela(2,1);
+  cargar_facultad(3);
+  cargar_escuela(3,1);
   var autores_tesis=[];
   var pAbm;
 
@@ -8,14 +8,21 @@ $(document).ready(function(){
   if($('#module_monografia').is(':visible')){
     $('#module_monografia #add_monografia').click(function(){
       pAbm=1;
-
-
-      
       $('#new_monografia #myModalLabel').html('Agregar Monograf&iacutea');
-
-      
       $('#new_monografia').modal('show');
-      });}
+      $("#new_monografia form [name='combo_facultad']").click(function(){
+        	var id_f=$("#new_monografia form [name='combo_facultad'] option:selected").val();
+      	 	 cargar_escuela(3,id_f);
+        });
+         $('#new_monografia #anio').datepicker({
+			startView: 2,
+			minViewMode: 2,
+			autoclose: true
+		});
+       });
+		
+	}
+
   });
       /*$('#new_monografia #anio input').attr('disabled',false);
       $('#new_monografia #anio .i_c').css('display','inline-block');
@@ -32,10 +39,7 @@ $(document).ready(function(){
         buscar_asesor();
         buscar_autor_tesis();
         
-           $("#new_monografia form [name='combo_facultad']").click(function(){
-        var id_f=$("#new_monografia form [name='combo_facultad'] option:selected").val();
-        cargar_escuela(2,id_f);
-        });
+          
       });
       var cantidad_acompa=1;
       $('[name="acompa"]').click(function(){
@@ -238,9 +242,6 @@ $(document).ready(function(){
 
   
 });
-
-<<<<<<< HEAD
-	
 
 	});
 */

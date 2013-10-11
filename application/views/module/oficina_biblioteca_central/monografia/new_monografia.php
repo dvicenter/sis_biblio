@@ -10,7 +10,6 @@
     <h3 id="myModalLabel"></h3>
 
   </div>
-
 <div class="modal-body">
     <form  id="form_nuevo_monografia" action="cdfacultad.php" method="POST">
 
@@ -27,7 +26,7 @@
           <div class="i_c" style="display: inline-block;"><span class="add-on"><i class="icon-calendar"></i></span></div>
       </div>
        <label for="facultad">Facultad:</label>
-       <div id="facultad_monografia"></div>
+       <div id="facultad"></div>
       </fieldset>
       <fieldset>
         <label for="asesor">Asesor:</label>
@@ -36,11 +35,10 @@
         <input autocomplete="off" id="acompaniante" type="text" class="span3" style="" data-provide="typeahead" data-items="4" data-toggle="popover" data-placement="right" data-content="" data-source="" disabled>
         <div class="che_ac" style="display: inline-block;"><input name="acompa" type="checkbox" style="margin: 0 auto;"></div>
         <label for="escuela">Escuela:</label>
-          <div id="escuela_monografia"></div>
+          <div id="escuela"></div>
       </fieldset>
       <ul class="nav nav-tabs" id="myTab" style="clear: both;">
           <li class="active"><a href="#introduccion" data-toggle="tab">Introducci&oacute;n</a></li>
-          <li><a href="#objetivo" data-toggle="tab">Objetivo</a></li>
           <li><a href="#resumen" data-toggle="tab">Resumen</a></li>
           <li><a href="#conclusion" data-toggle="tab">Conclusi&oacute;n</a></li>
       </ul>
@@ -72,8 +70,6 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  //$('#new_monografia #anio').validations('0123456789');
-  
   
 });
 
