@@ -11,7 +11,9 @@
 
   </div>
   <div class="modal-body">
+   
     <form  id="form_nuevo_monografia"  action="cdfacultad.php" method="POST">
+     
       <input id="id_material_bibliografico" type="hidden"/>
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
@@ -62,8 +64,10 @@
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_monografia" class="btn btn-primary" type="submit" value="Agregar"/>
       </div>
-    </form>
+       
+        </form>
   </div>
+</div>
 <script type="text/javascript">
 
 $(document).ready(function(){

@@ -10,7 +10,7 @@
   </div>
   <div class="modal-body">
     <form  id="form_nuevo_tesis"  action="cdfacultad.php" method="POST">
-     <!-- <input id="id_material_bibliografico" type="hidden"/>
+      <input id="id_material_bibliografico" type="hidden"/>
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
           <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
@@ -55,14 +55,15 @@
             <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSI&Oacute;N aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
         </div>
-      </div>
+     >
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
-      </div>  -->
-      <h3>HOLA</h3>
+      </div>  
+     
     </form>
   </div>
+</div>
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
