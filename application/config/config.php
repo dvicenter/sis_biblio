@@ -1,5 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-$config['base_url']	= 'http://127.0.0.1/sis_biblio/';
+$config['base_url']	= 'http://localhost/sis_biblio/';
 $config['index_page'] = '';
 $config['uri_protocol']	= 'AUTO';
 $config['url_suffix'] = '';
