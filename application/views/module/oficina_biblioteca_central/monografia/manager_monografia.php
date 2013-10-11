@@ -31,20 +31,15 @@
       </li>
     </ul>
     <div id="module_table">
-<<<<<<< HEAD
-  		<?php  //echo $this->load->view('module/oficina_biblioteca_central/tesis/table_tesis'); ?>
-      
-    </div>
-  <table id="table_tesis" class="table table-striped table-bordered table-condensed table-hover">
-=======
 
-  <?php  echo $this->load->view('module/oficina_biblioteca_central/monografia/table_monografia'); ?>
+  	<!--<?php  echo $this->load->view('module/oficina_biblioteca_central/tesis/table_tesis'); ?>-->
       
     </div>
+       
+  
 
   <!-- <table id="table_tesis" class="table table-striped table-bordered table-condensed table-hover">
 
->>>>>>> c476e2d06d5949a72d8ad0b8dc36582eb8fcd66c
     <thead>
       <tr>
         <th class="title_table">Titulo</th>
@@ -55,24 +50,6 @@
       </tr>
     </thead>
     <tbody> 
-<<<<<<< HEAD
-      <?php //foreach($tesis as $ttesis):?>
-        <tr>
-          <td style="display:none;"><?php //echo $ttesis['id_material_bibliografico']?></td>
-          <td style="display:none;"><?php //echo $ttesis['id_docente']?></td>
-          <td style="display:none;"><?php //echo $ttesis['id_alumno']?></td>
-          <td style="display:none;"><?php //echo $ttesis['id_autor_interno']?></td>
-          <td style="display:none;"><?php //echo $ttesis['id_tipo_autor_interno']?></td>
-          <td style="display:none;"><?php //echo $ttesis['facultad']?></td>
-          <td><?php //echo $ttesis['titulo']?></td>
-          <td><?php //echo $ttesis['alumno']?></td>
-          <td><?php //echo $ttesis['docente']?></td>
-          <td><?php //echo $ttesis['anio']?></td>
-          <td style="display:none;"><?php //echo $ttesis['introduccion']?></td>
-          <td style="display:none;"><?php //echo $ttesis['objetivo']?></td>
-          <td style="display:none;"><?php //echo $ttesis['resumen']?></td>
-          <td style="display:none;"><?php //echo $ttesis['conclusion']?></td>
-=======
 
       <?php foreach($monografia as $tmonografia):?>
         <tr>
@@ -92,23 +69,19 @@
           <td style="display:none;"><?php echo $tmonografia['conclusion']?></td>
 
      
->>>>>>> c476e2d06d5949a72d8ad0b8dc36582eb8fcd66c
+
           <td>
             <button class="btn editar"><i class="icon-pencil"></i></button>
           </td>
-        <?php  //endforeach; ?>
+        <?php  endforeach; ?>
                 </tr>
   </tbody>
-<<<<<<< HEAD
-  </table> 
-  <?php $this->load->view('module/oficina_biblioteca_central/monografia/new_monografia');?>
-=======
+
   </table> -->
 
   <!--<?php include_once 'new_tesis.php';?>
   <?php include_once 'new_exportar.php'; ?>-->
   <?php include_once 'new_monografia.php';?>
 
->>>>>>> c476e2d06d5949a72d8ad0b8dc36582eb8fcd66c
-  
+
 </div>
