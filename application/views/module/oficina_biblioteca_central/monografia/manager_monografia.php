@@ -29,10 +29,10 @@
       </li>
     </ul>
     <div id="module_table">
-  <!--<?php  echo $this->load->view('module/oficina_biblioteca_central/tesis/table_tesis'); ?>-->
+  		<?php  //echo $this->load->view('module/oficina_biblioteca_central/tesis/table_tesis'); ?>
       
     </div>
-  <!-- <table id="table_tesis" class="table table-striped table-bordered table-condensed table-hover">
+  <table id="table_tesis" class="table table-striped table-bordered table-condensed table-hover">
     <thead>
       <tr>
         <th class="title_table">Titulo</th>
@@ -43,32 +43,29 @@
       </tr>
     </thead>
     <tbody> 
-      <?php foreach($tesis as $ttesis):?>
+      <?php //foreach($tesis as $ttesis):?>
         <tr>
-          <td style="display:none;"><?php echo $ttesis['id_material_bibliografico']?></td>
-          <td style="display:none;"><?php echo $ttesis['id_docente']?></td>
-          <td style="display:none;"><?php echo $ttesis['id_alumno']?></td>
-          <td style="display:none;"><?php echo $ttesis['id_autor_interno']?></td>
-          <td style="display:none;"><?php echo $ttesis['id_tipo_autor_interno']?></td>
-          <td style="display:none;"><?php echo $ttesis['facultad']?></td>
-          <td><?php echo $ttesis['titulo']?></td>
-          <td><?php echo $ttesis['alumno']?></td>
-          <td><?php echo $ttesis['docente']?></td>
-          <td><?php echo $ttesis['anio']?></td>
-          <td style="display:none;"><?php echo $ttesis['introduccion']?></td>
-          <td style="display:none;"><?php echo $ttesis['objetivo']?></td>
-          <td style="display:none;"><?php echo $ttesis['resumen']?></td>
-          <td style="display:none;"><?php echo $ttesis['conclusion']?></td>
+          <td style="display:none;"><?php //echo $ttesis['id_material_bibliografico']?></td>
+          <td style="display:none;"><?php //echo $ttesis['id_docente']?></td>
+          <td style="display:none;"><?php //echo $ttesis['id_alumno']?></td>
+          <td style="display:none;"><?php //echo $ttesis['id_autor_interno']?></td>
+          <td style="display:none;"><?php //echo $ttesis['id_tipo_autor_interno']?></td>
+          <td style="display:none;"><?php //echo $ttesis['facultad']?></td>
+          <td><?php //echo $ttesis['titulo']?></td>
+          <td><?php //echo $ttesis['alumno']?></td>
+          <td><?php //echo $ttesis['docente']?></td>
+          <td><?php //echo $ttesis['anio']?></td>
+          <td style="display:none;"><?php //echo $ttesis['introduccion']?></td>
+          <td style="display:none;"><?php //echo $ttesis['objetivo']?></td>
+          <td style="display:none;"><?php //echo $ttesis['resumen']?></td>
+          <td style="display:none;"><?php //echo $ttesis['conclusion']?></td>
           <td>
             <button class="btn editar"><i class="icon-pencil"></i></button>
           </td>
-        <?php  endforeach; ?>
+        <?php  //endforeach; ?>
                 </tr>
   </tbody>
-  </table> -->
- 
-  <!--<?php include_once 'new_tesis.php';?>
-  <?php include_once 'new_exportar.php'; ?>-->
-  <?php include_once 'new_monografia.php';?>
+  </table> 
+  <?php $this->load->view('module/oficina_biblioteca_central/monografia/new_monografia');?>
   
 </div>
