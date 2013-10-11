@@ -64,7 +64,7 @@
             <button class="btn editar"><i class="icon-pencil"></i></button>
           </td>
         <?php  //endforeach; ?>
-                </tr>
+       </tr>
   </tbody>
   </table> 
   <?php $this->load->view('module/oficina_biblioteca_central/monografia/new_monografia');?>  
