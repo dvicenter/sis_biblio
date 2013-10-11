@@ -53,7 +53,8 @@ table thead .action_table{width: 8%;}
 #module_monografia .control .menu-control:nth-child(3){float: right;}
 #new_monografia{width: 645px;margin-left: -324px;}
 #new_monografia .modal-body{max-height: 470px;}
-fieldset{display: inline-block;}
+fieldset{display: inline-block; position: relative; margin-left: 20px;}
+/*#titulo {width: 79%; margin-left: 61px;}*/
 #new_monografia #facultad_monografia #select_man_facultad{width: 220px;}
 #new_monografia #escuela_monografia #select_man_escuela{width: 220px;}
 #new_monografia #acompaniante{width: 240px;margin-bottom: 10px;}
