@@ -30,6 +30,9 @@
 			    	<li class="modulo_deshabilitado">
 			    		<a  id="accion" href="javascript:;">Accion</a>
 			    	</li>
+			    	<li class="modulo_habilitado">
+			    		<a  id="oficina" href="javascript:;">Oficina</a>
+			    	</li>
 					</li>
 			    </ul>
   			</li>

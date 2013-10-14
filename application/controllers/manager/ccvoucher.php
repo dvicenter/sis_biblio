@@ -13,30 +13,37 @@ class Ccvoucher extends CI_Controller{
 				$status = "Archivo subido: '.$archivo.'";
 				$filas=file("resource/file_tmp/".$archivo);
 				$i=0;
-				while ($i<count($filas)) {					
-					$row=$filas[$i];
-					$concepto=substr($row, 39,4);
-					if ($concepto=='0032') 
-					{
-						$tipo_persona=substr($row, 43,2);
-						$fecha=substr($row, 113,8);
-						if($tipo_persona=='01'){
-							$codigo_universitaro=substr($row, 4,10);
-							$result=$this->cdvoucher->load_voucher($tipo_persona,$codigo_universitaro,"");
-						}else if($tipo_persona=='04'){
-							$documento=substr($row, 54,8);
-							$result=$this->cdvoucher->load_voucher($tipo_persona,"",$documento,$fecha);
-							
+				date_default_timezone_set('UTC');
+				$fecha_comp=date("Y-m-d");
+				
+				if ($this->cdvoucher->ultima_fecha()== $fecha_comp)
+				{
+					while ($i<count($filas)) {					
+						$row=$filas[$i];
+						$concepto=substr($row, 39,4);
+						if ($concepto=='0032') 
+						{
+							$tipo_persona=substr($row, 43,2);
+							$fecha=substr($row, 113,8);
+							if($tipo_persona=='01'){
+								$codigo_universitaro=substr($row, 4,10);
+								$result=$this->cdvoucher->load_voucher($tipo_persona,$codigo_universitaro,"");
+							}else if($tipo_persona=='04'){
+								$documento=substr($row, 54,8);
+								$result=$this->cdvoucher->load_voucher($tipo_persona,"",$documento,$fecha);
+							}
 						}
+						$i++;
 					}
-								
-					$i++;
+					if($result)
+					{	echo 'Carga exitosa';
+					}
+					else{
+						echo 'Error de carga';
+					}
 				}
-				if($result)
-				{	echo 'Carga exitosa';
-				}
-				else{
-					echo 'Error de carga';
+				else {
+					echo 'El dia de hoy ya se realizó la carga';
 				}
 			} else {
 				$status = "Error al subir el archivo";

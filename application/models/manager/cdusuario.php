@@ -30,8 +30,8 @@
         
 
 		function insertar($usuario,$contrasenia,$id_sujeto,$active)
-		{	if ($this->db->query("CALL SPRABMUsuario(1,2,'$usuario','$contrasenia','$id_sujeto','$active')")) 
-			{	$query=$this->db->query("SELECT tbl.id_usuario, tbl.usuario, tbl.contrasenia, tbl.id_sujeto, tbl.active,
+		{	if ($this->db->query("CALL SPRABMUsuario(1,2,'$usuario','$contrasenia','$id_sujeto','$sujeto','$active')")) 
+			{	$query=$this->db->query("SELECT tbl.id_usuario, tbl.usuario, tbl.contrasenia, tbl.id_sujeto , tbl.active,
   					viw_sujeto.sujeto FROM tbl_usuario tbl INNER JOIN viw_sujeto
     				ON tbl.id_sujeto = viw_sujeto.id_sujeto order by tbl.id_usuario desc LIMIT 1");
 				$data;
@@ -41,6 +41,7 @@
 				return $data;
 			}
 		}
+		
 		function modificar($id_usuario,$usuario,$contrasenia,$active){
 			$query = "CALL SPRABMUsuario(2,'$id_usuario','$usuario','$contrasenia',0,'$active')";
 			$this->db->query($query);

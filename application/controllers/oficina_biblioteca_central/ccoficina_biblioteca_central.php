@@ -5,6 +5,7 @@ class Ccoficina_biblioteca_central extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->model('oficina_biblioteca_central/cdoficina_biblioteca_central');
 		$this->load->library('pagination');
+		$this->load->library('form_validation');
 	}
 	/*function listar(){
 		$this->data['planes_tesis']=$this->cdoficina_biblioteca_central->listar();
@@ -84,6 +85,22 @@ class Ccoficina_biblioteca_central extends CI_Controller{
         
         echo $this->load->view('module/oficina_biblioteca_central/tesis/manager_tesis',$data);
 	}
+
+    function buscar_filtro($index,$cadena)
+    {
+        $consulta = urldecode($cadena);
+            var_dump($consulta);
+        if (isset($index)&&isset($cadena)) 
+        {
+        
+            $data['tesis'] = $this->cdoficina_biblioteca_central->buscar_filtro($index,$consulta,10,0);
+            echo $this->load->view('module/oficina_biblioteca_central/tesis/table_tesis',$data);
+        }
+        else{
+            echo "falta cadena";
+        }
+
+    }
 	
 	function tesis_pag()
     {
@@ -98,19 +115,23 @@ class Ccoficina_biblioteca_central extends CI_Controller{
         echo json_encode($data);
     }
     function buscar_autor_tesis()
-    {	$data=$this->cdoficina_biblioteca_central->buscar_autor_tesis();
+    {	$id_sujeto=$_REQUEST['id_sujeto'];
+        $data=$this->cdoficina_biblioteca_central->buscar_autor_tesis($id_sujeto);
 		echo json_encode($data);
     }
     function insertar_tesis()
-    {	$id_autor_tesis=$_REQUEST['id_autor_tesis'];
-    	$id_asesor=$_REQUEST['id_asesor'];
-    	$titulo=$_REQUEST['titulo'];
-    	$introduccion=$_REQUEST['introduccion'];
-    	$objetivo=$_REQUEST['objetivo'];
-    	$resumen=$_REQUEST['resumen'];
-    	$conclusion=$_REQUEST['conclusion'];
-    	$anio=$_REQUEST['anio'];
-    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio);
+    {	$id_autor_tesis=$this->input->post('id_autor_tesis');
+    	$id_asesor=$this->input->post('id_asesor');
+    	$titulo=$this->input->post('titulo');
+    	$introduccion=$this->input->post('introduccion');
+    	$objetivo=$this->input->post('objetivo');
+    	$resumen=$this->input->post('resumen');
+    	$conclusion=$this->input->post('conclusion');
+    	$anio=$this->input->post('anio');
+    	$acompaniante=$this->input->post('id_autor_acompa_tesis');
+    	$id_escuela=$this->input->post('id_e');
+    	$cant=$this->input->post('cant');
+    	$this->cdoficina_biblioteca_central->insertar_tesis($id_autor_tesis,$id_asesor,$titulo,$introduccion,$objetivo,$resumen,$conclusion,$anio,$acompaniante,$cant,$id_escuela);
     }
     function editar_tesis()
     {	$id_material_bibliografico=$_REQUEST['id_material_bibliografico'];

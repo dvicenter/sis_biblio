@@ -1,4 +1,7 @@
-<div id="new_tesis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<script src="/sis_biblio/resource/myjs/tesis/monografia.js"></script>
+
+<div id="monografia" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
     <div class="response"></div>
@@ -7,9 +10,7 @@
   </div>
   <div class="modal-body">
     <form  id="form_nuevo_tesis"  action="cdfacultad.php" method="POST">
-
-       <input id="id_material_bibliografico" type="hidden"/>
-
+      <input id="id_material_bibliografico" type="hidden"/>
       <div>
           <label for="titulo" style="float: left;">Titulo:</label>
           <input style="width: 85%; margin-left: 10px;" autofocus="autofocus" type="text" id="titulo" data-toggle="popover" data-placement="right" data-content="" autocomplete="off" required/>
@@ -54,15 +55,19 @@
             <textarea id="input_conclusion" name="conclusion" rows="5" placeholder="Escriba su CONCLUSI&Oacute;N aqui..." data-toggle="popover" data-placement="bottom" data-content="" required></textarea>
           </div>
         </div>
-     >
+      </div>
       <div class="modal-footer ">
         <input  type="reset" class="btn" onClick="this.form.reset();" aria-hidden="true" data-dismiss="modal" value="Cancelar"/>
         <input id="save_tesis" class="btn btn-primary" type="submit" value="Agregar"/>
-
-      </div> 
-
+      </div>
     </form>
   </div>
-</div>
 <script type="text/javascript">
+<!--
+$(document).ready(function(){
+  //$('#new_tesis #anio').validations('0123456789');
+  
+  
+});
+
 </script>

@@ -26,7 +26,6 @@
 		  <li class="active"><a href="#introduccion_ases" data-toggle="tab">Introducci&oacute;n</a></li>
 		  <li><a href="#objetivo_ases" data-toggle="tab">Objetivo</a></li>
 		  <li><a href="#resumen_ases" data-toggle="tab">Resumen</a></li>
-		  <li><a href="#conclusion_ases" data-toggle="tab">Conclusi&oacute;n</a></li>
 	</ul>
 	<div class="tab-content">
           <div class="tab-pane active" id="introduccion_ases">
@@ -38,8 +37,5 @@
         <div class="tab-pane" id="resumen_ases">
             <textarea name="resumen" rows="5" placeholder="Escriba su RESUMEN aqui..." disabled></textarea>
         </div>
-        <div class="tab-pane" id="conclusion_ases">
-            <textarea name="conclusion" rows="5" placeholder="Escriba su CONCLUSION aqui..." disabled></textarea>
-    	</div>
 	</div>
 </div>

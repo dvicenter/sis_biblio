@@ -10,7 +10,9 @@ class Ccpanel extends CI_Controller
 	{	
 		switch ($path)
 		{
-			case 'tesis':$this->ubication='module/oficina_biblioteca_central/'.$path.'/'.$file;  
+			case 'tesis':$this->ubication='module/oficina_biblioteca_central/'.$path.'/'.$file;
+				break;
+			case 'monografia':$this->ubication='module/oficina_biblioteca_central/'.$path.'/'.$file;
 				break;
 			case 'constancia':$this->ubication='module/oficina_biblioteca_central/'.$path.'/'.$file;  
 				break;
@@ -38,7 +40,7 @@ class Ccpanel extends CI_Controller
 		$this->load->view($this->ubication);
 	}
 	public function load_panel()
-	{	echo 'hola';
+	{	
 		$this->load->helper('url');
 		$this->load->view('v_panel');
 	}

@@ -9,6 +9,7 @@
 		<link type="text/css" href="<?php echo base_url();?>resource/css/bootstrap.css" rel="stylesheet"/>
 		<link type="text/css" href="<?php echo base_url();?>resource/css/bootstrap-responsive.min.css" rel="stylesheet"/>
 		<link type="text/css" href="<?php echo base_url();?>resource/css/style.css" rel="stylesheet"/>
+		<link type="text/css" href="<?php echo base_url()?>resource/css/datepicker_bootstrap.css" rel="stylesheet"/>
 		
 		<script src="<?php echo base_url();?>resource/js/jquery.min.js"></script>
 		<script src="<?php echo base_url();?>resource/js/bootstrap.min.js"></script>
@@ -18,6 +19,7 @@
 		<script src="<?php echo base_url();?>resource/myjs/validations.js"></script>
 		<script src="<?php echo base_url();?>resource/myjs/utilities.js"></script>
 		<script src="/sis_biblio/resource/myjs/voucher.js" type="text/javascript"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>resource/js/bootstrap-datepicker.js"></script>
 		<script> base_url="<?php echo base_url();?>"</script>
 	</head>
 	<body>

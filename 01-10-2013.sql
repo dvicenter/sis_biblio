@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-07-2013 a las 00:38:36
--- Versión del servidor: 5.5.23
--- Versión de PHP: 5.2.17
+-- Tiempo de generación: 01-10-2013 a las 22:47:55
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,14 +17,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `moralesf_sis_biblio`
+-- Base de datos: `sis_biblio`
 --
 
 DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMAccion`(IN pIdAbm TINYINT, IN pId_accion TINYINT(4), IN pAccion VARCHAR(10))
+DROP PROCEDURE IF EXISTS `SPRABMAccion`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMAccion`(IN pIdAbm TINYINT, IN pId_accion TINYINT(4), IN pAccion VARCHAR(10))
 BEGIN
 IF pIdAbm = 0
       THEN 
@@ -49,7 +50,8 @@ IF pIdAbm = 0
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMAutorInterno`(IN pIdAbm TINYINT, IN pIdTipoAutorInterno BIGINT, IN pIdAlumno BIGINT,IN pIdAutorInterno BIGINT)
+DROP PROCEDURE IF EXISTS `SPRABMAutorInterno`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMAutorInterno`(IN pIdAbm TINYINT, IN pIdTipoAutorInterno BIGINT, IN pIdAlumno BIGINT,IN pIdAutorInterno BIGINT)
 BEGIN
 IF pIdAbm=1 THEN
     INSERT INTO tbl_autor_interno(id_tipo_autor_interno,id_alumno) VALUES (pIdTipoAutorInterno,pIdAlumno);
@@ -64,19 +66,29 @@ IF pIdAbm=1 THEN
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMComponente`(IN pIdAbm TINYINT, IN pId_componente INT (11), IN pComponente VARCHAR(100), IN pDescripcion_componente VARCHAR(100))
+DROP PROCEDURE IF EXISTS `SPRABMComponente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMComponente`(IN pIdAbm TINYINT, IN pId_componente INT (11), IN pComponente VARCHAR(100), IN pDescripcion_componente VARCHAR(100), IN pId_Oficina INT(11))
 BEGIN
 IF pIdAbm = 0
       THEN 
-        SELECT tbl.id_componente, tbl.componente, tbl.descripcion_componente FROM tbl_componente tbl;
+        SELECT
+          tbl_componente.id_componente,
+          tbl_componente.componente,
+          tbl_componente.descripcion_componente,
+          tbl_componente.id_oficina,
+          tbl_oficina.oficina
+        FROM
+          sis_biblio.tbl_componente
+        INNER JOIN sis_biblio.tbl_oficina
+        ON tbl_componente.id_oficina = tbl_oficina.id_oficina;
 ELSE
        IF pIdAbm = 1
       THEN
-      INSERT INTO tbl_componente(componente,descripcion_componente) VALUES (pComponente,pDescripcion_componente);
+      INSERT INTO tbl_componente(componente,descripcion_componente,id_oficina) VALUES (pComponente,pDescripcion_componente,pId_Oficina);
       ELSE 
  IF pIdAbm=2
       THEN
-      UPDATE tbl_componente set componente=pComponente WHERE id_componente=pId_componente;
+      UPDATE tbl_componente set componente=pComponente, descripcion_componente=pDescripcion_componente, id_oficina=pId_oficina WHERE id_componente=pId_componente;
       COMMIT;
       ELSE 
  IF pIdAbm = 3
@@ -89,14 +101,37 @@ ELSE
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMComponenteAccion`(IN pIdAbm TINYINT, IN pIdComponenteAccion INT, IN pIdComponente INT, IN pIdAccion TINYINT)
+DROP PROCEDURE IF EXISTS `SPRABMComponenteAccion`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMComponenteAccion`(IN pIdAbm TINYINT, IN pIdComponenteAccion INT, IN pIdComponente INT, IN pIdAccion TINYINT)
 BEGIN
 IF pIdAbm=1 THEN
     INSERT INTO tbl_componente_accion (id_componente,id_accion) values (pIdComponente,pIdAccion);
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMRol`(IN pIdAbm TINYINT, IN pIdRol INT,IN pRol VARCHAR(50), IN pDescripcion VARCHAR(200))
+DROP PROCEDURE IF EXISTS `SPRABMOficina`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMOficina`(IN `pIdAbm` TINYINT,IN pId_oficina INT, IN `pOficina` VARCHAR(100), IN `pDescripcion_oficina` VARCHAR(100), IN `pActivo` CHAR(1))
+BEGIN
+  IF pIdAbm = 1
+        THEN
+        INSERT INTO tbl_oficina(oficina,descripcion_oficina,activo) VALUES (pOficina,pDescripcion_oficina,pActivo);
+        ELSE 
+   IF pIdAbm = 2
+        THEN
+        UPDATE tbl_oficina set oficina=pOficina WHERE id_oficina=pId_oficina;
+        COMMIT;
+        ELSE 
+   IF pIdAbm = 3
+        THEN
+        DELETE FROM tbl_oficina WHERE id_oficina=pId_oficina;
+        COMMIT;
+    END IF;
+    END IF;
+    END IF;
+END$$
+
+DROP PROCEDURE IF EXISTS `SPRABMRol`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMRol`(IN pIdAbm TINYINT, IN pIdRol INT,IN pRol VARCHAR(50), IN pDescripcion VARCHAR(200))
 BEGIN
  IF pIdAbm = 0
       THEN 
@@ -119,7 +154,8 @@ BEGIN
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMRolComponenteAccion`(IN pIdAbm TINYINT, IN pIdRolComponenteAccion INT, IN pIdRol BIGINT, IN pIdComponenteAccion INT)
+DROP PROCEDURE IF EXISTS `SPRABMRolComponenteAccion`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMRolComponenteAccion`(IN pIdAbm TINYINT, IN pIdRolComponenteAccion INT, IN pIdRol BIGINT, IN pIdComponenteAccion INT)
 BEGIN
  IF pIdAbm=0 THEN
 	
@@ -139,7 +175,8 @@ BEGIN
 
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMUsuario`(IN pIdAbm TINYINT, IN pId_usuario BIGINT (20), IN pUsuario VARCHAR(50), IN pContrasenia VARCHAR(100), IN pId_sujeto BIGINT(20), IN pActive CHAR(1))
+DROP PROCEDURE IF EXISTS `SPRABMUsuario`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMUsuario`(IN pIdAbm TINYINT, IN pId_usuario BIGINT (20), IN pUsuario VARCHAR(50), IN pContrasenia VARCHAR(100), IN pId_sujeto BIGINT(20), IN pActive CHAR(1))
 BEGIN
 IF pIdAbm = 0
       THEN 
@@ -185,7 +222,8 @@ IF pIdAbm = 0
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRABMUsuarioRol`(IN pIdAbm TINYINT, IN pIdUsuarioRol INT, IN pIdUsuario BIGINT, IN pIdRol INT)
+DROP PROCEDURE IF EXISTS `SPRABMUsuarioRol`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRABMUsuarioRol`(IN pIdAbm TINYINT, IN pIdUsuarioRol INT, IN pIdUsuario BIGINT, IN pIdRol INT)
 BEGIN
  IF pIdAbm=1 THEN
     INSERT INTO tbl_usuario_rol(id_rol,id_usuario) values (pIdRol,pIdUsuario);
@@ -196,14 +234,16 @@ BEGIN
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRAPREstadoPlanTesis`(IN pIdPlanTesis BIGINT, IN pIdEstado INT)
+DROP PROCEDURE IF EXISTS `SPRAPREstadoPlanTesis`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRAPREstadoPlanTesis`(IN pIdPlanTesis BIGINT, IN pIdEstado INT)
 BEGIN
   UPDATE tbl_plan_tesis tbl SET
     tbl.id_estado_plan_tesis=pIdEstado
 WHERE tbl.id_plan_tesis=pIdPlanTesis;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNDTesis`()
+DROP PROCEDURE IF EXISTS `SPRCNDTesis`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNDTesis`()
 BEGIN
 SELECT
   viw.titulo,
@@ -220,7 +260,8 @@ FROM
   WHERE viw.id_tipo_material_bibliografico=1;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNPermiso`()
+DROP PROCEDURE IF EXISTS `SPRCNPermiso`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNPermiso`()
 BEGIN
 SELECT
   tbl_usuario.id_sujeto,
@@ -245,7 +286,8 @@ FROM
     ON tbl_componente_accion.id_accion = tbl_accion.id_accion;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSAccion`(IN pIdCns INT, IN pInicio INT, IN pFinal INT)
+DROP PROCEDURE IF EXISTS `SPRCNSAccion`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSAccion`(IN pIdCns INT, IN pInicio INT, IN pFinal INT)
 BEGIN
 declare pTotal int;
 SET @inicio=pInicio;
@@ -258,7 +300,41 @@ IF pIdCns = 1 THEN
 END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSAsesor`()
+DROP PROCEDURE IF EXISTS `SPRCNSAcompañante`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSAcompañante`(IN pId_sujeto INT(11))
+BEGIN
+  SELECT
+          viw.id_sujeto,
+          tbl.id_autor_interno,
+          tbl.id_alumno,
+          viw.alumno,
+          viw.id_facultad,
+          viw.id_escuela
+        FROM
+          tbl_autor_interno  tbl
+          INNER JOIN viw_alumno viw
+            ON tbl.id_alumno = viw.id_alumno
+   WHERE tbl.id_tipo_autor_interno IN (4,5) AND viw.id_sujeto<>pId_sujeto;
+END$$
+
+DROP PROCEDURE IF EXISTS `SPRCNSAlumnoxUsuario`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSAlumnoxUsuario`(IN pId_Usuario INT(11))
+BEGIN
+  SELECT
+  tbl_usuario.id_usuario,
+  tbl_alumno.id_alumno
+  FROM
+  sis_biblio.tbl_alumno
+  INNER JOIN sis_biblio.tbl_sujeto
+    ON tbl_alumno.id_sujeto = tbl_sujeto.id_sujeto
+  INNER JOIN sis_biblio.tbl_usuario
+    ON tbl_usuario.id_sujeto = tbl_sujeto.id_sujeto
+  WHERE
+    tbl_usuario.id_usuario=pId_Usuario;
+END$$
+
+DROP PROCEDURE IF EXISTS `SPRCNSAsesor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSAsesor`()
 BEGIN
  SELECT
   viw.id_docente,
@@ -270,7 +346,8 @@ FROM
   WHERE viw.activo='1';
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSAutoresXTipoAutor`(IN pIdCns TINYINT)
+DROP PROCEDURE IF EXISTS `SPRCNSAutoresXTipoAutor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSAutoresXTipoAutor`(IN pIdCns TINYINT)
 BEGIN
   IF pIdCns=1 THEN 
     SELECT
@@ -310,7 +387,8 @@ BEGIN
     END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSComponenteAccion`(IN pIdCns TINYINT, IN pIdComponente INT, IN pLimit INT)
+DROP PROCEDURE IF EXISTS `SPRCNSComponenteAccion`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSComponenteAccion`(IN pIdCns TINYINT, IN pIdComponente INT, IN pLimit INT)
 BEGIN
   IF pIdCns=1 THEN
 SELECT
@@ -345,7 +423,8 @@ FROM
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSEscuela`()
+DROP PROCEDURE IF EXISTS `SPRCNSEscuela`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSEscuela`()
 BEGIN
 SELECT
   tbl.id_escuela,
@@ -355,7 +434,8 @@ FROM
   WHERE tbl.estado=1;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSFacultad`()
+DROP PROCEDURE IF EXISTS `SPRCNSFacultad`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSFacultad`()
 BEGIN
 SELECT
   tbl.id_facultad,
@@ -365,7 +445,8 @@ FROM
   WHERE tbl.activo=1;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSInformePractica`(IN pTipoCns TINYINT ,IN pIdTipoMaterial TINYINT, IN pIdAlumno BIGINT)
+DROP PROCEDURE IF EXISTS `SPRCNSInformePractica`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSInformePractica`(IN pTipoCns TINYINT ,IN pIdTipoMaterial TINYINT, IN pIdAlumno BIGINT)
 BEGIN
   IF pTipoCns=1 THEN
 SELECT
@@ -385,7 +466,8 @@ FROM
     END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSListar_rol_componente_accion`(IN pIdCns TINYINT, IN pIdRol INT(11), IN pLimit TINYINT)
+DROP PROCEDURE IF EXISTS `SPRCNSListar_rol_componente_accion`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSListar_rol_componente_accion`(IN pIdCns TINYINT, IN pIdRol INT(11), IN pLimit TINYINT)
 BEGIN
 IF pIdCns=1 THEN
 SELECT 	`tbl_rol_componente_accion`.`id_rol_componente_accion`,
@@ -421,7 +503,8 @@ WHERE tbl_rol.id_rol=?
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSListar_rol_usuario`(IN pIdCns TINYINT,IN pId_usuario BIGINT(20),IN pLimit TINYINT)
+DROP PROCEDURE IF EXISTS `SPRCNSListar_rol_usuario`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSListar_rol_usuario`(IN pIdCns TINYINT,IN pId_usuario BIGINT(20),IN pLimit TINYINT)
 BEGIN
  IF pIdCns=1 THEN
 SELECT
@@ -459,7 +542,8 @@ FROM
   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSMaterialBibliograficoXAsesor`(IN pIdDocente BIGINT)
+DROP PROCEDURE IF EXISTS `SPRCNSMaterialBibliograficoXAsesor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSMaterialBibliograficoXAsesor`(IN pIdDocente BIGINT)
 BEGIN
 SELECT
   viw.id_material_bibliografico,
@@ -474,82 +558,88 @@ FROM
 GROUP BY viw.id_material_bibliografico;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSPlanTesis`(IN pIdCns TINYINT, IN pIdPlanTesis INT)
+DROP PROCEDURE IF EXISTS `SPRCNSOficina`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSOficina`()
+BEGIN
+
+      SELECT 
+          tbl.id_oficina,
+          tbl.oficina
+        FROM tbl_oficina tbl
+        WHERE tbl.activo=1; 
+END$$
+
+DROP PROCEDURE IF EXISTS `SPRCNSPlanTesis`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSPlanTesis`(IN pIdCns TINYINT, IN pIdPlanTesis INT)
 BEGIN
   -- El listado de los plan tesis que estan en proceso
-  IF pIdCns = 1 THEN
+  IF pIdCns=1 THEN
     SELECT
-      tbl.id_plan_tesis AS 'id_plan_tesis',
-      viwd.id_docente AS 'id_docente',
-      viwa.id_alumno AS 'id_alumno',
-      viwa.id_facultad AS 'id_facultad',
-      viwa.alumno AS 'solicitante',
+      tbl.id_plan_tesis as 'id_plan_tesis',
+      viwd.id_docente as 'id_docente',
+      viwa.id_alumno as 'id_alumno',
+      viwa.id_facultad as 'id_facultad',
+      viwa.alumno as 'solicitante', 
       viwa.escuela_abreviatura AS 'abreaviatura_escuela',
-      tbl.titulo AS 'titulo',
-      viwd.docente AS 'asesor'
+      tbl.titulo as 'titulo',
+      viwd.docente as 'asesor'
     FROM
       tbl_plan_tesis tbl
+  INNER JOIN viw_docente viwd
+    ON tbl.id_docente = viwd.id_docente
+  INNER JOIN tbl_alumno_plantesis tblap
+    ON tblap.id_plan_tesis = tbl.id_plan_tesis
+  INNER JOIN viw_alumno viwa
+    ON viwa.id_alumno = tblap.id_alumno
+    WHERE tbl.id_estado_plan_tesis =1 AND 
+      tblap.solicita=1
+    ORDER BY tbl.id_plan_tesis desc;
+    -- Busqueda de una tesis determinada
+    ELSE IF pIdCns=2 THEN
+      SELECT
+        tbl.id_plan_tesis as 'id_plan_tesis',
+        viwd.id_docente as 'id_docente',
+        viwa.id_alumno as 'id_alumno',
+        viwa.id_facultad as 'id_facultad',
+        viwa.alumno as 'tesista', 
+        viwa.escuela_abreviatura AS 'abreaviatura_escuela',
+        tbl.titulo as 'titulo',
+        viwd.docente as 'asesor',
+        tbl.introduccion as 'introduccion',
+        tbl.objetivo as 'objetivo',
+        tbl.resumen as 'resumen',
+        tbl.conclusion as 'conclusion'
+      FROM
+        tbl_plan_tesis tbl
+  INNER JOIN viw_docente viwd
+    ON tbl.id_docente = viwd.id_docente
+  INNER JOIN tbl_alumno_plantesis tblap
+    ON tblap.id_plan_tesis = tbl.id_plan_tesis
+  INNER JOIN viw_alumno viwa
+    ON viwa.id_alumno = tblap.id_alumno
+      WHERE tbl.id_estado_plan_tesis!=2
+        and tbl.id_plan_tesis=pIdPlanTesis AND 
+      tblap.solicita=1;
+          ELSE IF pIdCns=3 THEN 
+                SELECT
+      COUNT(tbl.id_plan_tesis) as 'filas'
+        FROM
+          tbl_plan_tesis tbl
       INNER JOIN viw_docente viwd
         ON tbl.id_docente = viwd.id_docente
       INNER JOIN tbl_alumno_plantesis tblap
         ON tblap.id_plan_tesis = tbl.id_plan_tesis
       INNER JOIN viw_alumno viwa
         ON viwa.id_alumno = tblap.id_alumno
-    WHERE
-      tbl.id_estado_plan_tesis = 1 AND
-      tblap.solicita = 1
-    ORDER BY
-      tbl.id_plan_tesis DESC;
-  -- Busqueda de una tesis determinada
-  ELSE
-    IF pIdCns = 2 THEN
-      SELECT
-        tbl.id_plan_tesis AS 'id_plan_tesis',
-        viwd.id_docente AS 'id_docente',
-        viwa.id_alumno AS 'id_alumno',
-        viwa.id_facultad AS 'id_facultad',
-        viwa.alumno AS 'tesista',
-        viwa.escuela_abreviatura AS 'abreaviatura_escuela',
-        tbl.titulo AS 'titulo',
-        viwd.docente AS 'asesor',
-        tbl.introduccion AS 'introduccion',
-        tbl.objetivo AS 'objetivo',
-        tbl.resumen AS 'resumen',
-        tbl.conclusion AS 'conclusion'
-      FROM
-        tbl_plan_tesis tbl
-        INNER JOIN viw_docente viwd
-          ON tbl.id_docente = viwd.id_docente
-        INNER JOIN tbl_alumno_plantesis tblap
-          ON tblap.id_plan_tesis = tbl.id_plan_tesis
-        INNER JOIN viw_alumno viwa
-          ON viwa.id_alumno = tblap.id_alumno
-      WHERE
-        tbl.id_estado_plan_tesis != 2
-        AND
-        tbl.id_plan_tesis = pIdPlanTesis AND
-        tblap.solicita = 1;
-    ELSE
-      IF pIdCns = 3 THEN
-        SELECT
-          COUNT(tbl.id_plan_tesis) AS 'filas'
-        FROM
-          tbl_plan_tesis tbl
-          INNER JOIN viw_docente viwd
-            ON tbl.id_docente = viwd.id_docente
-          INNER JOIN tbl_alumno_plantesis tblap
-            ON tblap.id_plan_tesis = tbl.id_plan_tesis
-          INNER JOIN viw_alumno viwa
-            ON viwa.id_alumno = tblap.id_alumno
-        WHERE
-          tbl.id_estado_plan_tesis = 1 AND
-          tblap.solicita = 1;
-      END IF;
-    END IF;
-  END IF;
+        WHERE tbl.id_estado_plan_tesis =1 AND 
+          tblap.solicita=1;
+           END IF;
+       END IF;
+   END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRCNSSujeto`()
+DROP PROCEDURE IF EXISTS `SPRCNSSujeto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRCNSSujeto`()
 BEGIN
 SELECT
   viw.id_sujeto,
@@ -558,14 +648,16 @@ FROM
   viw_sujeto viw;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRINSMaterialBibliografico`(IN pCodigoMaterialBibliografico VARCHAR(40), IN pTitulo VARCHAR(300), IN pIntroduccion TEXT, IN pObjetivo TEXT, IN pResumen TEXT, IN pConclusion TEXT, IN pAnio YEAR, IN pPortada VARCHAR(200), IN pNumeroPagina SMALLINT, IN pEditorial VARCHAR(100), IN pVolumen INT, IN pTomo VARCHAR(3), IN pContenido VARCHAR(100), IN pidTipoMaterialBibliografico TINYINT, IN pIdTematica INT, IN pActivo CHAR(1))
+DROP PROCEDURE IF EXISTS `SPRINSMaterialBibliografico`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRINSMaterialBibliografico`(IN pCodigoMaterialBibliografico VARCHAR(40), IN pTitulo VARCHAR(300), IN pIntroduccion TEXT, IN pObjetivo TEXT, IN pResumen TEXT, IN pConclusion TEXT, IN pAnio YEAR, IN pPortada VARCHAR(200), IN pNumeroPagina SMALLINT, IN pEditorial VARCHAR(100), IN pVolumen INT, IN pTomo VARCHAR(3), IN pContenido VARCHAR(100), IN pidTipoMaterialBibliografico TINYINT, IN pIdTematica INT, IN pActivo CHAR(1))
 BEGIN
   INSERT INTO tbl_material_bibliografico (codigo_material_bibliografico,titulo,introduccion,objetivo,resumen,conclusion,anio,portada,numero_pagina,editorial,volumen,tomo,contenido,id_tipo_material_bibliografico,id_tematica,activo)
      VALUES (pCodigoMaterialBibliografico,pTitulo,pIntroduccion,pObjetivo,pResumen,pConclusion,pAnio,pPortada,pNumeroPagina,pEditorial,pVolumen,pTomo,pContenido,pidTipoMaterialBibliografico,pIdTematica,pActivo);
   COMMIT;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRINSSolicitudConstancia`(IN pTitulo VARCHAR(300),IN pIntroduccion text,IN pObjetivo text,IN pResumen TEXT, IN pConclusion TEXT,IN pCorreo VARCHAR(50),IN pActivo CHAR(1),IN pIdSujeto1 BIGINT,IN pIdDocente BIGINT,IN pIdSujeto2 BIGINT,IN pIns TINYINT)
+DROP PROCEDURE IF EXISTS `SPRINSSolicitudConstancia`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRINSSolicitudConstancia`(IN pTitulo VARCHAR(300),IN pIntroduccion text,IN pObjetivo text,IN pResumen TEXT, IN pConclusion TEXT,IN pCorreo VARCHAR(50),IN pActivo CHAR(1),IN pIdSujeto1 BIGINT,IN pIdDocente BIGINT,IN pIdSujeto2 BIGINT,IN pIns TINYINT)
 BEGIN
   IF pIns=1 THEN
      SET @pidAlumno1 = (SELECT tbl.id_alumno FROM  tbl_alumno tbl  WHERE tbl.id_sujeto=pIdSujeto1);
@@ -586,7 +678,8 @@ BEGIN
     END IF;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRINSTesis`(IN pIdAutorInterno BIGINT, IN pIdDocente BIGINT,IN pTitulo VARCHAR(300),IN pIntroduccion TEXT,IN pObjetivo TEXT,IN pResumen TEXT,IN pConclusion TEXT,IN pAnio YEAR,IN pNumeroPagina SMALLINT,IN pCodigoMaterialBibliografico VARCHAR(40))
+DROP PROCEDURE IF EXISTS `SPRINSTesis`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRINSTesis`(IN pIdAutorInterno BIGINT, IN pIdDocente BIGINT,IN pTitulo VARCHAR(300),IN pIntroduccion TEXT,IN pObjetivo TEXT,IN pResumen TEXT,IN pConclusion TEXT,IN pAnio YEAR,IN pNumeroPagina SMALLINT,IN pCodigoMaterialBibliografico VARCHAR(40))
 BEGIN
 CALL SPRINSMaterialBibliografico(pCodigoMaterialBibliografico, pTitulo,pIntroduccion ,pObjetivo ,pResumen ,pConclusion ,pAnio , '',pNumeroPagina , '', null, '', '', 1, null, 1);
 set @pIdMaterialBibliografico:=(SELECT LAST_INSERT_ID());
@@ -595,23 +688,36 @@ INSERT INTO tbl_autor_interno_material_bibliografico(id_autor_interno,id_materia
   VALUES (pIdAutorInterno,@pIdMaterialBibliografico,pIdDocente);
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRRPTReporteNegatividad`(IN IdPlanTesis BIGINT)
+DROP PROCEDURE IF EXISTS `SPRRPTReporteNegatividad`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRRPTReporteNegatividad`(IN IdPlanTesis BIGINT)
 BEGIN
-  SELECT
-  tbl.titulo,
-  viwa.alumno,
-  viwd.docente as asesor,
-  viwa.escuela
-FROM
-  viw_alumno viwa
-  INNER JOIN tbl_plan_tesis tbl
-    ON viwa.id_alumno = tbl.id_alumno
-  INNER JOIN viw_docente viwd
-    ON tbl.id_docente = viwd.id_docente
-    WHERE tbl.id_plan_tesis=IdPlanTesis;
+    SELECT
+    tbl.titulo,
+    (SELECT viwa.alumno 
+      FROM tbl_alumno_plantesis tbl_1 
+      INNER JOIN viw_alumno viwa 
+      ON viwa.id_alumno = tbl_1.id_alumno WHERE tbl_1.solicita=1 AND tbl_1.id_plan_tesis=IdPlanTesis) AS alumno_solicitante,
+      (SELECT viwa.alumno 
+      FROM tbl_alumno_plantesis tbl_1 
+      INNER JOIN viw_alumno viwa 
+      ON viwa.id_alumno = tbl_1.id_alumno WHERE tbl_1.solicita=0 AND tbl_1.id_plan_tesis=IdPlanTesis) AS alumno_acompaniante,
+    viwd.docente as asesor,
+    viwa.escuela,
+    tbl.id_estado_plan_tesis AS proceso_tramite
+  FROM
+    tbl_alumno_plantesis tbl_1
+    INNER JOIN tbl_plan_tesis tbl
+      ON tbl_1.id_plan_tesis=tbl.id_plan_tesis
+      INNER JOIN viw_alumno viwa
+      ON viwa.id_alumno = tbl_1.id_alumno
+    INNER JOIN viw_docente viwd
+      ON tbl.id_docente = viwd.id_docente
+      WHERE tbl.id_plan_tesis=IdPlanTesis
+      GROUP BY tbl_1.id_plan_tesis;
 END$$
 
-CREATE DEFINER=`moralesf`@`localhost` PROCEDURE `SPRUPDTesis`(IN pIdMaterialBibliografico BIGINT, IN pIntroduccion TEXT, IN pObjetivo TEXT, IN pResumen TEXT, IN pConclusion TEXT)
+DROP PROCEDURE IF EXISTS `SPRUPDTesis`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRUPDTesis`(IN pIdMaterialBibliografico BIGINT, IN pIntroduccion TEXT, IN pObjetivo TEXT, IN pResumen TEXT, IN pConclusion TEXT)
 BEGIN
 UPDATE tbl_material_bibliografico tbl SET
 tbl.introduccion=pIntroduccion,
@@ -629,6 +735,7 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `tbl_accion`
 --
 
+DROP TABLE IF EXISTS `tbl_accion`;
 CREATE TABLE IF NOT EXISTS `tbl_accion` (
   `id_accion` tinyint(4) NOT NULL AUTO_INCREMENT,
   `accion` varchar(10) NOT NULL,
@@ -652,6 +759,7 @@ INSERT INTO `tbl_accion` (`id_accion`, `accion`) VALUES
 -- Estructura de tabla para la tabla `tbl_alumno`
 --
 
+DROP TABLE IF EXISTS `tbl_alumno`;
 CREATE TABLE IF NOT EXISTS `tbl_alumno` (
   `id_alumno` bigint(20) NOT NULL AUTO_INCREMENT,
   `numero_carnet` varchar(20) DEFAULT NULL,
@@ -685,6 +793,7 @@ INSERT INTO `tbl_alumno` (`id_alumno`, `numero_carnet`, `condicion_alumno`, `id_
 -- Estructura de tabla para la tabla `tbl_alumno_plantesis`
 --
 
+DROP TABLE IF EXISTS `tbl_alumno_plantesis`;
 CREATE TABLE IF NOT EXISTS `tbl_alumno_plantesis` (
   `id_alumno_planTesis` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_alumno` bigint(20) NOT NULL,
@@ -693,7 +802,7 @@ CREATE TABLE IF NOT EXISTS `tbl_alumno_plantesis` (
   PRIMARY KEY (`id_alumno_planTesis`),
   KEY `FK_tbl_alumno_plantesis_tbl_alumno` (`id_alumno`),
   KEY `FK_tbl_alumno_plantesis_tbl_plan_tesis` (`id_plan_tesis`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=1820 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=682 AUTO_INCREMENT=45 ;
 
 --
 -- Volcado de datos para la tabla `tbl_alumno_plantesis`
@@ -708,7 +817,42 @@ INSERT INTO `tbl_alumno_plantesis` (`id_alumno_planTesis`, `id_alumno`, `id_plan
 (6, 2, 29, '1'),
 (7, 3, 30, '1'),
 (8, 1, 38, '1'),
-(9, 5, 37, '0');
+(9, 5, 38, '0'),
+(10, 1, 39, '1'),
+(11, 1, 40, '1'),
+(12, 1, 41, '1'),
+(13, 1, 42, '1'),
+(14, 1, 43, '1'),
+(15, 1, 44, '1'),
+(16, 1, 45, '1'),
+(17, 1, 46, '1'),
+(18, 1, 47, '1'),
+(19, 7, 47, '0'),
+(20, 1, 48, '1'),
+(21, 1, 49, '1'),
+(22, 1, 50, '1'),
+(23, 2, 65, '1'),
+(24, 7, 65, '0'),
+(25, 1, 71, '1'),
+(26, 1, 72, '1'),
+(27, 1, 73, '1'),
+(28, 1, 74, '1'),
+(29, 1, 75, '1'),
+(30, 1, 76, '1'),
+(31, 1, 77, '1'),
+(32, 1, 78, '1'),
+(33, 1, 79, '1'),
+(34, 1, 80, '1'),
+(35, 1, 81, '1'),
+(36, 1, 82, '1'),
+(37, 1, 83, '1'),
+(38, 1, 84, '1'),
+(39, 1, 85, '1'),
+(40, 1, 86, '1'),
+(41, 1, 87, '1'),
+(42, 1, 88, '1'),
+(43, 1, 89, '1'),
+(44, 1, 90, '1');
 
 -- --------------------------------------------------------
 
@@ -716,6 +860,7 @@ INSERT INTO `tbl_alumno_plantesis` (`id_alumno_planTesis`, `id_alumno`, `id_plan
 -- Estructura de tabla para la tabla `tbl_autor_externo`
 --
 
+DROP TABLE IF EXISTS `tbl_autor_externo`;
 CREATE TABLE IF NOT EXISTS `tbl_autor_externo` (
   `id_autor_externo` bigint(20) NOT NULL AUTO_INCREMENT,
   `apellido_paterno` varchar(50) NOT NULL,
@@ -731,6 +876,7 @@ CREATE TABLE IF NOT EXISTS `tbl_autor_externo` (
 -- Estructura de tabla para la tabla `tbl_autor_externo_material_bibliografico`
 --
 
+DROP TABLE IF EXISTS `tbl_autor_externo_material_bibliografico`;
 CREATE TABLE IF NOT EXISTS `tbl_autor_externo_material_bibliografico` (
   `id_autor_externo_material_bibliografico` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_autor_externo` bigint(20) NOT NULL,
@@ -746,6 +892,7 @@ CREATE TABLE IF NOT EXISTS `tbl_autor_externo_material_bibliografico` (
 -- Estructura de tabla para la tabla `tbl_autor_interno`
 --
 
+DROP TABLE IF EXISTS `tbl_autor_interno`;
 CREATE TABLE IF NOT EXISTS `tbl_autor_interno` (
   `id_autor_interno` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_tipo_autor_interno` bigint(20) NOT NULL,
@@ -777,6 +924,7 @@ INSERT INTO `tbl_autor_interno` (`id_autor_interno`, `id_tipo_autor_interno`, `i
 -- Estructura de tabla para la tabla `tbl_autor_interno_material_bibliografico`
 --
 
+DROP TABLE IF EXISTS `tbl_autor_interno_material_bibliografico`;
 CREATE TABLE IF NOT EXISTS `tbl_autor_interno_material_bibliografico` (
   `id_autor_interno_material_bibliografico` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_autor_interno` bigint(20) NOT NULL,
@@ -786,7 +934,7 @@ CREATE TABLE IF NOT EXISTS `tbl_autor_interno_material_bibliografico` (
   KEY `FK_tbl_autor_interno_material_bibliografico_tbl_docente` (`id_docente`),
   KEY `Reftbl_autor_interno5` (`id_autor_interno`),
   KEY `Reftbl_material_biliografico6` (`id_material_bibliografico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=1820 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=1024 AUTO_INCREMENT=18 ;
 
 --
 -- Volcado de datos para la tabla `tbl_autor_interno_material_bibliografico`
@@ -801,7 +949,14 @@ INSERT INTO `tbl_autor_interno_material_bibliografico` (`id_autor_interno_materi
 (7, 7, 8, 3),
 (8, 9, 9, 3),
 (9, 8, 10, 1),
-(10, 8, 11, 3);
+(10, 8, 11, 3),
+(11, 5, 12, 1),
+(12, 8, 13, 14),
+(13, 8, 14, 3),
+(14, 6, 15, 43),
+(15, 6, 16, 43),
+(16, 8, 17, 43),
+(17, 8, 18, 14);
 
 -- --------------------------------------------------------
 
@@ -809,29 +964,38 @@ INSERT INTO `tbl_autor_interno_material_bibliografico` (`id_autor_interno_materi
 -- Estructura de tabla para la tabla `tbl_componente`
 --
 
+DROP TABLE IF EXISTS `tbl_componente`;
 CREATE TABLE IF NOT EXISTS `tbl_componente` (
   `id_componente` int(11) NOT NULL AUTO_INCREMENT,
   `componente` varchar(100) NOT NULL,
   `descripcion_componente` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id_componente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=1489 AUTO_INCREMENT=99 ;
+  `id_oficina` int(11) NOT NULL,
+  `oficina` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id_componente`),
+  KEY `Reftbl_oficina1` (`id_oficina`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=1489 AUTO_INCREMENT=113 ;
 
 --
 -- Volcado de datos para la tabla `tbl_componente`
 --
 
-INSERT INTO `tbl_componente` (`id_componente`, `componente`, `descripcion_componente`) VALUES
-(77, 'Módulo de Acción', ''),
-(84, 'Módulo de Componente', ''),
-(86, 'Módulo de Rol', ''),
-(87, 'Módulo de Usuario', ''),
-(89, 'Módulo Solicitar Constancia', ''),
-(91, 'Módulo de Asignación de Roles', ''),
-(93, 'Módulo de Asignación de Componente Acción', ''),
-(94, 'Módulo de Asignación de Acción', ''),
-(96, 'Módulo Control de Tesis', ''),
-(97, 'Módulo Cargar Voucher', ''),
-(98, 'Módulo Solicitudes por Aprobar', '');
+INSERT INTO `tbl_componente` (`id_componente`, `componente`, `descripcion_componente`, `id_oficina`, `oficina`) VALUES
+(77, 'Módulo de Acción', 'Accions', 26, NULL),
+(84, 'Módulo de Componente', '', 1, NULL),
+(86, 'Módulo de Rol', 'roles', 2, NULL),
+(87, 'Módulo de Usuario', '', 1, NULL),
+(89, 'Módulo Solicitar Constancia', '', 2, NULL),
+(91, 'Módulo de Asignación de Roles', '', 1, NULL),
+(93, 'Módulo de Asignación de Componente Acción', '', 1, NULL),
+(94, 'Módulo de Asignación de Acción', '', 1, NULL),
+(96, 'Módulo Control de Tesis', '', 1, NULL),
+(97, 'Módulo Cargar Voucher', '', 1, NULL),
+(98, 'Módulo Solicitudes por Aprobar', '', 1, NULL),
+(100, 'Modulo Scooby', 'Perro', 2, NULL),
+(109, 'Módulo nomb', 'hiekeh', 2, NULL),
+(110, 'Módulo Alianza', 'arriba', 29, NULL),
+(111, 'Modulo Súper Campeones', 'hola', 29, NULL),
+(112, 'Módulo Perú Caaaaaaaaampeón', 'hola', 29, NULL);
 
 -- --------------------------------------------------------
 
@@ -839,6 +1003,7 @@ INSERT INTO `tbl_componente` (`id_componente`, `componente`, `descripcion_compon
 -- Estructura de tabla para la tabla `tbl_componente_accion`
 --
 
+DROP TABLE IF EXISTS `tbl_componente_accion`;
 CREATE TABLE IF NOT EXISTS `tbl_componente_accion` (
   `id_componente_accion` int(11) NOT NULL AUTO_INCREMENT,
   `id_accion` tinyint(4) NOT NULL,
@@ -871,6 +1036,7 @@ INSERT INTO `tbl_componente_accion` (`id_componente_accion`, `id_accion`, `id_co
 -- Estructura de tabla para la tabla `tbl_docente`
 --
 
+DROP TABLE IF EXISTS `tbl_docente`;
 CREATE TABLE IF NOT EXISTS `tbl_docente` (
   `id_docente` bigint(20) NOT NULL AUTO_INCREMENT,
   `codigo_docente` varchar(10) DEFAULT NULL,
@@ -978,6 +1144,7 @@ INSERT INTO `tbl_docente` (`id_docente`, `codigo_docente`, `codigo_personal`, `c
 -- Estructura de tabla para la tabla `tbl_escuela`
 --
 
+DROP TABLE IF EXISTS `tbl_escuela`;
 CREATE TABLE IF NOT EXISTS `tbl_escuela` (
   `id_escuela` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_escuela` char(4) NOT NULL,
@@ -1008,6 +1175,7 @@ INSERT INTO `tbl_escuela` (`id_escuela`, `codigo_escuela`, `escuela`, `escuela_a
 -- Estructura de tabla para la tabla `tbl_estado_plan_tesis`
 --
 
+DROP TABLE IF EXISTS `tbl_estado_plan_tesis`;
 CREATE TABLE IF NOT EXISTS `tbl_estado_plan_tesis` (
   `id_estado_plan_tesis` int(11) NOT NULL AUTO_INCREMENT,
   `estado` varchar(30) NOT NULL,
@@ -1032,6 +1200,7 @@ INSERT INTO `tbl_estado_plan_tesis` (`id_estado_plan_tesis`, `estado`, `color`, 
 -- Estructura de tabla para la tabla `tbl_facultad`
 --
 
+DROP TABLE IF EXISTS `tbl_facultad`;
 CREATE TABLE IF NOT EXISTS `tbl_facultad` (
   `id_facultad` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_facultad` char(2) NOT NULL,
@@ -1066,6 +1235,7 @@ INSERT INTO `tbl_facultad` (`id_facultad`, `codigo_facultad`, `facultad`, `abrev
 -- Estructura de tabla para la tabla `tbl_material_bibliografico`
 --
 
+DROP TABLE IF EXISTS `tbl_material_bibliografico`;
 CREATE TABLE IF NOT EXISTS `tbl_material_bibliografico` (
   `id_material_bibliografico` bigint(20) NOT NULL AUTO_INCREMENT,
   `codigo_material_bibliografico` varchar(40) DEFAULT NULL,
@@ -1087,7 +1257,7 @@ CREATE TABLE IF NOT EXISTS `tbl_material_bibliografico` (
   PRIMARY KEY (`id_material_bibliografico`),
   KEY `Reftbl_tematica15` (`id_tematica`),
   KEY `Reftbl_tipo_material_bibliografico4` (`id_tipo_material_bibliografico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=1638 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=963 AUTO_INCREMENT=19 ;
 
 --
 -- Volcado de datos para la tabla `tbl_material_bibliografico`
@@ -1103,7 +1273,14 @@ INSERT INTO `tbl_material_bibliografico` (`id_material_bibliografico`, `codigo_m
 (8, '0', 'TESIS WEB', 'WEB INTRO TESIS', 'OBJT INTRO', 'RESUM INTRO', 'CONCLUS WEB', 2010, '', NULL, '', NULL, '', '', 1, NULL, '1'),
 (9, '0', 'TESIS WEB2', 'CAMBIO', 'CAMBIO', 'CAMBIO', 'CAMBIO', 2010, '', NULL, '', NULL, '', '', 1, NULL, '1'),
 (10, '0', 'TESIS 400', 'INTRODUCCIÓN CARÑO', 'INTRODUCCIÓN CARÑO', 'INTRODUCCIÓN CARÑO', 'INTRODUCCIÓN CARÑO', 2010, '', NULL, '', NULL, '', '', 1, NULL, '1'),
-(11, '0', 'TESIS PRIMERO', 'INTROOO', 'OBJT', 'RESUMEN', 'CONCLU', 2000, '', NULL, '', NULL, '', '', 1, NULL, '1');
+(11, '0', 'TESIS PRIMERO', 'INTROOO', 'OBJT', 'RESUMEN', 'CONCLU', 2000, '', NULL, '', NULL, '', '', 1, NULL, '1'),
+(12, '0', 'TESIS 4', 'ñalskd', 'ñaldsk', 'ñalsdk', 'ñlzdkads', 2013, '', NULL, '', NULL, '', '', 1, NULL, '1'),
+(13, '0', 'TESIS 5', 'ñalkdñaklsd', 'ñlasdkñlaskd', 'ñlaskdñlasd', 'ñalsdkñalsdads', 2012, '', NULL, '', NULL, '', '', 1, NULL, '1'),
+(14, '0', 'TESIS DE', 'alskdlakñsjd', 'ñalsdkkñalsdk', 'ñalksdkñlasd', 'ñaldkñlaskñlds', 2012, '', NULL, '', NULL, '', '', 1, NULL, '1'),
+(15, '0', 'qihiwasd', 'dsasdasd', 'asdasdasd', 'adasd', 'asdasdasd', 2013, '', NULL, '', NULL, '', '', 1, NULL, '1'),
+(16, '0', 'qihiwasd', 'dsasdasd', 'asdasdasd', 'adasd', 'asdasdasd', 2013, '', NULL, '', NULL, '', '', 1, NULL, '1'),
+(17, '0', 'KARINA', 'INTRO', 'ON', 'RE', 'C', 2012, '', NULL, '', NULL, '', '', 1, NULL, '1'),
+(18, '0', 'CESAR', 'ñlasdkñasd', 'ñlasdkñlasd', 'ñalkdsñ', 'ñalskdasld', 2012, '', NULL, '', NULL, '', '', 1, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -1111,6 +1288,7 @@ INSERT INTO `tbl_material_bibliografico` (`id_material_bibliografico`, `codigo_m
 -- Estructura de tabla para la tabla `tbl_material_bibliografico_docente`
 --
 
+DROP TABLE IF EXISTS `tbl_material_bibliografico_docente`;
 CREATE TABLE IF NOT EXISTS `tbl_material_bibliografico_docente` (
   `id_material_bibliografico_docente` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_material_bibliografico` bigint(20) NOT NULL,
@@ -1123,9 +1301,57 @@ CREATE TABLE IF NOT EXISTS `tbl_material_bibliografico_docente` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tbl_oficina`
+--
+
+DROP TABLE IF EXISTS `tbl_oficina`;
+CREATE TABLE IF NOT EXISTS `tbl_oficina` (
+  `id_oficina` int(11) NOT NULL AUTO_INCREMENT,
+  `oficina` varchar(100) NOT NULL,
+  `descripcion_oficina` varchar(100) DEFAULT NULL,
+  `activo` char(1) NOT NULL,
+  PRIMARY KEY (`id_oficina`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=16384 AUTO_INCREMENT=40 ;
+
+--
+-- Volcado de datos para la tabla `tbl_oficina`
+--
+
+INSERT INTO `tbl_oficina` (`id_oficina`, `oficina`, `descripcion_oficina`, `activo`) VALUES
+(1, 'Oficina Uno', '', '1'),
+(2, 'Oficina de Biblioteca Central ', NULL, '1'),
+(3, 'Usuario', NULL, '1'),
+(4, 'Administración', NULL, '1'),
+(5, 'Oficina de Almacén', NULL, '0'),
+(6, 'Oficina de Registro', NULL, '0'),
+(17, 'Oficinaaaa', 'hola', '0'),
+(18, 'OficinAAAAAAAAAAAA', 'C,VBJVBJFVBD', '0'),
+(19, 'Oficina............', 'nnkdvnkdv', '0'),
+(20, 'dsadas', 'sdadsa', '0'),
+(21, 'hghjghg', 'hghgh', '0'),
+(22, 'dsadsa', 'dsadsa', '0'),
+(23, 'dsadsaewq', 'ewqe', '1'),
+(24, 'Oficina de Salud', ':D', '0'),
+(25, 'fkljkjl', 'mlñjj', '0'),
+(26, 'Oficina de sdsg', 'sfdgf', '1'),
+(27, 'oficina de ksnks', 'mnmbc', '0'),
+(28, 'Oficina de Deportes', 'Siiiiiiiiiiiii!!!!', '0'),
+(29, 'Oficina de Cultura', 'yupiiiiiiii ^_^', '1'),
+(31, 'Oficina de Comedor', 'gjsdaks', '0'),
+(32, '-_', '', '1'),
+(33, '{}', '', '1'),
+(35, 'Oficina de Scooby Do', 'Un perrito muy travieso :D', '0'),
+(36, 'Oficina tomasaaa', 'kkjdf', '1'),
+(37, 'Oficina de Tobby', 'aaaaaa', '0'),
+(39, 'Oficina de Aseo', 'hkfhks', '0');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tbl_plan_tesis`
 --
 
+DROP TABLE IF EXISTS `tbl_plan_tesis`;
 CREATE TABLE IF NOT EXISTS `tbl_plan_tesis` (
   `id_plan_tesis` bigint(20) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(300) NOT NULL,
@@ -1141,7 +1367,7 @@ CREATE TABLE IF NOT EXISTS `tbl_plan_tesis` (
   PRIMARY KEY (`id_plan_tesis`),
   KEY `Reftbl_docente24` (`id_docente`),
   KEY `Reftbl_estado_plan_tesis32` (`id_estado_plan_tesis`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=1092 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=348 AUTO_INCREMENT=91 ;
 
 --
 -- Volcado de datos para la tabla `tbl_plan_tesis`
@@ -1152,9 +1378,9 @@ INSERT INTO `tbl_plan_tesis` (`id_plan_tesis`, `titulo`, `introduccion`, `objeti
 (3, 'MONOGRAFIA2', 'INTRO2', 'OBJETIVO2', 'RESUMEN2', 'CONCLUSION2', '1', NULL, '0332101029@injfsc.edu.pe', 3, 2),
 (4, 'MONOGRAFIA3', 'INTRO3', 'OBJETIVO3', 'RESUMEN3', 'CONCLUSION3', '1', NULL, '0332101030@injfsc.edu.pe', 3, 2),
 (5, 'MONOGRAFIA4', 'INTRO4', 'OBJETIVO4', 'RESUMEN4', 'CONCLUSION4', '1', NULL, '0332101031@injfsc.edu.pe', 3, 2),
-(28, 'MONOGRAFIA5', 'INTRO5', 'OBJETIVO5', 'RESUMEN5', 'CONCLUSION5', '1', NULL, '0332101032@injfsc.edu.pe', 4, 1),
+(28, 'MONOGRAFIA5', 'INTRO5', 'OBJETIVO5', 'RESUMEN5', 'CONCLUSION5', '1', NULL, '0332101032@injfsc.edu.pe', 4, 2),
 (29, 'MONOGRAFIA6', 'INTRO6', 'OBJETIVO6', 'RESUMEN6', 'CONCLUSION6', '1', NULL, '0332101034@injfsc.edu.pe', 4, 1),
-(30, 'MONOGRAFIA7', 'INTRO7', 'OBJETIVO7', 'RESUMEN7', 'CONCLUSION7', '1', NULL, '0332101033@injfsc.edu.pe', 4, 1),
+(30, 'MONOGRAFIA7', 'INTRO7', 'OBJETIVO7', 'RESUMEN7', 'CONCLUSION7', '1', NULL, '0332101033@injfsc.edu.pe', 4, 3),
 (31, 'MONOGRAFIA8', 'INTRO8', 'OBJETIVO8', 'RESUMEN8', 'CONCLUSION8', '1', NULL, '0332101035@injfsc.edu.pe', 3, 2),
 (32, 'MONOGRAFIA9', 'INTRO9', 'OBJETIVO9', 'RESUMEN9', 'CONCLUSION9', '1', NULL, '0332101036@injfsc.edu.pe', 3, 1),
 (33, 'TÉSIS NUMERO 100', 'INTRODUCCIÓN 100', 'OBJETIVO 100', 'RESUMEN 100', 'CONCLUSIÓN 100', '1', NULL, '0332101040@unjfsc.edu.pe', 3, 1),
@@ -1162,7 +1388,59 @@ INSERT INTO `tbl_plan_tesis` (`id_plan_tesis`, `titulo`, `introduccion`, `objeti
 (35, 'PRUEBA 1', 'INTRO PRUEBA', 'OBJETIVO PRUEBA', 'RESUMEN PRUEBA', 'CONCLUSION PRUEBA', '1', NULL, 'prueba@hotmail.com', 4, 1),
 (36, 'SOLICITAR', 'INTRODUCCION', 'OBJETIVO', 'RESUMEN', 'CONCLUSION', '1', NULL, 'cesar2010_13@hotmail.com', 3, 1),
 (37, 'SOL', 'INTRO', 'OBJ', 'RES', 'CONCL', '1', NULL, 'cesar@hotmail.com', 3, 1),
-(38, 'SOLICITAR', 'INTRODUCCION', 'OBJETIVO', 'RESUMEN', 'CONCLUSION', '1', NULL, 'cesar2010_13@hotmail.com', 3, 3);
+(38, 'SOLICITAR', 'INTRODUCCION', 'OBJETIVO', 'RESUMEN', 'CONCLUSION', '1', NULL, 'cesar2010_13@hotmail.com', 3, 2),
+(39, 'CESAR', 'lksjdfljkdsf', 'ñsldkfkskñldf', 'ñskkñsdfkñldfs', 'ñsldfkñlsdkñlfd', '1', NULL, 'cesar@hotmail.com', 14, 3),
+(40, 'TITU', 'ASASDKJLLASKJ', 'AA', 'AAA', 'AAA', '1', NULL, 'cesar@hotmail.com', 1, 3),
+(41, 'TITU', 'INTRO', 'OBJ', 'RESU', 'CON', '1', NULL, 'cesar2010_13@hot.com', 14, 2),
+(42, 'DOS', 'INTRO', 'OBG', 'RESI', 'CON', '1', NULL, 'cesar@hotmail.com', 52, 3),
+(43, 'gyfgy', 'hgaidsughasui', 'ñlaskdñaslkd', 'ñalkdñlasdk', 'ñalskdñasldk', '1', NULL, 'c@hotmail.com', 1, 2),
+(44, 'CESAR', 'cesar', 'luis', 'nicho', 'diaz', '1', NULL, 'cesar@hotmail.com', 3, 3),
+(45, 'PLAN DE TESIS', 'INTRODUCCIÓN PLAN DE TESIS', 'OBJETIVO PLAN DE TESIS', 'RESUMEN PLAN DE TESIS', 'CONCLUCIÓN PLAN DE TESIS', '1', NULL, 'cesar2010_13@hotmail.com', 52, 1),
+(46, 'PLAN DE TESIS1', 'INTRO PLAN DE TRSIS1', 'RESUMEN PLAN DE TESIS 1', 'RESUMEN PLAN DE TESIS 1', 'CONCLUSIÓN PLAN DE TESIS 1', '1', NULL, 'cesar2010_13@hotmail.com', 52, 1),
+(47, 'PLAN DE TESIS2', 'INTRO', 'OBJ', 'RESUM', 'CONCLUSI', '1', NULL, 'cesar@hotmail.com', 52, 3),
+(48, 'TITU', 'kajsdklasjd', 'añlskdlañsdkas', 'lañkdsñlaskdlas', 'añldskñaslkdlas', '1', NULL, 'cesar@hotmail.com', 3, 3),
+(49, 'TITU', 'LADKJSLASKDJ', 'LÑAKDÑLADSK', 'ÑLASKDÑALSD', 'ÑALSDKÑASLDK', '1', NULL, 'cesar@hotmail.com', 1, 2),
+(50, 'MKJBIUK', 'rgdf', 'ffd', 'dgrdf', 'xdfg', '1', NULL, 'fdgv@micorreo.com', 40, 2),
+(51, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', '', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(52, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', '', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(53, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', '', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(54, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(55, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(56, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(57, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(58, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(59, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(60, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(61, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(62, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(63, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(64, 'soporte', 'mi trabajo', 'mi trabjao', 'mi trabajo', 'mi trabaj', '1', NULL, 'sopotelo@hotmail.com', 85, 1),
+(65, 'PRIMERO', 'INTRO', 'OBJ', 'RES', '', '1', NULL, 'cesar2010_13@hotmail.com', 52, 1),
+(66, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
+(67, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
+(68, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
+(69, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
+(70, 'CLAROS', 'INTROD', 'OBJ', 'RESU', '', '1', NULL, 'cesar@hotm.com', 16, 1),
+(71, 'Tesis', 'ccccvg', 'hklj', 'bkjj', 'undefined', '1', NULL, 'marletlnt09@hotmail.com', 45, 1),
+(72, 'dgdg', 'dgdg', 'ggggg', 'aaaa', 'undefined', '1', NULL, 'nxbb@hotmail.com', 1, 1),
+(73, 'Prueba1', 'aasas', 'asdd', 'jcdc', 'undefined', '1', NULL, 'mar@gmail.com', 3, 1),
+(74, 'Pruebaaaa', 'aaaaa', 'ccccccccccccccccc', 'tyyyu', 'undefined', '1', NULL, 'sdd@hotmail.com', 10, 1),
+(75, 'Tesis Software', 'sdsada', 'dsad', 'dsada', 'undefined', '1', NULL, 'dey@gmail.com', 56, 1),
+(76, 'Tesis de Sistemas', 'shhs', 'hclkdhcdliuc', 'jbcdbc', 'undefined', '1', NULL, 'marle@gmail.com', 15, 1),
+(77, 'TESIS informacion', 'dsadsa', 'sadasdsa', 'rtreter', 'undefined', '1', NULL, 'leito@hotmail.com', 41, 1),
+(78, 'Tesis Civil', 'dsadas', 'Hdsada', 'dsadsa', 'undefined', '1', NULL, 'lkq@hotmail.com', 7, 1),
+(79, 'COSTOS', 'dasdasdas', 'dsadasd', 'dsadsa', 'undefined', '1', NULL, 'arturo@gmail.com', 12, 1),
+(80, 'Sistemas Operativos', 'HOla', 'hoa', 'hola', 'undefined', '1', NULL, 'artur@gmail.com', 46, 1),
+(81, 'dasda', 'dasda', 'ccc', 'dd', 'undefined', '1', NULL, 'dsadas@gmail.com', 37, 1),
+(82, 'jh', 'ddsadsad', 'mlfd', 'ln', 'undefined', '1', NULL, 'correo@gmail.com', 11, 1),
+(83, 'Tesis final', 'nkkdjx', 'ccrdhg', 'nnmcdjx', 'undefined', '1', NULL, 'msxsjx@hotmail.com', 63, 1),
+(84, 'Tesis base de datos ', 'abc', 'cba', 'bac', 'undefined', '1', NULL, 'hafhsd@hotmail.com', 1, 1),
+(85, 'Tesis de khkshas', 'bxsjggcs', 'gdyctutcu', 'vysaju2txjgz', 'undefined', '1', NULL, 'fhsffs@hotmail.com', 46, 1),
+(86, 'ingadsa', 'dsadsa', 'dsadsa', 'asdsadsa', 'undefined', '1', NULL, 'de@hotmail.com', 29, 1),
+(87, 'tesis', 'dasdas', 'dadsada', 'dsad', 'undefined', '1', NULL, 'cd@gmail.com', 30, 1),
+(88, 'dasdas', 'dasdsa', 'dsadas', 'dsadsadsa', 'undefined', '1', NULL, 'dp@gmail.com', 14, 1),
+(89, 'Tesis de Investigación', 'nskxksxks', 'bjcdjmchdm', 'bjddjdcjd', 'undefined', '1', NULL, 'marle@hotmail.com', 23, 1),
+(90, 'dsadsa', 'qqwq', 'qqq', 'qq', 'undefined', '1', NULL, 'e@gmail.com', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1170,12 +1448,13 @@ INSERT INTO `tbl_plan_tesis` (`id_plan_tesis`, `titulo`, `introduccion`, `objeti
 -- Estructura de tabla para la tabla `tbl_rol`
 --
 
+DROP TABLE IF EXISTS `tbl_rol`;
 CREATE TABLE IF NOT EXISTS `tbl_rol` (
   `id_rol` int(11) NOT NULL AUTO_INCREMENT,
   `rol` varchar(50) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_rol`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=3276 AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=2730 AUTO_INCREMENT=70 ;
 
 --
 -- Volcado de datos para la tabla `tbl_rol`
@@ -1186,7 +1465,8 @@ INSERT INTO `tbl_rol` (`id_rol`, `rol`, `descripcion`) VALUES
 (64, 'Tester', ''),
 (65, 'Jefe de Biblioteca Central', ''),
 (66, 'Asistenta de Biblioteca', ''),
-(67, 'Visitante', '');
+(67, 'Visitante', ''),
+(69, 'Alumno', '');
 
 -- --------------------------------------------------------
 
@@ -1194,6 +1474,7 @@ INSERT INTO `tbl_rol` (`id_rol`, `rol`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `tbl_rol_componente_accion`
 --
 
+DROP TABLE IF EXISTS `tbl_rol_componente_accion`;
 CREATE TABLE IF NOT EXISTS `tbl_rol_componente_accion` (
   `id_rol_componente_accion` int(11) NOT NULL AUTO_INCREMENT,
   `id_rol` int(11) NOT NULL,
@@ -1201,7 +1482,7 @@ CREATE TABLE IF NOT EXISTS `tbl_rol_componente_accion` (
   PRIMARY KEY (`id_rol_componente_accion`),
   KEY `Reftbl_componente_accion31` (`id_componente_accion`),
   KEY `Reftbl_rol22` (`id_rol`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=780 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=682 AUTO_INCREMENT=34 ;
 
 --
 -- Volcado de datos para la tabla `tbl_rol_componente_accion`
@@ -1230,7 +1511,8 @@ INSERT INTO `tbl_rol_componente_accion` (`id_rol_componente_accion`, `id_rol`, `
 (29, 63, 14),
 (30, 63, 15),
 (31, 65, 12),
-(32, 65, 13);
+(32, 65, 13),
+(33, 69, 8);
 
 -- --------------------------------------------------------
 
@@ -1238,6 +1520,7 @@ INSERT INTO `tbl_rol_componente_accion` (`id_rol_componente_accion`, `id_rol`, `
 -- Estructura de tabla para la tabla `tbl_sujeto`
 --
 
+DROP TABLE IF EXISTS `tbl_sujeto`;
 CREATE TABLE IF NOT EXISTS `tbl_sujeto` (
   `id_sujeto` bigint(20) NOT NULL AUTO_INCREMENT,
   `fecha_registro` date NOT NULL,
@@ -1257,7 +1540,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sujeto` (
   `email_personal` varchar(50) DEFAULT NULL,
   `activo` char(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_sujeto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=110 AUTO_INCREMENT=870 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=134 AUTO_INCREMENT=870 ;
 
 --
 -- Volcado de datos para la tabla `tbl_sujeto`
@@ -2068,6 +2351,7 @@ INSERT INTO `tbl_sujeto` (`id_sujeto`, `fecha_registro`, `apellido_paterno`, `ap
 -- Estructura de tabla para la tabla `tbl_tematica`
 --
 
+DROP TABLE IF EXISTS `tbl_tematica`;
 CREATE TABLE IF NOT EXISTS `tbl_tematica` (
   `id_tematica` int(11) NOT NULL AUTO_INCREMENT,
   `tematica` varchar(100) NOT NULL,
@@ -2094,6 +2378,7 @@ INSERT INTO `tbl_tematica` (`id_tematica`, `tematica`, `descripcion_tematica`, `
 -- Estructura de tabla para la tabla `tbl_tipo_autor_interno`
 --
 
+DROP TABLE IF EXISTS `tbl_tipo_autor_interno`;
 CREATE TABLE IF NOT EXISTS `tbl_tipo_autor_interno` (
   `id_tipo_autor_interno` bigint(20) NOT NULL AUTO_INCREMENT,
   `tipo_autor_interno` varchar(25) NOT NULL,
@@ -2119,6 +2404,7 @@ INSERT INTO `tbl_tipo_autor_interno` (`id_tipo_autor_interno`, `tipo_autor_inter
 -- Estructura de tabla para la tabla `tbl_tipo_material_bibliografico`
 --
 
+DROP TABLE IF EXISTS `tbl_tipo_material_bibliografico`;
 CREATE TABLE IF NOT EXISTS `tbl_tipo_material_bibliografico` (
   `id_tipo_material_bibliografico` tinyint(4) NOT NULL AUTO_INCREMENT,
   `tipo_material_bibliografico` varchar(100) NOT NULL,
@@ -2142,6 +2428,7 @@ INSERT INTO `tbl_tipo_material_bibliografico` (`id_tipo_material_bibliografico`,
 -- Estructura de tabla para la tabla `tbl_usuario`
 --
 
+DROP TABLE IF EXISTS `tbl_usuario`;
 CREATE TABLE IF NOT EXISTS `tbl_usuario` (
   `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(50) NOT NULL,
@@ -2150,7 +2437,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usuario` (
   `active` char(1) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `Reftbl_sujeto18` (`id_sujeto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=4096 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=2730 AUTO_INCREMENT=73 ;
 
 --
 -- Volcado de datos para la tabla `tbl_usuario`
@@ -2158,10 +2445,12 @@ CREATE TABLE IF NOT EXISTS `tbl_usuario` (
 
 INSERT INTO `tbl_usuario` (`id_usuario`, `usuario`, `contrasenia`, `id_sujeto`, `active`) VALUES
 (24, 'admin', '123', 1, '1'),
-(67, 'cesarcnd', 'cesarnicho', 2, '1'),
+(67, 'cesarcnd', 'cesar', 2, '1'),
 (68, 'user', 'user', 3, '1'),
 (69, 'Tester', 'tester', 4, '1'),
-(70, 'lino', 'lino', 518, '1');
+(70, 'lino', 'lino', 518, '1'),
+(71, 'carlos', 'carlos', 119, '1'),
+(72, 'Marlenita', '12345', 11, '1');
 
 -- --------------------------------------------------------
 
@@ -2169,6 +2458,7 @@ INSERT INTO `tbl_usuario` (`id_usuario`, `usuario`, `contrasenia`, `id_sujeto`, 
 -- Estructura de tabla para la tabla `tbl_usuario_rol`
 --
 
+DROP TABLE IF EXISTS `tbl_usuario_rol`;
 CREATE TABLE IF NOT EXISTS `tbl_usuario_rol` (
   `id_usuario_rol` int(11) NOT NULL AUTO_INCREMENT,
   `id_rol` int(11) NOT NULL,
@@ -2176,7 +2466,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usuario_rol` (
   PRIMARY KEY (`id_usuario_rol`),
   KEY `Reftbl_rol16` (`id_rol`),
   KEY `Reftbl_usuario17` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=5461 AUTO_INCREMENT=119 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AVG_ROW_LENGTH=2730 AUTO_INCREMENT=120 ;
 
 --
 -- Volcado de datos para la tabla `tbl_usuario_rol`
@@ -2186,7 +2476,9 @@ INSERT INTO `tbl_usuario_rol` (`id_usuario_rol`, `id_rol`, `id_usuario`) VALUES
 (3, 63, 67),
 (39, 63, 24),
 (116, 64, 69),
-(118, 65, 70);
+(117, 65, 70),
+(118, 64, 24),
+(119, 69, 71);
 
 -- --------------------------------------------------------
 
@@ -2194,19 +2486,45 @@ INSERT INTO `tbl_usuario_rol` (`id_usuario_rol`, `id_rol`, `id_usuario`) VALUES
 -- Estructura de tabla para la tabla `tbl_voucher`
 --
 
+DROP TABLE IF EXISTS `tbl_voucher`;
 CREATE TABLE IF NOT EXISTS `tbl_voucher` (
   `id_voucher` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_alumno` varchar(15) DEFAULT NULL,
   `documento` varchar(15) DEFAULT NULL,
   `tipo_persona` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_voucher`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=910 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=910 AUTO_INCREMENT=23 ;
+
+--
+-- Volcado de datos para la tabla `tbl_voucher`
+--
+
+INSERT INTO `tbl_voucher` (`id_voucher`, `codigo_alumno`, `documento`, `tipo_persona`) VALUES
+(5, '    03321010281', '', 1),
+(6, '', '475124619101213', 4),
+(7, '    03321010281', '', 1),
+(8, '', '475124619101213', 4),
+(9, '    03321010281', '', 1),
+(10, '', '475124619101213', 4),
+(11, '    03321010281', '', 1),
+(12, '', '475124619101213', 4),
+(13, '', '020120414433238', 4),
+(14, '', '020120414507843', 4),
+(15, '4140196689     ', '', 1),
+(16, '', '020120414080718', 4),
+(17, '', '020120414214824', 4),
+(18, '', '020120414224121', 4),
+(19, '', '020120414353914', 4),
+(20, '', '020120414547921', 4),
+(21, '', '020120414409344', 4),
+(22, '990442101023   ', '', 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura Stand-in para la vista `viw_alumno`
 --
+DROP VIEW IF EXISTS `viw_alumno`;
 CREATE TABLE IF NOT EXISTS `viw_alumno` (
 `id_sujeto` bigint(20)
 ,`id_alumno` bigint(20)
@@ -2224,8 +2542,22 @@ CREATE TABLE IF NOT EXISTS `viw_alumno` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `viw_componente`
+--
+DROP VIEW IF EXISTS `viw_componente`;
+CREATE TABLE IF NOT EXISTS `viw_componente` (
+`id_componente` int(11)
+,`componente` varchar(100)
+,`descripcion_componente` varchar(100)
+,`id_oficina` int(11)
+,`oficina` varchar(100)
+);
+-- --------------------------------------------------------
+
+--
 -- Estructura Stand-in para la vista `viw_docente`
 --
+DROP VIEW IF EXISTS `viw_docente`;
 CREATE TABLE IF NOT EXISTS `viw_docente` (
 `id_docente` bigint(20)
 ,`codigo_docente` varchar(10)
@@ -2250,6 +2582,7 @@ CREATE TABLE IF NOT EXISTS `viw_docente` (
 --
 -- Estructura Stand-in para la vista `viw_material_bibliografico_interno_alumno`
 --
+DROP VIEW IF EXISTS `viw_material_bibliografico_interno_alumno`;
 CREATE TABLE IF NOT EXISTS `viw_material_bibliografico_interno_alumno` (
 `id_material_bibliografico` bigint(20)
 ,`id_docente` bigint(20)
@@ -2277,8 +2610,25 @@ CREATE TABLE IF NOT EXISTS `viw_material_bibliografico_interno_alumno` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `viw_plan_tesis`
+--
+DROP VIEW IF EXISTS `viw_plan_tesis`;
+CREATE TABLE IF NOT EXISTS `viw_plan_tesis` (
+`id_plan_tesis` bigint(20)
+,`id_docente` bigint(20)
+,`id_alumno` bigint(20)
+,`id_facultad` int(11)
+,`titulo` varchar(300)
+,`solicitante` varchar(204)
+,`asesor` varchar(460)
+,`abreaviatura_escuela` varchar(20)
+);
+-- --------------------------------------------------------
+
+--
 -- Estructura Stand-in para la vista `viw_sujeto`
 --
+DROP VIEW IF EXISTS `viw_sujeto`;
 CREATE TABLE IF NOT EXISTS `viw_sujeto` (
 `id_sujeto` bigint(20)
 ,`sujeto` varchar(204)
@@ -2293,6 +2643,7 @@ CREATE TABLE IF NOT EXISTS `viw_sujeto` (
 --
 -- Estructura Stand-in para la vista `viw_tesis`
 --
+DROP VIEW IF EXISTS `viw_tesis`;
 CREATE TABLE IF NOT EXISTS `viw_tesis` (
 `id_material_bibliografico` bigint(20)
 ,`id_docente` bigint(20)
@@ -2314,6 +2665,7 @@ CREATE TABLE IF NOT EXISTS `viw_tesis` (
 --
 -- Estructura Stand-in para la vista `viw_usuario`
 --
+DROP VIEW IF EXISTS `viw_usuario`;
 CREATE TABLE IF NOT EXISTS `viw_usuario` (
 `id_usuario` bigint(20)
 ,`id_sujeto` bigint(20)
@@ -2329,7 +2681,16 @@ CREATE TABLE IF NOT EXISTS `viw_usuario` (
 --
 DROP TABLE IF EXISTS `viw_alumno`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER VIEW `viw_alumno` AS select `viw`.`id_sujeto` AS `id_sujeto`,`tbla`.`id_alumno` AS `id_alumno`,`tblf`.`id_facultad` AS `id_facultad`,`tble`.`id_escuela` AS `id_escuela`,`viw`.`sujeto` AS `alumno`,`tbla`.`numero_carnet` AS `numero_carnet`,`tblf`.`facultad` AS `facultad`,`tblf`.`abreviatura_facultad` AS `abreviatura_facultad`,`tble`.`escuela` AS `escuela`,`tble`.`escuela_abreviatura` AS `escuela_abreviatura`,`viw`.`email_institucional` AS `email_institucional`,`viw`.`email_personal` AS `email_personal` from (((`tbl_escuela` `tble` join `tbl_facultad` `tblf` on((`tble`.`id_facultad` = `tblf`.`id_facultad`))) join `tbl_alumno` `tbla` on((`tbla`.`id_escuela` = `tble`.`id_escuela`))) join `viw_sujeto` `viw` on((`tbla`.`id_sujeto` = `viw`.`id_sujeto`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_alumno` AS select `viw`.`id_sujeto` AS `id_sujeto`,`tbla`.`id_alumno` AS `id_alumno`,`tblf`.`id_facultad` AS `id_facultad`,`tble`.`id_escuela` AS `id_escuela`,`viw`.`sujeto` AS `alumno`,`tbla`.`numero_carnet` AS `numero_carnet`,`tblf`.`facultad` AS `facultad`,`tblf`.`abreviatura_facultad` AS `abreviatura_facultad`,`tble`.`escuela` AS `escuela`,`tble`.`escuela_abreviatura` AS `escuela_abreviatura`,`viw`.`email_institucional` AS `email_institucional`,`viw`.`email_personal` AS `email_personal` from (((`tbl_escuela` `tble` join `tbl_facultad` `tblf` on((`tble`.`id_facultad` = `tblf`.`id_facultad`))) join `tbl_alumno` `tbla` on((`tbla`.`id_escuela` = `tble`.`id_escuela`))) join `viw_sujeto` `viw` on((`tbla`.`id_sujeto` = `viw`.`id_sujeto`)));
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `viw_componente`
+--
+DROP TABLE IF EXISTS `viw_componente`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_componente` AS select `tbl_componente`.`id_componente` AS `id_componente`,`tbl_componente`.`componente` AS `componente`,`tbl_componente`.`descripcion_componente` AS `descripcion_componente`,`tbl_componente`.`id_oficina` AS `id_oficina`,`tbl_oficina`.`oficina` AS `oficina` from (`tbl_componente` join `tbl_oficina` on((`tbl_componente`.`id_oficina` = `tbl_oficina`.`id_oficina`)));
 
 -- --------------------------------------------------------
 
@@ -2338,7 +2699,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER V
 --
 DROP TABLE IF EXISTS `viw_docente`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER VIEW `viw_docente` AS select `tbl_d`.`id_docente` AS `id_docente`,`tbl_d`.`codigo_docente` AS `codigo_docente`,`tbl_d`.`codigo_personal` AS `codigo_personal`,`tbl_s`.`id_sujeto` AS `id_sujeto`,`tbl_d`.`id_facultad` AS `id_facultad`,`tbl_s`.`fecha_registro` AS `fecha_registro`,concat(ifnull(`tbl_s`.`apellido_paterno`,''),' ',ifnull(`tbl_s`.`apellido_materno`,''),', ',ifnull(`tbl_s`.`primer_nombre`,''),' ',ifnull(`tbl_s`.`segundo_nombre`,''),' ',ifnull(`tbl_s`.`tercer_nombre`,'')) AS `docente`,`tbl_s`.`fecha_nacimiento` AS `fecha_nacimiento`,`tbl_s`.`dni` AS `dni`,`tbl_s`.`direccion` AS `direccion`,`tbl_s`.`estado_civil` AS `estado_civil`,`tbl_s`.`sexo` AS `sexo`,`tbl_s`.`telefono_fijo` AS `telefono_fijo`,`tbl_s`.`telefono_movil` AS `telefono_movil`,`tbl_s`.`email_institucional` AS `email_institucional`,`tbl_s`.`email_personal` AS `email_personal`,`tbl_s`.`activo` AS `activo` from (`tbl_docente` `tbl_d` join `tbl_sujeto` `tbl_s` on((`tbl_d`.`id_sujeto` = `tbl_s`.`id_sujeto`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_docente` AS select `tbl_d`.`id_docente` AS `id_docente`,`tbl_d`.`codigo_docente` AS `codigo_docente`,`tbl_d`.`codigo_personal` AS `codigo_personal`,`tbl_s`.`id_sujeto` AS `id_sujeto`,`tbl_d`.`id_facultad` AS `id_facultad`,`tbl_s`.`fecha_registro` AS `fecha_registro`,concat(ifnull(`tbl_s`.`apellido_paterno`,''),' ',ifnull(`tbl_s`.`apellido_materno`,''),', ',ifnull(`tbl_s`.`primer_nombre`,''),' ',ifnull(`tbl_s`.`segundo_nombre`,''),' ',ifnull(`tbl_s`.`tercer_nombre`,'')) AS `docente`,`tbl_s`.`fecha_nacimiento` AS `fecha_nacimiento`,`tbl_s`.`dni` AS `dni`,`tbl_s`.`direccion` AS `direccion`,`tbl_s`.`estado_civil` AS `estado_civil`,`tbl_s`.`sexo` AS `sexo`,`tbl_s`.`telefono_fijo` AS `telefono_fijo`,`tbl_s`.`telefono_movil` AS `telefono_movil`,`tbl_s`.`email_institucional` AS `email_institucional`,`tbl_s`.`email_personal` AS `email_personal`,`tbl_s`.`activo` AS `activo` from (`tbl_docente` `tbl_d` join `tbl_sujeto` `tbl_s` on((`tbl_d`.`id_sujeto` = `tbl_s`.`id_sujeto`)));
 
 -- --------------------------------------------------------
 
@@ -2347,7 +2708,16 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER V
 --
 DROP TABLE IF EXISTS `viw_material_bibliografico_interno_alumno`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER VIEW `viw_material_bibliografico_interno_alumno` AS select `tbl1`.`id_material_bibliografico` AS `id_material_bibliografico`,`viw2`.`id_docente` AS `id_docente`,`viw1`.`id_alumno` AS `id_alumno`,`tbl2`.`id_autor_interno` AS `id_autor_interno`,`tbl2`.`id_tipo_autor_interno` AS `id_tipo_autor_interno`,`viw1`.`alumno` AS `alumno`,`viw2`.`docente` AS `docente`,`viw1`.`id_facultad` AS `id_facultad`,`viw1`.`id_escuela` AS `id_escuela`,`viw1`.`facultad` AS `facultad`,`viw1`.`abreviatura_facultad` AS `abreviatura_facultad`,`viw1`.`escuela` AS `escuela`,`viw1`.`escuela_abreviatura` AS `escuela_abreviatura`,`tbl3`.`titulo` AS `titulo`,`tbl3`.`introduccion` AS `introduccion`,`tbl3`.`objetivo` AS `objetivo`,`tbl3`.`resumen` AS `resumen`,`tbl3`.`conclusion` AS `conclusion`,`tbl3`.`anio` AS `anio`,`tbl3`.`id_tematica` AS `id_tematica`,`tbl3`.`id_tipo_material_bibliografico` AS `id_tipo_material_bibliografico`,`tbl3`.`activo` AS `activo` from ((((`tbl_autor_interno_material_bibliografico` `tbl1` join `tbl_autor_interno` `tbl2` on((`tbl1`.`id_autor_interno` = `tbl2`.`id_autor_interno`))) join `tbl_material_bibliografico` `tbl3` on((`tbl1`.`id_material_bibliografico` = `tbl3`.`id_material_bibliografico`))) join `viw_alumno` `viw1` on((`viw1`.`id_alumno` = `tbl2`.`id_alumno`))) join `viw_docente` `viw2` on((`viw2`.`id_docente` = `tbl1`.`id_docente`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_material_bibliografico_interno_alumno` AS select `tbl1`.`id_material_bibliografico` AS `id_material_bibliografico`,`viw2`.`id_docente` AS `id_docente`,`viw1`.`id_alumno` AS `id_alumno`,`tbl2`.`id_autor_interno` AS `id_autor_interno`,`tbl2`.`id_tipo_autor_interno` AS `id_tipo_autor_interno`,`viw1`.`alumno` AS `alumno`,`viw2`.`docente` AS `docente`,`viw1`.`id_facultad` AS `id_facultad`,`viw1`.`id_escuela` AS `id_escuela`,`viw1`.`facultad` AS `facultad`,`viw1`.`abreviatura_facultad` AS `abreviatura_facultad`,`viw1`.`escuela` AS `escuela`,`viw1`.`escuela_abreviatura` AS `escuela_abreviatura`,`tbl3`.`titulo` AS `titulo`,`tbl3`.`introduccion` AS `introduccion`,`tbl3`.`objetivo` AS `objetivo`,`tbl3`.`resumen` AS `resumen`,`tbl3`.`conclusion` AS `conclusion`,`tbl3`.`anio` AS `anio`,`tbl3`.`id_tematica` AS `id_tematica`,`tbl3`.`id_tipo_material_bibliografico` AS `id_tipo_material_bibliografico`,`tbl3`.`activo` AS `activo` from ((((`tbl_autor_interno_material_bibliografico` `tbl1` join `tbl_autor_interno` `tbl2` on((`tbl1`.`id_autor_interno` = `tbl2`.`id_autor_interno`))) join `tbl_material_bibliografico` `tbl3` on((`tbl1`.`id_material_bibliografico` = `tbl3`.`id_material_bibliografico`))) join `viw_alumno` `viw1` on((`viw1`.`id_alumno` = `tbl2`.`id_alumno`))) join `viw_docente` `viw2` on((`viw2`.`id_docente` = `tbl1`.`id_docente`)));
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `viw_plan_tesis`
+--
+DROP TABLE IF EXISTS `viw_plan_tesis`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_plan_tesis` AS select `tbl`.`id_plan_tesis` AS `id_plan_tesis`,`viwd`.`id_docente` AS `id_docente`,`viwa`.`id_alumno` AS `id_alumno`,`viwa`.`id_facultad` AS `id_facultad`,`tbl`.`titulo` AS `titulo`,`viwa`.`alumno` AS `solicitante`,`viwd`.`docente` AS `asesor`,`viwa`.`escuela_abreviatura` AS `abreaviatura_escuela` from (((`tbl_plan_tesis` `tbl` join `viw_docente` `viwd` on((`tbl`.`id_docente` = `viwd`.`id_docente`))) join `tbl_alumno_plantesis` `tblap` on((`tblap`.`id_plan_tesis` = `tbl`.`id_plan_tesis`))) join `viw_alumno` `viwa` on((`viwa`.`id_alumno` = `tblap`.`id_alumno`))) where ((`tbl`.`id_estado_plan_tesis` = 1) and (`tblap`.`solicita` = 1)) order by `tbl`.`id_plan_tesis` desc;
 
 -- --------------------------------------------------------
 
@@ -2356,7 +2726,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER V
 --
 DROP TABLE IF EXISTS `viw_sujeto`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER VIEW `viw_sujeto` AS select `tbl`.`id_sujeto` AS `id_sujeto`,concat(ifnull(`tbl`.`apellido_paterno`,''),' ',ifnull(`tbl`.`apellido_materno`,''),', ',ifnull(`tbl`.`primer_nombre`,''),' ',ifnull(`tbl`.`segundo_nombre`,'')) AS `sujeto`,`tbl`.`dni` AS `dni`,`tbl`.`direccion` AS `direccion`,`tbl`.`email_institucional` AS `email_institucional`,`tbl`.`email_personal` AS `email_personal`,`tbl`.`activo` AS `activo` from `tbl_sujeto` `tbl` where (`tbl`.`activo` = 1);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_sujeto` AS select `tbl`.`id_sujeto` AS `id_sujeto`,concat(ifnull(`tbl`.`apellido_paterno`,''),' ',ifnull(`tbl`.`apellido_materno`,''),', ',ifnull(`tbl`.`primer_nombre`,''),' ',ifnull(`tbl`.`segundo_nombre`,'')) AS `sujeto`,`tbl`.`dni` AS `dni`,`tbl`.`direccion` AS `direccion`,`tbl`.`email_institucional` AS `email_institucional`,`tbl`.`email_personal` AS `email_personal`,`tbl`.`activo` AS `activo` from `tbl_sujeto` `tbl` where (`tbl`.`activo` = 1);
 
 -- --------------------------------------------------------
 
@@ -2365,7 +2735,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER V
 --
 DROP TABLE IF EXISTS `viw_tesis`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER VIEW `viw_tesis` AS select `tbl1`.`id_material_bibliografico` AS `id_material_bibliografico`,`viw2`.`id_docente` AS `id_docente`,`viw1`.`id_alumno` AS `id_alumno`,`tbl2`.`id_autor_interno` AS `id_autor_interno`,`tbl2`.`id_tipo_autor_interno` AS `id_tipo_autor_interno`,`viw1`.`alumno` AS `alumno`,`viw2`.`docente` AS `docente`,`viw1`.`facultad` AS `facultad`,`tbl3`.`titulo` AS `titulo`,`tbl3`.`anio` AS `anio`,`tbl3`.`introduccion` AS `introduccion`,`tbl3`.`objetivo` AS `objetivo`,`tbl3`.`resumen` AS `resumen`,`tbl3`.`conclusion` AS `conclusion` from ((((`tbl_autor_interno_material_bibliografico` `tbl1` join `tbl_autor_interno` `tbl2` on((`tbl1`.`id_autor_interno` = `tbl2`.`id_autor_interno`))) join `tbl_material_bibliografico` `tbl3` on((`tbl1`.`id_material_bibliografico` = `tbl3`.`id_material_bibliografico`))) join `viw_alumno` `viw1` on((`viw1`.`id_alumno` = `tbl2`.`id_alumno`))) join `viw_docente` `viw2` on((`viw2`.`id_docente` = `tbl1`.`id_docente`))) where (`tbl3`.`id_tipo_material_bibliografico` = 1);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_tesis` AS select `tbl1`.`id_material_bibliografico` AS `id_material_bibliografico`,`viw2`.`id_docente` AS `id_docente`,`viw1`.`id_alumno` AS `id_alumno`,`tbl2`.`id_autor_interno` AS `id_autor_interno`,`tbl2`.`id_tipo_autor_interno` AS `id_tipo_autor_interno`,`viw1`.`alumno` AS `alumno`,`viw2`.`docente` AS `docente`,`viw1`.`facultad` AS `facultad`,`tbl3`.`titulo` AS `titulo`,`tbl3`.`anio` AS `anio`,`tbl3`.`introduccion` AS `introduccion`,`tbl3`.`objetivo` AS `objetivo`,`tbl3`.`resumen` AS `resumen`,`tbl3`.`conclusion` AS `conclusion` from ((((`tbl_autor_interno_material_bibliografico` `tbl1` join `tbl_autor_interno` `tbl2` on((`tbl1`.`id_autor_interno` = `tbl2`.`id_autor_interno`))) join `tbl_material_bibliografico` `tbl3` on((`tbl1`.`id_material_bibliografico` = `tbl3`.`id_material_bibliografico`))) join `viw_alumno` `viw1` on((`viw1`.`id_alumno` = `tbl2`.`id_alumno`))) join `viw_docente` `viw2` on((`viw2`.`id_docente` = `tbl1`.`id_docente`))) where (`tbl3`.`id_tipo_material_bibliografico` = 1);
 
 -- --------------------------------------------------------
 
@@ -2374,7 +2744,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER V
 --
 DROP TABLE IF EXISTS `viw_usuario`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`moralesf`@`localhost` SQL SECURITY DEFINER VIEW `viw_usuario` AS select `tbl_usuario`.`id_usuario` AS `id_usuario`,`tbl_usuario`.`id_sujeto` AS `id_sujeto`,`viw_sujeto`.`sujeto` AS `sujeto`,`tbl_usuario`.`usuario` AS `usuario`,`tbl_usuario`.`contrasenia` AS `contrasenia`,`tbl_usuario`.`active` AS `active` from (`viw_sujeto` join `tbl_usuario` on((`viw_sujeto`.`id_sujeto` = `tbl_usuario`.`id_sujeto`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viw_usuario` AS select `tbl_usuario`.`id_usuario` AS `id_usuario`,`tbl_usuario`.`id_sujeto` AS `id_sujeto`,`viw_sujeto`.`sujeto` AS `sujeto`,`tbl_usuario`.`usuario` AS `usuario`,`tbl_usuario`.`contrasenia` AS `contrasenia`,`tbl_usuario`.`active` AS `active` from (`viw_sujeto` join `tbl_usuario` on((`viw_sujeto`.`id_sujeto` = `tbl_usuario`.`id_sujeto`)));
 
 --
 -- Restricciones para tablas volcadas
@@ -2415,6 +2785,12 @@ ALTER TABLE `tbl_autor_interno_material_bibliografico`
   ADD CONSTRAINT `FK_tbl_autor_interno_material_bibliografico_tbl_docente` FOREIGN KEY (`id_docente`) REFERENCES `tbl_docente` (`id_docente`),
   ADD CONSTRAINT `Reftbl_autor_interno5` FOREIGN KEY (`id_autor_interno`) REFERENCES `tbl_autor_interno` (`id_autor_interno`),
   ADD CONSTRAINT `Reftbl_material_biliografico6` FOREIGN KEY (`id_material_bibliografico`) REFERENCES `tbl_material_bibliografico` (`id_material_bibliografico`);
+
+--
+-- Filtros para la tabla `tbl_componente`
+--
+ALTER TABLE `tbl_componente`
+  ADD CONSTRAINT `Reftbl_oficina1` FOREIGN KEY (`id_oficina`) REFERENCES `tbl_oficina` (`id_oficina`);
 
 --
 -- Filtros para la tabla `tbl_componente_accion`
