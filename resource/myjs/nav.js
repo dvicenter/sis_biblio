@@ -1,6 +1,7 @@
 var asesores=[];
 var sujetos=[];
 var pos_editar;
+var oficinas=[];
 
 $(document).ready(function(){
 	habilitar_modulo();
@@ -12,11 +13,10 @@ $(document).ready(function(){
 		);
 	});
 	$('#constancia').click(function(){
-		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/lhistar_solicitud', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
-		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
-		
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');	
 	});
 	$('#user').click(function(){
 		load_module_date(base_url+'manager/ccusuario/listar', '#user', 'null');
@@ -49,7 +49,17 @@ $(document).ready(function(){
 	$('#accion').click(function(){
 		load_module_date(base_url+'manager/ccaccion/listar', '#accion_user', 'null');
 	});
+<<<<<<< HEAD
 	
+=======
+	$('#load_voucher').click(function(){
+		load_module_not_date(base_url+'module/voucher/voucher', '#load_voucher', 'null');
+	});
+
+	$('#oficina').click(function(){
+		load_module_date(base_url+'manager/ccoficina/listar', '#oficina_user', 'null');
+	});
+>>>>>>> eq-marlene
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{		$.ajax({
 			url:url,
@@ -65,6 +75,7 @@ $(document).ready(function(){
 					
 				}
 						aparecer_input();
+
 				validar();
 				}
 		});
@@ -170,7 +181,11 @@ $(document).ready(function(){
 									else 
 										{ 
 											if($("#mod_componente").is(":visible") == true)
-												{	
+												{	buscar_oficina();
+													$("#mod_componente #input_comp_oficina").focus();
+													$('#input_comp_oficina').click(function(){
+														buscar_oficina();	
+													});
 													$("#mod_componente input[name='componente']").focus();								
 													$('#mod_componente form').submit(function(evento){
 														evento.preventDefault();
@@ -198,6 +213,43 @@ $(document).ready(function(){
 														editar_componente(pos_editar);
 													});
 												}
+
+											else 
+												{	 
+													if($("#mod_oficina").is(":visible") == true)
+														{	
+															$("#mod_oficina input[name='oficina']").focus();								
+															$('#mod_oficina form').submit(function(evento){
+																evento.preventDefault();
+																if($('#mod_oficina .agregar').attr('disabled')=='disabled'){}else{
+																	insertar_oficina();
+																}
+																$("#mod_oficina form")[0].reset();
+																$("#mod_oficina input[name='oficina']").focus();
+																});
+
+																$('#mod_oficina .modificar').click(function(){
+																modificar_oficina();
+																});
+
+																$('#mod_oficina .eliminar').click(function(){
+																var pos_=$("#mod_oficina #table_oficina td .eliminar").index(this);
+																var pos=pos_+1;
+																cancelar_oficina();
+																eliminar_oficina(pos);
+																});
+
+																$('#mod_oficina .cancelar').click(function() {
+																cancelar_oficina();
+																});
+
+																$('#mod_oficina #table_oficina td .editar').click(function() {
+																var pos_editar_=$("#table_oficina td .editar").index(this);
+																pos_editar=pos_editar_+1;
+																editar_oficina(pos_editar);
+																});
+														}
+					
 									else 
 										{	if($("#manager_user").is(":visible") == true){
 												buscar_sujeto();
@@ -233,6 +285,7 @@ $(document).ready(function(){
 													editar_usuario(pos_editar);
 												});
 											}
+
 											else
 											{	if($("#mod_request_record").is(":visible") == true){
 												$("#input_man_asesor").focus();
@@ -256,6 +309,7 @@ $(document).ready(function(){
 												});
 												insertar_solictiud_tesis();
 												}
+											}
 											}
 										}
 								}
@@ -790,7 +844,7 @@ $(document).ready(function(){
 								}
 							});
 							ajax_insertar_solicitud_tesis(titulo,voucher,correo,introduccion,objetivo,resumen,conclusion,id_docente,id_sujeto1,id_sujeto2,2);
-						}
+							}
 						else{
 							$('#mod_request_record .msg_request_record').html("<div class='alert alert-error error_request_record' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'></strong></div>");
 							$('#mod_request_record .msg_request_record .error_request_record .msg').html('Acompa&ntilde;ante inexistente');
@@ -816,7 +870,7 @@ $(document).ready(function(){
 				$("#input_man_asesor").focus();
 				$('#mod_request_record #myTab li').removeClass();
 				$('#mod_request_record #myTab li:nth-child(1)').addClass('active');
-				$('#mod_request_record .msg_request_record').html("<div class='alert alert-success' style='text-align:center;'><a class='close' data-dismiss='alert'>x</a><strong class='msg'>La solicitud ha sido enviada con &eacute;xito</strong></div>");
+				$('#mod_request_record .msg_request_record').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong><br>Solicitud aceptada</div>");
 				$("#mod_request_record #input_man_acompaniante").attr('disabled',true);
 				$("#mod_request_record #input_man_acompaniante").attr('required',false);
 				close_msg('#mod_request_record .msg_request_record');
@@ -832,21 +886,30 @@ $(document).ready(function(){
 	function insertar_componente()
 	{	var componente=$("#mod_componente input[name='componente']").val();
 		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").val();
+		var oficina=$("#input_comp_oficina").val();
+		var id_oficina;
+		$.each(oficinas,function(a,b){
+			if(b[1]==oficina)
+			{	id_oficina=b[0];
+			}
+		});
 		var fallos = validar_componente();
 		if (fallos == 0) {
 			$.ajax({
 				url:base_url+'manager/cccomponente/insertar',
-				data:'componente='+componente+'&descripcion_componente='+descripcion_componente,
+				data:'componente='+componente+'&descripcion_componente='+descripcion_componente+'&id_oficina='+id_oficina,
 				type:'post',
 				dataType:'json',
 				success:function(data){
 					var id_componente;
 					var componente;
 					var descripcion_componente;
+					var id_oficina;
 				$.each(data,function(a,b){
 					id_componente=b.id_componente;
 					componente=b.componente;
 					descripcion_componente=b.descripcion_componente;
+					id_oficina=b.id_oficina;
 				});
 				refresh_componente('guardado');
 					$('#mod_componente .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Componente guardado</div>");
@@ -858,32 +921,45 @@ $(document).ready(function(){
 				}
 			});
 			};
-		}
+	}
 	function editar_componente(pos_editar)
 	{	$('#mod_componente form .agregar').attr('disabled',true).css({'cursor':'no-drop'});
 		var idcomponente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(1)').html();
 		var componente=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html();
 		var descripcion=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+		var oficina=$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(5)').html();
+
 		$("#mod_componente input[name='id_comp']").attr('value',idcomponente);
 		$("#mod_componente input[name='componente']").attr('value',componente);
 		$("#mod_componente input[name='componente']").focus();
 		$('#mod_componente .modificar').attr('disabled',false).css({'cursor':''});
 		$('#mod_componente .cancelar').attr('disabled',false).css({'cursor':''});
 		$("#mod_componente textarea[name='desc_componente']").attr('value',descripcion);
+		$("#input_comp_oficina").attr('value',oficina);
 	}
 	function modificar_componente()
 	{	var idcomp=$("#mod_componente input[name='id_comp']").attr('value');
 		var componente=$("#mod_componente input[name='componente']").attr('value');
 		var descripcion_componente=$("#mod_componente textarea[name='desc_componente']").attr('value');
-			if(validar_componente()==0){
+		var oficina=$("#input_comp_oficina").val();
+		var id_oficina;
+		$.each(oficinas,function(a,b){
+			if(b[1]==oficina)
+			{	id_oficina=b[0];
+			}
+		});
+
+		if(validar_componente()==0){
 			$.ajax({
 				url:base_url+'manager/cccomponente/modificar',
-				data:'id_componente='+idcomp+'&componente='+componente+'&descripcion_componente='+descripcion_componente,
+				data:'id_componente='+idcomp+'&componente='+componente+'&descripcion_componente='+descripcion_componente+'&id_oficina='+id_oficina,
 				type:'post',
 				dataType:'json',
 				success:function(data){
 					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(2)').html(componente);
 					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(3)').html(descripcion_componente);
+					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(4)').html(id_oficina);
+					$('#table_comp tr:nth-child('+pos_editar+') td:nth-child(5)').html(oficina);
 					$("#mod_componente form")[0].reset();
 					$("#mod_componente input[name='componente']").attr('value','');
 					$("#mod_componente input[name='id_comp']").attr('value','');
@@ -953,6 +1029,172 @@ $(document).ready(function(){
 			}
 		});
 	}
+
+	/*ABM DE OFICINA*/
+	function insertar_oficina()
+	{	
+		var oficina=$("#input_man_oficina").val();
+		var descripcion_oficina=$("#mod_oficina textarea[name='desc_oficina']").val();		
+
+		if($("#mod_oficina input[name ='ofi_chek']").is(':checked'))
+			{	var activo=1;
+			}
+		else
+			{	var activo=0;
+			}
+			$.ajax({
+				url:base_url+'manager/ccoficina/insertar',
+				data:'oficina='+oficina+'&descripcion_oficina='+descripcion_oficina+'&activo='+activo,
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					var id_oficina;
+					var oficina;
+					var descripcion_oficina;
+					var activo;
+				$.each(data,function(a,b){
+					id_oficina=b.id_oficina;
+					oficina=b.oficina;
+					descripcion_oficina=b.descripcion_oficina;
+					activo=b.activo;
+				});
+				refresh_oficina('guardado');
+					$('#mod_oficina .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Oficina guardada</div>");
+					close_msg('#mod_oficina .response');
+					
+				},
+				error:function(data)
+				{	$('#mod_oficina .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; guardar</div>");
+					close_msg('#mod_oficina .response');
+				}
+			});
+			;
+
+		}
+
+		function editar_oficina(pos_editar)
+		{	$('#mod_oficina form .agregar').attr('disabled',true).css({'cursor':'no-drop'});
+			var id_oficina=$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(1)').html();
+			var oficina=$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(2)').html();
+			var descripcion_oficina=$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(3)').html();
+			var activo=$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(4)').attr('name');
+			$("#mod_oficina input[name='id_ofi']").attr('value',id_oficina);
+			$("#mod_oficina input[name='oficina']").attr('value',oficina);
+			$("#mod_oficina input[name='oficina']").focus();
+			$("#mod_oficina textarea[name='desc_oficina']").attr('value',descripcion_oficina);
+			$("#mod_oficina input[name='ofi_chek']").attr('value',activo);
+			if(activo==1){
+			$("#mod_oficina input[name='ofi_chek']").attr('checked',true);
+			}
+			else{
+				$("#mod_oficina input[name='ofi_chek']").attr('checked',false);
+			}
+			$('#mod_oficina .modificar').attr('disabled',false).css({'cursor':''});
+			$('#mod_oficina .cancelar').attr('disabled',false).css({'cursor':''});
+		}
+
+		function modificar_oficina()
+			{	var id_oficina=$("#mod_oficina input[name='id_ofi']").attr('value');
+				var oficina=$("#mod_oficina input[name='oficina']").attr('value');
+				var descripcion_oficina=$("#mod_oficina textarea[name='desc_oficina']").attr('value');
+				var activo=$("#mod_oficina input[name='ofi_chek']");
+				if(activo.is(':checked'))
+					{	var activo='Habilitado';
+						activo=1;
+					}
+				else
+					{	var activo='Deshabilitado';
+						activo=0;
+					}
+
+					//if(validar_oficina()==0){
+					$.ajax({
+						url:base_url+'manager/ccoficina/modificar',
+						data:'id_oficina='+id_oficina+'&oficina='+oficina+'&descripcion_oficina='+descripcion_oficina+'&activo='+activo,
+						type:'post',
+						dataType:'json',
+						success:function(data){
+							$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(2)').html(oficina);
+							$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(3)').html(descripcion_oficina);
+							$('#table_oficina tr:nth-child('+pos_editar+') td:nth-child(4)').html(activo);
+							$("#mod_oficina form")[0].reset();
+							$("#mod_oficina input[name='oficina']").attr('value','');
+							$("#mod_oficina input[name='id_ofi']").attr('value','');
+							$("#mod_oficina textarea[name='desc_oficina']").attr('value','');
+							$("#mod_oficina input[name='ofi_chek']").attr('value','');
+							$('#mod_oficina form .agregar').attr('disabled',false).css({'cursor':''});
+							$('#mod_oficina .modificar').attr('disabled',true).css({'cursor':'no-drop'});
+							$('#mod_oficina form .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
+							$('#mod_oficina .response').fadeIn().html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Oficina modificada</div>");
+							close_msg('#mod_oficina .response');
+						},
+						error:function(data){
+								$('#mod_oficina .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; modificar</div>");
+								close_msg('#mod_oficina .response');
+							}
+					});
+					//}
+			}
+
+			function eliminar_oficina(pos)
+						{	
+							var id_oficina=$("#mod_oficina #table_oficina tr:nth-child("+pos+") td:nth-child(1)").html();
+								$.ajax({
+									url:base_url+'manager/ccoficina/eliminar/'+id_oficina,
+									type:'post',
+									dataType:'json',
+									success:function(data){
+										$("#mod_oficina #table_oficina tbody tr:nth-child("+pos+")").fadeOut('slow',function(){$(this).remove();});
+										refresh_oficina('eliminado');
+									},
+									error:function(data){	
+										$('#mod_oficina .response').html("<div class='alert alert-error'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Oh no!</strong> fall&oacute; eliminar</div>");
+										close_msg('#mod_oficina .response');
+									}
+								});
+						}
+
+		function refresh_oficina(msj){
+		$.ajax({
+			url:base_url+'manager/ccoficina/listar',
+			success:function(data){
+				$("#mod_oficina").html(data);
+				$('#mod_oficina .response').html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>x</a><strong>&iexcl;Bien hecho!</strong> Oficina " +msj+"</div>");
+				close_msg('#mod_oficina .response');
+
+				$('#mod_oficina .eliminar').click(function(){
+					var pos_=$("#mod_oficina #table_oficina td .eliminar").index(this);
+					var pos=pos_+1;
+					eliminar_oficina(pos);
+				});
+
+				$('#mod_oficina #table_oficina td .editar').click(function() {
+					var pos_editar_=$("#table_oficina td .editar").index(this);
+					pos_editar=pos_editar_+1;
+					cancelar_oficina();
+					editar_oficina(pos_editar);
+				});
+	
+				$('#mod_oficina form').submit(function(evento){
+					evento.preventDefault();
+					if($('#mod_oficina .agregar').attr('disabled')=='disabled'){}else{
+						insertar_oficina();
+					}
+					$("#mod_oficina form")[0].reset();
+					$("#mod_oficina input[name='oficina']").focus();
+				});
+
+				$('#mod_oficina .modificar').click(function(){
+					modificar_oficina();
+				});
+
+				$('#mod_oficina .cancelar').click(function() {
+					cancelar_oficina();
+				});			
+							}
+		});
+	}
+
 	/*ABM DE COMPONENTE*/
 	function active(selector,selector_top)
 	{
@@ -992,6 +1234,7 @@ $(document).ready(function(){
 		$('#input_conclusion').validCampo(/^[a-zA-z-_\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 ÁÉÍÓÚ\.,:;<>0=\s\t\f\v\(\)\[\]\/\d\]["']*$/,'#form_nuevo_tesis','No se aceptan caracteres especiales.');
 		return res;
 	}
+
 	function validar_solicitar_constancia()
 	{	var res;
 		var res0=$('#input_man_asesor').validCampo(/^[a-zA-z,\u00e1 \u00e9 \u00ed \u00f3 \u00fa \u00c1 \u00c9 \u00cd \u00d3 \u00da \u00FC \u00DC \xF1 \xD1 \s]*$/,'#form_user','Se acepta solo caracteres alfabeticos.');		
@@ -1157,11 +1400,31 @@ $(document).ready(function(){
 			}
 		});
 	}
+
+	function buscar_oficina()
+	{
+		$.ajax({
+			url:base_url+'manager/cccomponente/buscar_oficina',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				var oficina=[];
+				$.each(data,function(a,b){
+					oficina.push(b.oficina);
+					oficinas.push([b.id_oficina,b.oficina]);
+				});
+				$('#input_comp_oficina').typeahead().data('typeahead').source = oficina;
+			}
+		});
+	}
+
 	var autores_acom=[];
 	function buscar_autor_acompa()
 	{
+		var id_sujeto=$("#id_sujeto_login").attr('value');;
 		$.ajax({
 			url:base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/buscar_autor_tesis',
+			data:'id_sujeto='+id_sujeto,
 			type:"POST",
 			dataType:"json",
 			success:function(data){
@@ -1281,6 +1544,16 @@ $(document).ready(function(){
 		$("#mod_componente input[name='id_comp']").attr('value','');
 		$('#mod_componente form .agregar').attr('disabled',false).css({'cursor':''});
 	}
+
+	function cancelar_oficina(){
+		$('#mod_oficina .cancelar').attr('disabled',true).css({'cursor':'no-drop'});
+		$('#mod_oficina .modificar').attr('disabled',true).css({'cursor':'no-drop'});
+		$("#mod_oficina form")[0].reset();
+		$("#mod_oficina input[name='oficina']").attr('value','');
+		$("#mod_oficina input[name='id_oficina']").attr('value','');
+		$('#mod_oficina form .agregar').attr('disabled',false).css({'cursor':''});
+	}
+
 	function close_msg(id)
 	{	$(id).delay(1000).fadeOut();
 	}

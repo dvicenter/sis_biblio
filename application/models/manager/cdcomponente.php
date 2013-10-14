@@ -9,21 +9,19 @@
 
         function num_componente()
         {   
-            return $this->db->get('tbl_componente')->num_rows();
+            return $this->db->get('viw_componente')->num_rows();
         }
         
 		function listar($per_page)
 		{
-			$datos =$this->db->select('tbl.id_componente AS id_componente,tbl.componente AS componente,tbl.descripcion_componente AS descripcion_componente');
-			$this->db->order_by('tbl.id_componente','desc');
-            $datos = $this->db->get('tbl_componente tbl',$per_page,$this->uri->segment(4));
+            $datos = $this->db->get('viw_componente',$per_page,$this->uri->segment(4));
             return $datos->result_array();
 			
 		}
 		
-		function insertar($componente,$descripcion_componente)
-		{	if ($this->db->query("CALL SPRABMComponente(1,1,'$componente','$descripcion_componente')")) 
-			{	$query=$this->db->query("SELECT  tbl.id_componente,  tbl.componente,  tbl.descripcion_componente FROM  tbl_componente tbl order by tbl.id_componente desc limit 1");
+		function insertar($componente,$descripcion_componente,$id_oficina)
+		{	if ($this->db->query("CALL SPRABMComponente(1,0,'$componente','$descripcion_componente','$id_oficina')")) 
+			{	$query=$this->db->query("SELECT  tbl.id_componente,  tbl.componente,  tbl.descripcion_componente, tbl.id_oficina FROM  tbl_componente tbl order by tbl.id_componente desc limit 1");
 				$data;
 				foreach ($query->result() as $dato)
 				{	$data=$dato;
@@ -32,16 +30,18 @@
 			}
 		}
         
-		function modificar($id_componente,$componente,$descripcion_componente)
+		function modificar($id_componente,$componente,$descripcion_componente,$id_oficina)
 		{	$data = array(
 						'id_componente' => $id_componente,
 						'componente' => $componente,
-						'descripcion_componente' => $descripcion_componente
+						'descripcion_componente' => $descripcion_componente,
+						'id_oficina' => $id_oficina
 						);
-			$query = "CALL SPRABMComponente(2,'$id_componente','$componente','$descripcion_componente')";
+			$query = "CALL SPRABMComponente(2,'$id_componente','$componente','$descripcion_componente','$id_oficina')";
 			if($this->db->query($query))
 			{	return $data;
 			}
+			var_dump($data);
 		}
 
 		function componente_accion()
@@ -94,6 +94,11 @@
 					{	array_push($data, $dato);
 					}
 				return $data;
+		}
+		function buscar_oficina()
+		{	$query = "CALL SPRCNSOficina()";
+			$query = $this->db->query($query);
+			return $query->result_array();
 		}
 	
 	}
