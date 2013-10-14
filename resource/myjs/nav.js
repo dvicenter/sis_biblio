@@ -13,7 +13,7 @@ $(document).ready(function(){
 		);
 	});
 	$('#constancia').click(function(){
-		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/lhistar_solicitud', '#constancia', '#constancia_top');
+		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');
 	});
 	$('#constancia_top').click(function(){
 		load_module_date(base_url+'oficina_biblioteca_central/ccoficina_biblioteca_central/listar_solicitud', '#constancia', '#constancia_top');	
@@ -49,9 +49,7 @@ $(document).ready(function(){
 	$('#accion').click(function(){
 		load_module_date(base_url+'manager/ccaccion/listar', '#accion_user', 'null');
 	});
-<<<<<<< HEAD
-	
-=======
+
 	$('#load_voucher').click(function(){
 		load_module_not_date(base_url+'module/voucher/voucher', '#load_voucher', 'null');
 	});
@@ -59,7 +57,6 @@ $(document).ready(function(){
 	$('#oficina').click(function(){
 		load_module_date(base_url+'manager/ccoficina/listar', '#oficina_user', 'null');
 	});
->>>>>>> eq-marlene
 	function load_module_not_date(url,id_nav_left,id_nav_top,url_listar)
 	{		$.ajax({
 			url:url,
